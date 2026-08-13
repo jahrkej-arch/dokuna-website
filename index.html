@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dokuna – SIS & Maßnahmenplanung für ambulante Pflegedienste</title>
+<meta name="description" content="Dokuna erstellt SIS und komplette Maßnahmenplanung – strukturiert, individuell und 100 % offline. Klientendaten verlassen nie Ihr Haus.">
+<style>
+  :root{
+    --bg:#fbfbfd; --card:#f5f5f7; --text:#1d1d1f; --grau:#6e6e73;
+    --akzent:#0e8477; --akzent-hell:#e6f4f2; --weiss:#ffffff; --linie:#e8e8ed;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1024px;margin:0 auto;padding:0 24px}
+  .schmal{max-width:760px;margin:0 auto}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(251,251,253,.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--linie)}
+  .nav{display:flex;justify-content:space-between;align-items:center;height:52px}
+  .logo{font-size:1.25rem;font-weight:700;letter-spacing:-.02em}
+  .logo b{color:var(--akzent);font-weight:700}
+  .nav a.cta{background:var(--akzent);color:#fff;padding:7px 18px;border-radius:99px;text-decoration:none;font-size:.9rem;font-weight:500}
+
+  .hero{text-align:center;padding:104px 0 88px}
+  .eyebrow{color:var(--akzent);font-weight:600;font-size:1rem;letter-spacing:.01em;margin-bottom:14px}
+  h1{font-size:clamp(2.4rem,6vw,4rem);font-weight:700;letter-spacing:-.03em;line-height:1.08}
+  .hero .sub{font-size:1.35rem;color:var(--grau);max-width:640px;margin:24px auto 36px;font-weight:400}
+  .btn{display:inline-block;background:var(--akzent);color:#fff;padding:14px 30px;border-radius:99px;text-decoration:none;font-weight:600;font-size:1.05rem;transition:opacity .2s}
+  .btn:hover{opacity:.85}
+  .btn.leise{background:transparent;color:var(--akzent);font-weight:500}
+  .badge{display:inline-block;background:var(--akzent-hell);color:var(--akzent);padding:6px 18px;border-radius:99px;font-size:.85rem;font-weight:600;margin-bottom:22px}
+
+  section{padding:88px 0}
+  h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+  .lead{font-size:1.15rem;color:var(--grau);max-width:620px;margin-bottom:48px}
+  .zentriert{text-align:center}
+  .zentriert .lead{margin-left:auto;margin-right:auto}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+  .karte{background:var(--card);border-radius:20px;padding:32px 28px}
+  .karte .icon{font-size:1.8rem;display:block;margin-bottom:14px}
+  .karte h3{font-size:1.15rem;font-weight:650;letter-spacing:-.01em;margin-bottom:8px}
+  .karte p{color:var(--grau);font-size:.98rem}
+  .karte.gross{grid-column:1 / -1;background:linear-gradient(135deg,var(--akzent) 0%,#0a6459 100%);color:#fff;padding:44px 40px}
+  .karte.gross h3{color:#fff;font-size:1.6rem;letter-spacing:-.02em}
+  .karte.gross p{color:rgba(255,255,255,.85);font-size:1.05rem;max-width:640px}
+  .karte.gross .icon{font-size:2.2rem}
+
+  .dunkel{background:var(--text);border-radius:28px;color:#fff;padding:72px 48px;margin:0 24px}
+  .dunkel h2{color:#fff}
+  .dunkel .lead{color:#a1a1a6}
+  .dunkel .karte{background:rgba(255,255,255,.08)}
+  .dunkel .karte h3{color:#6fd3c6}
+  .dunkel .karte p{color:#a1a1a6}
+
+  .zitat{text-align:center;max-width:780px;margin:0 auto}
+  .zitat .text{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:550;letter-spacing:-.015em;line-height:1.35}
+  .zitat .text::before{content:"„"}.zitat .text::after{content:""}
+  .zitat .wer{margin-top:22px;color:var(--grau);font-size:1rem}
+
+  .preise{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;max-width:780px;margin:0 auto}
+  .preis{background:var(--weiss);border:1px solid var(--linie);border-radius:24px;padding:38px 32px;text-align:left;position:relative}
+  .preis.hervor{background:var(--card);border:none}
+  .preis .tag{display:inline-block;background:var(--akzent);color:#fff;padding:4px 14px;border-radius:99px;font-size:.78rem;font-weight:600;margin-bottom:16px}
+  .preis h3{font-size:1.2rem;font-weight:650;margin-bottom:14px}
+  .preis .p{font-size:2.6rem;font-weight:700;letter-spacing:-.03em}
+  .preis .p small{font-size:1rem;color:var(--grau);font-weight:400;letter-spacing:0}
+  .preis .einr{color:var(--grau);margin:4px 0 22px;font-size:.95rem}
+  .preis ul{list-style:none;margin-bottom:26px}
+  .preis li{padding:7px 0 7px 26px;position:relative;font-size:.95rem}
+  .preis li::before{content:"✓";position:absolute;left:0;color:var(--akzent);font-weight:700}
+  .hinweis{font-size:.82rem;color:var(--grau);max-width:780px;margin:26px auto 0;text-align:center;line-height:1.5}
+
+  footer{border-top:1px solid var(--linie);padding:18px 0;font-size:.85rem;color:var(--grau);background:var(--card)}
+  footer .balken{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+  footer nav{display:flex;gap:22px}
+  footer a{color:var(--grau);text-decoration:none}
+  footer a:hover{color:var(--text)}
+  .rechtpanel{display:none;border-top:1px solid var(--linie);background:var(--bg);padding:48px 0;font-size:.92rem;color:var(--grau)}
+  .rechtpanel h3{color:var(--text);font-size:1.2rem;margin-bottom:14px}
+  .rechtpanel a{color:var(--akzent);text-decoration:none}
+  .rechtpanel .schliessen{margin-top:20px;background:none;border:1px solid var(--linie);border-radius:99px;padding:7px 20px;font-size:.85rem;color:var(--grau);cursor:pointer}
+  @media (max-width:640px){.dunkel{margin:0;border-radius:0;padding:56px 24px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">Dokuna<b>.</b></div>
+    <a class="cta" href="mailto:info@dokuna.de?subject=Anfrage%20Dokuna">Kontakt</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="badge">Bereits im Echtbetrieb bei einem ambulanten Pflegedienst</span>
+    <p class="eyebrow">SIS + Maßnahmenplanung</p>
+    <h1>Pflegedoku,<br>fast wie von selbst.</h1>
+    <p class="sub">Dokuna führt Ihre Pflegefachkräfte durch die Strukturierte Informationssammlung – und erstellt daraus direkt die komplette Maßnahmenplanung. Individuell, strukturiert, 100 % offline.</p>
+    <a class="btn" href="mailto:info@dokuna.de?subject=Pilotkunde%20Dokuna">Pilotkunde werden</a>
+    <a class="btn leise" href="#preise">Preise ansehen ›</a>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap zentriert">
+    <h2>Dokuna in unter zwei Minuten.</h2>
+    <p class="lead" style="margin-left:auto;margin-right:auto">Von den Grunddaten bis zum fertigen Maßnahmenplan – der komplette Durchlauf.</p>
+    <video controls muted playsinline preload="metadata" style="width:100%;max-width:880px;border-radius:20px;box-shadow:0 24px 60px rgba(15,42,67,.18)">
+      <source src="dokuna-erklaervideo-v17.mp4" type="video/mp4">
+      Ihr Browser kann dieses Video nicht abspielen.
+    </video>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="zentriert">
+      <h2>Kennen Sie das?</h2>
+      <p class="lead">Gute Dokumentation scheitert selten am Fachwissen – sondern an Zeit und Formulierung.</p>
+    </div>
+    <div class="grid">
+      <div class="karte"><span class="icon">🕐</span><h3>Doku nach Feierabend</h3><p>Nach einer vollen Tour noch SIS und Maßnahmenplan schreiben – unter Druck, wenn der Kopf längst durch ist.</p></div>
+      <div class="karte"><span class="icon">✍️</span><h3>Formulierungs-Hürde</h3><p>Fachlich ist alles klar, aber es prüfungssicher aufzuschreiben kostet Kraft – besonders, wenn Deutsch nicht die Muttersprache ist.</p></div>
+      <div class="karte"><span class="icon">🔍</span><h3>Prüfungsdruck</h3><p>Seit der neuen QPR 2026 zählt individuelle, fachlich nachvollziehbare Dokumentation mehr denn je.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="zentriert">
+      <h2>Was Dokuna kann.</h2>
+      <p class="lead">Ein schlankes Werkzeug für die zwei größten Doku-Aufgaben – SIS und Maßnahmenplanung.</p>
+    </div>
+    <div class="grid">
+      <div class="karte gross"><span class="icon">🧩</span><h3>Von der SIS direkt zur Maßnahmenplanung</h3><p>Das Herzstück: Aus der fertigen SIS entsteht auf Knopfdruck die passende, individuelle Maßnahmenplanung – konsistent mit den Themenfeldern, nachvollziehbar für jede Prüfung. Der Schritt, der sonst die meiste Zeit frisst.</p></div>
+      <div class="karte"><span class="icon">🗂️</span><h3>Alle 6 Themenfelder, geführt</h3><p>Strukturierte Abfrage entlang des Strukturmodells – nichts wird vergessen, alles landet am richtigen Platz.</p></div>
+      <div class="karte"><span class="icon">💬</span><h3>Formulierungssichere Sätze</h3><p>Aus Ihren Angaben entstehen fachlich saubere Formulierungen – eine echte Hilfe auch für Fachkräfte, deren Muttersprache nicht Deutsch ist.</p></div>
+      <div class="karte"><span class="icon">👤</span><h3>Individuell pro Klient</h3><p>Eigenwahrnehmung, Ressourcen und Besonderheiten fließen direkt ein – keine Doku von der Stange.</p></div>
+      <div class="karte"><span class="icon">👩‍⚕️</span><h3>Die Fachkraft entscheidet</h3><p>Jedes Dokument wird von Ihrer Pflegefachkraft geprüft und freigegeben. Dokuna assistiert – die fachliche Verantwortung bleibt, wo sie hingehört.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="dunkel" style="max-width:1024px;margin-left:auto;margin-right:auto">
+  <div style="max-width:928px;margin:0 auto">
+    <div class="zentriert">
+      <h2>100 % offline.<br>Ihre Daten bleiben bei Ihnen.</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">Gesundheitsdaten sind die sensibelsten Daten überhaupt. Deshalb ist Dokuna bewusst keine Cloud-Lösung.</p>
+    </div>
+    <div class="grid">
+      <div class="karte"><h3>Daten bleiben im Haus</h3><p>Dokuna läuft lokal auf Ihrem Rechner. Klientendaten werden an niemanden übertragen – auch nicht an uns.</p></div>
+      <div class="karte"><h3>Kein Internet nötig</h3><p>Funktioniert auch dort, wo kein WLAN hinkommt. Keine Serverausfälle, keine Abhängigkeiten.</p></div>
+      <div class="karte"><h3>DSGVO-freundlich by Design</h3><p>Keine Datenübermittlung an Dritte heißt: maximal einfache Datenschutz-Dokumentation für Ihren Dienst.</p></div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap zitat">
+    <p class="text">Nach einem harten Arbeitstag noch eine SIS schreiben zu müssen – genau da ist Dokuna eine echte Erleichterung. Und für Kolleginnen und Kollegen, deren Muttersprache nicht Deutsch ist, gleicht es enorm viel aus."</p>
+    <p class="wer">Geschäftsführung Pflegeagentur 24, ambulanter Pflegedienst · Nutzer der ersten Stunde</p>
+  </div>
+</section>
+
+<section id="preise" style="padding-top:0">
+  <div class="wrap">
+    <div class="zentriert">
+      <h2>Klare Preise.<br>Keine Überraschungen.</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">Eine Lizenz pro Pflegedienst – alle Mitarbeiter nutzen sie.</p>
+    </div>
+    <div class="preise">
+      <div class="preis">
+        <h3>Dokuna</h3>
+        <p class="p">99 €<small> /Monat</small></p>
+        <p class="einr">einmalig 349 € Einrichtung &amp; Einweisung</p>
+        <ul>
+          <li>SIS &amp; Maßnahmenplanung unbegrenzt</li>
+          <li>Alle Updates inklusive</li>
+          <li>Support per E-Mail</li>
+          <li>12 Monate Mindestlaufzeit, danach monatlich kündbar</li>
+        </ul>
+        <a class="btn" href="mailto:info@dokuna.de?subject=Anfrage%20Dokuna">Anfragen</a>
+      </div>
+      <div class="preis hervor">
+        <span class="tag">Nur für die ersten 3 Pilotkunden</span>
+        <h3>Pilotprogramm</h3>
+        <p class="p">49 €<small> /Monat im 1. Jahr</small></p>
+        <p class="einr">Einrichtung geschenkt (statt 349 €) · ab dem 2. Jahr 99 €/Monat</p>
+        <ul>
+          <li>Alle Leistungen inklusive</li>
+          <li>Direkter Draht zum Entwickler</li>
+          <li>Ihre Wünsche fließen in die Entwicklung ein</li>
+          <li>Im Gegenzug: Feedback &amp; Referenz, 6 Monate Mindestlaufzeit</li>
+        </ul>
+        <a class="btn" href="mailto:info@dokuna.de?subject=Pilotkunde%20Dokuna">Pilotplatz sichern</a>
+      </div>
+    </div>
+    <p class="hinweis">Alle Preise sind Endpreise; gemäß § 19 UStG wird keine Umsatzsteuer berechnet. Dokuna ist ein Dokumentations-Hilfsmittel; die pflegefachliche Verantwortung für Inhalte und Freigabe verbleibt bei der Pflegefachkraft des Pflegedienstes.</p>
+  </div>
+</section>
+
+<section class="zentriert" style="padding-top:0">
+  <div class="wrap schmal">
+    <h2>Lernen wir uns kennen.</h2>
+    <p class="lead" style="margin-left:auto;margin-right:auto">Kurze Mail genügt – Sie bekommen werktags innerhalb von 24 Stunden eine persönliche Antwort und auf Wunsch eine Live-Vorführung.</p>
+    <a class="btn" href="mailto:info@dokuna.de?subject=Anfrage%20Dokuna">info@dokuna.de</a>
+  </div>
+</section>
+
+<div id="impressum" class="rechtpanel">
+  <div class="wrap schmal">
+    <h3>Impressum</h3>
+    <p>Angaben gemäß § 5 DDG<br><br>
+    Jonas Jahrke · Dokuna<br>Pastoratsweg 22 · 45529 Hattingen · Deutschland<br>
+    E-Mail: <a href="mailto:info@dokuna.de">info@dokuna.de</a><br>
+    Umsatzsteuer: Kleinunternehmer gemäß § 19 UStG, keine Ausweisung von Umsatzsteuer.</p>
+    <button class="schliessen" onclick="schliessePanel('impressum')">Schließen</button>
+  </div>
+</div>
+
+<div id="datenschutz" class="rechtpanel">
+  <div class="wrap schmal">
+    <h3>Datenschutzerklärung</h3>
+    <p>Diese Website verwendet keine Cookies, kein Tracking und keine Analyse-Tools.<br><br>
+    Beim Aufruf der Seite verarbeitet der Hosting-Anbieter technisch notwendige Server-Logdaten (z. B. IP-Adresse, Zeitpunkt des Abrufs) auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am sicheren Betrieb der Website).<br><br>
+    Bei Kontaktaufnahme per E-Mail verarbeiten wir Ihre Angaben ausschließlich zur Bearbeitung der Anfrage (Art. 6 Abs. 1 lit. b DSGVO).<br><br>
+    Verantwortlicher: Jonas Jahrke, Pastoratsweg 22, 45529 Hattingen, info@dokuna.de.<br>
+    Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung sowie Beschwerde bei einer Aufsichtsbehörde.</p>
+    <button class="schliessen" onclick="schliessePanel('datenschutz')">Schließen</button>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap balken">
+    <span>© 2026 Dokuna · Jonas Jahrke</span>
+    <nav>
+      <a href="#impressum" onclick="oeffnePanel('impressum');return false;">Impressum</a>
+      <a href="#datenschutz" onclick="oeffnePanel('datenschutz');return false;">Datenschutz</a>
+      <a href="mailto:info@dokuna.de">Kontakt</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+function oeffnePanel(id){
+  document.querySelectorAll('.rechtpanel').forEach(p=>p.style.display='none');
+  var el=document.getElementById(id);
+  el.style.display='block';
+  el.scrollIntoView({behavior:'smooth'});
+}
+function schliessePanel(id){document.getElementById(id).style.display='none';}
+</script>
+
+</body>
+</html>
