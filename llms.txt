@@ -1,0 +1,23 @@
+# dokuna.de – SIS & Maßnahmenplanung für ambulante Pflegedienste
+
+> Dokuna ist eine Offline-Software für die Pflegedokumentation ambulanter Pflegedienste in Deutschland: Sie führt Pflegefachkräfte durch die Strukturierte Informationssammlung (SIS) und erstellt daraus die individuelle Maßnahmenplanung. Die Ratgeber-Seiten erklären das Strukturmodell mit Formulierungsbeispielen und sind frei zugänglich.
+
+Autor aller Ratgeber: Jonas Jahrke, Pflegefachassistent in Ausbildung (https://dokuna.de/ueber/). Quellen: EinSTEP-Schulungsunterlagen und Veröffentlichungen des Medizinischen Dienstes Bund.
+
+## Ratgeber
+- [SIS-Formulierungshilfen (Übersicht)](https://dokuna.de/sis-formulierungshilfen/): Aufbau der SIS, Risikomatrix, häufige Fehler, Beispiele für alle sechs Themenfelder
+- [Themenfeld 1: Kognitive und kommunikative Fähigkeiten](https://dokuna.de/sis-themenfeld-1-kognition-kommunikation/)
+- [Themenfeld 2: Mobilität und Beweglichkeit](https://dokuna.de/sis-themenfeld-2-mobilitaet/)
+- [Themenfeld 3: Krankheitsbezogene Anforderungen und Belastungen](https://dokuna.de/sis-themenfeld-3-krankheitsbezogene-anforderungen/)
+- [Themenfeld 4: Selbstversorgung](https://dokuna.de/sis-themenfeld-4-selbstversorgung/)
+- [Themenfeld 5: Leben in sozialen Beziehungen](https://dokuna.de/sis-themenfeld-5-soziale-beziehungen/)
+- [Themenfeld 6: Haushaltsführung](https://dokuna.de/sis-themenfeld-6-haushaltsfuehrung/)
+- [QPR ambulant 2026](https://dokuna.de/qpr-ambulant-2026/): Neue Qualitätsprüfungs-Richtlinien seit 1. Juli 2026, Bewertung A–D, Fachgespräch
+- [Maßnahmenplan ambulant](https://dokuna.de/massnahmenplan-ambulant/): Von der SIS zur Planung, mit durchgängigem Beispiel
+- [Berichteblatt](https://dokuna.de/berichteblatt/): Nur Abweichungen dokumentieren
+- [Evaluation der Pflegeplanung](https://dokuna.de/evaluation-pflegeplanung/): Anlässe und Vorgehen
+
+## Produkt
+- [Startseite mit Preisen und Erklärvideo](https://dokuna.de/): 99 €/Monat je Pflegedienst, 100 % offline
+- [Über Dokuna](https://dokuna.de/ueber/)
+- Kontakt: info@dokuna.de
