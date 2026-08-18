@@ -6,6 +6,7 @@ Autor aller Ratgeber: Jonas Jahrke, Pflegefachassistent in Ausbildung (https://d
 
 ## Ratgeber
 - [SIS-Formulierungshilfen (Übersicht)](https://dokuna.de/sis-formulierungshilfen/): Aufbau der SIS, Risikomatrix, häufige Fehler, Beispiele für alle sechs Themenfelder
+- [SIS-Spickzettel](https://dokuna.de/sis-spickzettel/): Die sechs Themenfelder, Eingangsfrage und Risikomatrix als druckbare A4-Übersicht.
 - [Themenfeld 1: Kognitive und kommunikative Fähigkeiten](https://dokuna.de/sis-themenfeld-1-kognition-kommunikation/)
 - [Themenfeld 2: Mobilität und Beweglichkeit](https://dokuna.de/sis-themenfeld-2-mobilitaet/)
 - [Themenfeld 3: Krankheitsbezogene Anforderungen und Belastungen](https://dokuna.de/sis-themenfeld-3-krankheitsbezogene-anforderungen/)
