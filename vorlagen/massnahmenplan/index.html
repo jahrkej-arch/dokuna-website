@@ -9,52 +9,39 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,Helvetica,sans-serif;color:#000;background:#fff;line-height:1.3}
-.blatt{max-width:860px;margin:0 auto;padding:16px}
-.bogen{border:1.6px solid #000}
-.titel{border-bottom:1.6px solid #000;padding:6px 10px;display:flex;justify-content:space-between;align-items:baseline}
-.titel h1{font-size:.95rem}
-.titel span{font-size:.62rem;color:#444}
-table.kopf{width:100%;border-collapse:collapse}
-table.kopf td{border:1px solid #000;border-left:0;padding:2px 8px 12px;font-size:.66rem;vertical-align:top}
-table.kopf td:last-child{border-right:0}
-.gb{border-bottom:1px solid #000;padding:3px 10px 16px;font-size:.66rem;color:#333}
-table.mp{width:100%;border-collapse:collapse;font-size:.74rem}
-table.mp th,table.mp td{border:1px solid #000;padding:3px 6px;text-align:left;vertical-align:top}
-table.mp th{background:#ececec;font-size:.68rem}
-table.mp td.zeit{width:12%;font-weight:700;font-size:.7rem;background:#f7f7f7}
-table.mp tr.hoch td{height:74px}
-table.mp tr.mittel td{height:52px}
-.leiste{padding:14px 0;display:flex;gap:10px}
+.blatt{max-width:1080px;margin:0 auto;padding:16px}
+.leiste{padding:0 0 14px;display:flex;gap:10px}
 .leiste button,.leiste a{background:#0e8477;color:#fff;border:0;padding:10px 18px;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
 .leiste a{background:#fff;color:#0e8477;border:1.5px solid #0e8477}
-@media print{@page{size:A4;margin:10mm}.leiste{display:none}.blatt{max-width:none;padding:0}}
+h1{font-size:1.05rem;margin-bottom:8px}
+table.kopf{border-collapse:collapse;margin-bottom:10px;font-size:.72rem}
+table.kopf td{padding:1px 14px 1px 0;vertical-align:bottom}
+table.kopf td.lbl{color:#333}
+table.kopf td.wert{border-bottom:1px solid #000;min-width:150px}
+table.mp{width:100%;border-collapse:collapse;font-size:.72rem}
+table.mp th,table.mp td{border:1px solid #000;padding:3px 6px;text-align:left;vertical-align:top}
+table.mp th{background:#ececec;font-size:.68rem}
+table.mp td.zeit{font-weight:700;font-size:.7rem}
+table.mp tr td{height:92px}
+@media print{@page{size:A4 landscape;margin:9mm}.leiste{display:none}.blatt{max-width:none;padding:0}}
 </style>
 </head>
 <body>
 <div class="blatt">
 <div class="leiste"><button onclick="window.print()">Drucken</button><a href="/vorlagen/">← Zurück</a></div>
-<div class="bogen">
-<div class="titel"><h1>Maßnahmenplan – ambulante Pflege</h1><span>dokuna.de/vorlagen</span></div>
-<table class="kopf"><tr>
-<td style="width:38%">Name der versorgten Person</td>
-<td style="width:16%">Erstellt am</td>
-<td style="width:16%">Evaluation am</td>
-<td style="width:18%">Erstellt von</td>
-<td style="width:12%">Handzeichen</td>
-</tr></table>
-<div class="gb">Grundbotschaft der pflegebedürftigen Person (optional):</div>
-<table class="mp">
-<tr><th style="width:12%">Tagesstruktur</th><th style="width:46%">Maßnahmen der Pflege und Betreuung (Was / Wie)</th><th style="width:16%">Häufigkeit / Zeit</th><th style="width:14%">Wer</th><th style="width:12%">Nr. (SIS-Bezug)</th></tr>
-<tr class="hoch"><td class="zeit">Morgens</td><td></td><td></td><td></td><td></td></tr>
-<tr class="hoch"><td class="zeit">Vormittags</td><td></td><td></td><td></td><td></td></tr>
-<tr class="hoch"><td class="zeit">Mittags</td><td></td><td></td><td></td><td></td></tr>
-<tr class="hoch"><td class="zeit">Nachmittags</td><td></td><td></td><td></td><td></td></tr>
-<tr class="hoch"><td class="zeit">Abends</td><td></td><td></td><td></td><td></td></tr>
-<tr class="mittel"><td class="zeit">Nachts</td><td></td><td></td><td></td><td></td></tr>
-<tr class="mittel"><td class="zeit">Tagesübergreifend / Risikomanagement</td><td></td><td></td><td></td><td></td></tr>
-<tr class="mittel"><td class="zeit">Behandlungspflege (lt. ärztl. Anordnung)</td><td></td><td></td><td></td><td></td></tr>
+<h1>Maßnahmenplan (Ambulante Pflege)</h1>
+<table class="kopf">
+<tr><td class="lbl">Name, Vorname:</td><td class="wert"></td><td class="lbl">Erstellt am:</td><td class="wert"></td><td class="lbl">Letzte Bearb. am:</td><td class="wert"></td></tr>
+<tr><td class="lbl">Geburtsdatum:</td><td class="wert"></td><td class="lbl">Letzte Bearb. von:</td><td class="wert"></td><td class="lbl">Druckdatum:</td><td class="wert"></td></tr>
 </table>
-</div>
+<table class="mp">
+<tr><th style="width:8%">Zeitraum</th><th style="width:36%">Maßnahme</th><th style="width:8%">Tage</th><th style="width:14%">Prophylaxen</th><th style="width:12%">Hilfsmittel</th><th style="width:12%">Besonderheiten</th><th style="width:10%">Wiedervorlage</th></tr>
+<tr><td class="zeit">Morgens</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td class="zeit">Mittags</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td class="zeit">Abends</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td class="zeit">Nachts</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td class="zeit"></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
 </div>
 <script>if(new URLSearchParams(location.search).has('drucken')){window.addEventListener('load',()=>setTimeout(()=>window.print(),300));}</script>
 </body>
