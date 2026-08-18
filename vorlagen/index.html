@@ -58,7 +58,7 @@ footer.fuss a{color:var(--akzent)}
 <a class="zurueck" href="/sis-formulierungshilfen/">← Zu den SIS-Formulierungshilfen</a>
 <header class="kopf"><h1>Blanko-Vorlagen zum Ausdrucken</h1><span class="marke">dokuna.de</span></header>
 <p class="intro">Zwei druckfertige Vorlagen für die ambulante Pflege: ein leerer Bogen für die strukturierte Informationssammlung und ein leerer Maßnahmenplan – für Übungszwecke, Schulungen und den schnellen Entwurf auf Papier.</p>
-<div class="hinweisbox">Hinweis: Dies sind eigene Vorlagen in Anlehnung an das Strukturmodell – kein offizielles SIS®-Formular. Die Original-Formulare und Erläuterungen stellt das Projektbüro EinSTEP bereit: <a href="https://www.ein-step.de/schulungsunterlagen" rel="noopener">ein-step.de</a>. Maßgeblich für Ihre Dokumentation sind die Vorgaben Ihres QM.</div>
+
 <div class="knoepfe">
 <button onclick="drucken('')">Beide Vorlagen drucken</button>
 <button class="zweit" onclick="drucken('nur-sis')">Nur Informationssammlung</button>
@@ -68,16 +68,18 @@ footer.fuss a{color:var(--akzent)}
 <div class="vorlage vorlage-sis">
 <h2>Strukturierte Informationssammlung – Blanko-Bogen</h2>
 <p class="unter">In Anlehnung an das Strukturmodell (ambulant) · dokuna.de/vorlagen</p>
+<div class="block"><h3>Feld A – Kopfdaten</h3></div>
 <div class="kopfdaten">
 <div class="feld">Name der versorgten Person<div class="strich"></div></div>
 <div class="feld">Datum<div class="strich"></div></div>
 <div class="feld">Handzeichen Pflegefachkraft<div class="strich"></div></div>
 </div>
 <div class="block">
-<h3>Eigenwahrnehmung der pflegebedürftigen Person</h3>
+<h3>Feld B – Eigenwahrnehmung der pflegebedürftigen Person</h3>
 <p class="frage">„Was bewegt Sie im Augenblick? Was brauchen Sie? Was können wir für Sie tun?“ – Antwort im Originalton:</p>
 <div class="zeile"></div><div class="zeile"></div><div class="zeile"></div>
 </div>
+<div class="block"><h3>Feld C1 – pflegefachliche Einschätzung in sechs Themenfeldern</h3></div>
 <div class="block"><h3>Themenfeld 1: Kognitive und kommunikative Fähigkeiten</h3><p class="frage">Orientierung, Sachverhalte erfassen, sich mitteilen – inkl. Ressourcen:</p><div class="zeile"></div><div class="zeile"></div><div class="zeile"></div></div>
 <div class="block"><h3>Themenfeld 2: Mobilität und Beweglichkeit</h3><p class="frage">Fortbewegen, Körperposition verändern – inkl. Ressourcen:</p><div class="zeile"></div><div class="zeile"></div><div class="zeile"></div></div>
 <div class="block"><h3>Themenfeld 3: Krankheitsbezogene Anforderungen und Belastungen</h3><p class="frage">Umgang mit krankheits- und therapiebedingten Anforderungen – inkl. Ressourcen:</p><div class="zeile"></div><div class="zeile"></div><div class="zeile"></div></div>
@@ -85,7 +87,7 @@ footer.fuss a{color:var(--akzent)}
 <div class="block"><h3>Themenfeld 5: Leben in sozialen Beziehungen</h3><p class="frage">Alltag gestalten, soziale Kontakte pflegen – inkl. Ressourcen:</p><div class="zeile"></div><div class="zeile"></div><div class="zeile"></div></div>
 <div class="block"><h3>Themenfeld 6: Haushaltsführung</h3><p class="frage">Bewältigung der eigenen Haushaltsführung – inkl. Ressourcen:</p><div class="zeile"></div><div class="zeile"></div><div class="zeile"></div></div>
 <div class="block">
-<h3>Risikomatrix</h3>
+<h3>Feld C2 – Risikomatrix</h3>
 <table class="matrix">
 <tr><th>Pflegesensitives Risiko</th><th class="mitte">Risiko: ja</th><th class="mitte">Risiko: nein</th><th class="mitte">Weitere Einschätzung nötig</th></tr>
 <tr><td>Dekubitus</td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td></tr>
@@ -119,7 +121,7 @@ footer.fuss a{color:var(--akzent)}
 </table>
 </div>
 
-<footer class="fuss">Kostenlose Vorlagen von <a href="https://dokuna.de/">Dokuna</a> · Stand: 18. August 2026 · Vertiefung: <a href="/sis-formulierungshilfen/">SIS-Formulierungshilfen</a> · <a href="/sis-spickzettel/">SIS-Spickzettel</a> · <a href="/massnahmenplan-ambulant/">Ratgeber Maßnahmenplan</a></footer>
+<footer class="fuss">Eigene Vorlagen in Anlehnung an das Strukturmodell – kein offizielles SIS®-Formular (Original: <a href="https://www.ein-step.de/schulungsunterlagen" rel="noopener">ein-step.de</a>) · Kostenlos von <a href="https://dokuna.de/">Dokuna</a> · Stand: 18. August 2026 · Vertiefung: <a href="/sis-formulierungshilfen/">SIS-Formulierungshilfen</a> · <a href="/sis-spickzettel/">SIS-Spickzettel</a> · <a href="/massnahmenplan-ambulant/">Ratgeber Maßnahmenplan</a></footer>
 </div>
 <script>
 function drucken(klasse){document.body.className=klasse;window.print();document.body.className='';}
