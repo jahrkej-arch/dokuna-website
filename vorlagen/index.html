@@ -4,47 +4,54 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Blanko-Vorlagen: SIS-Bogen &amp; Maßnahmenplan zum Ausdrucken | Dokuna</title>
-<meta name="description" content="Kostenlose Blanko-Vorlagen für die ambulante Pflege zum Ausdrucken: Informationssammlung in Anlehnung an das Strukturmodell (6 Themenfelder, Eigenwahrnehmung, Risikomatrix) und ein leerer Maßnahmenplan.">
+<meta name="description" content="Kostenlose Blanko-Vorlagen für die ambulante Pflege zum Ausdrucken: Informationssammlung im Formular-Layout (Feld A–C2, sechs Themenfelder, Risikomatrix) und ein leerer Maßnahmenplan.">
 <link rel="canonical" href="https://dokuna.de/vorlagen/">
 <meta property="og:title" content="Blanko-Vorlagen: SIS-Bogen &amp; Maßnahmenplan – Dokuna">
 <meta property="og:description" content="Druckfertige Blanko-Vorlagen für Informationssammlung und Maßnahmenplanung in der ambulanten Pflege.">
 <meta property="og:url" content="https://dokuna.de/vorlagen/">
 <meta property="og:image" content="https://dokuna.de/og-bild.jpg">
 <style>
-:root{--akzent:#0e8477;--text:#1d1d1f;--grau:#6e6e73;--linie:#e8e8ed;--hell:#e6f4f2}
+:root{--akzent:#0e8477;--text:#1d1d1f;--grau:#6e6e73;--linie:#e8e8ed}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:#fbfbfd;line-height:1.45}
-.wrap{max-width:820px;margin:0 auto;padding:24px 32px}
-header.kopf{display:flex;justify-content:space-between;align-items:baseline;border-bottom:3px solid var(--akzent);padding-bottom:10px;margin-bottom:12px}
-header.kopf h1{font-size:1.3rem}
+body{font-family:Arial,Helvetica,sans-serif;color:#000;background:#fbfbfd;line-height:1.35}
+.wrap{max-width:860px;margin:0 auto;padding:24px 32px}
+header.kopf{display:flex;justify-content:space-between;align-items:baseline;border-bottom:3px solid var(--akzent);padding-bottom:10px;margin-bottom:12px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+header.kopf h1{font-size:1.3rem;color:var(--text)}
 header.kopf .marke{font-weight:700;color:var(--akzent)}
-.intro{font-size:.9rem;color:var(--grau);margin-bottom:10px}
-.hinweisbox{background:var(--hell);border-left:4px solid var(--akzent);padding:10px 14px;border-radius:0 6px 6px 0;font-size:.8rem;color:var(--text);margin-bottom:16px}
-.hinweisbox a{color:var(--akzent)}
-.knoepfe{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.intro{font-size:.9rem;color:var(--grau);margin-bottom:14px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+.knoepfe{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
 .knoepfe button{background:var(--akzent);color:#fff;border:0;padding:10px 18px;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer}
 .knoepfe button.zweit{background:#fff;color:var(--akzent);border:1.5px solid var(--akzent)}
-.vorlage{background:#fff;border:1px solid var(--linie);border-radius:10px;padding:22px 26px;margin-bottom:26px}
-.vorlage h2{font-size:1.05rem;margin-bottom:2px}
-.vorlage .unter{font-size:.75rem;color:var(--grau);margin-bottom:12px}
-.kopfdaten{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;margin-bottom:14px}
-.kopfdaten .feld{font-size:.72rem;color:var(--grau)}
-.kopfdaten .feld .strich{border-bottom:1px solid var(--text);height:22px;margin-top:2px}
-.block{margin-bottom:13px;break-inside:avoid}
-.block h3{font-size:.85rem;margin-bottom:2px}
-.block .frage{font-size:.74rem;color:var(--grau);font-style:italic;margin-bottom:4px}
-.zeile{border-bottom:1px solid #c9c9ce;height:24px}
-table.matrix,table.mp{width:100%;border-collapse:collapse;font-size:.8rem}
-table.matrix th,table.matrix td,table.mp th,table.mp td{border:1px solid #b9b9be;padding:6px 8px;text-align:left;vertical-align:top}
-table.matrix th,table.mp th{background:var(--hell);font-size:.75rem}
+
+.bogen{background:#fff;border:1.6px solid #000;margin-bottom:30px}
+.bogen-titel{border-bottom:1.6px solid #000;padding:8px 10px}
+.bogen-titel h2{font-size:1rem}
+.bogen-titel .sub{font-size:.68rem;color:#444}
+table.kopfzeile{width:100%;border-collapse:collapse}
+table.kopfzeile td{border:1px solid #000;border-left:0;padding:3px 8px 14px;font-size:.68rem;vertical-align:top}
+table.kopfzeile td:last-child{border-right:0}
+.feldkopf{background:#dcdcdc;border-top:1.4px solid #000;border-bottom:1px solid #000;padding:4px 10px;font-size:.78rem;font-weight:700}
+.freiflaeche{min-height:96px;border-bottom:0;padding:6px 10px}
+.freiflaeche .frage{font-size:.72rem;font-style:italic;color:#333}
+.tfgrid{display:grid;grid-template-columns:1fr 1fr}
+.tfbox{border:.8px solid #000;margin:-.4px;display:flex;flex-direction:column}
+.tfbox .tftitel{background:#ececec;border-bottom:.8px solid #000;padding:3px 8px;font-size:.72rem;font-weight:700}
+.tfbox .tfraum{min-height:86px}
+table.matrix{width:100%;border-collapse:collapse;font-size:.75rem}
+table.matrix th,table.matrix td{border:1px solid #000;padding:4px 8px;text-align:left}
+table.matrix th{background:#ececec;font-size:.7rem}
 table.matrix td.mitte,table.matrix th.mitte{text-align:center}
-.kasten{display:inline-block;width:13px;height:13px;border:1.5px solid var(--text);border-radius:2px;vertical-align:middle}
-table.mp td{height:34px}
-footer.fuss{font-size:.72rem;color:var(--grau);padding:6px 0 30px}
+.kasten{display:inline-block;width:12px;height:12px;border:1.4px solid #000;vertical-align:middle}
+table.mp{width:100%;border-collapse:collapse;font-size:.75rem}
+table.mp th,table.mp td{border:1px solid #000;padding:4px 6px;text-align:left;vertical-align:top}
+table.mp th{background:#ececec;font-size:.7rem}
+table.mp td{height:36px}
+.fussnote{font-size:.62rem;color:#555;padding:4px 10px;border-top:1px solid #000}
+footer.fuss{font-size:.72rem;color:var(--grau);padding:6px 0 30px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
 footer.fuss a{color:var(--akzent)}
-.zurueck{font-size:.85rem;margin-bottom:14px;display:inline-block;color:var(--akzent)}
-@media print{@page{size:A4;margin:12mm}body{background:#fff}.wrap{max-width:none;padding:0}header.kopf,.intro,.hinweisbox,.knoepfe,.zurueck,footer.fuss{display:none}.vorlage{border:0;padding:0;margin:0;border-radius:0}.vorlage+.vorlage{break-before:page}body.nur-sis .vorlage-mp{display:none}body.nur-mp .vorlage-sis{display:none}}
-@media(max-width:560px){.kopfdaten{grid-template-columns:1fr}}
+.zurueck{font-size:.85rem;margin-bottom:14px;display:inline-block;color:var(--akzent);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+@media print{@page{size:A4;margin:10mm}body{background:#fff}.wrap{max-width:none;padding:0}header.kopf,.intro,.knoepfe,.zurueck,footer.fuss{display:none}.bogen{margin:0}.bogen+.bogen{break-before:page}body.nur-sis .vorlage-mp{display:none}body.nur-mp .vorlage-sis{display:none}.tfbox .tfraum{min-height:92px}.freiflaeche{min-height:100px}}
+@media(max-width:560px){.tfgrid{grid-template-columns:1fr}}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -58,58 +65,54 @@ footer.fuss a{color:var(--akzent)}
 <a class="zurueck" href="/sis-formulierungshilfen/">← Zu den SIS-Formulierungshilfen</a>
 <header class="kopf"><h1>Blanko-Vorlagen zum Ausdrucken</h1><span class="marke">dokuna.de</span></header>
 <p class="intro">Informationssammlung und Maßnahmenplan als leere Bögen für die ambulante Pflege – ausdrucken, ausfüllen, abheften.</p>
-
 <div class="knoepfe">
 <button onclick="drucken('')">Beide Vorlagen drucken</button>
 <button class="zweit" onclick="drucken('nur-sis')">Nur Informationssammlung</button>
 <button class="zweit" onclick="drucken('nur-mp')">Nur Maßnahmenplan</button>
 </div>
 
-<div class="vorlage vorlage-sis">
-<h2>Strukturierte Informationssammlung – Blanko-Bogen</h2>
-<p class="unter">In Anlehnung an das Strukturmodell (ambulant) · dokuna.de/vorlagen</p>
-<div class="block"><h3>Feld A – Kopfdaten</h3></div>
-<div class="kopfdaten">
-<div class="feld">Name der versorgten Person<div class="strich"></div></div>
-<div class="feld">Datum<div class="strich"></div></div>
-<div class="feld">Handzeichen Pflegefachkraft<div class="strich"></div></div>
+<div class="bogen vorlage-sis">
+<div class="bogen-titel"><h2>Strukturierte Informationssammlung – ambulante Pflege</h2><span class="sub">Blanko-Bogen in Anlehnung an das Strukturmodell</span></div>
+<table class="kopfzeile"><tr>
+<td style="width:40%">Name der versorgten Person</td>
+<td style="width:20%">Gespräch geführt am</td>
+<td style="width:25%">Gespräch geführt von</td>
+<td style="width:15%">Handzeichen</td>
+</tr></table>
+<div class="feldkopf">Feld B – Eigenwahrnehmung der pflegebedürftigen Person</div>
+<div class="freiflaeche"><p class="frage">„Was bewegt Sie im Augenblick? Was brauchen Sie? Was können wir für Sie tun?“ – Antwort im Originalton:</p></div>
+<div class="feldkopf">Feld C1 – pflegefachliche Einschätzung in sechs Themenfeldern (inkl. Ressourcen)</div>
+<div class="tfgrid">
+<div class="tfbox"><div class="tftitel">1 – Kognitive und kommunikative Fähigkeiten</div><div class="tfraum"></div></div>
+<div class="tfbox"><div class="tftitel">2 – Mobilität und Beweglichkeit</div><div class="tfraum"></div></div>
+<div class="tfbox"><div class="tftitel">3 – Krankheitsbezogene Anforderungen und Belastungen</div><div class="tfraum"></div></div>
+<div class="tfbox"><div class="tftitel">4 – Selbstversorgung</div><div class="tfraum"></div></div>
+<div class="tfbox"><div class="tftitel">5 – Leben in sozialen Beziehungen</div><div class="tfraum"></div></div>
+<div class="tfbox"><div class="tftitel">6 – Haushaltsführung</div><div class="tfraum"></div></div>
 </div>
-<div class="block">
-<h3>Feld B – Eigenwahrnehmung der pflegebedürftigen Person</h3>
-<p class="frage">„Was bewegt Sie im Augenblick? Was brauchen Sie? Was können wir für Sie tun?“ – Antwort im Originalton:</p>
-<div class="zeile"></div><div class="zeile"></div><div class="zeile"></div>
-</div>
-<div class="block"><h3>Feld C1 – pflegefachliche Einschätzung in sechs Themenfeldern</h3></div>
-<div class="block"><h3>Themenfeld 1: Kognitive und kommunikative Fähigkeiten</h3><p class="frage">Orientierung, Sachverhalte erfassen, sich mitteilen – inkl. Ressourcen:</p><div class="zeile"></div><div class="zeile"></div><div class="zeile"></div></div>
-<div class="block"><h3>Themenfeld 2: Mobilität und Beweglichkeit</h3><p class="frage">Fortbewegen, Körperposition verändern – inkl. Ressourcen:</p><div class="zeile"></div><div class="zeile"></div><div class="zeile"></div></div>
-<div class="block"><h3>Themenfeld 3: Krankheitsbezogene Anforderungen und Belastungen</h3><p class="frage">Umgang mit krankheits- und therapiebedingten Anforderungen – inkl. Ressourcen:</p><div class="zeile"></div><div class="zeile"></div><div class="zeile"></div></div>
-<div class="block"><h3>Themenfeld 4: Selbstversorgung</h3><p class="frage">Körperpflege, Ernährung, Ausscheidung – inkl. Ressourcen:</p><div class="zeile"></div><div class="zeile"></div><div class="zeile"></div></div>
-<div class="block"><h3>Themenfeld 5: Leben in sozialen Beziehungen</h3><p class="frage">Alltag gestalten, soziale Kontakte pflegen – inkl. Ressourcen:</p><div class="zeile"></div><div class="zeile"></div><div class="zeile"></div></div>
-<div class="block"><h3>Themenfeld 6: Haushaltsführung</h3><p class="frage">Bewältigung der eigenen Haushaltsführung – inkl. Ressourcen:</p><div class="zeile"></div><div class="zeile"></div><div class="zeile"></div></div>
-<div class="block">
-<h3>Feld C2 – Risikomatrix</h3>
+<div class="feldkopf">Feld C2 – Risikomatrix</div>
 <table class="matrix">
-<tr><th>Pflegesensitives Risiko</th><th class="mitte">Risiko: ja</th><th class="mitte">Risiko: nein</th><th class="mitte">Weitere Einschätzung nötig</th></tr>
+<tr><th>Pflegesensitives Risiko</th><th class="mitte">Risiko: ja</th><th class="mitte">Risiko: nein</th><th class="mitte">Weitergehende Einschätzung notwendig</th></tr>
 <tr><td>Dekubitus</td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td></tr>
 <tr><td>Sturz</td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td></tr>
 <tr><td>Inkontinenz</td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td></tr>
 <tr><td>Schmerz</td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td></tr>
 <tr><td>Ernährung</td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td></tr>
-<tr><td>Sonstiges: ____________________</td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td></tr>
+<tr><td>Sonstiges: ______________________________</td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td><td class="mitte"><span class="kasten"></span></td></tr>
 </table>
-</div>
+<div class="fussnote">Eigene Vorlage in Anlehnung an das Strukturmodell – kein offizielles SIS®-Formular · dokuna.de/vorlagen</div>
 </div>
 
-<div class="vorlage vorlage-mp">
-<h2>Maßnahmenplan – Blanko-Vorlage</h2>
-<p class="unter">Für die ambulante Pflege · dokuna.de/vorlagen</p>
-<div class="kopfdaten">
-<div class="feld">Name der versorgten Person<div class="strich"></div></div>
-<div class="feld">Erstellt am<div class="strich"></div></div>
-<div class="feld">Erstellt von (Handzeichen)<div class="strich"></div></div>
-</div>
+<div class="bogen vorlage-mp">
+<div class="bogen-titel"><h2>Maßnahmenplan – ambulante Pflege</h2><span class="sub">Blanko-Vorlage</span></div>
+<table class="kopfzeile"><tr>
+<td style="width:40%">Name der versorgten Person</td>
+<td style="width:20%">Erstellt am</td>
+<td style="width:25%">Erstellt von</td>
+<td style="width:15%">Handzeichen</td>
+</tr></table>
 <table class="mp">
-<tr><th style="width:5%">Nr.</th><th style="width:33%">Maßnahme / Leistung (Was)</th><th style="width:22%">Wie / Womit</th><th style="width:18%">Wann / Häufigkeit</th><th style="width:10%">Wer</th><th style="width:12%">Evaluation am</th></tr>
+<tr><th style="width:4%">Nr.</th><th style="width:32%">Maßnahme / Leistung (Was)</th><th style="width:24%">Wie / Womit</th><th style="width:16%">Wann / Häufigkeit</th><th style="width:10%">Wer</th><th style="width:14%">Evaluation am</th></tr>
 <tr><td>1</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>2</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>3</td><td></td><td></td><td></td><td></td><td></td></tr>
@@ -118,7 +121,10 @@ footer.fuss a{color:var(--akzent)}
 <tr><td>6</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>7</td><td></td><td></td><td></td><td></td><td></td></tr>
 <tr><td>8</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>9</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>10</td><td></td><td></td><td></td><td></td><td></td></tr>
 </table>
+<div class="fussnote">Blanko-Vorlage · dokuna.de/vorlagen</div>
 </div>
 
 <footer class="fuss">Eigene Vorlagen in Anlehnung an das Strukturmodell – kein offizielles SIS®-Formular (Original: <a href="https://www.ein-step.de/schulungsunterlagen" rel="noopener">ein-step.de</a>) · Kostenlos von <a href="https://dokuna.de/">Dokuna</a> · Stand: 18. August 2026 · Vertiefung: <a href="/sis-formulierungshilfen/">SIS-Formulierungshilfen</a> · <a href="/sis-spickzettel/">SIS-Spickzettel</a> · <a href="/massnahmenplan-ambulant/">Ratgeber Maßnahmenplan</a></footer>
