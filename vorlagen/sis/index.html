@@ -3,27 +3,84 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SIS®-Bogen (ambulant, farbig) – Druckansicht | Dokuna</title>
+<title>SIS®-Bogen (ambulant) – Druckansicht | Dokuna</title>
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://dokuna.de/vorlagen/">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:#fbfbfd;color:#1d1d1f}
-.wrap{max-width:820px;margin:0 auto;padding:16px}
+body{font-family:Arial,Helvetica,sans-serif;color:#000;background:#fbfbfd;line-height:1.25}
+.wrap{max-width:800px;margin:0 auto;padding:16px}
 .leiste{padding:0 0 14px;display:flex;gap:10px}
-.leiste button,.leiste a{background:#0e8477;color:#fff;border:0;padding:10px 18px;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none}
+.leiste button,.leiste a{background:#0e8477;color:#fff;border:0;padding:10px 18px;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
 .leiste a{background:#fff;color:#0e8477;border:1.5px solid #0e8477}
-img.bogen{width:100%;height:auto;display:block;border:1px solid #e8e8ed;background:#fff}
-.quelle{font-size:.7rem;color:#6e6e73;padding:8px 0 24px}
+.blatt{background:#fff;border:1px solid #e8e8ed;padding:18px 20px}
+.kopfzeile{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.titel .sis{color:#c00000;font-weight:700;font-size:.95rem}
+.titel .unter{font-size:.6rem;font-weight:700}
+.gespraech{font-size:.68rem;display:flex;gap:18px;padding-top:2px}
+.gespraech .k{width:11px;height:11px;border:1.2px solid #000;display:inline-block;vertical-align:middle;margin-right:4px}
+.hzboxen{display:flex}
+.hzboxen span{width:16px;height:16px;border:1px solid #000;border-left:0}
+.hzboxen span:first-child{border-left:1px solid #000}
+.felder{display:flex;gap:10px;font-size:.58rem;margin-bottom:8px}
+.felder .f{flex:1;border-bottom:1px solid #000;padding-bottom:12px}
+.eingang{background:#c00000;color:#fff;font-size:.68rem;font-weight:700;padding:3px 8px}
+.eingangbox{border:1px solid #000;border-top:0;height:64px;margin-bottom:7px}
+.tf{margin-bottom:7px}
+.tfbar{color:#fff;font-size:.66rem;font-weight:700;padding:2.5px 8px}
+.tfbox{border:1px solid #000;border-top:0;height:58px}
+table.matrix{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:2px}
+table.matrix th,table.matrix td{border:.6px solid #000;text-align:center;vertical-align:middle}
+th.rlabel{background:#3d3d3d;color:#fff;font-size:.5rem;text-align:left;padding:2px 4px;width:17%}
+th.rname{background:#e8e8e8;font-size:.56rem;padding:2px 1px}
+th.rname .linie{display:inline-block;border-bottom:1px solid #000;width:85%}
+th.sub{font-size:.42rem;font-weight:400;padding:1px}
+th.sub.we{line-height:1.1}
+th.sub.ber{background:#f5e0bd;font-size:.44rem}
+th.jn{font-size:.44rem;font-weight:400;padding:1px}
+td.zn{font-size:.5rem;color:#fff;font-weight:700;text-align:left;padding:2px 4px}
+td.cb{padding:2px 0;height:14px}
+td.cb .k{display:inline-block;width:8px;height:8px;border:.8px solid #000}
+.vermerk{font-size:.52rem;color:#333;margin-top:6px}
+.quelle{font-size:.7rem;color:#6e6e73;padding:10px 0 24px}
 .quelle a{color:#0e8477}
-@media print{@page{size:A4 portrait;margin:8mm}body{background:#fff}.wrap{max-width:none;padding:0}.leiste,.quelle{display:none}img.bogen{border:0;width:100%}}
+@media print{@page{size:A4 portrait;margin:9mm}body{background:#fff}.wrap{max-width:none;padding:0}.leiste,.quelle{display:none}.blatt{border:0;padding:0}.eingangbox{height:78px}.tfbox{height:72px}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="leiste"><button onclick="window.print()">Drucken</button><a href="/vorlagen/">← Zurück</a></div>
-<img class="bogen" src="https://www.hycare.de/wp-content/uploads/SIS-formular-farbig1.png" alt="SIS ambulant – Strukturierte Informationssammlung, farbiger Original-Bogen" onload="if(new URLSearchParams(location.search).has('drucken'))setTimeout(()=>window.print(),300)">
-<p class="quelle">SIS® – Strukturierte Informationssammlung (ambulant), unverändertes Original-Formular · Konzept: Beikirch/Roes · Nutzungsrechte: Bundesministerium für Gesundheit · <a href="https://www.ein-step.de/" rel="noopener">ein-step.de</a></p>
+<div class="blatt">
+<div class="kopfzeile">
+<div class="titel"><span class="sis">SIS – ambulant –</span><div class="unter">Strukturierte Informationssammlung</div></div>
+<div class="gespraech"><span><span class="k"></span>Erstgespräch</span><span><span class="k"></span>Folgegespräch</span></div>
+<div class="hzboxen"><span></span><span></span><span></span><span></span><span></span></div>
 </div>
+<div class="felder">
+<div class="f" style="flex:2">Name der pflegebedürftigen Person</div>
+<div class="f">Gespräch am</div>
+<div class="f">Handzeichen Pflegefachkraft</div>
+<div class="f" style="flex:1.4">pflegebedürftige Person/Angehöriger/Betreuer</div>
+</div>
+<div class="eingang">Was bewegt Sie im Augenblick? Was brauchen Sie? Was können wir für Sie tun?</div>
+<div class="eingangbox"></div>
+<div class="tf"><div class="tfbar" style="background:#e2543e">Themenfeld 1 – kognitive und kommunikative Fähigkeiten</div><div class="tfbox"></div></div>
+<div class="tf"><div class="tfbar" style="background:#eeb111">Themenfeld 2 – Mobilität und Beweglichkeit</div><div class="tfbox"></div></div>
+<div class="tf"><div class="tfbar" style="background:#6ab04a">Themenfeld 3 – krankheitsbezogene Anforderungen und Belastungen</div><div class="tfbox"></div></div>
+<div class="tf"><div class="tfbar" style="background:#9e4f9e">Themenfeld 4 – Selbstversorgung</div><div class="tfbox"></div></div>
+<div class="tf"><div class="tfbar" style="background:#4b9cd3">Themenfeld 5 – Leben in sozialen Beziehungen</div><div class="tfbox"></div></div>
+<div class="tf"><div class="tfbar" style="background:#e36471">Themenfeld 6 – Haushaltsführung</div><div class="tfbox"></div></div>
+
+<table class="matrix">
+<tr><th class="rlabel" rowspan="3">Erste fachliche Einschätzung der für die Pflege und Betreuung relevanten Risiken und Phänomene</th><th colspan="5" class="rname">Dekubitus</th><th colspan="5" class="rname">Sturz</th><th colspan="5" class="rname">Inkontinenz</th><th colspan="5" class="rname">Schmerz</th><th colspan="5" class="rname">Ernährung</th><th colspan="5" class="rname">Sonstiges<br><span class="linie">&nbsp;</span></th></tr>
+<tr><th colspan="2" class="sub">&nbsp;</th><th colspan="2" class="sub we">weitere Einschätzung notwendig</th><th rowspan="2" class="sub ber">Beratung</th><th colspan="2" class="sub">&nbsp;</th><th colspan="2" class="sub we">weitere Einschätzung notwendig</th><th rowspan="2" class="sub ber">Beratung</th><th colspan="2" class="sub">&nbsp;</th><th colspan="2" class="sub we">weitere Einschätzung notwendig</th><th rowspan="2" class="sub ber">Beratung</th><th colspan="2" class="sub">&nbsp;</th><th colspan="2" class="sub we">weitere Einschätzung notwendig</th><th rowspan="2" class="sub ber">Beratung</th><th colspan="2" class="sub">&nbsp;</th><th colspan="2" class="sub we">weitere Einschätzung notwendig</th><th rowspan="2" class="sub ber">Beratung</th><th colspan="2" class="sub">&nbsp;</th><th colspan="2" class="sub we">weitere Einschätzung notwendig</th><th rowspan="2" class="sub ber">Beratung</th></tr>
+<tr><th class="jn">ja</th><th class="jn">nein</th><th class="jn">ja</th><th class="jn">nein</th><th class="jn">ja</th><th class="jn">nein</th><th class="jn">ja</th><th class="jn">nein</th><th class="jn">ja</th><th class="jn">nein</th><th class="jn">ja</th><th class="jn">nein</th><th class="jn">ja</th><th class="jn">nein</th><th class="jn">ja</th><th class="jn">nein</th><th class="jn">ja</th><th class="jn">nein</th><th class="jn">ja</th><th class="jn">nein</th><th class="jn">ja</th><th class="jn">nein</th><th class="jn">ja</th><th class="jn">nein</th></tr>
+<tr><td class="zn" style="background:#e2543e">1. kognitive und kommunikative Fähigkeiten</td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td></tr><tr><td class="zn" style="background:#eeb111">2. Mobilität und Beweglichkeit</td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td></tr><tr><td class="zn" style="background:#6ab04a">3. krankheitsbez. Anforderungen u. Belastungen</td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td></tr><tr><td class="zn" style="background:#9e4f9e">4. Selbstversorgung</td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td></tr><tr><td class="zn" style="background:#4b9cd3">5. Leben in sozialen Beziehungen</td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td><td class="cb"><span class="k"></span></td></tr>
+</table>
+<p class="vermerk">Konzept: Beikirch/Roes · Nutzungsrechte: BMG · Version 2.0/2017 · unveränderte Darstellung des SIS®-Bogens (ambulant)</p>
+</div>
+<p class="quelle">SIS® – Strukturierte Informationssammlung · Quelle: <a href="https://www.ein-step.de/" rel="noopener">ein-step.de</a></p>
+</div>
+<script>if(new URLSearchParams(location.search).has('drucken')){window.addEventListener('load',()=>setTimeout(()=>window.print(),300));}</script>
 </body>
 </html>
