@@ -3,27 +3,57 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SIS®-Bogen (ambulant, farbig) – Druckansicht | Dokuna</title>
+<title>SIS®-Bogen (ambulant) – Druckansicht | Dokuna</title>
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://dokuna.de/vorlagen/">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:#fbfbfd;color:#1d1d1f}
-.wrap{max-width:820px;margin:0 auto;padding:16px}
-.leiste{padding:0 0 14px;display:flex;gap:10px}
+.wrap{max-width:1000px;margin:0 auto;padding:16px}
+.leiste{padding:0 0 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .leiste button,.leiste a{background:#0e8477;color:#fff;border:0;padding:10px 18px;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none}
-.leiste a{background:#fff;color:#0e8477;border:1.5px solid #0e8477}
-img.bogen{width:100%;height:auto;display:block;border:1px solid #e8e8ed;background:#fff}
+.leiste a.zweit{background:#fff;color:#0e8477;border:1.5px solid #0e8477}
+.leiste .status{font-size:.8rem;color:#6e6e73}
+#blatt canvas{width:100%;height:auto;display:block;border:1px solid #e8e8ed;background:#fff;margin-bottom:14px}
+#fallback{display:none}
+#fallback img{width:100%;height:auto;display:block;border:1px solid #e8e8ed;background:#fff}
 .quelle{font-size:.7rem;color:#6e6e73;padding:8px 0 24px}
 .quelle a{color:#0e8477}
-@media print{@page{size:A4 portrait;margin:8mm}body{background:#fff}.wrap{max-width:none;padding:0}.leiste,.quelle{display:none}img.bogen{border:0;width:100%}}
+@media print{@page{size:A4 landscape;margin:0}body{background:#fff}.wrap{max-width:none;padding:0}.leiste,.quelle{display:none}#blatt canvas{border:0;margin:0;width:100%;page-break-after:always}#blatt canvas:last-child{page-break-after:auto}#fallback img{border:0}}
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="leiste"><button onclick="window.print()">Drucken</button><a href="/vorlagen/">← Zurück</a></div>
-<img class="bogen" src="https://www.hycare.de/wp-content/uploads/SIS-formular-farbig1.png" alt="SIS ambulant – Strukturierte Informationssammlung, farbiger Original-Bogen" onload="if(new URLSearchParams(location.search).has('drucken'))setTimeout(()=>window.print(),300)">
-<p class="quelle">SIS® – Strukturierte Informationssammlung (ambulant), unverändertes Original-Formular · Konzept: Beikirch/Roes · Nutzungsrechte: Bundesministerium für Gesundheit · <a href="https://www.ein-step.de/" rel="noopener">ein-step.de</a></p>
+<div class="leiste"><button onclick="window.print()">Drucken</button><a class="zweit" href="/Formular-7-a-SIS-ambulant.pdf" id="dl" download>PDF herunterladen</a><a class="zweit" href="/vorlagen/">← Zurück</a><span class="status" id="status">Bogen wird geladen …</span></div>
+<div id="blatt"></div>
+<div id="fallback"><img src="https://www.hycare.de/wp-content/uploads/SIS-formular-farbig1.png" alt="SIS ambulant – farbiger Original-Bogen"></div>
+<p class="quelle">SIS® – Strukturierte Informationssammlung (ambulant), unverändertes Original-Formular · Konzept: Beikirch/Roes · Nutzungsrechte: Bundesministerium für Gesundheit · Version 2.0/2017 · <a href="https://www.ein-step.de/" rel="noopener">ein-step.de</a></p>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+async function lade(){
+  try{
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const pdf = await pdfjsLib.getDocument('/Formular-7-a-SIS-ambulant.pdf').promise;
+    const blatt = document.getElementById('blatt');
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const vp = page.getViewport({scale: 2.4});
+      const c = document.createElement('canvas');
+      c.width = vp.width; c.height = vp.height;
+      blatt.appendChild(c);
+      await page.render({canvasContext: c.getContext('2d'), viewport: vp}).promise;
+    }
+    document.getElementById('status').textContent = '';
+    if (new URLSearchParams(location.search).has('drucken')) setTimeout(() => window.print(), 400);
+  } catch(e) {
+    document.getElementById('fallback').style.display = 'block';
+    document.getElementById('dl').style.display = 'none';
+    document.getElementById('status').textContent = '';
+    if (new URLSearchParams(location.search).has('drucken')) setTimeout(() => window.print(), 800);
+  }
+}
+lade();
+</script>
 </body>
 </html>
