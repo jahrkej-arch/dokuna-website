@@ -42,7 +42,7 @@ async function lade(){
       const c = document.createElement('canvas');
       c.width = vp.width; c.height = vp.height;
       blatt.appendChild(c);
-      await page.render({canvasContext: c.getContext('2d'), viewport: vp}).promise;
+      await page.render({canvasContext: c.getContext('2d'), viewport: vp, annotationMode: 0}).promise;
     }
     document.getElementById('status').textContent = '';
     if (new URLSearchParams(location.search).has('drucken')) setTimeout(() => window.print(), 400);
