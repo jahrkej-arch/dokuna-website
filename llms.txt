@@ -6,6 +6,7 @@ Autor aller Ratgeber: Jonas Jahrke, Pflegefachassistent in Ausbildung (https://d
 
 ## Ratgeber
 - [SIS-Formulierungshilfen (Übersicht)](https://dokuna.de/sis-formulierungshilfen/): Aufbau der SIS, Risikomatrix, häufige Fehler, Beispiele für alle sechs Themenfelder
+- [Was ist die SIS?](https://dokuna.de/was-ist-die-sis/): Grundlagenartikel – Herkunft, die vier Elemente des Strukturmodells, Aufbau der SIS und Unterschied zur alten Pflegeplanung.
 - [SIS-Spickzettel](https://dokuna.de/sis-spickzettel/): Die sechs Themenfelder, Eingangsfrage und Risikomatrix als druckbare A4-Übersicht.
 - [Blanko-Vorlagen](https://dokuna.de/vorlagen/): Druckfertige leere Vorlagen für Informationssammlung (in Anlehnung an das Strukturmodell) und Maßnahmenplan.
 - [Themenfeld 1: Kognitive und kommunikative Fähigkeiten](https://dokuna.de/sis-themenfeld-1-kognition-kommunikation/)
