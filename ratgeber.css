@@ -1,6 +1,6 @@
 :root{
-  --bg:#fbfbfd; --card:#f5f5f7; --text:#1d1d1f; --grau:#6e6e73;
-  --akzent:#0e8477; --akzent-hell:#e6f4f2; --weiss:#ffffff; --linie:#e8e8ed;
+  --bg:#fbfaf8; --card:#f4f3ef; --text:#201f1c; --grau:#6f6d68;
+  --akzent:#0e8477; --akzent-hell:#e5f2ef; --weiss:#ffffff; --linie:#e9e7e2;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -9,9 +9,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",He
 .wrap{max-width:1024px;margin:0 auto;padding:0 24px}
 .schmal{max-width:760px;margin:0 auto;padding:0 24px}
 
-header{position:sticky;top:0;z-index:50;background:rgba(251,251,253,.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--linie)}
+header{position:sticky;top:0;z-index:50;background:rgba(251,250,248,.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--linie)}
 .nav{display:flex;justify-content:space-between;align-items:center;height:52px;max-width:1024px;margin:0 auto;padding:0 24px}
-.logo{font-size:1.25rem;font-weight:700;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
+.logo{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:1.25rem;font-weight:700;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
 .logo b{color:var(--akzent)}
 .nav a.cta{background:var(--akzent);color:#fff;padding:7px 18px;border-radius:99px;text-decoration:none;font-size:.9rem;font-weight:500}
 
@@ -20,11 +20,11 @@ header{position:sticky;top:0;z-index:50;background:rgba(251,251,253,.85);backdro
 .brot a:hover{text-decoration:underline}
 
 article{padding:18px 0 72px}
-h1{font-size:clamp(1.9rem,4.4vw,2.9rem);font-weight:700;letter-spacing:-.03em;line-height:1.12;margin:14px 0 18px}
+h1{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:clamp(1.9rem,4.4vw,2.8rem);font-weight:700;letter-spacing:-.03em;line-height:1.12;margin:14px 0 18px}
 .eyebrow{color:var(--akzent);font-weight:600;font-size:.95rem}
 .intro{font-size:1.2rem;color:var(--grau);margin-bottom:14px}
 .autor{font-size:.85rem;color:var(--grau);margin:-6px 0 18px}
-h2{font-size:clamp(1.35rem,3vw,1.8rem);font-weight:700;letter-spacing:-.02em;margin:48px 0 14px;line-height:1.2}
+h2{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:clamp(1.35rem,3vw,1.75rem);font-weight:700;letter-spacing:-.02em;margin:48px 0 14px;line-height:1.2}
 h3{font-size:1.08rem;font-weight:650;margin:26px 0 8px}
 p{margin-bottom:14px}
 ul,ol{margin:0 0 16px 22px}

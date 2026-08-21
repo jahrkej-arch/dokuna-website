@@ -6,6 +6,9 @@
 <title>Dokuna – SIS & Maßnahmenplanung für ambulante Pflegedienste</title>
 <meta name="description" content="Dokuna erstellt SIS und komplette Maßnahmenplanung – strukturiert, individuell und 100 % offline. Klientendaten verlassen nie Ihr Haus.">
 <link rel="canonical" href="https://dokuna.de/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -26,8 +29,8 @@
 <meta name="robots" content="index, follow">
 <style>
   :root{
-    --bg:#fbfbfd; --card:#f5f5f7; --text:#1d1d1f; --grau:#6e6e73;
-    --akzent:#0e8477; --akzent-hell:#e6f4f2; --weiss:#ffffff; --linie:#e8e8ed;
+    --bg:#fbfaf8; --card:#f4f3ef; --text:#201f1c; --grau:#6f6d68;
+    --akzent:#0e8477; --akzent-hell:#e5f2ef; --weiss:#ffffff; --linie:#e9e7e2;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -36,16 +39,22 @@
   .wrap{max-width:1024px;margin:0 auto;padding:0 24px}
   .schmal{max-width:760px;margin:0 auto}
 
-  header{position:sticky;top:0;z-index:50;background:rgba(251,251,253,.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--linie)}
+  header{position:sticky;top:0;z-index:50;background:rgba(251,250,248,.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--linie)}
   .nav{display:flex;justify-content:space-between;align-items:center;height:52px}
-  .logo{font-size:1.25rem;font-weight:700;letter-spacing:-.02em}
+  .logo{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:1.25rem;font-weight:700;letter-spacing:-.02em}
   .logo b{color:var(--akzent);font-weight:700}
   .nav a.cta{background:var(--akzent);color:#fff;padding:7px 18px;border-radius:99px;text-decoration:none;font-size:.9rem;font-weight:500}
   .nav .rechts{display:flex;align-items:center;gap:18px}
   .nav .rechts a.text{color:var(--grau);text-decoration:none;font-size:.9rem}
   .nav .rechts a.text:hover{color:var(--text)}
 
-  .hero{padding:84px 0 64px}
+  .hero{padding:84px 0 64px;background:radial-gradient(52rem 30rem at 78% 18%,rgba(14,132,119,.075),transparent 68%)}
+  @keyframes aufblende{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .hero2 .links>*{animation:aufblende .6s cubic-bezier(.2,.7,.2,1) backwards}
+  .hero2 .links>*:nth-child(2){animation-delay:.06s}.hero2 .links>*:nth-child(3){animation-delay:.12s}
+  .hero2 .links>*:nth-child(4){animation-delay:.18s}.hero2 .links>*:nth-child(5){animation-delay:.24s}
+  .hero2 .rechts{animation:aufblende .7s .15s cubic-bezier(.2,.7,.2,1) backwards}
+  @media (prefers-reduced-motion:reduce){.hero2 .links>*,.hero2 .rechts{animation:none}}
   .hero2{display:flex;gap:48px;align-items:center}
   .hero2 .links{display:flex;flex-direction:column;gap:20px;max-width:480px}
   .hero2 .rechts{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
@@ -57,7 +66,7 @@
   .fotokarte span{font-size:.8rem;color:var(--grau)}
   .stats{display:flex;justify-content:center;gap:52px;padding:24px 0;border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);background:var(--card);flex-wrap:wrap}
   .stats .s{text-align:center}
-  .stats .s b{font-size:1.3rem;font-weight:700;color:var(--akzent);display:block}
+  .stats .s b{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:1.3rem;font-weight:700;color:var(--akzent);display:block}
   .stats .s span{font-size:.82rem;color:var(--grau)}
   .punkte{display:flex;flex-direction:column;gap:10px;max-width:720px;margin:0 auto}
   .punkt{display:flex;align-items:center;gap:14px;background:var(--weiss);border:1px solid var(--linie);border-radius:14px;padding:15px 20px;text-align:left}
@@ -65,7 +74,7 @@
   .punkt p{color:var(--text);font-size:.98rem;margin:0}
   @media (max-width:760px){.hero2{flex-direction:column;text-align:center}.hero2 .links{align-items:center}.haken div{text-align:left}}
   .eyebrow{color:var(--akzent);font-weight:600;font-size:1rem;letter-spacing:.01em;margin-bottom:14px}
-  h1{font-size:clamp(2.4rem,6vw,4rem);font-weight:700;letter-spacing:-.03em;line-height:1.08}
+  h1{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:clamp(2.4rem,6vw,3.8rem);font-weight:700;letter-spacing:-.025em;line-height:1.06}
   .hero .sub{font-size:1.35rem;color:var(--grau);max-width:640px;margin:24px auto 36px;font-weight:400}
   .btn{display:inline-block;background:var(--akzent);color:#fff;padding:14px 30px;border-radius:99px;text-decoration:none;font-weight:600;font-size:1.05rem;transition:opacity .2s}
   .btn:hover{opacity:.85}
@@ -73,7 +82,7 @@
   .badge{display:inline-block;background:var(--akzent-hell);color:var(--akzent);padding:6px 18px;border-radius:99px;font-size:.85rem;font-weight:600;margin-bottom:22px}
 
   section{padding:88px 0}
-  h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+  h2{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;letter-spacing:-.015em;line-height:1.14;margin-bottom:14px}
   .lead{font-size:1.15rem;color:var(--grau);max-width:620px;margin-bottom:48px}
   .zentriert{text-align:center}
   .zentriert .lead{margin-left:auto;margin-right:auto}
@@ -97,8 +106,8 @@
   .karte.gross p{color:rgba(255,255,255,.85);font-size:1.05rem;max-width:640px}
   .karte.gross .icon{font-size:2.2rem}
 
-  a.karte{text-decoration:none;color:var(--text);display:block;transition:background .2s}
-  a.karte:hover{background:var(--akzent-hell)}
+  a.karte{text-decoration:none;color:var(--text);display:block;transition:background .2s,transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
+  a.karte:hover{background:var(--akzent-hell);transform:translateY(-3px);box-shadow:0 12px 28px rgba(15,42,67,.08)}
   a.karte .tf{color:var(--akzent);font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:5px}
 
   .dunkel{background:var(--text);border-radius:28px;color:#fff;padding:72px 48px;margin:0 24px}
@@ -119,7 +128,7 @@
   .preis.hervor{background:var(--card);border:none}
   .preis .tag{display:inline-block;background:var(--akzent);color:#fff;padding:4px 14px;border-radius:99px;font-size:.78rem;font-weight:600;margin-bottom:16px}
   .preis h3{font-size:1.2rem;font-weight:650;margin-bottom:14px}
-  .preis .p{font-size:2.6rem;font-weight:700;letter-spacing:-.03em}
+  .preis .p{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:2.6rem;font-weight:700;letter-spacing:-.02em}
   .preis .p small{font-size:1rem;color:var(--grau);font-weight:400;letter-spacing:0}
   .preis .einr{color:var(--grau);margin:4px 0 22px;font-size:.95rem}
   .preis ul{list-style:none;margin-bottom:26px}
