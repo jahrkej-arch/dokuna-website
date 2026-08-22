@@ -6,6 +6,7 @@ Autor aller Ratgeber: Jonas Jahrke, Pflegefachassistent in Ausbildung (https://d
 
 ## Ratgeber
 - [SIS-Formulierungshilfen (Übersicht)](https://dokuna.de/sis-formulierungshilfen/): Aufbau der SIS, Risikomatrix, häufige Fehler, Beispiele für alle sechs Themenfelder
+- [SIS ausfüllen: Schritt-für-Schritt-Anleitung](https://dokuna.de/sis-ausfuellen/): Vom Erstgespräch über Eingangsfrage, Themenfelder und Risikomatrix bis zum Abgleich – mit Zeitbedarf und häufigen Fragen.
 - [Was ist die SIS?](https://dokuna.de/was-ist-die-sis/): Grundlagenartikel – Herkunft, die vier Elemente des Strukturmodells, Aufbau der SIS und Unterschied zur alten Pflegeplanung.
 - [Die Risikomatrix in der SIS](https://dokuna.de/risikomatrix-sis/): Aufbau (fünf Risiken plus Sonstiges), Schritt-für-Schritt-Anleitung zum Ausfüllen und häufige Fehler.
 - [SIS-Spickzettel](https://dokuna.de/sis-spickzettel/): Die sechs Themenfelder, Eingangsfrage und Risikomatrix als druckbare A4-Übersicht.
@@ -23,5 +24,6 @@ Autor aller Ratgeber: Jonas Jahrke, Pflegefachassistent in Ausbildung (https://d
 
 ## Produkt
 - [Startseite mit Preisen und Erklärvideo](https://dokuna.de/): 99 €/Monat je Pflegedienst, 100 % offline
+- [SIS-Software: Worauf es bei der Auswahl ankommt](https://dokuna.de/sis-software/): Kriterien für SIS-Software, Datenschutz bei Cloud- vs. lokalen Lösungen, Checkliste und häufige Fragen.
 - [Über Dokuna](https://dokuna.de/ueber/)
 - Kontakt: info@dokuna.de
