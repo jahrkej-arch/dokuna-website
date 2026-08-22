@@ -6,9 +6,7 @@
 <title>Dokuna – SIS & Maßnahmenplanung für ambulante Pflegedienste</title>
 <meta name="description" content="Dokuna erstellt SIS und komplette Maßnahmenplanung – strukturiert, individuell und 100 % offline. Klientendaten verlassen nie Ihr Haus.">
 <link rel="canonical" href="https://dokuna.de/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&display=swap">
+<link rel="preload" href="/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -28,6 +26,9 @@
 <meta name="author" content="Jonas Jahrke">
 <meta name="robots" content="index, follow">
 <style>
+  @font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:600 800;font-stretch:100%;font-display:swap;
+    src:url("/fonts/bricolage-grotesque-latin.woff2") format("woff2");
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
   :root{
     --bg:#fbfaf8; --card:#f4f3ef; --text:#201f1c; --grau:#6f6d68;
     --akzent:#0e8477; --akzent-hell:#e5f2ef; --weiss:#ffffff; --linie:#e9e7e2;
@@ -167,9 +168,25 @@
     background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%230e8477' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 10.5 8 15 17 5'/%3E%3C/svg%3E") no-repeat center/contain}
   .hinweis{font-size:.82rem;color:var(--grau);max-width:780px;margin:26px auto 0;text-align:center;line-height:1.5}
 
+  .ablauf{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;counter-reset:schritt}
+  .schritt{background:var(--card);border-radius:20px;padding:28px 24px;counter-increment:schritt}
+  .schritt::before{content:counter(schritt);display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--akzent-hell);color:var(--akzent);font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:16px}
+  .schritt h3{font-size:1.08rem;font-weight:650;letter-spacing:-.01em;margin-bottom:6px}
+  .schritt p{color:var(--grau);font-size:.95rem}
+
+  .faq{max-width:760px;margin:0 auto;text-align:left}
+  .faq details{border-bottom:1px solid var(--linie)}
+  .faq details:first-of-type{border-top:1px solid var(--linie)}
+  .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 2px;font-weight:600;font-size:1.02rem}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"";flex-shrink:0;width:11px;height:11px;border-right:2px solid var(--akzent);border-bottom:2px solid var(--akzent);transform:rotate(45deg) translate(-2px,-2px);transition:transform .25s var(--ease);margin-right:6px}
+  .faq details[open] summary::after{transform:rotate(225deg)}
+  .faq details p{color:var(--grau);padding:0 36px 18px 2px;font-size:.98rem}
+  @media (prefers-reduced-motion:reduce){.faq summary::after{transition:none}}
+
   footer{border-top:1px solid var(--linie);padding:18px 0;font-size:.85rem;color:var(--grau);background:var(--card)}
   footer .balken{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-  footer nav{display:flex;gap:22px}
+  footer nav{display:flex;gap:12px 22px;flex-wrap:wrap;justify-content:center}
   footer a{color:var(--grau);text-decoration:none}
   footer a:hover{color:var(--text)}
   @media (max-width:640px){.dunkel{margin:0;border-radius:0;padding:56px 24px}}
@@ -179,6 +196,17 @@
 {"@type":"SoftwareApplication","name":"Dokuna","applicationCategory":"HealthApplication","operatingSystem":"Windows, macOS","offers":{"@type":"Offer","priceSpecification":{"@type":"UnitPriceSpecification","price":"99.00","priceCurrency":"EUR","unitText":"pro Monat je Pflegedienst"},"description":"99 € pro Monat je Pflegedienst, unbegrenzte Nutzerzahl; einmalig 349 € Einrichtung"},"description":"Software zur Erstellung der Strukturierten Informationssammlung (SIS) und der kompletten Maßnahmenplanung für ambulante Pflegedienste. Läuft vollständig offline.","url":"https://dokuna.de/","inLanguage":"de"},
 {"@type":"WebSite","name":"Dokuna","url":"https://dokuna.de/","inLanguage":"de"},
 {"@type":"Organization","name":"Dokuna","url":"https://dokuna.de/","email":"info@dokuna.de","logo":{"@type":"ImageObject","url":"https://dokuna.de/og-bild.jpg"},"sameAs":["https://www.linkedin.com/company/dokuna"],"founder":{"@type":"Person","name":"Jonas Jahrke","url":"https://dokuna.de/ueber/","image":"https://dokuna.de/jonas.jpg","sameAs":["https://www.linkedin.com/in/jonas-jahrke"]},"address":{"@type":"PostalAddress","streetAddress":"Pastoratsweg 22","postalCode":"45529","addressLocality":"Hattingen","addressCountry":"DE"}}
+]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Auf welchen Rechnern läuft Dokuna?","acceptedAnswer":{"@type":"Answer","text":"Auf Windows- und macOS-Rechnern, lokal in Ihrem Pflegedienst. Ein Server oder eine Cloud sind nicht nötig."}},
+{"@type":"Question","name":"Braucht Dokuna eine Internetverbindung?","acceptedAnswer":{"@type":"Answer","text":"Nein. Dokuna arbeitet zu 100 % offline und funktioniert auch dort, wo kein WLAN hinkommt – unabhängig von Serverausfällen."}},
+{"@type":"Question","name":"Wohin werden Klientendaten übertragen?","acceptedAnswer":{"@type":"Answer","text":"Nirgendwohin. Alle Daten bleiben auf Ihren Rechnern; auch wir haben keinen Zugriff. Das hält die Datenschutz-Dokumentation Ihres Dienstes einfach."}},
+{"@type":"Question","name":"Wer trägt die fachliche Verantwortung?","acceptedAnswer":{"@type":"Answer","text":"Ihre Pflegefachkraft. Dokuna assistiert bei Struktur und Formulierung – jedes Dokument wird von der Fachkraft geprüft und freigegeben."}},
+{"@type":"Question","name":"Wie viele Mitarbeiter können Dokuna nutzen?","acceptedAnswer":{"@type":"Answer","text":"Alle. Die Lizenz gilt pro Pflegedienst, ohne Begrenzung der Nutzerzahl und ohne Aufpreis pro Arbeitsplatz."}},
+{"@type":"Question","name":"Was kostet Dokuna?","acceptedAnswer":{"@type":"Answer","text":"99 € pro Monat je Pflegedienst plus einmalig 349 € für Einrichtung und Einweisung. Die ersten drei Pilotkunden zahlen im ersten Jahr 49 € pro Monat; die Einrichtung entfällt. Alle Preise sind Endpreise gemäß § 19 UStG."}},
+{"@type":"Question","name":"Kann ich Dokuna vorab sehen?","acceptedAnswer":{"@type":"Answer","text":"Ja. Eine kurze Mail an info@dokuna.de genügt – Sie bekommen auf Wunsch eine Live-Vorführung mit Ihren eigenen Fragen."}}
 ]}
 </script>
 </head>
@@ -344,6 +372,60 @@
       </div>
     </div>
     <p class="hinweis">Alle Preise sind Endpreise; gemäß § 19 UStG wird keine Umsatzsteuer berechnet. Dokuna ist ein Dokumentations-Hilfsmittel; die pflegefachliche Verantwortung für Inhalte und Freigabe verbleibt bei der Pflegefachkraft des Pflegedienstes.</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="zentriert">
+      <h2>So kommt Dokuna zu Ihnen.</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">Vier Schritte von der ersten Mail bis zum Echtbetrieb – ohne Technik-Hürden.</p>
+    </div>
+    <div class="ablauf">
+      <div class="schritt"><h3>Kennenlernen</h3><p>Sie schreiben eine kurze Mail und bekommen werktags innerhalb von 24 Stunden eine persönliche Antwort.</p></div>
+      <div class="schritt"><h3>Live-Vorführung</h3><p>Sie sehen Dokuna im Einsatz – mit Ihren Fragen und Fällen, unverbindlich.</p></div>
+      <div class="schritt"><h3>Einrichtung &amp; Einweisung</h3><p>Wir richten Dokuna auf Ihren Rechnern ein und weisen Ihr Team persönlich ein.</p></div>
+      <div class="schritt"><h3>Echtbetrieb</h3><p>Ihr Team dokumentiert mit Dokuna. Updates und Support per E-Mail sind inklusive.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="zentriert">
+      <h2>Häufige Fragen.</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">Kurz beantwortet – alles Weitere klären wir gern persönlich.</p>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Auf welchen Rechnern läuft Dokuna?</summary>
+        <p>Auf Windows- und macOS-Rechnern, lokal in Ihrem Pflegedienst. Ein Server oder eine Cloud sind nicht nötig.</p>
+      </details>
+      <details>
+        <summary>Braucht Dokuna eine Internetverbindung?</summary>
+        <p>Nein. Dokuna arbeitet zu 100 % offline und funktioniert auch dort, wo kein WLAN hinkommt – unabhängig von Serverausfällen.</p>
+      </details>
+      <details>
+        <summary>Wohin werden Klientendaten übertragen?</summary>
+        <p>Nirgendwohin. Alle Daten bleiben auf Ihren Rechnern; auch wir haben keinen Zugriff. Das hält die Datenschutz-Dokumentation Ihres Dienstes einfach.</p>
+      </details>
+      <details>
+        <summary>Wer trägt die fachliche Verantwortung?</summary>
+        <p>Ihre Pflegefachkraft. Dokuna assistiert bei Struktur und Formulierung – jedes Dokument wird von der Fachkraft geprüft und freigegeben.</p>
+      </details>
+      <details>
+        <summary>Wie viele Mitarbeiter können Dokuna nutzen?</summary>
+        <p>Alle. Die Lizenz gilt pro Pflegedienst, ohne Begrenzung der Nutzerzahl und ohne Aufpreis pro Arbeitsplatz.</p>
+      </details>
+      <details>
+        <summary>Was kostet Dokuna?</summary>
+        <p>99 € pro Monat je Pflegedienst plus einmalig 349 € für Einrichtung und Einweisung. Die ersten drei Pilotkunden zahlen im ersten Jahr 49 € pro Monat; die Einrichtung entfällt. Alle Preise sind Endpreise gemäß § 19 UStG.</p>
+      </details>
+      <details>
+        <summary>Kann ich Dokuna vorab sehen?</summary>
+        <p>Ja. Eine kurze Mail an info@dokuna.de genügt – Sie bekommen auf Wunsch eine Live-Vorführung mit Ihren eigenen Fragen.</p>
+      </details>
+    </div>
   </div>
 </section>
 
