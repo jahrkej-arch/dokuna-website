@@ -493,5 +493,17 @@
 })();
 </script>
 
+  <style>
+  @supports (interpolate-size: allow-keywords) and (selector(::details-content)) {
+    @media (prefers-reduced-motion: no-preference) {
+      :root{interpolate-size:allow-keywords}
+      .faq details::details-content{block-size:0;overflow:hidden;
+        transition:block-size .32s var(--ease),content-visibility .32s allow-discrete;
+        transition-behavior:allow-discrete}
+      .faq details[open]::details-content{block-size:auto}
+    }
+  }
+  </style>
+
 </body>
 </html>
