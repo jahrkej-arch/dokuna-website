@@ -247,10 +247,9 @@
 </section>
 
 <div class="stats">
-  <div class="s"><b>5 Standorte</b><span>nutzen Dokuna im Echtbetrieb</span></div>
-  <div class="s"><b>6 Themenfelder</b><span>geführt bis zum fertigen Plan</span></div>
-  <div class="s"><b>100 % offline</b><span>keine Cloud, keine Übertragung</span></div>
-</div>
+    <div class="s"><b><span data-countup="5">5</span> Standorte</b><span>nutzen Dokuna im Echtbetrieb</span></div>
+    <div class="s"><b><span data-countup="6">6</span> Themenfelder</b><span>geführt bis zum fertigen Plan</span></div>
+    <div class="s"><b><span data-countup="100" data-countup-suffix=" %">100 %</span> offline</b><span>keine Cloud, keine Übertragung</span></div>div>
 
 <section>
   <div class="wrap zentriert">
@@ -456,6 +455,43 @@
     </nav>
   </div>
 </footer>
+
+<style>[data-countup]{font-variant-numeric:tabular-nums}</style>
+<script>
+(function () {
+  var els = document.querySelectorAll('[data-countup]');
+  if (!els.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      io.unobserve(entry.target);
+      count(entry.target);
+    });
+  }, { threshold: 0.6 });
+
+  els.forEach(function (el) { io.observe(el); });
+
+  function count(el) {
+    var final = el.textContent;
+    var target = parseFloat(el.getAttribute('data-countup'));
+    var suffix = el.getAttribute('data-countup-suffix') || '';
+    var start = null;
+    el.textContent = '0' + suffix;
+    requestAnimationFrame(function step(now) {
+      if (start === null) start = now;
+      var p = Math.min(1, (now - start) / 900);
+      if (p < 1) {
+        el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target) + suffix;
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = final;
+      }
+    });
+  }
+})();
+</script>
 
 </body>
 </html>
