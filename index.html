@@ -182,7 +182,13 @@
   .faq summary::after{content:"";flex-shrink:0;width:11px;height:11px;border-right:2px solid var(--akzent);border-bottom:2px solid var(--akzent);transform:rotate(45deg) translate(-2px,-2px);transition:transform .25s var(--ease);margin-right:6px}
   .faq details[open] summary::after{transform:rotate(225deg)}
   .faq details p{color:var(--grau);padding:0 36px 18px 2px;font-size:.98rem}
-  @media (prefers-reduced-motion:reduce){.faq summary::after{transition:none}}
+    .faq details .faq-inhalt{overflow:hidden}
+    @supports (interpolate-size: allow-keywords){
+          html{interpolate-size:allow-keywords}
+          .faq details::details-content{height:0;overflow:hidden;transition:height .3s var(--ease),content-visibility .3s allow-discrete}
+          .faq details[open]::details-content{height:auto}
+    }
+    @media (prefers-reduced-motion:reduce){.faq summary::after{transition:none}.faq details::details-content{transition:none}}
 
   footer{border-top:1px solid var(--linie);padding:18px 0;font-size:.85rem;color:var(--grau);background:var(--card)}
   footer .balken{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
@@ -493,17 +499,45 @@
 })();
 </script>
 
-  <style>
-  @supports (interpolate-size: allow-keywords) and (selector(::details-content)) {
-    @media (prefers-reduced-motion: no-preference) {
-      :root{interpolate-size:allow-keywords}
-      .faq details::details-content{block-size:0;overflow:hidden;
-        transition:block-size .32s var(--ease),content-visibility .32s allow-discrete;
-        transition-behavior:allow-discrete}
-      .faq details[open]::details-content{block-size:auto}
-    }
-  }
-  </style>
+  <script>
+  (function () {
+    var items = document.querySelectorAll('.faq details');
+    if (!items.length || !Element.prototype.animate) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.CSS && CSS.supports && CSS.supports('interpolate-size', 'allow-keywords')) return;
 
+    items.forEach(function (d) {
+      var summary = d.querySelector('summary');
+      if (!summary) return;
+      var inhalt = document.createElement('div');
+      inhalt.className = 'faq-inhalt';
+      while (summary.nextSibling) inhalt.appendChild(summary.nextSibling);
+      d.appendChild(inhalt);
+      var lauf = null;
+
+      summary.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (lauf) lauf.cancel();
+        var schliessen = d.open;
+        var hoehe = inhalt.offsetHeight;
+        if (!schliessen) d.open = true;
+        var ziel = schliessen ? 0 : inhalt.offsetHeight;
+        var meine = inhalt.animate(
+          schliessen ? [{ height: hoehe + 'px' }, { height: '0px' }] : [{ height: '0px' }, { height: ziel + 'px' }],
+          { duration: schliessen ? 260 : 300, easing: 'cubic-bezier(.2,.7,.2,1)' }
+        );
+        lauf = meine;
+        var fertig = function () {
+          if (lauf !== meine) return;
+          if (schliessen && d.open) d.open = false;
+          lauf = null;
+        };
+        meine.finished.then(fertig).catch(function () {});
+        setTimeout(fertig, schliessen ? 300 : 340);
+      });
+    });
+  })();
+  </script>
+  
 </body>
 </html>
