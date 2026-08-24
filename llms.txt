@@ -2,7 +2,7 @@
 
 > Dokuna ist eine Offline-Software für die Pflegedokumentation ambulanter Pflegedienste in Deutschland: Sie führt Pflegefachkräfte durch die Strukturierte Informationssammlung (SIS) und erstellt daraus die individuelle Maßnahmenplanung. Die Ratgeber-Seiten erklären das Strukturmodell mit Formulierungsbeispielen und sind frei zugänglich.
 
-Autor aller Ratgeber: Jonas Jahrke, Pflegefachassistent in Ausbildung (https://dokuna.de/ueber/). Quellen: EinSTEP-Schulungsunterlagen und Veröffentlichungen des Medizinischen Dienstes Bund.
+Autor aller Ratgeber: Jonas Jahrke, Pflegefachassistent in Ausbildung zum Pflegefachmann (https://dokuna.de/ueber/). Quellen: EinSTEP-Schulungsunterlagen und Veröffentlichungen des Medizinischen Dienstes Bund.
 
 ## Ratgeber
 - [SIS-Formulierungshilfen (Übersicht)](https://dokuna.de/sis-formulierungshilfen/): Aufbau der SIS, Risikomatrix, häufige Fehler, Beispiele für alle sechs Themenfelder
