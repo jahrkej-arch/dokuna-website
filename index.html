@@ -24,7 +24,6 @@
 <meta name="twitter:description" content="SIS und Maßnahmenplanung in Minuten statt Stunden. 100 % offline.">
 <meta name="twitter:image" content="https://dokuna.de/og-bild.jpg">
 <meta name="author" content="Jonas Jahrke">
-<meta name="robots" content="index, follow">
 <style>
   @font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:600 800;font-stretch:100%;font-display:swap;
     src:url("/fonts/bricolage-grotesque-latin.woff2") format("woff2");
@@ -75,12 +74,6 @@
     .btn:hover,.btn:active,a.karte:hover{transform:none}
     .hero2 .rechts:hover .fotokarte{transform:rotate(-1.4deg)}
   }
-  @supports (animation-timeline: view()){
-    @media (prefers-reduced-motion:no-preference){
-      .grid .karte,.punkt{animation:einschweben linear both;animation-timeline:view();animation-range:entry 5% entry 45%}
-    }
-  }
-  @keyframes einschweben{from{opacity:.25;transform:translateY(16px)}}
   .hero2{display:flex;gap:48px;align-items:center}
   .hero2 .links{display:flex;flex-direction:column;gap:20px;max-width:480px}
   .hero2 .rechts{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
@@ -215,11 +208,7 @@
   @media (max-width:640px){.dunkel{margin:0;border-radius:0;padding:56px 24px}}
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
-{"@type":"SoftwareApplication","name":"Dokuna","applicationCategory":"HealthApplication","operatingSystem":"Windows, macOS","offers":{"@type":"Offer","priceSpecification":{"@type":"UnitPriceSpecification","price":"99.00","priceCurrency":"EUR","unitText":"pro Monat je Pflegedienst"},"description":"99 € pro Monat je Pflegedienst, unbegrenzte Nutzerzahl; einmalig 349 € Einrichtung"},"description":"Software zur Erstellung der Strukturierten Informationssammlung (SIS) und der kompletten Maßnahmenplanung für ambulante Pflegedienste. Läuft vollständig offline.","url":"https://dokuna.de/","inLanguage":"de"},
-{"@type":"WebSite","name":"Dokuna","url":"https://dokuna.de/","inLanguage":"de"},
-{"@type":"Organization","name":"Dokuna","url":"https://dokuna.de/","email":"info@dokuna.de","telephone":"+49 1511 6833569","logo":{"@type":"ImageObject","url":"https://dokuna.de/favicon-512.png"},"sameAs":["https://www.linkedin.com/company/dokuna"],"founder":{"@type":"Person","name":"Jonas Jahrke","url":"https://dokuna.de/ueber/","image":"https://dokuna.de/jonas.jpg","sameAs":["https://www.linkedin.com/in/jonas-jahrke"]},"address":{"@type":"PostalAddress","streetAddress":"Pastoratsweg 22","postalCode":"45529","addressLocality":"Hattingen","addressCountry":"DE"}}
-]}
+{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Dokuna","applicationCategory":"HealthApplication","operatingSystem":"Windows, macOS","offers":{"@type":"Offer","priceSpecification":{"@type":"UnitPriceSpecification","price":"99.00","priceCurrency":"EUR","unitText":"pro Monat je Pflegedienst"},"description":"99 € pro Monat je Pflegedienst, unbegrenzte Nutzerzahl; einmalig 349 € Einrichtung"},"description":"Software zur Erstellung der Strukturierten Informationssammlung (SIS) und der kompletten Maßnahmenplanung für ambulante Pflegedienste. Läuft vollständig offline.","url":"https://dokuna.de/","inLanguage":"de"},{"@type":"WebSite","name":"Dokuna","url":"https://dokuna.de/","inLanguage":"de"},{"@type":"Organization","name":"Dokuna","url":"https://dokuna.de/","email":"info@dokuna.de","telephone":"+49 1511 6833569","logo":{"@type":"ImageObject","url":"https://dokuna.de/favicon-512.png"},"sameAs":["https://www.linkedin.com/company/dokuna"],"founder":{"@type":"Person","name":"Jonas Jahrke","url":"https://dokuna.de/ueber/","image":"https://dokuna.de/jonas.jpg","sameAs":["https://www.linkedin.com/in/jonas-jahrke"]},"address":{"@type":"PostalAddress","streetAddress":"Pastoratsweg 22","postalCode":"45529","addressLocality":"Hattingen","addressCountry":"DE"}},{"@type":"VideoObject","name":"Dokuna in unter zwei Minuten – von der SIS zum Maßnahmenplan","description":"Der komplette Durchlauf: von den Grunddaten über die sechs Themenfelder der Strukturierten Informationssammlung bis zum fertigen Maßnahmenplan – vollständig offline.","thumbnailUrl":"https://dokuna.de/poster.jpg","contentUrl":"https://dokuna.de/Dokuna-Erklaervideo-V1.7.mp4","uploadDate":"2026-08-13","duration":"PT1M48S","inLanguage":"de","isFamilyFriendly":true,"publisher":{"@type":"Organization","name":"Dokuna","url":"https://dokuna.de/"}}]}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
@@ -278,7 +267,7 @@
   <div class="wrap zentriert">
     <h2>Dokuna in unter zwei Minuten.</h2>
     <p class="lead" style="margin-left:auto;margin-right:auto">Von den Grunddaten bis zum fertigen Maßnahmenplan – der komplette Durchlauf.</p>
-        <div class="videobox">
+        <div class="videobox" data-noreveal>
           <video controls muted playsinline preload="metadata" poster="poster.jpg">
             <source src="Dokuna-Erklaervideo-V1.7.mp4" type="video/mp4">
             Ihr Browser kann dieses Video nicht abspielen.
@@ -288,7 +277,7 @@
       </div>
 </section>
 
-<section style="padding-top:0">
+<section class="getoent" style="padding-top:0">
   <div class="wrap">
     <div class="zentriert">
       <h2>Kennen Sie das?</h2>
@@ -332,10 +321,10 @@
   </div>
 </div>
 
-<section>
+<section class="getoent">
   <div class="wrap zitat">
     <p class="text">„Nach einem harten Arbeitstag noch eine SIS schreiben zu müssen – genau da ist Dokuna eine echte Erleichterung. Und für Kolleginnen und Kollegen, deren Muttersprache nicht Deutsch ist, gleicht es enorm viel aus.“</p>
-    <img class="avatar" src="/marco.jpg" alt="Marco Jahrke" width="72" height="72" loading="lazy" style="width:72px;height:72px;object-fit:cover">
+    <picture><source srcset="/marco.webp" type="image/webp"><img class="avatar" src="/marco.jpg" alt="Marco Jahrke" width="144" height="144" loading="lazy" style="width:72px;height:72px;object-fit:cover"></picture>
     <p class="wer" style="margin-top:0">Marco Jahrke, Geschäftsführer der <a href="https://pflegeagentur24-pflegedienst.de/" target="_blank" rel="noopener">Pflegeagentur 24</a> ambulante Alten- und Krankenpflege GmbH<br>
     <span style="font-size:.92rem">Fünf Standorte im Ruhrgebiet und Umgebung · Nutzer der ersten Stunde</span></p>
   </div>
@@ -366,7 +355,7 @@
   </div>
 </section>
 
-<section id="preise" style="padding-top:0">
+<section class="getoent" id="preise" style="padding-top:0">
   <div class="wrap">
     <div class="zentriert">
       <h2>Klare Preise.<br>Keine Überraschungen.</h2>
@@ -409,7 +398,7 @@
       <h2>So kommt Dokuna zu Ihnen.</h2>
       <p class="lead" style="margin-left:auto;margin-right:auto">Vier Schritte von der ersten Mail bis zum Echtbetrieb – ohne Technik-Hürden.</p>
     </div>
-    <div class="ablauf">
+    <div class="ablauf" data-noreveal>
       <div class="schritt"><h3>Kennenlernen</h3><p>Sie schreiben eine kurze Mail und bekommen werktags innerhalb von 24 Stunden eine persönliche Antwort.</p></div>
       <div class="schritt"><h3>Live-Vorführung</h3><p>Sie sehen Dokuna im Einsatz – mit Ihren Fragen und Fällen, unverbindlich.</p></div>
       <div class="schritt"><h3>Einrichtung &amp; Einweisung</h3><p>Wir richten Dokuna auf Ihren Rechnern ein und weisen Ihr Team persönlich ein.</p></div>
@@ -418,7 +407,7 @@
   </div>
 </section>
 
-<section id="faq" style="padding-top:0">
+<section class="getoent" id="faq" style="padding-top:0">
   <div class="wrap">
     <div class="zentriert">
       <h2>Häufige Fragen.</h2>
@@ -483,7 +472,28 @@
   </div>
 </footer>
 
-<style>[data-countup]{font-variant-numeric:tabular-nums}.stats .s b [data-countup]{font-size:inherit;color:var(--text);font-weight:inherit}</style>
+<style>[data-countup]{font-variant-numeric:tabular-nums}.stats .s b [data-countup]{font-size:inherit;color:var(--text);font-weight:inherit}
+html.reveal-on [data-reveal]{
+  opacity:.28;
+  transform:translateY(18px);
+  transition:opacity .7s cubic-bezier(.22,.61,.36,1),
+             transform .7s cubic-bezier(.22,.61,.36,1);
+}
+html.reveal-on [data-reveal].is-in{opacity:1;transform:none}
+
+/* Rhythmus: jeder zweite Abschnitt sanft getoent, mit weichen Uebergaengen */
+section.getoent{background:linear-gradient(180deg,rgba(244,243,239,0) 0%,rgba(244,243,239,.75) 12%,rgba(244,243,239,.75) 88%,rgba(244,243,239,0) 100%)}
+@media (prefers-reduced-motion:reduce){
+  html.reveal-on [data-reveal]{opacity:1;transform:none;transition:none}
+}
+
+/* Weiche Farbfelder im Hintergrund - nimmt der Flaeche die Leere, ohne mit dem Text zu konkurrieren */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(60rem 40rem at 85% 8%, rgba(14,132,119,.055), transparent 62%),
+    radial-gradient(50rem 34rem at 5% 42%, rgba(176,138,74,.045), transparent 60%),
+    radial-gradient(55rem 38rem at 92% 78%, rgba(14,132,119,.04), transparent 62%)}
+</style>
 <script>
 (function () {
   var els = document.querySelectorAll('[data-countup]');
@@ -620,6 +630,8 @@
   io.observe(ablauf);
 })();
 </script>
+
+<script src="/reveal.js" defer></script>
 
 </body>
 </html>

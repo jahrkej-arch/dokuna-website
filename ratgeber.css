@@ -25,6 +25,14 @@ header{position:sticky;top:0;z-index:50;background:rgba(251,250,248,.85);backdro
 .logo b{color:var(--akzent)}
 .nav a.cta{background:var(--akzent);color:#fff;padding:12px 18px;border-radius:99px;text-decoration:none;font-size:.9rem;font-weight:500;transition:background .2s}
 .nav a.cta:hover{background:#0a6459}
+.nav .rechts{display:flex;align-items:center;gap:18px}
+.nav .rechts a.text{color:var(--grau);text-decoration:none;font-size:.9rem;white-space:nowrap}
+.nav .rechts a.text:hover{color:var(--text)}
+@media (max-width:640px){
+  .nav{height:auto;min-height:52px;flex-wrap:wrap;justify-content:center;column-gap:14px;row-gap:2px;padding-top:8px;padding-bottom:8px}
+  .nav .rechts{gap:12px}
+  .nav .rechts a.text{font-size:.85rem}
+}
 
 .brot{font-size:.85rem;color:var(--grau);padding:26px 0 0}
 .brot a{color:var(--akzent);text-decoration:none}
@@ -79,6 +87,9 @@ article a:hover{text-decoration-color:var(--akzent)}
 .cta-block p{color:rgba(255,255,255,.88)}
 .cta-block a.btn{display:inline-block;background:#fff;color:var(--akzent);padding:12px 26px;border-radius:99px;text-decoration:none;font-weight:600;margin-top:8px;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
 .cta-block a.btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,0,0,.18)}
+.cta-block .nachsatz{margin:16px 0 0;font-size:.92rem;color:#fff}
+.cta-block .nachsatz a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+.cta-block .nachsatz a:hover{text-decoration:none}
 
 .disclaimer{font-size:.84rem;color:var(--grau);border-top:1px solid var(--linie);margin-top:44px;padding-top:18px;line-height:1.55}
 
@@ -87,3 +98,17 @@ footer .balken{display:flex;justify-content:space-between;align-items:center;fle
 footer nav{display:flex;gap:12px 22px;flex-wrap:wrap;justify-content:center}
 footer a{color:var(--grau);text-decoration:none}
 footer a:hover{color:var(--text)}
+
+@media (max-width:600px){
+  .matrixtab{font-size:.76rem}
+  .matrixtab th,.matrixtab td{padding:7px 4px !important}
+  .matrixtab th{font-size:.72rem;line-height:1.25}
+}
+
+
+/* Weiche Farbfelder im Hintergrund - nimmt der Flaeche die Leere, ohne mit dem Text zu konkurrieren */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(60rem 40rem at 85% 8%, rgba(14,132,119,.055), transparent 62%),
+    radial-gradient(50rem 34rem at 5% 42%, rgba(176,138,74,.045), transparent 60%),
+    radial-gradient(55rem 38rem at 92% 78%, rgba(14,132,119,.04), transparent 62%)}

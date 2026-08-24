@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SIS-Bogen &amp; Maßnahmenplan drucken | Dokuna</title>
+<title>SIS-Bogen &amp; Maßnahmenplan als PDF drucken</title>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="description" content="Original SIS®-Bogen (ambulant) und Blanko-Maßnahmenplan nach dem Strukturmodell – mit einem Klick drucken.">
-<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://dokuna.de/vorlagen/">
 <meta property="og:title" content="SIS-Bogen &amp; Maßnahmenplan drucken – Dokuna">
 <meta property="og:description" content="Original SIS®-Bogen und Blanko-Maßnahmenplan – direkt drucken.">
@@ -32,6 +31,28 @@ header.kopf .marke{font-weight:700;color:var(--akzent)}
 .zurueck{font-size:.85rem;margin-bottom:14px;display:inline-block;color:var(--akzent)}
 footer.fuss{font-size:.72rem;color:var(--grau);padding:8px 0 30px}
 footer.fuss a{color:var(--akzent)}
+
+header.seitennav{position:sticky;top:0;z-index:50;background:rgba(251,251,253,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--linie)}
+header.seitennav .nav{display:flex;justify-content:space-between;align-items:center;height:52px;max-width:800px;margin:0 auto;padding:0 32px}
+header.seitennav .logo{font-size:1.15rem;font-weight:700;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
+header.seitennav .logo b{color:var(--akzent)}
+header.seitennav .rechts{display:flex;align-items:center;gap:16px}
+header.seitennav .rechts a.text{color:var(--grau);text-decoration:none;font-size:.85rem;white-space:nowrap}
+header.seitennav .rechts a.text:hover{color:var(--text)}
+header.seitennav a.cta{background:var(--akzent);color:#fff;padding:9px 16px;border-radius:99px;text-decoration:none;font-size:.85rem;font-weight:500}
+@media (max-width:640px){
+  header.seitennav .nav{height:auto;min-height:52px;flex-wrap:wrap;justify-content:center;column-gap:12px;row-gap:2px;padding:8px 16px}
+  header.seitennav .rechts{gap:12px}
+  header.seitennav .rechts a.text{font-size:.8rem}
+}
+
+
+/* Weiche Farbfelder im Hintergrund - nimmt der Flaeche die Leere, ohne mit dem Text zu konkurrieren */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(60rem 40rem at 85% 8%, rgba(14,132,119,.055), transparent 62%),
+    radial-gradient(50rem 34rem at 5% 42%, rgba(176,138,74,.045), transparent 60%),
+    radial-gradient(55rem 38rem at 92% 78%, rgba(14,132,119,.04), transparent 62%)}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -41,6 +62,17 @@ footer.fuss a{color:var(--akzent)}
 </script>
 </head>
 <body>
+<header class="seitennav">
+  <div class="nav">
+    <a class="logo" href="/">Dokuna<b>.</b></a>
+    <div class="rechts">
+      <a class="text" href="/sis-formulierungshilfen/">SIS-Ratgeber</a>
+      <a class="text" href="/vorlagen/">SIS-Bogen &amp; Vorlagen</a>
+      <a class="cta" href="mailto:info@dokuna.de?subject=Anfrage%20Dokuna">Kontakt</a>
+    </div>
+  </div>
+</header>
+
 <div class="wrap">
 <a class="zurueck" href="/sis-formulierungshilfen/">← Zu den SIS-Formulierungshilfen</a>
 <header class="kopf"><h1>SIS-Bogen &amp; Maßnahmenplan</h1><span class="marke">dokuna.de</span></header>
@@ -62,10 +94,36 @@ footer.fuss a{color:var(--akzent)}
 <h2>Wofür die Ausdrucke?</h2>
 <p>Der <strong>SIS®-Bogen</strong> ist das Herzstück der entbürokratisierten Pflegedokumentation: Eingangsfrage, sechs Themenfelder und Risikomatrix auf einem Formular. Viele Pflegefachkräfte füllen ihn beim Erstgespräch handschriftlich aus und übertragen die Inhalte anschließend in ihr Dokumentationssystem.</p>
 <p>Der <strong>Blanko-Maßnahmenplan</strong> ergänzt den Bogen um die Planung: Welche Maßnahme, wie oft, durch wen – abgeleitet aus den Themenfeldern der SIS. Wie Sie von der SIS zur Planung kommen, zeigt der <a href="/massnahmenplan-ambulant/">Ratgeber zum Maßnahmenplan</a>.</p>
-<p>Formulierungsbeispiele für alle sechs Themenfelder finden Sie in den <a href="/sis-formulierungshilfen/">SIS-Formulierungshilfen</a>, die Leitfragen kompakt auf einer Seite im <a href="/sis-spickzettel/">SIS-Spickzettel</a>. Wie der ausgedruckte Bogen Feld für Feld gefüllt wird, zeigt die Anleitung <a href="/sis-ausfuellen/">SIS ausfüllen Schritt für Schritt</a>.</p>
+<p>Formulierungsbeispiele für alle sechs Themenfelder finden Sie in den <a href="/sis-formulierungshilfen/">SIS-Formulierungshilfen</a>, die Leitfragen kompakt auf einer Seite im <a href="/sis-spickzettel/">SIS-Spickzettel</a>. Wie der ausgedruckte Bogen Feld für Feld gefüllt wird, zeigt die Anleitung <a href="/sis-ausfuellen/">SIS ausfüllen Schritt für Schritt</a>. Wer den Bogen nicht mehr handschriftlich übertragen möchte, findet unter <a href="/sis-software/">Kriterien für SIS-Software</a>, worauf es bei der Auswahl ankommt.</p>
 </div>
 
-<footer class="fuss">SIS®: Konzept Beikirch/Roes · Nutzungsrechte: Bundesministerium für Gesundheit · Quelle: <a href="https://www.ein-step.de/schulungsunterlagen" rel="noopener">ein-step.de</a> · Maßnahmenplan-Blanko nach den Grundsätzen der <a href="https://cdn.prod.website-files.com/66867cfecea6f93a2305684f/6858fa964511dbaa761c9d3b_Anlage%2010_Handreichung%20zum%20Ma%C3%9Fnahmenplan-1.pdf" rel="noopener">EinSTEP-Handreichung zum Maßnahmenplan (2024)</a> · Stand: 19. August 2026</footer>
+<div class="karte">
+<h2>Wann sich der Ausdruck lohnt</h2>
+<p>Die meisten Dienste dokumentieren längst digital. Trotzdem wandert der Bogen bei vielen Fachkräften ausgedruckt in die Tasche – aus einem praktischen Grund: Im Erstgespräch sitzt man beim Menschen, nicht am Bildschirm. Ein Blatt Papier stört weniger als ein aufgeklappter Laptop und lässt sich auch am Küchentisch führen.</p>
+<p>Typisch ist der Ablauf: Beim Besuch wird handschriftlich festgehalten, was gesagt wurde – vor allem die Eingangsfrage im Originalton. Übertragen wird später im Büro, in Ruhe. Das trennt Zuhören und Formulieren, und genau diese Trennung macht die Qualität aus.</p>
+<p>Ein zweiter Anlass ist die interne Schulung. Wer erklären will, wie Themenfelder und Risikomatrix zusammenhängen, kommt mit einem leeren Bogen und einem Stift weiter als mit Folien. Neue Kolleginnen und Kollegen sehen so auf einen Blick, wie viel Platz ein Feld hat – und dass drei Sätze pro Themenfeld in der Regel genügen.</p>
+</div>
+
+<div class="karte">
+<h2>Was beim Übertragen schiefgehen kann</h2>
+<p>Der häufigste Fehler ist keine Formulierungsfrage, sondern ein Zeitproblem: Zwischen Besuch und Übertragung vergehen Tage, und was auf dem Zettel steht, ergibt keinen Sinn mehr. Deshalb gilt die Faustregel, noch am selben Tag zu übertragen – oder wenigstens so viel zu notieren, dass die eigene Handschrift auch nach einer Woche verständlich bleibt. Wie schnell die SIS nach Versorgungsbeginn stehen sollte, klärt der Ratgeber zur <a href="/sis-frist-neuaufnahme/">SIS-Frist bei Neuaufnahme</a>.</p>
+<p>Der zweite Fehler betrifft die Eingangsfrage. Sie ist das einzige Feld, das bewusst nicht in Fachsprache übersetzt wird. „Ich möchte nicht ins Heim“ bleibt genau so stehen – nicht als „Klientin äußert Wunsch nach häuslichem Verbleib“. Wer hier glättet, verliert das, was den Fall unverwechselbar macht.</p>
+<p>Der dritte betrifft die Reihenfolge: Die Risikomatrix wird nach den Themenfeldern ausgefüllt, nicht davor. Sie fasst zusammen, was sich aus der fachlichen Einschätzung ergeben hat – umgekehrt wird daraus ein Ankreuzformular ohne Begründung. Der Ratgeber zur <a href="/risikomatrix-sis/">Risikomatrix</a> zeigt das im Detail.</p>
+</div>
+
+<div class="karte">
+<h2>Der Blanko-Maßnahmenplan</h2>
+<p>Das zweite Blatt ist bewusst leer. Es gibt keine vorgedruckten Maßnahmen, weil jede Planung aus der jeweiligen SIS entsteht – und nicht aus einer Liste. Die Spalten folgen der Logik, die Prüfungen abfragen: welche Maßnahme, wie oft, durch wen, in welchem Tagesabschnitt.</p>
+<p>In der Praxis hilft es, den Plan direkt neben den ausgefüllten Bogen zu legen und Themenfeld für Themenfeld durchzugehen. Zu jeder Maßnahme sollte sich die Frage beantworten lassen: Auf welche Aussage in der SIS geht sie zurück? Findet sich keine, gehört sie entweder nicht in den Plan – oder in der SIS fehlt etwas. Diese Rückverfolgbarkeit in beide Richtungen ist der Kern einer prüfungstauglichen Planung; der Ratgeber zum <a href="/massnahmenplan-ambulant/">Maßnahmenplan ambulant</a> zeigt sie an einem durchgängigen Beispiel.</p>
+</div>
+
+<div class="karte">
+<h2>Rechtliches zu den Vorlagen</h2>
+<p>Der SIS®-Bogen ist ein geschütztes Formular. Konzipiert wurde er von Elisabeth Beikirch und Martina Roes; die Nutzungsrechte liegen beim Bundesministerium für Gesundheit.</p>
+<p>Die hier hinterlegten Fassungen entsprechen den EinSTEP-Schulungsunterlagen. Maßgeblich ist immer die dort veröffentlichte Originalfassung; wenn Sie prüfen möchten, ob sich etwas geändert hat, finden Sie sie unter <a href="https://www.ein-step.de/schulungsunterlagen" rel="noopener">ein-step.de</a>.</p>
+</div>
+
+<footer class="fuss">SIS®: Konzept Beikirch/Roes · Nutzungsrechte: Bundesministerium für Gesundheit · Quelle: <a href="https://www.ein-step.de/schulungsunterlagen" rel="noopener">ein-step.de</a> · Maßnahmenplan-Blanko nach den Grundsätzen der <a href="https://www.ein-step.de/schulungsunterlagen" rel="noopener">EinSTEP-Handreichung zum Maßnahmenplan (2024)</a> · Stand: 19. August 2026</footer>
 </div>
 </body>
 </html>
