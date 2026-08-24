@@ -74,12 +74,6 @@
     .btn:hover,.btn:active,a.karte:hover{transform:none}
     .hero2 .rechts:hover .fotokarte{transform:rotate(-1.4deg)}
   }
-  @supports (animation-timeline: view()){
-    @media (prefers-reduced-motion:no-preference){
-      .grid .karte,.punkt{animation:einschweben linear both;animation-timeline:view();animation-range:entry 5% entry 45%}
-    }
-  }
-  @keyframes einschweben{from{opacity:.25;transform:translateY(16px)}}
   .hero2{display:flex;gap:48px;align-items:center}
   .hero2 .links{display:flex;flex-direction:column;gap:20px;max-width:480px}
   .hero2 .rechts{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
@@ -273,7 +267,7 @@
   <div class="wrap zentriert">
     <h2>Dokuna in unter zwei Minuten.</h2>
     <p class="lead" style="margin-left:auto;margin-right:auto">Von den Grunddaten bis zum fertigen Maßnahmenplan – der komplette Durchlauf.</p>
-        <div class="videobox">
+        <div class="videobox" data-noreveal>
           <video controls muted playsinline preload="metadata" poster="poster.jpg">
             <source src="Dokuna-Erklaervideo-V1.7.mp4" type="video/mp4">
             Ihr Browser kann dieses Video nicht abspielen.
@@ -283,7 +277,7 @@
       </div>
 </section>
 
-<section style="padding-top:0">
+<section class="getoent" style="padding-top:0">
   <div class="wrap">
     <div class="zentriert">
       <h2>Kennen Sie das?</h2>
@@ -327,7 +321,7 @@
   </div>
 </div>
 
-<section>
+<section class="getoent">
   <div class="wrap zitat">
     <p class="text">„Nach einem harten Arbeitstag noch eine SIS schreiben zu müssen – genau da ist Dokuna eine echte Erleichterung. Und für Kolleginnen und Kollegen, deren Muttersprache nicht Deutsch ist, gleicht es enorm viel aus.“</p>
     <picture><source srcset="/marco.webp" type="image/webp"><img class="avatar" src="/marco.jpg" alt="Marco Jahrke" width="144" height="144" loading="lazy" style="width:72px;height:72px;object-fit:cover"></picture>
@@ -361,7 +355,7 @@
   </div>
 </section>
 
-<section id="preise" style="padding-top:0">
+<section class="getoent" id="preise" style="padding-top:0">
   <div class="wrap">
     <div class="zentriert">
       <h2>Klare Preise.<br>Keine Überraschungen.</h2>
@@ -404,7 +398,7 @@
       <h2>So kommt Dokuna zu Ihnen.</h2>
       <p class="lead" style="margin-left:auto;margin-right:auto">Vier Schritte von der ersten Mail bis zum Echtbetrieb – ohne Technik-Hürden.</p>
     </div>
-    <div class="ablauf">
+    <div class="ablauf" data-noreveal>
       <div class="schritt"><h3>Kennenlernen</h3><p>Sie schreiben eine kurze Mail und bekommen werktags innerhalb von 24 Stunden eine persönliche Antwort.</p></div>
       <div class="schritt"><h3>Live-Vorführung</h3><p>Sie sehen Dokuna im Einsatz – mit Ihren Fragen und Fällen, unverbindlich.</p></div>
       <div class="schritt"><h3>Einrichtung &amp; Einweisung</h3><p>Wir richten Dokuna auf Ihren Rechnern ein und weisen Ihr Team persönlich ein.</p></div>
@@ -413,7 +407,7 @@
   </div>
 </section>
 
-<section id="faq" style="padding-top:0">
+<section class="getoent" id="faq" style="padding-top:0">
   <div class="wrap">
     <div class="zentriert">
       <h2>Häufige Fragen.</h2>
@@ -478,7 +472,28 @@
   </div>
 </footer>
 
-<style>[data-countup]{font-variant-numeric:tabular-nums}.stats .s b [data-countup]{font-size:inherit;color:var(--text);font-weight:inherit}</style>
+<style>[data-countup]{font-variant-numeric:tabular-nums}.stats .s b [data-countup]{font-size:inherit;color:var(--text);font-weight:inherit}
+html.reveal-on [data-reveal]{
+  opacity:.28;
+  transform:translateY(18px);
+  transition:opacity .7s cubic-bezier(.22,.61,.36,1),
+             transform .7s cubic-bezier(.22,.61,.36,1);
+}
+html.reveal-on [data-reveal].is-in{opacity:1;transform:none}
+
+/* Rhythmus: jeder zweite Abschnitt sanft getoent, mit weichen Uebergaengen */
+section.getoent{background:linear-gradient(180deg,rgba(244,243,239,0) 0%,rgba(244,243,239,.75) 12%,rgba(244,243,239,.75) 88%,rgba(244,243,239,0) 100%)}
+@media (prefers-reduced-motion:reduce){
+  html.reveal-on [data-reveal]{opacity:1;transform:none;transition:none}
+}
+
+/* Weiche Farbfelder im Hintergrund - nimmt der Flaeche die Leere, ohne mit dem Text zu konkurrieren */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(60rem 40rem at 85% 8%, rgba(14,132,119,.055), transparent 62%),
+    radial-gradient(50rem 34rem at 5% 42%, rgba(176,138,74,.045), transparent 60%),
+    radial-gradient(55rem 38rem at 92% 78%, rgba(14,132,119,.04), transparent 62%)}
+</style>
 <script>
 (function () {
   var els = document.querySelectorAll('[data-countup]');
@@ -615,6 +630,8 @@
   io.observe(ablauf);
 })();
 </script>
+
+<script src="/reveal.js" defer></script>
 
 </body>
 </html>
