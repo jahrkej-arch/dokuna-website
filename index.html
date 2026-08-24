@@ -171,6 +171,12 @@
   .ablauf{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;counter-reset:schritt}
   .schritt{background:var(--card);border-radius:20px;padding:28px 24px;counter-increment:schritt}
   .schritt::before{content:counter(schritt);display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--akzent-hell);color:var(--akzent);font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:16px}
+  .ablauf.laeuft .schritt{opacity:.3;transition:opacity .5s var(--ease),transform .5s var(--ease);transform:translateY(8px)}
+  .ablauf.laeuft .schritt::before{transition:background .45s var(--ease),color .45s var(--ease),transform .45s var(--ease)}
+  .ablauf.laeuft .schritt.war{opacity:.62;transform:none}
+  .ablauf.laeuft .schritt.dran{opacity:1;transform:none}
+  .ablauf.laeuft .schritt.dran::before{background:var(--akzent);color:#fff;transform:scale(1.06)}
+  @media (prefers-reduced-motion:reduce){.ablauf.laeuft .schritt{opacity:1;transform:none;transition:none}.ablauf.laeuft .schritt::before{transition:none}}
   .schritt h3{font-size:1.08rem;font-weight:650;letter-spacing:-.01em;margin-bottom:6px}
   .schritt p{color:var(--grau);font-size:.95rem}
 
@@ -580,6 +586,38 @@
     });
   }, { threshold: 0.5 });
   io.observe(box);
+})();
+</script>
+
+<script>
+(function () {
+  var ablauf = document.querySelector('.ablauf');
+  if (!ablauf) return;
+  var schritte = ablauf.querySelectorAll('.schritt');
+  if (!schritte.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  ablauf.classList.add('laeuft');
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      io.unobserve(entry.target);
+      schritte.forEach(function (el, i) {
+        setTimeout(function () {
+          schritte.forEach(function (a) { a.classList.remove('dran'); });
+          el.classList.add('dran');
+          for (var k = 0; k < i; k++) schritte[k].classList.add('war');
+          if (i === schritte.length - 1) {
+            setTimeout(function () {
+              schritte.forEach(function (a) { a.classList.add('war', 'dran'); });
+            }, 850);
+          }
+        }, 250 + i * 850);
+      });
+    });
+  }, { threshold: 0.35 });
+  io.observe(ablauf);
 })();
 </script>
 
