@@ -98,3 +98,9 @@ footer .balken{display:flex;justify-content:space-between;align-items:center;fle
 footer nav{display:flex;gap:12px 22px;flex-wrap:wrap;justify-content:center}
 footer a{color:var(--grau);text-decoration:none}
 footer a:hover{color:var(--text)}
+
+@media (max-width:600px){
+  .matrixtab{font-size:.76rem}
+  .matrixtab th,.matrixtab td{padding:7px 4px !important}
+  .matrixtab th{font-size:.72rem;line-height:1.25}
+}
