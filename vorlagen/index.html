@@ -32,6 +32,20 @@ header.kopf .marke{font-weight:700;color:var(--akzent)}
 .zurueck{font-size:.85rem;margin-bottom:14px;display:inline-block;color:var(--akzent)}
 footer.fuss{font-size:.72rem;color:var(--grau);padding:8px 0 30px}
 footer.fuss a{color:var(--akzent)}
+
+header.seitennav{position:sticky;top:0;z-index:50;background:rgba(251,251,253,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--linie)}
+header.seitennav .nav{display:flex;justify-content:space-between;align-items:center;height:52px;max-width:800px;margin:0 auto;padding:0 32px}
+header.seitennav .logo{font-size:1.15rem;font-weight:700;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
+header.seitennav .logo b{color:var(--akzent)}
+header.seitennav .rechts{display:flex;align-items:center;gap:16px}
+header.seitennav .rechts a.text{color:var(--grau);text-decoration:none;font-size:.85rem;white-space:nowrap}
+header.seitennav .rechts a.text:hover{color:var(--text)}
+header.seitennav a.cta{background:var(--akzent);color:#fff;padding:9px 16px;border-radius:99px;text-decoration:none;font-size:.85rem;font-weight:500}
+@media (max-width:640px){
+  header.seitennav .nav{height:auto;min-height:52px;flex-wrap:wrap;justify-content:center;column-gap:12px;row-gap:2px;padding:8px 16px}
+  header.seitennav .rechts{gap:12px}
+  header.seitennav .rechts a.text{font-size:.8rem}
+}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -41,6 +55,17 @@ footer.fuss a{color:var(--akzent)}
 </script>
 </head>
 <body>
+<header class="seitennav">
+  <div class="nav">
+    <a class="logo" href="/">Dokuna<b>.</b></a>
+    <div class="rechts">
+      <a class="text" href="/sis-formulierungshilfen/">SIS-Ratgeber</a>
+      <a class="text" href="/vorlagen/">SIS-Bogen &amp; Vorlagen</a>
+      <a class="cta" href="mailto:info@dokuna.de?subject=Anfrage%20Dokuna">Kontakt</a>
+    </div>
+  </div>
+</header>
+
 <div class="wrap">
 <a class="zurueck" href="/sis-formulierungshilfen/">← Zu den SIS-Formulierungshilfen</a>
 <header class="kopf"><h1>SIS-Bogen &amp; Maßnahmenplan</h1><span class="marke">dokuna.de</span></header>
