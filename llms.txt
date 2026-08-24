@@ -8,6 +8,7 @@ Autor aller Ratgeber: Jonas Jahrke, Pflegefachassistent in Ausbildung (https://d
 - [SIS-Formulierungshilfen (Übersicht)](https://dokuna.de/sis-formulierungshilfen/): Aufbau der SIS, Risikomatrix, häufige Fehler, Beispiele für alle sechs Themenfelder
 - [Ist die SIS Pflicht?](https://dokuna.de/sis-pflicht/): Wann der Pflegeprozess verbindlich ist (SGB XI), wann keine SIS nötig ist (reine Behandlungspflege nach SGB V) und was die QPR 2026 daran ändert.
 - [SIS ausfüllen: Schritt-für-Schritt-Anleitung](https://dokuna.de/sis-ausfuellen/): Vom Erstgespräch über Eingangsfrage, Themenfelder und Risikomatrix bis zum Abgleich – mit Zeitbedarf und häufigen Fragen.
+- [SIS-Frist nach Neuaufnahme](https://dokuna.de/sis-frist-neuaufnahme/): Bis wann die SIS nach Versorgungsbeginn fertig sein muss – keine Rechtsfrist, EinSTEP-Empfehlung von sieben Tagen, sofortige Dokumentation von Risiken, Fahrplan Tag 0 bis Tag 7.
 - [Was ist die SIS?](https://dokuna.de/was-ist-die-sis/): Grundlagenartikel – Herkunft, die vier Elemente des Strukturmodells, Aufbau der SIS und Unterschied zur alten Pflegeplanung.
 - [Die Risikomatrix in der SIS](https://dokuna.de/risikomatrix-sis/): Aufbau (fünf Risiken plus Sonstiges), Schritt-für-Schritt-Anleitung zum Ausfüllen und häufige Fehler.
 - [SIS-Spickzettel](https://dokuna.de/sis-spickzettel/): Die sechs Themenfelder, Eingangsfrage und Risikomatrix als druckbare A4-Übersicht.
