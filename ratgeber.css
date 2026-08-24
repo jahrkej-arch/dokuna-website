@@ -87,6 +87,9 @@ article a:hover{text-decoration-color:var(--akzent)}
 .cta-block p{color:rgba(255,255,255,.88)}
 .cta-block a.btn{display:inline-block;background:#fff;color:var(--akzent);padding:12px 26px;border-radius:99px;text-decoration:none;font-weight:600;margin-top:8px;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
 .cta-block a.btn:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,0,0,.18)}
+.cta-block .nachsatz{margin:16px 0 0;font-size:.92rem;color:rgba(255,255,255,.82)}
+.cta-block .nachsatz a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+.cta-block .nachsatz a:hover{text-decoration:none}
 
 .disclaimer{font-size:.84rem;color:var(--grau);border-top:1px solid var(--linie);margin-top:44px;padding-top:18px;line-height:1.55}
 

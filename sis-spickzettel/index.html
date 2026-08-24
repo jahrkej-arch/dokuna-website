@@ -43,7 +43,7 @@ footer.fuss a{color:var(--akzent);text-decoration:none}
 .druck{display:block;margin:18px auto;background:var(--akzent);color:#fff;border:0;padding:10px 22px;border-radius:8px;font-size:.95rem;font-weight:600;cursor:pointer}
 .zurueck{display:block;text-align:center;font-size:.85rem;margin-bottom:20px}
 .zurueck a{color:var(--akzent)}
-@media print{@page{size:A4;margin:11mm}body{background:#fff}.blatt{max-width:none;padding:0}.druck,.zurueck,header.seitennav{display:none}.tf,.matrix{break-inside:avoid}}
+@media print{@page{size:A4;margin:11mm}body{background:#fff}.blatt{max-width:none;padding:0}.druck,.zurueck,header.seitennav,.produkt{display:none}.tf,.matrix{break-inside:avoid}}
 @media(max-width:560px){.tf-grid{grid-template-columns:1fr}}
 
 header.seitennav{position:sticky;top:0;z-index:50;background:rgba(251,251,253,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--linie)}
@@ -59,6 +59,13 @@ header.seitennav a.cta{background:var(--akzent);color:#fff;padding:9px 16px;bord
   header.seitennav .rechts{gap:12px}
   header.seitennav .rechts a.text{font-size:.8rem}
 }
+
+.produkt{background:linear-gradient(135deg,var(--akzent) 0%,#0a6459 100%);color:#fff;border-radius:16px;padding:24px 26px;margin:26px 0 0}
+.produkt h2{color:#fff;font-size:1.1rem;margin:0 0 8px}
+.produkt p{color:rgba(255,255,255,.9);font-size:.9rem;margin:0 0 14px}
+.produkt a.btn{display:inline-block;background:#fff;color:var(--akzent);padding:10px 22px;border-radius:99px;text-decoration:none;font-weight:600;font-size:.9rem}
+.produkt .nachsatz{margin:14px 0 0;font-size:.86rem;color:rgba(255,255,255,.82)}
+.produkt .nachsatz a{color:#fff;text-decoration:underline;text-underline-offset:2px}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -121,6 +128,13 @@ header.seitennav a.cta{background:var(--akzent);color:#fff;padding:9px 16px;bord
 <li>Ressourcen gehören in jedes Themenfeld: festhalten, was die Person noch selbst kann.</li>
 <li>Ins Berichteblatt kommen nur Abweichungen von der Maßnahmenplanung – nicht die Routine.</li>
 </ul>
+</div>
+
+<div class="produkt">
+<h2>Vom Spickzettel zur fertigen Doku</h2>
+<p>Die Leitfragen im Kopf zu haben ist das eine – sie am Abend in tragfähige Sätze zu bringen das andere. Dokuna führt Ihre Pflegefachkräfte durch dieselben sechs Themenfelder und erstellt daraus direkt die komplette Maßnahmenplanung. 100 % offline, die Fachkraft prüft und gibt frei.</p>
+<a class="btn" href="/">Dokuna ansehen</a>
+<p class="nachsatz">Worauf es bei der Auswahl ankommt: <a href="/sis-software/">Kriterien für SIS-Software</a>.</p>
 </div>
 
 <footer class="fuss">
