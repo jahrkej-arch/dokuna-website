@@ -53,11 +53,13 @@ header.seitennav .logo b{color:var(--akzent)}
 header.seitennav .rechts{display:flex;align-items:center;gap:16px}
 header.seitennav .rechts a.text{color:var(--grau);text-decoration:none;font-size:.85rem;white-space:nowrap}
 header.seitennav .rechts a.text:hover{color:var(--text)}
-header.seitennav a.cta{background:var(--akzent);color:#fff;padding:9px 16px;border-radius:99px;text-decoration:none;font-size:.85rem;font-weight:500}
+header.seitennav a.cta{background:var(--akzent);color:#fff;padding:9px 16px;border-radius:99px;text-decoration:none;font-size:.85rem;font-weight:500;white-space:nowrap}
+header.seitennav a.anmelden{color:var(--akzent);border:1.5px solid var(--akzent);padding:7.5px 14px;border-radius:99px;text-decoration:none;font-size:.85rem;font-weight:500;white-space:nowrap}
 @media (max-width:640px){
   header.seitennav .nav{height:auto;min-height:52px;flex-wrap:wrap;justify-content:center;column-gap:12px;row-gap:2px;padding:8px 16px}
   header.seitennav .rechts{gap:12px}
   header.seitennav .rechts a.text{font-size:.8rem}
+  header.seitennav .nur-breit{display:none}
 }
 
 .produkt{background:linear-gradient(135deg,var(--akzent) 0%,#0a6459 100%);color:#fff;border-radius:16px;padding:24px 26px;margin:26px 0 0}
@@ -88,8 +90,9 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
     <a class="logo" href="/">Dokuna<b>.</b></a>
     <div class="rechts">
       <a class="text" href="/sis-formulierungshilfen/">SIS-Ratgeber</a>
-      <a class="text" href="/vorlagen/">SIS-Bogen &amp; Vorlagen</a>
-      <a class="cta" href="mailto:info@dokuna.de?subject=Anfrage%20Dokuna">Kontakt</a>
+      <a class="text nur-breit" href="/vorlagen/">SIS-Bogen &amp; Vorlagen</a>
+      <a class="anmelden" href="https://app.dokuna.de/login">Anmelden</a>
+      <a class="cta" href="/#kontakt">Vorführung<span class="nur-breit"> anfragen</span></a>
     </div>
   </div>
 </header>
@@ -165,7 +168,7 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 
 <div class="produkt">
 <h2>Vom Spickzettel zur fertigen Doku</h2>
-<p>Die Leitfragen im Kopf zu haben ist das eine – sie am Abend in tragfähige Sätze zu bringen das andere. Dokuna führt Ihre Pflegefachkräfte durch dieselben sechs Themenfelder und erstellt daraus direkt die komplette Maßnahmenplanung. 100 % offline, die Fachkraft prüft und gibt frei.</p>
+<p>Die Leitfragen im Kopf zu haben ist das eine – sie am Abend in tragfähige Sätze zu bringen das andere. Dokuna führt Ihre Pflegefachkräfte durch dieselben sechs Themenfelder und erstellt daraus direkt die komplette Maßnahmenplanung. Die Klientendaten bleiben bei Ihnen, die Fachkraft prüft und gibt frei.</p>
 <a class="btn" href="/">Dokuna ansehen</a>
 <p class="nachsatz">Worauf es bei der Auswahl ankommt: <a href="/sis-software/">Kriterien für SIS-Software</a>.</p>
 </div>

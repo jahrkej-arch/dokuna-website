@@ -19,7 +19,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-s
 .leiste .status{font-size:.8rem;color:#6e6e73}
 #blatt canvas{width:100%;height:auto;display:block;border:1px solid #e8e8ed;background:#fff;margin-bottom:14px}
 #fallback{display:none}
-#fallback img{width:100%;height:auto;display:block;border:1px solid #e8e8ed;background:#fff}
+#fallback img{width:100%;height:auto;display:block;border:1px solid #e8e8ed;background:#fff;margin-bottom:14px}
 .quelle{font-size:.7rem;color:#6e6e73;padding:8px 0 24px}
 .quelle a{color:#0e8477}
 @media print{@page{size:A4 landscape;margin:0}body{background:#fff}.wrap{max-width:none;padding:0}.leiste,.quelle{display:none}#blatt canvas{border:0;margin:0;width:100%;page-break-after:always}#blatt canvas:last-child{page-break-after:auto}#fallback img{border:0}}
@@ -29,14 +29,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-s
 <div class="wrap">
 <div class="leiste"><button onclick="window.print()">Drucken</button><a class="zweit" href="/Formular-7-a-SIS-ambulant.pdf" id="dl" download>PDF herunterladen</a><a class="zweit" href="/vorlagen/">← Zurück</a><span class="status" id="status">Bogen wird geladen …</span></div>
 <div id="blatt"></div>
-<div id="fallback"><img src="https://www.hycare.de/wp-content/uploads/SIS-formular-farbig1.png" alt="SIS ambulant – farbiger Original-Bogen"></div>
+<div id="fallback"><img data-src="/vorlagen/sis/sis-bogen-1.png" alt="SIS ambulant – Original-Bogen, Seite 1" width="1287" height="910"><img data-src="/vorlagen/sis/sis-bogen-2.png" alt="SIS ambulant – Original-Bogen, Seite 2" width="1287" height="910"></div>
 <p class="quelle">SIS® – Strukturierte Informationssammlung (ambulant), unverändertes Original-Formular · Konzept: Beikirch/Roes · Nutzungsrechte: Bundesministerium für Gesundheit · Version 2.0/2017 · <a href="https://www.ein-step.de/" rel="noopener">ein-step.de</a></p>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="/vendor/pdfjs-3.11.174/pdf.min.js"></script>
 <script>
 async function lade(){
   try{
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdfjs-3.11.174/pdf.worker.min.js';
     const pdf = await pdfjsLib.getDocument('/Formular-7-a-SIS-ambulant.pdf').promise;
     const blatt = document.getElementById('blatt');
     for (let i = 1; i <= pdf.numPages; i++) {
@@ -50,6 +50,7 @@ async function lade(){
     document.getElementById('status').textContent = '';
     if (new URLSearchParams(location.search).has('drucken')) setTimeout(() => window.print(), 400);
   } catch(e) {
+    document.querySelectorAll('#fallback img').forEach(function (b) { b.src = b.getAttribute('data-src'); });
     document.getElementById('fallback').style.display = 'block';
     document.getElementById('dl').style.display = 'none';
     document.getElementById('status').textContent = '';

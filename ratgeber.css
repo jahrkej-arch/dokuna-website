@@ -28,10 +28,16 @@ header{position:sticky;top:0;z-index:50;background:rgba(251,250,248,.85);backdro
 .nav .rechts{display:flex;align-items:center;gap:18px}
 .nav .rechts a.text{color:var(--grau);text-decoration:none;font-size:.9rem;white-space:nowrap}
 .nav .rechts a.text:hover{color:var(--text)}
+.nav a.anmelden{color:var(--akzent);border:1.5px solid var(--akzent);padding:10.5px 16px;border-radius:99px;text-decoration:none;font-size:.9rem;font-weight:500;white-space:nowrap;transition:background .2s}
+.nav a.anmelden:hover{background:var(--akzent-hell)}
+.nav a.cta{white-space:nowrap}
 @media (max-width:640px){
   .nav{height:auto;min-height:52px;flex-wrap:wrap;justify-content:center;column-gap:14px;row-gap:2px;padding-top:8px;padding-bottom:8px}
   .nav .rechts{gap:12px}
   .nav .rechts a.text{font-size:.85rem}
+  .nur-breit{display:none}
+  .nav a.anmelden{padding:8px 13px;font-size:.85rem}
+  .nav a.cta{padding:9.5px 14px;font-size:.85rem}
 }
 
 .brot{font-size:.85rem;color:var(--grau);padding:26px 0 0}

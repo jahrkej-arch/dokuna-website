@@ -1,6 +1,6 @@
 # dokuna.de – SIS & Maßnahmenplanung für ambulante Pflegedienste
 
-> Dokuna ist eine Offline-Software für die Pflegedokumentation ambulanter Pflegedienste in Deutschland: Sie führt Pflegefachkräfte durch die Strukturierte Informationssammlung (SIS) und erstellt daraus die individuelle Maßnahmenplanung. Die Ratgeber-Seiten erklären das Strukturmodell mit Formulierungsbeispielen und sind frei zugänglich.
+> Dokuna ist eine Software für die Pflegedokumentation ambulanter Pflegedienste in Deutschland: Sie führt Pflegefachkräfte durch die Strukturierte Informationssammlung (SIS) und erstellt daraus die individuelle Maßnahmenplanung. Dokuna läuft im Browser am Computer, iPad und Handy. Die Klientendaten speichert der Pflegedienst in seinem eigenen Speicherort, auf dem Dokuna-Server (Hetzner, Deutschland) liegen nur die Benutzerkonten. Die Ratgeber-Seiten erklären das Strukturmodell mit Formulierungsbeispielen und sind frei zugänglich.
 
 Autor aller Ratgeber: Jonas Jahrke, Pflegefachassistent in Ausbildung zum Pflegefachmann (https://dokuna.de/ueber/). Quellen: EinSTEP-Schulungsunterlagen und Veröffentlichungen des Medizinischen Dienstes Bund.
 
@@ -25,7 +25,9 @@ Autor aller Ratgeber: Jonas Jahrke, Pflegefachassistent in Ausbildung zum Pflege
 - [Evaluation der Pflegeplanung](https://dokuna.de/evaluation-pflegeplanung/): Anlässe und Vorgehen
 
 ## Produkt
-- [Startseite mit Preisen und Erklärvideo](https://dokuna.de/): 99 €/Monat je Pflegedienst, 100 % offline
-- [SIS-Software: Worauf es bei der Auswahl ankommt](https://dokuna.de/sis-software/): Kriterien für SIS-Software, Datenschutz bei Cloud- vs. lokalen Lösungen, Checkliste und häufige Fragen.
+- [Startseite mit Preisen und Erklärvideo](https://dokuna.de/): 80 € je Standort und Monat, keine Einrichtungsgebühr, Dokuna-QM-Paket mit 37 Muster-Verfahrensanleitungen
+- [SIS-Software: Worauf es bei der Auswahl ankommt](https://dokuna.de/sis-software/): Kriterien für SIS-Software, wo Klientendaten liegen sollten, Checkliste und häufige Fragen.
 - [Über Dokuna](https://dokuna.de/ueber/)
-- Kontakt: info@dokuna.de
+- Im Einsatz: 3 ambulante Pflegedienste mit zusammen 11 Standorten (Prima Pflege Netzwerk mit 5 Standorten, Pflegeagentur 24 mit 5 Standorten, Bauer B+V in Castrop-Rauxel)
+- Anmeldung für Kunden: https://app.dokuna.de/login
+- Kontakt und Vorführung: info@dokuna.de, +49 151 16833569
