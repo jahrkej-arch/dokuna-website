@@ -26,6 +26,13 @@ Autor aller Ratgeber: Jonas Jahrke, Pflegefachassistent in Ausbildung zum Pflege
 - [SIS®-Anforderungsprofil 3.0/3.1](https://dokuna.de/sis-anforderungsprofil/): Was das EinSTEP-Anforderungsprofil vom Mai 2026 verlangt – Muss- und Soll-Kriterien, Neuerungen, Checkliste für die Auswahl von Software.
 - [Grundbotschaft im Maßnahmenplan](https://dokuna.de/grundbotschaft-sis/): Zweck, Länge (höchstens 320 Zeichen), wer sie schreibt, drei Beispiele und typische Fehler.
 - [KI in der SIS®](https://dokuna.de/ki-in-der-sis/): Was das Anforderungsprofil zu KI und Vorschlagssystemen sagt – Assistenz ja, kein automatisches Befüllen, die Pflegefachperson entscheidet.
+- [SIS-Beispiel ambulant](https://dokuna.de/sis-beispiel-ambulant/): Erfundener Musterfall mit Feld A und B, allen sechs Themenfeldern, Risikomatrix mit Begründung und Auszug aus dem Maßnahmenplan.
+- [MD-Prüfung ambulant vorbereiten](https://dokuna.de/md-pruefung-ambulant-vorbereiten/): Ablauf nach QPR ambulant Teil 1a, Schritte nach der Ankündigung, Checkliste je versorgter Person, Fachgespräch und typische Schwachstellen.
+- [SIS bei Demenz](https://dokuna.de/sis-demenz/): Feld B mit Originalton und stellvertretendem Gespräch, Themenfeld 1 mit konkreten Beobachtungen, Grundbotschaft und Maßnahmenplan bei kognitiver Einschränkung.
+- [Dekubitusprophylaxe im Maßnahmenplan](https://dokuna.de/dekubitusprophylaxe-massnahmenplan/): Pflichtangaben (bewegungsfreies Intervall, Lagerungsarten, Hilfsmittel), Kriterien des DNQP-Audits, Rolle der Angehörigen ambulant, Formulierungsbeispiele.
+- [Sturzrisiko ambulant](https://dokuna.de/sturzprophylaxe-ambulant/): Sturzrisiko in SIS, Risikomatrix und Maßnahmenplan, Kriterien des DNQP-Expertenstandards, Umgang mit Ablehnung, Vorgehen nach einem Sturz.
+- [Maßnahmenplan formulieren](https://dokuna.de/massnahmenplan-formulierungen/): Grundregeln nach der EinSTEP-Handreichung, kurzer und ausführlicher Stil, Beispiele für Grundpflege, Behandlungspflege und Prophylaxen, Checkliste vor der Freigabe.
+- [SIS und Pflegegrad](https://dokuna.de/sis-pflegegrad/): Wie die Themenfelder zu den Modulen der Begutachtung passen, Gewichtung nach § 15 SGB XI, Unterschiede und Pflegegradmanagement nach EinSTEP.
 
 ## Produkt
 - [Startseite mit Preisen und Erklärvideo](https://dokuna.de/): 80 € je Standort und Monat, keine Einrichtungsgebühr, Dokuna-QM-Paket mit 37 Muster-Verfahrensanleitungen
