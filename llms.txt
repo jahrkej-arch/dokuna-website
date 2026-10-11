@@ -23,11 +23,15 @@ Autor aller Ratgeber: Jonas Jahrke, Pflegefachassistent in Ausbildung zum Pflege
 - [Maßnahmenplan ambulant](https://dokuna.de/massnahmenplan-ambulant/): Von der SIS zur Planung, mit durchgängigem Beispiel
 - [Berichteblatt](https://dokuna.de/berichteblatt/): Nur Abweichungen dokumentieren
 - [Evaluation der Pflegeplanung](https://dokuna.de/evaluation-pflegeplanung/): Anlässe und Vorgehen
+- [SIS®-Anforderungsprofil 3.0/3.1](https://dokuna.de/sis-anforderungsprofil/): Was das EinSTEP-Anforderungsprofil vom Mai 2026 verlangt – Muss- und Soll-Kriterien, Neuerungen, Checkliste für die Auswahl von Software.
+- [Grundbotschaft im Maßnahmenplan](https://dokuna.de/grundbotschaft-sis/): Zweck, Länge (höchstens 320 Zeichen), wer sie schreibt, drei Beispiele und typische Fehler.
+- [KI in der SIS®](https://dokuna.de/ki-in-der-sis/): Was das Anforderungsprofil zu KI und Vorschlagssystemen sagt – Assistenz ja, kein automatisches Befüllen, die Pflegefachperson entscheidet.
 
 ## Produkt
 - [Startseite mit Preisen und Erklärvideo](https://dokuna.de/): 80 € je Standort und Monat, keine Einrichtungsgebühr, Dokuna-QM-Paket mit 37 Muster-Verfahrensanleitungen
 - [SIS-Software: Worauf es bei der Auswahl ankommt](https://dokuna.de/sis-software/): Kriterien für SIS-Software, wo Klientendaten liegen sollten, Checkliste und häufige Fragen.
 - [Über Dokuna](https://dokuna.de/ueber/)
+- [Neu in Dokuna](https://dokuna.de/neu-in-dokuna/): Neue Funktionen für Pflegefachkräfte, Leitung und Datenschutz
 - Im Einsatz: 3 ambulante Pflegedienste mit zusammen 11 Standorten (Prima Pflege Netzwerk mit 5 Standorten, Pflegeagentur 24 mit 5 Standorten, Bauer B+V in Castrop-Rauxel)
 - Anmeldung für Kunden: https://app.dokuna.de/login
 - Kontakt und Vorführung: info@dokuna.de, +49 151 16833569
