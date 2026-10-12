@@ -21,6 +21,7 @@ Autor aller Ratgeber: Jonas Jahrke, Pflegefachassistent in Ausbildung zum Pflege
 - [Themenfeld 6: Haushaltsführung](https://dokuna.de/sis-themenfeld-6-haushaltsfuehrung/)
 - [QPR ambulant 2026](https://dokuna.de/qpr-ambulant-2026/): Neue Qualitätsprüfungs-Richtlinien seit 1. Juli 2026, Bewertung A–D, Fachgespräch
 - [Maßnahmenplan ambulant](https://dokuna.de/massnahmenplan-ambulant/): Von der SIS zur Planung, mit durchgängigem Beispiel
+- [Maßnahmenplan kurz oder ausführlich](https://dokuna.de/massnahmenplan-kurz-oder-ausfuehrlich/): Derselbe erfundene Fall im kurzen Stil mit Verweis auf Verfahrensanleitungen und im ausführlichen Stil, Unterschiede, Voraussetzungen nach EinSTEP 3.1.
 - [Berichteblatt](https://dokuna.de/berichteblatt/): Nur Abweichungen dokumentieren
 - [Evaluation der Pflegeplanung](https://dokuna.de/evaluation-pflegeplanung/): Anlässe und Vorgehen
 - [SIS®-Anforderungsprofil 3.0/3.1](https://dokuna.de/sis-anforderungsprofil/): Was das EinSTEP-Anforderungsprofil vom Mai 2026 verlangt – Muss- und Soll-Kriterien, Neuerungen, Checkliste für die Auswahl von Software.
