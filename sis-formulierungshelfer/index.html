@@ -25,12 +25,12 @@
 {"@type":"WebApplication","name":"SIS-Formulierungshelfer","url":"https://dokuna.de/sis-formulierungshelfer/","description":"Kostenloses Online-Werkzeug für Pflegefachkräfte: Lückentext je Themenfeld der SIS und für Feld B, daraus ein Formulierungsvorschlag in der dritten Person. Läuft vollständig im Browser, ohne Anmeldung, ohne Speicherung.","applicationCategory":"HealthApplication","operatingSystem":"Browser","browserRequirements":"JavaScript","isAccessibleForFree":true,"inLanguage":"de","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Jonas Jahrke","url":"https://dokuna.de/ueber/","jobTitle":"Gründer von Dokuna"},"publisher":{"@type":"Organization","name":"Dokuna","url":"https://dokuna.de/"}},
 {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","item":"https://dokuna.de/"},{"@type":"ListItem","position":2,"name":"SIS-Formulierungshilfen","item":"https://dokuna.de/sis-formulierungshilfen/"},{"@type":"ListItem","position":3,"name":"SIS-Formulierungshelfer","item":"https://dokuna.de/sis-formulierungshelfer/"}]},
 {"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Ist der SIS-Formulierungshelfer kostenlos?","acceptedAnswer":{"@type":"Answer","text":"Ja. Sie können den Helfer ohne Anmeldung und ohne Konto nutzen. Er läuft vollständig in Ihrem Browser und funktioniert am Computer, am Tablet und am Handy."}},
-{"@type":"Question","name":"Werden meine Eingaben gespeichert oder übertragen?","acceptedAnswer":{"@type":"Answer","text":"Nein. Der Formulierungsvorschlag entsteht in Ihrem Browser. Die Seite sendet Ihre Eingaben an keinen Server und speichert sie nicht auf Ihrem Gerät. Wenn Sie die Seite neu laden oder schließen, sind die Eingaben weg. Geben Sie trotzdem keine echten Namen ein."}},
+{"@type":"Question","name":"Ist der SIS-Formulierungshelfer kostenlos?","acceptedAnswer":{"@type":"Answer","text":"Ja. Sie können den Helfer ohne Anmeldung und ohne Konto nutzen. Er läuft vollständig in Ihrem Browser und braucht nur einen aktuellen Browser."}},
+{"@type":"Question","name":"Werden meine Eingaben gespeichert oder übertragen?","acceptedAnswer":{"@type":"Answer","text":"Nein. Der Formulierungsvorschlag entsteht in Ihrem Browser. Die Seite sendet Ihre Eingaben an keinen Server und speichert sie nicht. Beim Neuladen und beim Verlassen der Seite leert der Helfer alle Felder. Schließen Sie das Fenster nach der Arbeit trotzdem, damit keine Eingaben im Browser bleiben. Geben Sie keine echten Namen ein."}},
 {"@type":"Question","name":"Darf ich den Vorschlag direkt in die SIS übernehmen?","acceptedAnswer":{"@type":"Answer","text":"Nur nach Prüfung. Der Vorschlag ist eine Formulierungshilfe zum Lernen. Die Pflegefachkraft prüft jeden Satz, passt ihn an die Person an und verantwortet, was in der SIS steht. Die Beschreibung muss aus dem Gespräch mit der Person und aus Ihrer eigenen Beobachtung stammen."}},
-{"@type":"Question","name":"Ist das nicht ein Textbaustein?","acceptedAnswer":{"@type":"Answer","text":"Die EinSTEP-Schulungsunterlagen raten deutlich von vorgefertigten Textbausteinen ab, weil sie einer individuellen Situationsbeschreibung widersprechen. Der Helfer gibt deshalb nur kurze Grundaussagen und Satzrahmen vor. Den Inhalt liefern Ihre Beobachtungen in den Lücken: was die Person selbst kann, wann es schwierig wird und was sie sich wünscht. Bleibt eine Lücke leer, entsteht kein Satz."}},
+{"@type":"Question","name":"Ist das nicht ein Textbaustein?","acceptedAnswer":{"@type":"Answer","text":"Zum Teil ja. Die Auswahlfelder erzeugen fertige Sätze, die für viele Personen gleich lauten können. Nur die Lücken füllen Sie mit eigenen Worten. Die EinSTEP-Schulungsunterlagen 3.1 raten von vorgefertigten Textbausteinen ab und nennen die „Verwendung von Textbausteinen (sog. Formulierungshilfen) anstelle individueller Darstellung“ ausdrücklich als hinderlich. Nutzen Sie den Helfer deshalb zum Üben und als Gerüst. Gleichen Sie jeden Satz mit der Person ab und ergänzen Sie in eigenen Worten, was diese Person ausmacht: was sie selbst kann, wann es schwierig wird und was sie sich wünscht."}},
 {"@type":"Question","name":"Warum fehlt die Risikomatrix?","acceptedAnswer":{"@type":"Answer","text":"Die Einschätzung der Risiken ist eine fachliche Entscheidung der Pflegefachkraft auf Grundlage aller Themenfelder. Ein Werkzeug, das aus einzelnen Angaben Kreuze ableitet, würde diese Entscheidung vorwegnehmen. Wie die Matrix mit den fünf Risiken und dem Feld „Sonstiges“ funktioniert, erklärt der Ratgeber zur Risikomatrix in der SIS."}},
-{"@type":"Question","name":"Warum stehen keine Medikamente im Vorschlag?","acceptedAnswer":{"@type":"Answer","text":"Dosierungen, Einnahmezeiten und Listen von Präparaten gehören nicht in die SIS. Sie stehen in eigenen Dokumenten Ihres Dokumentationssystems. In Themenfeld 3 beschreiben Sie, wie die Person mit Medikamenten und Behandlungen zurechtkommt und wer was übernimmt. Der Helfer weist Sie darauf hin, wenn eine Eingabe nach einer Dosierung aussieht."}},
+{"@type":"Question","name":"Warum stehen keine Medikamente im Vorschlag?","acceptedAnswer":{"@type":"Answer","text":"Dosierungen, Einnahmezeiten und Listen von Präparaten gehören nicht in die SIS. Sie stehen in eigenen Dokumenten Ihres Dokumentationssystems. In Themenfeld 3 beschreiben Sie, wie die Person mit Medikamenten und Behandlungen zurechtkommt und wer was übernimmt. Erkennt der Helfer typische Dosierangaben oder Namen, übernimmt er die Eingabe nicht in den Vorschlag und zeigt einen Hinweis am Feld. Er erkennt aber nicht jede solche Angabe."}},
 {"@type":"Question","name":"Nutzt der Helfer künstliche Intelligenz?","acceptedAnswer":{"@type":"Answer","text":"Nein. Die Sätze entstehen nach festen Regeln aus Ihren Angaben, direkt in Ihrem Browser. Es gibt keine KI und keine Verbindung zu einem externen Dienst."}}
 ]}
 ]}
@@ -110,6 +110,9 @@ fieldset.fh-feld{border:0;padding:0}
 .fh-sprung:hover{background:#0a6459}
 @media (min-width:900px){.fh-sprung{display:none}}
 .fh-ergebnis:focus{outline:2px solid var(--akzent);outline-offset:3px}
+.fh-feldwarn{background:#fbeeee;border-left:4px solid #8a3b3b;border-radius:8px;padding:8px 12px;margin:8px 0 0;font-size:.88rem;color:#5e2626}
+.fh [aria-invalid="true"]{border-color:#8a3b3b}
+.fh-zumfeld{display:block;min-height:44px;margin-top:8px;padding:8px 14px;border-radius:99px;border:1.5px solid #8a3b3b;background:#fff;color:#5e2626;font:inherit;font-size:.88rem;font-weight:600;cursor:pointer}
 .fh-lernen{font-size:.86rem;color:var(--text);margin:10px 2px 0}
 .fh noscript p{background:#fbeeee;padding:12px 14px;border-radius:10px}
 @media (max-width:480px){
@@ -159,7 +162,7 @@ fieldset.fh-feld{border:0;padding:0}
 <ol>
 <li>Wählen Sie Frau oder Herr und tragen Sie einen beliebigen Buchstaben ein. Bitte keine echten Namen.</li>
 <li>Wählen Sie ein Themenfeld. Die Eingangsfrage für Feld B finden Sie im letzten Reiter.</li>
-<li>Beantworten Sie die Fragen, die auf die Person zutreffen. Leere Felder erzeugen keinen Satz.</li>
+<li>Beantworten Sie die Fragen, die auf die Person zutreffen. Auswahlfelder liefern kurze, vorformulierte Sätze. In die Lücken schreiben Sie Ihre eigenen Beobachtungen. Leere Felder erzeugen keinen Satz.</li>
 <li>Lesen Sie den Vorschlag und die Rückfragen. Kopieren Sie den Text und passen Sie ihn in Ihrer Dokumentation an die Person an.</li>
 </ol>
 
@@ -172,8 +175,8 @@ fieldset.fh-feld{border:0;padding:0}
       <fieldset>
         <legend class="fh-lbl">Anrede</legend>
         <div class="fh-reihe">
-          <label class="fh-option"><input type="radio" name="fh-anrede" id="fh-frau" value="frau" checked> Frau</label>
-          <label class="fh-option"><input type="radio" name="fh-anrede" id="fh-herr" value="herr"> Herr</label>
+          <label class="fh-option"><input type="radio" name="fh-anrede" id="fh-frau" value="frau" autocomplete="off" checked> Frau</label>
+          <label class="fh-option"><input type="radio" name="fh-anrede" id="fh-herr" value="herr" autocomplete="off"> Herr</label>
         </div>
       </fieldset>
       <div>
@@ -181,7 +184,7 @@ fieldset.fh-feld{border:0;padding:0}
         <input type="text" id="fh-initial" maxlength="1" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="M" aria-describedby="fh-initial-hilfe" style="max-width:120px">
         <p class="fh-bsp" id="fh-initial-hilfe">Bitte keine echten Namen eingeben. Ohne Eingabe steht „M.“</p>
       </div>
-      <p class="fh-datenschutz"><strong>Ihre Eingaben bleiben in diesem Browserfenster.</strong> Nichts wird gesendet oder gespeichert. Wenn Sie die Seite neu laden oder schließen, sind die Eingaben weg.</p>
+      <p class="fh-datenschutz"><strong>Die Seite speichert nichts und sendet nichts.</strong> Alle Eingaben bleiben in diesem Browserfenster und werden beim Neuladen gelöscht. Schließen Sie das Fenster nach der Arbeit, damit keine Eingaben im Browser bleiben.</p>
     </div>
 
     <div class="fh-tabs" role="tablist" aria-label="Themenfeld wählen" id="fh-tabs"></div>
@@ -203,7 +206,7 @@ fieldset.fh-feld{border:0;padding:0}
         <p class="fh-status" id="fh-status" role="status"></p>
         <div id="fh-warnungen"></div>
         <div class="fh-fehlt" id="fh-fehlt"></div>
-        <p class="fh-lernen">Formulierungsvorschlag zum Lernen. Die Pflegefachkraft prüft jeden Satz und passt ihn an die Person an.</p>
+        <p class="fh-lernen">Formulierungsvorschlag zum Lernen. Sätze aus Auswahlfeldern sind vorformuliert. Die Pflegefachkraft prüft jeden Satz, passt ihn an die Person an und ergänzt eigene Beobachtungen.</p>
       </div>
     </div>
   </div>
@@ -212,7 +215,7 @@ fieldset.fh-feld{border:0;padding:0}
 <p>Der Helfer deckt ein Themenfeld nach dem anderen ab. Für die ganze SIS samt Maßnahmenplan gibt es <a href="/">Dokuna</a>: Dokuna führt mit Klicks, Lückentexten und Freitextfeldern zu einem Formulierungsvorschlag. Die Fachkraft prüft jeden Satz und ergänzt Besonderheiten in eigenen Worten.</p>
 
 <h2>Warum der Helfer genau diese Fragen stellt</h2>
-<p>Jede Frage im Helfer geht auf einen Punkt zurück, der in einer aussagekräftigen Beschreibung oft fehlt. Die Themenfeld-Seiten zeigen dazu ausführliche Beispiele.</p>
+<p>Jede Frage im Helfer geht auf einen Punkt zurück, der in einer aussagekräftigen Beschreibung oft fehlt. Die Leitfragen stehen im Wortlaut der EinSTEP-Schulungsunterlagen 3.1. Die Themenfeld-Seiten zeigen dazu ausführliche Beispiele.</p>
 <ul>
 <li><strong>Themenfeld 1:</strong> Orientierung, Verstehen und Sprechen werden getrennt abgefragt. Hören und Sehen stehen zusammen mit der Frage, ob Hörgerät und Brille wirklich getragen werden. Beispiele finden Sie unter <a href="/sis-themenfeld-1-kognition-kommunikation/">Formulierungen für Themenfeld 1</a>.</li>
 <li><strong>Themenfeld 2:</strong> Neben Gehen und Aufstehen fragt der Helfer nach Stürzen, Sturzangst und Stolperstellen. Erst die Angabe, wann und wo die Person am unsichersten ist, macht die Beschreibung planbar. Mehr in den <a href="/sis-themenfeld-2-mobilitaet/">Beispielen zu Mobilität und Beweglichkeit</a>.</li>
@@ -226,25 +229,32 @@ fieldset.fh-feld{border:0;padding:0}
 <h2>Was der Helfer bewusst nicht macht</h2>
 <ul>
 <li><strong>Keine Risikomatrix.</strong> Die Kreuze setzt die Pflegefachkraft auf Grundlage aller Themenfelder. Mehr dazu im Ratgeber zur <a href="/risikomatrix-sis/">Risikomatrix in der SIS</a>.</li>
-<li><strong>Keine Medikamente.</strong> Dosierungen, Einheiten und Präparatelisten gehören nicht in die SIS. Der Helfer warnt, wenn eine Eingabe danach aussieht.</li>
+<li><strong>Keine Medikamente.</strong> Dosierungen, Einheiten und Präparatelisten gehören nicht in die SIS. Erkennt der Helfer Dosierangaben oder Namen, lässt er die Eingabe im Vorschlag weg und zeigt einen Hinweis am Feld.</li>
 <li><strong>Kein Maßnahmenplan.</strong> Wie aus der SIS die Planung wird, zeigt der Ratgeber <a href="/massnahmenplan-ambulant/">Maßnahmenplan ambulant</a>.</li>
 <li><strong>Keine Speicherung.</strong> Der Helfer merkt sich nichts. Kopieren Sie den Text, bevor Sie die Seite schließen.</li>
 </ul>
-<p class="hinweisbox">Die EinSTEP-Schulungsunterlagen 3.1 halten fest: „Die Nutzung von vorgefertigten Textbausteinen ist im Hinblick auf eine individuelle Situationsbeschreibung unbedingt zu vermeiden“. Nutzen Sie den Vorschlag deshalb als Gerüst. Was in der SIS steht, kommt aus Ihrem Gespräch mit der Person.</p>
+<h2>So nutzen Sie den Vorschlag richtig</h2>
+<p>Die EinSTEP-Schulungsunterlagen 3.1 sind hier deutlich. Sie halten fest: „Die Nutzung von vorgefertigten Textbausteinen ist im Hinblick auf eine individuelle Situationsbeschreibung unbedingt zu vermeiden“ (S. 51). Bei den Herausforderungen im Maßnahmenplan nennen sie außerdem die „Verwendung von Textbausteinen (sog. Formulierungshilfen) anstelle individueller Darstellung“ (S. 95). Ein Teil der Sätze im Helfer entsteht aus Auswahlfeldern und ist damit vorformuliert. Nutzen Sie ihn deshalb so:</p>
+<ol>
+<li>Als Lernhilfe: Der Helfer zeigt, welche Angaben in ein Themenfeld gehören und wie eine beschreibende Formulierung klingt.</li>
+<li>Jeden Satz mit der Person abgleichen. Was nicht genau zutrifft, streichen oder ändern Sie.</li>
+<li>Eigene Beobachtungen ergänzen: was diese Person selbst kann, wann es schwierig wird und was sie sich wünscht, möglichst mit ihren eigenen Worten.</li>
+<li>In Ihrer Dokumentation in eigenen Worten schreiben. Der Vorschlag ersetzt weder das Gespräch mit der Person noch Ihre fachliche Einschätzung.</li>
+</ol>
 
 <h2>Häufige Fragen zum Formulierungshelfer</h2>
 <h3>Ist der SIS-Formulierungshelfer kostenlos?</h3>
-<p>Ja. Sie können den Helfer ohne Anmeldung und ohne Konto nutzen. Er läuft vollständig in Ihrem Browser und funktioniert am Computer, am Tablet und am Handy.</p>
+<p>Ja. Sie können den Helfer ohne Anmeldung und ohne Konto nutzen. Er läuft vollständig in Ihrem Browser und braucht nur einen aktuellen Browser.</p>
 <h3>Werden meine Eingaben gespeichert oder übertragen?</h3>
-<p>Nein. Der Formulierungsvorschlag entsteht in Ihrem Browser. Die Seite sendet Ihre Eingaben an keinen Server und speichert sie nicht auf Ihrem Gerät. Wenn Sie die Seite neu laden oder schließen, sind die Eingaben weg. Geben Sie trotzdem keine echten Namen ein.</p>
+<p>Nein. Der Formulierungsvorschlag entsteht in Ihrem Browser. Die Seite sendet Ihre Eingaben an keinen Server und speichert sie nicht. Beim Neuladen und beim Verlassen der Seite leert der Helfer alle Felder. Schließen Sie das Fenster nach der Arbeit trotzdem, damit keine Eingaben im Browser bleiben. Geben Sie keine echten Namen ein.</p>
 <h3>Darf ich den Vorschlag direkt in die SIS übernehmen?</h3>
 <p>Nur nach Prüfung. Der Vorschlag ist eine Formulierungshilfe zum Lernen. Die Pflegefachkraft prüft jeden Satz, passt ihn an die Person an und verantwortet, was in der SIS steht. Die Beschreibung muss aus dem Gespräch mit der Person und aus Ihrer eigenen Beobachtung stammen.</p>
 <h3>Ist das nicht ein Textbaustein?</h3>
-<p>Die EinSTEP-Schulungsunterlagen raten deutlich von vorgefertigten Textbausteinen ab, weil sie einer individuellen Situationsbeschreibung widersprechen. Der Helfer gibt deshalb nur kurze Grundaussagen und Satzrahmen vor. Den Inhalt liefern Ihre Beobachtungen in den Lücken: was die Person selbst kann, wann es schwierig wird und was sie sich wünscht. Bleibt eine Lücke leer, entsteht kein Satz.</p>
+<p>Zum Teil ja. Die Auswahlfelder erzeugen fertige Sätze, die für viele Personen gleich lauten können. Nur die Lücken füllen Sie mit eigenen Worten. Die EinSTEP-Schulungsunterlagen 3.1 raten von vorgefertigten Textbausteinen ab und nennen die „Verwendung von Textbausteinen (sog. Formulierungshilfen) anstelle individueller Darstellung“ ausdrücklich als hinderlich. Nutzen Sie den Helfer deshalb zum Üben und als Gerüst. Gleichen Sie jeden Satz mit der Person ab und ergänzen Sie in eigenen Worten, was diese Person ausmacht: was sie selbst kann, wann es schwierig wird und was sie sich wünscht.</p>
 <h3>Warum fehlt die Risikomatrix?</h3>
 <p>Die Einschätzung der Risiken ist eine fachliche Entscheidung der Pflegefachkraft auf Grundlage aller Themenfelder. Ein Werkzeug, das aus einzelnen Angaben Kreuze ableitet, würde diese Entscheidung vorwegnehmen. Wie die Matrix mit den fünf Risiken und dem Feld „Sonstiges“ funktioniert, erklärt der <a href="/risikomatrix-sis/">Ratgeber zur Risikomatrix in der SIS</a>.</p>
 <h3>Warum stehen keine Medikamente im Vorschlag?</h3>
-<p>Dosierungen, Einnahmezeiten und Listen von Präparaten gehören nicht in die SIS. Sie stehen in eigenen Dokumenten Ihres Dokumentationssystems. In Themenfeld 3 beschreiben Sie, wie die Person mit Medikamenten und Behandlungen zurechtkommt und wer was übernimmt. Der Helfer weist Sie darauf hin, wenn eine Eingabe nach einer Dosierung aussieht.</p>
+<p>Dosierungen, Einnahmezeiten und Listen von Präparaten gehören nicht in die SIS. Sie stehen in eigenen Dokumenten Ihres Dokumentationssystems. In Themenfeld 3 beschreiben Sie, wie die Person mit Medikamenten und Behandlungen zurechtkommt und wer was übernimmt. Erkennt der Helfer typische Dosierangaben oder Namen, übernimmt er die Eingabe nicht in den Vorschlag und zeigt einen Hinweis am Feld. Er erkennt aber nicht jede solche Angabe.</p>
 <h3>Nutzt der Helfer künstliche Intelligenz?</h3>
 <p>Nein. Die Sätze entstehen nach festen Regeln aus Ihren Angaben, direkt in Ihrem Browser. Es gibt keine KI und keine Verbindung zu einem externen Dienst.</p>
 
@@ -363,10 +373,10 @@ function schluss(v,s,f){
   if(frei(v.weitere))s.push(frei(v.weitere));
 }
 var WARN={
-  husten:'Warnzeichen Husten beim Trinken: Trinken sofort unterbrechen und die Person aufrecht hinsetzen. Pflegefachkraft informieren, sie veranlasst die ärztliche Abklärung noch am selben Tag. Bei Atemnot oder Erstickungsgefahr 112 rufen.',
-  atemnot:'Warnzeichen Atemnot: Tritt Atemnot neu oder stärker als gewohnt auf, die Person aufrecht hinsetzen und nicht allein lassen. Pflegefachkraft informieren, sie veranlasst die ärztliche Abklärung noch am selben Tag. Bei schwerer Atemnot 112 rufen.',
-  roetung:'Warnzeichen Rötung, die sich nicht wegdrücken lässt: Die Stelle sofort druckfrei lagern. Pflegefachkraft informieren, sie veranlasst die ärztliche Einbeziehung noch am selben Tag. Im Notfall 112 rufen.',
-  schmerz:'Warnzeichen neuer Schmerz bei Menschen, die ihn nicht benennen können: Treten diese Zeichen neu auf, belastende Bewegungen sofort vermeiden. Pflegefachkraft informieren, sie veranlasst die ärztliche Abklärung noch am selben Tag. Im Notfall 112 rufen.',
+  husten:'Warnzeichen Husten beim Trinken: Tritt der Husten neu oder häufiger als gewohnt auf, Trinken sofort unterbrechen und die Person aufrecht hinsetzen. Pflegefachkraft informieren, sie veranlasst die ärztliche Abklärung noch am selben Tag, außerhalb der Sprechzeiten über den ärztlichen Bereitschaftsdienst 116117. Bei Atemnot oder Erstickungsgefahr 112 rufen.',
+  atemnot:'Warnzeichen Atemnot: Tritt Atemnot neu oder stärker als gewohnt auf, die Person aufrecht hinsetzen und nicht allein lassen. Pflegefachkraft informieren, sie veranlasst die ärztliche Abklärung noch am selben Tag, außerhalb der Sprechzeiten über den ärztlichen Bereitschaftsdienst 116117. Bei schwerer Atemnot 112 rufen.',
+  roetung:'Warnzeichen Rötung, die sich nicht wegdrücken lässt: Die Stelle sofort druckfrei lagern. Pflegefachkraft informieren, sie veranlasst die ärztliche Einbeziehung noch am selben Tag, außerhalb der Sprechzeiten über den ärztlichen Bereitschaftsdienst 116117.',
+  schmerz:'Warnzeichen neuer Schmerz bei Menschen, die ihn nicht benennen können: Treten diese Zeichen neu auf, belastende Bewegungen sofort vermeiden. Pflegefachkraft informieren, sie veranlasst die ärztliche Abklärung noch am selben Tag, außerhalb der Sprechzeiten über den ärztlichen Bereitschaftsdienst 116117. Im Notfall 112 rufen.',
   stimmung:'Rückzug und veränderte Stimmung: Pflegefachkraft informieren, sie regt eine ärztliche Abklärung an. Die Diagnose stellt die Ärztin oder der Arzt.'
 };
 
@@ -375,7 +385,7 @@ var TF=[];
 
 /* Themenfeld 1 */
 TF.push({nr:1,kurz:'Kognition',name:'Kognitive und kommunikative Fähigkeiten',
- leit:'Inwieweit ist die pflegebedürftige Person in der Lage, sich in ihrem Alltag zu orientieren, Sachverhalte zu erfassen und sich mitzuteilen?',
+ leit:'Inwieweit ist die pflegebedürftige Person in der Lage, sich zeitlich, persönlich und örtlich zu orientieren und zu interagieren sowie Risiken und Gefahren, auch unter Beachtung von Aspekten des herausfordernden Verhaltens, zu erkennen?',
  link:'/sis-themenfeld-1-kognition-kommunikation/',
  felder:[
   {t:'h',l:'Orientierung und Verstehen'},
@@ -439,7 +449,7 @@ TF.push({nr:1,kurz:'Kognition',name:'Kognitive und kommunikative Fähigkeiten',
 
 /* Themenfeld 2 */
 TF.push({nr:2,kurz:'Mobilität',name:'Mobilität und Beweglichkeit',
- leit:'Inwieweit ist die pflegebedürftige Person in der Lage, sich fortzubewegen und ihre Körperposition zu verändern?',
+ leit:'Inwieweit ist die pflegebedürftige Person in der Lage, sich frei und selbständig innerhalb und außerhalb der Wohnung, bzw. des Wohnbereichs, auch unter Beachtung von Aspekten des herausfordernden Verhaltens, zu bewegen?',
  link:'/sis-themenfeld-2-mobilitaet/',
  felder:[
   {t:'h',l:'Bett, Aufstehen und Gehen'},
@@ -503,9 +513,10 @@ TF.push({nr:2,kurz:'Mobilität',name:'Mobilität und Beweglichkeit',
 /* Themenfeld 3 */
 var BEH=[['bz','Blutzucker messen','die Blutzuckermessung'],['ins','Insulin spritzen','die Insulingabe'],['vw','Verbandwechsel','den Verbandwechsel'],['komp','Kompressionsstrümpfe an- und ausziehen','das An- und Ausziehen der Kompressionsstrümpfe'],['inh','Inhalieren','das Inhalieren'],['termine','Arzttermine und Fahrten organisieren','die Organisation von Arztterminen und Fahrten']];
 var BEH_WER=[['selbst','die Person selbst'],['pd','Pflegedienst'],['ang','Angehörige'],['praxis','Arztpraxis']];
+var BEH_NUR={praxis:['vw','termine']};
 var BEH_VERB={selbst:'übernimmt {P} selbst',pd:'übernimmt der Pflegedienst',ang:'übernehmen Angehörige',praxis:'übernimmt die Arztpraxis'};
 TF.push({nr:3,kurz:'Krankheit',name:'Krankheitsbezogene Anforderungen und Belastungen',
- leit:'Inwieweit ist die pflegebedürftige Person in der Lage, mit krankheits- und therapiebedingten Anforderungen und Belastungen umzugehen?',
+ leit:'Inwieweit liegen krankheits- und therapiebedingte sowie für Pflege und Betreuung relevante Einschränkungen bei der pflegebedürftigen Person vor?',
  link:'/sis-themenfeld-3-krankheitsbezogene-anforderungen/',
  felder:[
   {t:'info',l:'Bitte keine Diagnoselisten, Dosierungen, Einheiten, Einnahmezeiten oder Präparatelisten eingeben. Diese Angaben stehen in eigenen Dokumenten. Hier geht es um den Umgang damit.'},
@@ -515,7 +526,7 @@ TF.push({nr:3,kurz:'Krankheit',name:'Krankheitsbezogene Anforderungen und Belast
   {t:'sel',id:'grund',l:'Warum gelingt die Einnahme nicht zuverlässig?',o:[['vergisst','vergisst einzelne Einnahmen'],['schlucken','Schlucken der Tabletten fällt schwer'],['ablehnt','lehnt einzelne Medikamente ab'],['zweck','Zweck der Medikamente ist nicht klar'],['sonst','anderer Grund (unten beschreiben)']],w:function(v){return v.med_ein==='unzuverl';}},
   {t:'sel',id:'zweck',l:'Kennt die Person den Zweck ihrer Medikamente?',o:[['ja','kann den Zweck benennen'],['nein','kann den Zweck nicht benennen']],w:function(v){return v.med_wer!=='keine';}},
   {t:'h',l:'Behandlungen und wer sie übernimmt'},
-  {t:'zuord',l:'Wer übernimmt was? Nur ausfüllen, was zutrifft.',items:BEH,o:BEH_WER},
+  {t:'zuord',l:'Wer übernimmt was? Nur ausfüllen, was zutrifft.',items:BEH,o:BEH_WER,nur:BEH_NUR},
   {t:'h',l:'Beschwerden'},
   {t:'chk',id:'symptome',l:'Welche Beschwerden belasten die Person?',zwei:true,o:[['schmerz','Schmerz'],['Atemnot','Atemnot'],['Schwindel','Schwindel'],['Übelkeit','Übelkeit'],['Juckreiz','Juckreiz'],['Schlafstörungen','Schlafstörungen']]},
   {t:'txt',id:'s_ort',l:'Schmerz: Wo genau?',r:'{P} beschreibt Schmerzen ___',b:'z. B. im unteren Rücken',w:function(v){return (v.symptome||[]).indexOf('schmerz')>-1;}},
@@ -523,8 +534,8 @@ TF.push({nr:3,kurz:'Krankheit',name:'Krankheitsbezogene Anforderungen und Belast
   {t:'sel',id:'s_staerke',l:'Schmerz: Wie stark auf einer Skala von 0 bis 10?',o:[['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6'],['7','7'],['8','8'],['9','9'],['10','10'],['fremd','kann die Person nicht selbst angeben']],w:function(v){return (v.symptome||[]).indexOf('schmerz')>-1;}},
   {t:'txt',id:'s_besser',l:'Schmerz: Was lindert ihn?',r:'Linderung bringt ___.',b:'z. B. Wärme',w:function(v){return (v.symptome||[]).indexOf('schmerz')>-1;}},
   {t:'txt',id:'s_schlechter',l:'Schmerz: Was verstärkt ihn?',r:'Verstärkt werden die Schmerzen durch ___.',b:'z. B. längeres Stehen',w:function(v){return (v.symptome||[]).indexOf('schmerz')>-1;}},
-  {t:'txt',id:'s_erkennbar',l:'Falls die Person Schmerz nicht benennen kann: Woran erkennt das Team ihn?',r:'Schmerz ist bei {P3} erkennbar an ___.',b:'z. B. Stirnrunzeln, Zurückzucken beim Bewegen des rechten Arms und leisem Stöhnen',w:function(v){return (v.symptome||[]).indexOf('schmerz')>-1;}},
-  {t:'sel',id:'s_bedarf',l:'Schmerz: Umgang mit verordneter Bedarfsmedikation',o:[['nimmt','nimmt sie bei Bedarf'],['zoegert','nimmt sie nur zögerlich'],['keine','keine Bedarfsmedikation verordnet']],w:function(v){return (v.symptome||[]).indexOf('schmerz')>-1;}},
+  {t:'txt',id:'s_erkennbar',l:'Falls die Person Schmerz nicht benennen kann: Woran erkennt das Team ihn?',r:'Schmerz ist bei {P3} erkennbar an ___.',b:'z. B. Stirnrunzeln, Zurückzucken beim Bewegen des rechten Arms und leisem Stöhnen',w:function(v){return (v.symptome||[]).indexOf('schmerz')>-1&&v.s_staerke==='fremd';}},
+  {t:'sel',id:'s_bedarf',l:'Schmerz: Umgang mit verordneter Bedarfsmedikation',o:[['nimmt','nimmt sie, wenn Schmerzen auftreten'],['zoegert','nimmt sie nur zögerlich'],['keine','keine Bedarfsmedikation verordnet']],w:function(v){return (v.symptome||[]).indexOf('schmerz')>-1;}},
   {t:'txt',id:'s_zoegert',l:'Warum nimmt die Person sie nur zögerlich?',r:'Das liegt daran, dass ___.',b:'z. B. sie Angst vor Abhängigkeit hat',w:function(v){return v.s_bedarf==='zoegert';}},
   {t:'txt',id:'b_wann',l:'Wann treten die übrigen Beschwerden auf?',r:'Das tritt vor allem ___ auf.',b:'z. B. bei Belastung wie dem Anziehen oder dem Weg zur Haustür',w:function(v){return (v.symptome||[]).filter(function(x){return x!=='schmerz';}).length>0;}},
   {t:'h',l:'Umgang und Notfall'},
@@ -557,7 +568,7 @@ TF.push({nr:3,kurz:'Krankheit',name:'Krankheitsbezogene Anforderungen und Belast
   if(!reihe.length)f.push('Behandlungen: Wer übernimmt was, die Person, Angehörige, der Pflegedienst oder die Arztpraxis?');
   var sy=v.symptome||[];
   if(sy.indexOf('schmerz')>-1){
-    var fremd=v.s_staerke==='fremd'||!!L(v.s_erkennbar);
+    var fremd=v.s_staerke==='fremd';
     var t=fremd?'Es bestehen Schmerzen':'{P} beschreibt Schmerzen';
     if(L(v.s_ort))t+=' '+L(v.s_ort);
     if(L(v.s_wann))t+=', vor allem '+L(v.s_wann);
@@ -567,7 +578,7 @@ TF.push({nr:3,kurz:'Krankheit',name:'Krankheitsbezogene Anforderungen und Belast
     if(L(v.s_besser))s.push('Linderung bringt '+L(v.s_besser)+'.');
     if(L(v.s_schlechter))s.push('Verstärkt werden die Schmerzen durch '+L(v.s_schlechter)+'.');
     if(L(v.s_erkennbar)){s.push('Schmerz ist bei {P3} erkennbar an '+L(v.s_erkennbar)+'.');w.push(WARN.schmerz);}
-    if(v.s_bedarf==='nimmt')s.push('Die verordnete Bedarfsmedikation nimmt {P} bei Bedarf.');
+    if(v.s_bedarf==='nimmt')s.push('Die verordnete Bedarfsmedikation nimmt {P}, wenn Schmerzen auftreten.');
     if(v.s_bedarf==='zoegert'){s.push('Die verordnete Bedarfsmedikation nimmt {P} nur zögerlich.');if(L(v.s_zoegert))s.push('Das liegt daran, dass '+L(v.s_zoegert)+'.');else f.push('Bedarfsmedikation: Warum nimmt die Person sie nur zögerlich?');}
     if(!L(v.s_ort))f.push('Schmerz: Wo genau?');
     if(!L(v.s_wann))f.push('Schmerz: Wann genau tritt er auf?');
@@ -597,7 +608,7 @@ TF.push({nr:3,kurz:'Krankheit',name:'Krankheitsbezogene Anforderungen und Belast
 /* Themenfeld 4 */
 var KP_ORT={wb_sitz:'am Waschbecken im Sitzen',wb_steh:'am Waschbecken im Stehen',dusche:'unter der Dusche',wanne:'in der Badewanne',bett:'im Bett'};
 TF.push({nr:4,kurz:'Selbstversorgung',name:'Selbstversorgung',
- leit:'Inwieweit ist die pflegebedürftige Person in der Lage, sich selbst zu versorgen?',
+ leit:'Inwieweit ist die Fähigkeit der pflegebedürftigen Person zur Körperpflege, zum Kleiden, zur Ernährung und zur Ausscheidung eingeschränkt?',
  link:'/sis-themenfeld-4-selbstversorgung/',
  felder:[
   {t:'h',l:'Körperpflege'},
@@ -710,7 +721,7 @@ TF.push({nr:4,kurz:'Selbstversorgung',name:'Selbstversorgung',
 /* Themenfeld 5 */
 var ANG={tochter:['f','Tochter'],sohn:['m','Sohn'],ehefrau:['f','Ehefrau'],ehemann:['m','Ehemann'],lgin:['f','Lebensgefährtin'],lg:['m','Lebensgefährte'],schwt:['f','Schwiegertochter'],schws:['m','Schwiegersohn']};
 TF.push({nr:5,kurz:'Soziales',name:'Leben in sozialen Beziehungen',
- leit:'Inwieweit ist die pflegebedürftige Person in der Lage, ihren Alltag zu gestalten und soziale Kontakte zu pflegen?',
+ leit:'Inwieweit kann die pflegebedürftige Person Aktivitäten im näheren Umfeld und im außerhäuslichen Bereich selbst gestalten?',
  link:'/sis-themenfeld-5-soziale-beziehungen/',
  felder:[
   {t:'h',l:'Tagesablauf und Freude'},
@@ -728,7 +739,7 @@ TF.push({nr:5,kurz:'Soziales',name:'Leben in sozialen Beziehungen',
   {t:'sel',id:'stimmung',l:'Stimmung',o:[['gut','beschreibt die Stimmung als gut'],['einsam','äußert, sich einsam zu fühlen'],['rueckzug','zieht sich zurück, beteiligt sich kaum an Gesprächen']]},
   {t:'txt',id:'seit',l:'Seit wann?',r:'… seit ___.',b:'z. B. etwa zwei Monaten',w:function(v){return v.stimmung==='rueckzug'||v.stimmung==='einsam';}},
   {t:'txt',id:'beruf',l:'Beruf oder Lebensabschnitt, der heute etwas erklärt',r:'{P} war ___.',b:'z. B. über vierzig Jahre Bäcker'},
-  {t:'txt',id:'erklaert',l:'Was erklärt sich daraus?',r:'Daraus erklärt sich, dass ___.',b:'z. B. der Tag bis heute gegen halb vier beginnt',w:function(v){return !!L(v.beruf);}},
+  {t:'txt',id:'erklaert',l:'Was passt heute dazu?',r:'Dazu passt, dass ___.',b:'z. B. der Tag bis heute gegen halb vier beginnt',w:function(v){return !!L(v.beruf);}},
   {t:'h',l:'Pflegende Angehörige'},
   {t:'sel',id:'ang',l:'Wer unterstützt hauptsächlich?',o:[['tochter','Tochter'],['sohn','Sohn'],['ehefrau','Ehefrau'],['ehemann','Ehemann'],['lgin','Lebensgefährtin'],['lg','Lebensgefährte'],['schwt','Schwiegertochter'],['schws','Schwiegersohn'],['keine','keine Angehörigen in der Versorgung']]},
   {t:'txt',id:'ang_tut',l:'Was übernimmt diese Person?',r:function(v){var a=ANG[v.ang];return (a?'{POS:'+a[0]+'|'+a[1]+'}':'Die Angehörige oder der Angehörige')+' übernimmt ___.';},b:'z. B. täglich etwa zwei Stunden Versorgung und die Organisation der Termine',w:function(v){return !!ANG[v.ang];}},
@@ -759,7 +770,7 @@ TF.push({nr:5,kurz:'Soziales',name:'Leben in sozialen Beziehungen',
   if(v.stimmung==='rueckzug'){s.push('{P} zieht sich '+(seit?'seit '+seit+' ':'')+'zurück und beteiligt sich kaum noch an Gesprächen.');hin.push(WARN.stimmung);}
   if((v.stimmung==='rueckzug'||v.stimmung==='einsam')&&!seit)f.push('Stimmung: Seit wann ist das so?');
   if(!v.stimmung)f.push('Stimmung: Wie beschreibt die Person ihre Stimmung?');
-  if(L(v.beruf)){s.push('{P} war '+L(v.beruf)+'.');if(L(v.erklaert))s.push('Daraus erklärt sich, dass '+L(v.erklaert)+'.');}
+  if(L(v.beruf)){s.push('{P} war '+L(v.beruf)+'.');if(L(v.erklaert))s.push('Dazu passt, dass '+L(v.erklaert)+'.');}
   var a=ANG[v.ang];
   if(v.ang==='keine')s.push('Angehörige sind an der Versorgung nicht beteiligt.');
   if(a){
@@ -787,11 +798,11 @@ var HH=[['einkauf','Einkauf','den Einkauf'],['mahl','Zubereitung der Mahlzeiten'
 var HH_WER=[['selbst','die Person selbst'],['teil','die Person teilweise selbst'],['ang','Angehörige'],['nach','Nachbarn'],['pd','Pflegedienst'],['hh','Haushaltshilfe'],['liefer','Lieferdienst']];
 var HH_VERB={selbst:'übernimmt {P} selbst',teil:'übernimmt {P} teilweise selbst',ang:'übernehmen Angehörige',nach:'übernehmen Nachbarn',pd:'übernimmt der Pflegedienst',hh:'übernimmt eine Haushaltshilfe',liefer:'übernimmt ein Lieferdienst'};
 TF.push({nr:6,kurz:'Haushalt',name:'Haushaltsführung',
- leit:'Inwieweit kann die pflegebedürftige Person die eigene Haushaltsführung bewältigen?',
+ leit:'Inwieweit kann die pflegebedürftige Person Aktivitäten der Haushaltsführung zu Hause selbst gestalten?',
  link:'/sis-themenfeld-6-haushaltsfuehrung/',
  felder:[
   {t:'h',l:'Wer übernimmt was?'},
-  {t:'zuord',l:'Nur ausfüllen, was zutrifft.',items:HH,o:HH_WER,nur:{liefer:['einkauf','mahl']}},
+  {t:'zuord',l:'Nur ausfüllen, was zutrifft.',items:HH,o:HH_WER,nur:{liefer:['einkauf','mahl'],nach:['einkauf','mahl','reinigung','waesche'],pd:['einkauf','mahl','reinigung','waesche'],hh:['einkauf','mahl','reinigung','waesche']}},
   {t:'ta',id:'wer_genau',l:'Wer genau und wie oft? (in eigenen Worten, ganze Sätze)',b:'z. B. Der Sohn kauft samstags für die ganze Woche ein. Er wohnt 40 Kilometer entfernt.'},
   {t:'sel',id:'vertretung',l:'Wenn diese Unterstützung ausfällt',o:[['ja','eine Vertretung ist geregelt'],['nein','eine Vertretung ist nicht geregelt']]},
   ressource('z. B. den Einkaufszettel schreiben und die Wäsche im Sitzen zusammenlegen'),
@@ -873,7 +884,7 @@ function fid(tf,id){return 'fh'+tf.nr+'-'+id;}
 function baueSelect(tf,f,klein){
   var wrap=el('div',{'class':'fh-feld'});
   var lab=el('label',{'for':fid(tf,f.id),text:f.l});
-  var sel=el('select',{id:fid(tf,f.id)});
+  var sel=el('select',{id:fid(tf,f.id),autocomplete:'off'});
   sel.appendChild(el('option',{value:'',text:'– bitte wählen –'}));
   f.o.forEach(function(o){sel.appendChild(el('option',{value:o[0],text:o[1]}));});
   wrap.appendChild(lab);wrap.appendChild(sel);
@@ -887,11 +898,12 @@ function baueText(tf,f){
   var ids=[];
   var rahmen=null;
   if(f.r){rahmen=el('p',{'class':'fh-rahmen',id:id+'-r'});wrap.appendChild(rahmen);ids.push(id+'-r');}
-  var inp=f.t==='ta'?el('textarea',{id:id,rows:'3',spellcheck:'true'}):el('input',{type:'text',id:id,autocomplete:'off',spellcheck:'true'});
-  if(f.b){var b=el('p',{'class':'fh-bsp',id:id+'-b',text:f.b});ids.push(id+'-b');inp.setAttribute('placeholder','');wrap.appendChild(inp);wrap.appendChild(b);}
+  var inp=f.t==='ta'?el('textarea',{id:id,rows:'3',autocomplete:'off',spellcheck:'false'}):el('input',{type:'text',id:id,autocomplete:'off',spellcheck:'false'});
+  if(f.b){var b=el('p',{'class':'fh-bsp',id:id+'-b',text:f.b});ids.push(id+'-b');wrap.appendChild(inp);wrap.appendChild(b);}
   else wrap.appendChild(inp);
-  if(ids.length)inp.setAttribute('aria-describedby',ids.join(' '));
-  feldIndex.push({tf:tf,f:f,box:wrap,input:inp,rahmen:rahmen});
+  var warnEl=el('p',{'class':'fh-feldwarn',id:id+'-w'});warnEl.hidden=true;wrap.appendChild(warnEl);ids.push(id+'-w');
+  inp.setAttribute('aria-describedby',ids.join(' '));
+  feldIndex.push({tf:tf,f:f,box:wrap,input:inp,rahmen:rahmen,warn:warnEl});
   return wrap;
 }
 function baueChk(tf,f){
@@ -900,7 +912,7 @@ function baueChk(tf,f){
   var box=el('div',{'class':'fh-optionen'+(f.zwei?' fh-zwei':'')});
   var inputs=[];
   f.o.forEach(function(o,i){
-    var inp=el('input',{type:'checkbox',id:fid(tf,f.id)+'-'+i,value:o[0]});
+    var inp=el('input',{type:'checkbox',id:fid(tf,f.id)+'-'+i,value:o[0],autocomplete:'off'});
     var lab=el('label',{'class':'fh-option','for':fid(tf,f.id)+'-'+i});
     lab.appendChild(inp);lab.appendChild(d.createTextNode(o[1]));
     box.appendChild(lab);inputs.push(inp);
@@ -939,7 +951,7 @@ TF.forEach(function(tf,i){
   var p=el('div',{role:'tabpanel',id:tf.feldB?'feld-b':'themenfeld-'+tf.nr,'aria-labelledby':'fh-tab-'+nrTxt,'class':'fh-panel',tabindex:'0'});
   if(i!==0)p.hidden=true;
   p.appendChild(el('h3',{text:tf.feldB?tf.name:'Themenfeld '+tf.nr+': '+tf.name}));
-  p.appendChild(el('p',{'class':'fh-leit',text:(tf.feldB?'Eingangsfrage: ':'Leitfrage (sinngemäß): ')+tf.leit}));
+  p.appendChild(el('p',{'class':'fh-leit',text:(tf.feldB?'Eingangsfrage: ':'Leitfrage (EinSTEP 3.1, Wortlaut): ')+'„'+tf.leit+'“'}));
   var mehr=el('p',{'class':'fh-mehr'});
   mehr.appendChild(el('a',{href:tf.link,text:tf.feldB?'So läuft das Gespräch zur SIS ab':'Beispiele und Erklärung zu Themenfeld '+tf.nr}));
   p.appendChild(mehr);
@@ -963,8 +975,14 @@ function werte(tf){
     if(x.tf!==tf)return;
     var sichtbar=!x.f.w||x.f.w(v);
     x.box.hidden=!sichtbar;
-    if(x.inputs)v[x.f.id]=sichtbar?x.inputs.filter(function(i){return i.checked;}).map(function(i){return i.value;}):[];
-    else v[x.f.id]=sichtbar?x.input.value:'';
+    if(x.inputs){v[x.f.id]=sichtbar?x.inputs.filter(function(i){return i.checked;}).map(function(i){return i.value;}):[];return;}
+    var wert=sichtbar?x.input.value:'';
+    if(x.warn){
+      x.treffer=sichtbar?treffer(tf,x.f.id,wert):null;
+      if(x.treffer){wert='';x.warn.textContent=GRUND[x.treffer];x.warn.hidden=false;x.input.setAttribute('aria-invalid','true');}
+      else{x.warn.textContent='';x.warn.hidden=true;x.input.removeAttribute('aria-invalid');}
+    }
+    v[x.f.id]=wert;
   });
   return v;
 }
@@ -973,7 +991,7 @@ function rahmenSetzen(tf,v,p){
     if(x.tf!==tf||!x.rahmen)return;
     var r=typeof x.f.r==='function'?x.f.r(v):x.f.r;
     var teile=rahmenText(r,p).split('___');
-    var wert=L(x.input.value);
+    var wert=x.treffer?'(nicht übernommen)':L(x.input.value);
     x.rahmen.innerHTML='';
     x.rahmen.appendChild(d.createTextNode(gross(teile[0])));
     if(teile.length>1){
@@ -983,13 +1001,59 @@ function rahmenSetzen(tf,v,p){
   });
 }
 
-var MED=/(\b\d+([.,]\d+)?\s?(mg|µg|mcg|IE|I\.E\.|Hübe|Hub|Tropfen|Tbl|Tabletten|Kapseln|Einheiten)\b)|(\b\d\s?-\s?\d\s?-\s?\d(\s?-\s?\d)?\b)|(\b\d+\s?(x|mal)\s?(tgl|täglich|am Tag|pro Tag)\b)|\b((Abend|Morgen|Mittags)?[Dd]osis|Dosierung)\b/i;
-var MED_ML=/\b\d+([.,]\d+)?\s?ml\b/i;
-var NAME=/\b(Frau|Herrn?)\s+[A-ZÄÖÜ][a-zäöüß]{2,}/;
-
-function texteVon(tf){
-  return feldIndex.filter(function(x){return x.tf===tf&&x.input&&(x.f.t==='txt'||x.f.t==='ta')&&!x.box.hidden;}).map(function(x){return x.input.value;}).join(' \n ');
+/* ---------- Erkennung: Dosierungen und Namen kommen nie in den Vorschlag ---------- */
+var B='A-Za-zÄÖÜäöüß';
+var ZAHL='[0-9½¼¾]+(?:[.,][0-9]+)?';
+function einheitRe(e){return new RegExp('(^|[^'+B+'0-9])('+ZAHL+')\\s?(?:'+e+')(?:\\/h|\\/d|\\/Tag)?(?![A-Za-zÄÖÜäöüß])','i');}
+/* immer eine Dosisangabe */
+var EINH=einheitRe('mg|µg|ug|mcg|IE|I\\.E\\.|E|Hübe|Hub|Sprühstöße|Sprühstösse|Sprühstoß|Sprühstoss|Tropfen|Trpf\\.?|Tbl\\.?|Tabl\\.?|Tablette|Tabletten|Kapsel|Kapseln|Kps\\.?|Pflaster|Ampulle|Ampullen|Einheit|Einheiten|Globuli|Zäpfchen|Supp\\.?|%');
+/* ml, g und Beutel: Mengen bei Essen und Trinken sind erlaubt */
+var MENGE=new RegExp('(^|[^'+B+'0-9])'+ZAHL+'\\s?([mM][lL]|g|[Bb]eutel|[Mm]esslöffel)(?![A-Za-zÄÖÜäöüß])(\\s+([A-ZÄÖÜ][A-Za-zÄÖÜäöüß-]*))?','g');
+var ESSEN=/^(Wasser|Mineralwasser|Tee|Kaffee|Saft|Apfelsaft|Orangensaft|Milch|Buttermilch|Kakao|Suppe|Brühe|Quark|Joghurt|Pudding|Brei|Sondennahrung|Trinknahrung|Schorle|Apfelschorle|Saftschorle|Getränk|Getränke|Flüssigkeit|Flüssigkeiten|Bier|Wein|Limonade|Cola|Brot|Obst|Gemüse|Kartoffeln|Fleisch|Fisch|Nudeln|Reis|Kuchen|Müsli|Zucker|Butter|Käse|Wurst|Eis|Smoothie|Nahrung|Essen|Urin|Harn)$/i;
+var KATHETER=/katheter|urin|harn|stoma|drainage/i;
+function mengeIstDosis(tf,t){
+  MENGE.lastIndex=0;var m;
+  while((m=MENGE.exec(t))){
+    var einh=m[2].toLowerCase(),wort=m[4]||'';
+    if(einh==='beutel'||einh==='messlöffel'){ if((tf.nr===3||MEDWORT.test(t))&&!KATHETER.test(t))return true; continue; }
+    if(tf.nr===3)return true;                     /* in Themenfeld 3 sind ml und g immer verdächtig */
+    if(wort&&!ESSEN.test(wort))return true;       /* „5 ml Lactulose“ */
+    if(!wort&&MEDWORT.test(t))return true;        /* „10 ml“ in einem Satz über Medikamente */
+  }
+  return false;
 }
+var SCHEMA=/(^|[^0-9])[0-9½¼¾](?:[.,]5)?\s?[-–\/]\s?[0-9½¼¾](?:[.,]5)?\s?[-–\/]\s?[0-9½¼¾](?:[.,]5)?(?:\s?[-–\/]\s?[0-9½¼¾](?:[.,]5)?)?(?![0-9])/;
+var DOSISWORT=/(^|[^A-Za-zÄÖÜäöüß])((Abend|Morgen|Mittags|Nacht|Einzel|Tages|Erhaltungs)?dosis|Dosierung|Einnahmeschema|Wirkstärke)(?![A-Za-zäöüß])/i;
+var HAEUF=/(^|[^A-Za-zÄÖÜäöüß0-9])([0-9]+|ein|zwei|drei|vier|fünf|sechs)\s?(x|mal)\s?(tgl\.?|täglich|am Tag|pro Tag|tagsüber)(?![A-Za-zäöü])/i;
+/* Einnahmezeit mit Menge; folgt ein Hauptwort („eine Runde“, „eine Tasse“), ist es keine Dosis */
+var TAGESZEIT=/(^|[^A-Za-zÄÖÜäöüß])([Mm]orgens|[Mm]ittags|[Aa]bends|[Nn]achts|[Zz]ur Nacht|[Nn]üchtern|[Ff]rüh)\s+([0-9½¼¾]+|[Ee]ine?|[Ee]inen|[Hh]albe|[Zz]wei|[Dd]rei|[Vv]ier)(?![A-Za-zäöü])(?!\s+[A-ZÄÖÜ])/;
+/* Anzahl einer Arzneiform, auch ausgeschrieben: „eine Tablette“, „zwei Hübe“, „eine halbe Tablette“ */
+var FORM=/(^|[^A-Za-zÄÖÜäöüß])([0-9½¼¾]+|eine?|einen|halbe|zwei|drei|vier|fünf)\s+(halbe\s+)?(Tablette|Tabletten|Kapsel|Kapseln|Tropfen|Hub|Hübe|Sprühstoß|Sprühstöße|Sprühstöße|Zäpfchen|Ampulle|Ampullen|Messlöffel)(?![A-Za-zäöüß])/i;
+var STOPP='Gegen|Etwa|Ca|Circa|Seit|Ab|Um|Bis|Nach|Vor|Über|Unter|Aus|Im|In|Am|Mit|Von|Hat|Habe|Hatte|Ist|War|Sind|Wird|Gibt|Kommt|Geht|Trinkt|Isst|Wiegt|Wohnt|Lebt|Misst|Insgesamt|Noch|Nur|Typ|Stadium|NYHA|GOLD|Gold|Stufe|Stufen|Skala|NRS|VAS|BESD|ECPA|BMI|Pflegegrad|Pflegestufe|Grad|Kategorie|Stärke|Klasse|Kompressionsklasse|Haus|Hausnummer|Zimmer|Raum|Etage|Stock|Stockwerk|Uhr|Jahr|Jahre|Seite|Nr|Nummer|Bett|Tag|Tage|Woche|Wochen|Monat|Monate|Linie|Bus|Platz|Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember|Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag|Minuten|Stunden|Liter|Kilometer|Meter|Kilogramm|Prozent|Personen|Mal|Weltkrieg|Operation|Herzinfarkt|Schlaganfall|Apoplex|Infarkt|Unfall|Sturz|Diagnose|Werte|Wert|Blutzucker|Puls|Blutdruck|Gewicht';
+/* Präparat mit Stärke: Wort plus Zahl. Keine Jahreszahl, danach kein Hauptwort (dann ist es eine Anzahl wie „2 Stents“) */
+var PRAEP=new RegExp('(^|[^'+B+'])(?!(?:'+STOPP+')(?![A-Za-zÄÖÜäöüß]))[A-ZÄÖÜ][A-Za-zÄÖÜäöüß-]{2,}\\s+(?!(?:19|20)[0-9]{2}(?![0-9]))[0-9]+(?:[.,][0-9]+)?(?![0-9.,])(?!\\s+[A-ZÄÖÜ])(?!\\s?(?:Uhr|Minute|Minuten|Min\\.?|Stunde|Stunden|Std\\.?|Tag|Tage|Tagen|Woche|Wochen|Monat|Monate|Monaten|Jahr|Jahre|Jahren|Meter|m|cm|km|Kilometer|Stufe|Stufen|Liter|l|Kilogramm|kg|Grad|°|von|bis|Prozent|Personen|Person|Mal|x|und|oder|Zimmer|Etage|Stock|Stockwerk|Kinder|Enkel|aus)(?![A-Za-zäöü]))');
+var MEDWORT=/medik|tablett|kapsel|tropfen|insulin|spray|salbe|pflaster|dosis|spritz|präparat|arznei|inhal|ampull|pille|zäpfchen|globuli|pen\b/i;
+var NAME1=/(^|[^A-Za-zÄÖÜäöüß])(Frau|Herrn?|Hr\.|Fr\.)\s+(?:(?:Dr|Prof)\.\s*(?:med\.\s*)?)?[A-ZÄÖÜ][a-zäöüß]+/;
+var NAME2=/(^|[^A-Za-zÄÖÜäöüß])(Dr|Prof)\.\s*(?:med\.\s*)?[A-ZÄÖÜ][a-zäöüß]+/;
+var VERW='Tochter|Sohn|Ehefrau|Ehemann|Mann|Gatte|Gattin|Nachbarin|Nachbar|Enkelin|Enkel|Schwester|Bruder|Neffe|Nichte|Lebensgefährtin|Lebensgefährte|Freundin|Freund|Schwiegertochter|Schwiegersohn|Schwägerin|Schwager|Cousine|Cousin|Tante|Onkel|Mutter|Vater|Betreuerin|Betreuer|Hausärztin|Hausarzt|Ärztin|Arzt|Pflegerin|Pfleger';
+var TAGE='Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag|Montags|Dienstags|Mittwochs|Donnerstags|Freitags|Samstags|Sonntags|Uhr|Abend|Abends|Morgen|Morgens|Mittag|Mittags|Nachmittag|Nachmittags|Wochenende|Einkauf|Einkäufe|Termine|Wäsche|Unterstützung|Hilfe|Bescheid';
+var NAME3=new RegExp('(^|[^'+B+'])(?:'+VERW+')\\s+(?!(?:'+TAGE+')(?![A-Za-zäöüß]))[A-ZÄÖÜ][a-zäöüß]{2,}');
+/* Gibt null oder 'med' bzw. 'name' zurück */
+function treffer(tf,id,wert){
+  var t=String(wert||'');
+  if(!t.trim())return null;
+  if(NAME1.test(t)||NAME2.test(t)||NAME3.test(t))return 'name';
+  if(EINH.test(t)||FORM.test(t)||mengeIstDosis(tf,t))return 'med';
+  if(SCHEMA.test(t)||DOSISWORT.test(t))return 'med';
+  var medKontext=tf.nr===3||MEDWORT.test(t);
+  if(medKontext&&(HAEUF.test(t)||TAGESZEIT.test(t)||PRAEP.test(t)))return 'med';
+  return null;
+}
+var GRUND={
+  med:'Nicht im Vorschlag: Diese Eingabe enthält offenbar eine Dosierung, Einheit, Einnahmezeit oder ein Präparat mit Stärke. Solche Angaben gehören in die Medikamentendokumentation, in der SIS haben sie keinen Platz. Bitte ändern Sie die Eingabe.',
+  name:'Nicht im Vorschlag: Diese Eingabe enthält offenbar einen echten Namen. Bitte verwenden Sie nur Anrede und Buchstaben oder Rollen wie „die Tochter“.'
+};
+
 
 var ausgabe=d.getElementById('fh-text'),zaehler=d.getElementById('fh-zaehler'),fehltBox=d.getElementById('fh-fehlt'),warnBox=d.getElementById('fh-warnungen'),tfname=d.getElementById('fh-tfname'),status=d.getElementById('fh-status');
 var aktuellerText='';
@@ -1006,10 +1070,15 @@ function zeichnen(){
   else{ausgabe.textContent='Noch keine Angaben in diesem '+(tf.feldB?'Feld':'Themenfeld')+'. Der Vorschlag erscheint hier, sobald Sie die erste Frage beantworten.';ausgabe.classList.add('fh-leer');}
   zaehler.textContent=aktuellerText?aktuellerText.length+' Zeichen':'';
   var warn=r.w.slice();
-  var txt=texteVon(tf);
-  if(MED.test(txt)||(tf.nr===3&&MED_ML.test(txt)))warn.unshift('Bitte keine Dosierungen, Einheiten oder Einnahmeschemata in die SIS schreiben. Diese Angaben stehen in der Medikamentendokumentation Ihres Dienstes.');
-  if(NAME.test(txt))warn.unshift('Bitte keine echten Namen eingeben. Verwenden Sie nur die Anrede und einen beliebigen Buchstaben.');
   warnBox.innerHTML='';
+  feldIndex.forEach(function(x){
+    if(x.tf!==tf||!x.treffer)return;
+    var p1=el('p',{'class':'fh-warn fh-entfernt'});
+    p1.appendChild(d.createTextNode('Nicht übernommen: Ihre Eingabe bei „'+x.f.l+'“ enthält offenbar '+(x.treffer==='med'?'eine Dosierung, Einheit oder Einnahmezeit':'einen echten Namen')+'. Sie steht nicht im Vorschlag und nicht im kopierten Text. '));
+    var bt=el('button',{type:'button','class':'fh-zumfeld',text:'Zum Feld'});
+    bt.addEventListener('click',function(){x.input.focus();});
+    p1.appendChild(bt);warnBox.appendChild(p1);
+  });
   warn.forEach(function(x){warnBox.appendChild(el('p',{'class':'fh-warn',text:x}));});
   (r.i||[]).forEach(function(x){warnBox.appendChild(el('p',{'class':'fh-hinweis',text:x}));});
   fehltBox.innerHTML='';
@@ -1058,6 +1127,14 @@ tabs.addEventListener('keydown',function(e){
 });
 
 /* ---------- Kopieren und Neu beginnen ---------- */
+function allesLeeren(){
+  feldIndex.forEach(function(x){
+    if(x.inputs)x.inputs.forEach(function(i){i.checked=false;});
+    else x.input.value='';
+  });
+  d.getElementById('fh-frau').checked=true;d.getElementById('fh-herr').checked=false;
+  d.getElementById('fh-initial').value='';
+}
 function melde(t){status.textContent='';setTimeout(function(){status.textContent=t;},30);}
 d.getElementById('fh-kopieren').addEventListener('click',function(){
   var btn=this;
@@ -1084,12 +1161,7 @@ neuBtn.addEventListener('click',function(){
     return;
   }
   clearTimeout(neuTimer);neuBtn.removeAttribute('data-sicher');neuBtn.textContent='Neu beginnen';
-  feldIndex.forEach(function(x){
-    if(x.inputs)x.inputs.forEach(function(i){i.checked=false;});
-    else x.input.value='';
-  });
-  d.getElementById('fh-frau').checked=true;d.getElementById('fh-herr').checked=false;
-  d.getElementById('fh-initial').value='';
+  allesLeeren();
   zeichnen();
   melde('Alle Eingaben sind gelöscht.');
 });
@@ -1101,6 +1173,9 @@ d.getElementById('fh-sprung').addEventListener('click',function(e){
 });
 
 /* ---------- Start ---------- */
+allesLeeren();
+window.addEventListener('pageshow',function(e){if(e.persisted){allesLeeren();zeichnen();}});
+window.addEventListener('pagehide',function(){allesLeeren();});
 app.hidden=false;
 var start=0,h=(location.hash||'').replace('#','');
 TF.forEach(function(tf,j){if(tf.panel.id===h)start=j;});
