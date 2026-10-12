@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SIS-Formulierungshelfer: Lückentext für alle Themenfelder</title>
+<title>SIS-Lückentext online: kostenloser Formulierungshelfer</title>
 <meta name="description" content="Kostenloser SIS-Formulierungshelfer: Lückentext für alle sechs Themenfelder und Feld B. Läuft im Browser, speichert nichts. Für ambulante Pflegedienste.">
 <link rel="canonical" href="https://dokuna.de/sis-formulierungshelfer/">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="/ratgeber.css">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://dokuna.de/sis-formulierungshelfer/">
-<meta property="og:title" content="SIS-Formulierungshelfer: Lückentext für alle Themenfelder">
+<meta property="og:title" content="SIS-Lückentext online: kostenloser Formulierungshelfer">
 <meta property="og:description" content="Kostenloser SIS-Formulierungshelfer: Lückentext für alle sechs Themenfelder und Feld B. Läuft im Browser, speichert nichts. Für ambulante Pflegedienste.">
 <meta property="og:image" content="https://dokuna.de/og-bild-v2.jpg">
 <meta property="og:locale" content="de_DE">
@@ -113,6 +113,12 @@ fieldset.fh-feld{border:0;padding:0}
 .fh-feldwarn{background:#fbeeee;border-left:4px solid #8a3b3b;border-radius:8px;padding:8px 12px;margin:8px 0 0;font-size:.88rem;color:#5e2626}
 .fh [aria-invalid="true"]{border-color:#8a3b3b}
 .fh-zumfeld{display:block;min-height:44px;margin-top:8px;padding:8px 14px;border-radius:99px;border:1.5px solid #8a3b3b;background:#fff;color:#5e2626;font:inherit;font-size:.88rem;font-weight:600;cursor:pointer}
+.fh-feldhinweis{background:var(--card);border-left:4px solid var(--akzent);border-radius:8px;padding:8px 12px;margin:8px 0 0;font-size:.88rem;color:var(--text)}
+.fh-personzeile{font-size:.9rem;margin:-4px 0 10px;color:var(--text);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fh-link{min-height:44px;padding:6px 12px;border:0;background:none;color:#0a6459;font:inherit;font-size:.9rem;font-weight:600;text-decoration:underline;cursor:pointer}
+.fh-zaehler.fh-lang{color:#5e2626;font-weight:600}
+.fh-tippt .fh-sprung{display:none}
+.fh{overflow-anchor:none}
 .fh-lernen{font-size:.86rem;color:var(--text);margin:10px 2px 0}
 .fh noscript p{background:#fbeeee;padding:12px 14px;border-radius:10px}
 @media (max-width:480px){
@@ -197,6 +203,7 @@ fieldset.fh-feld{border:0;padding:0}
       <div class="fh-ergebnis" id="fh-ergebnis" tabindex="-1" aria-labelledby="fh-erg-titel" role="region">
         <h3 id="fh-erg-titel">Formulierungsvorschlag</h3>
         <p class="fh-tfname" id="fh-tfname"></p>
+        <p class="fh-personzeile"><span id="fh-personanzeige">Person: Frau M.</span><button type="button" class="fh-link" id="fh-person-aendern">ändern</button></p>
         <div class="fh-text fh-leer" id="fh-text" aria-live="polite"></div>
         <p class="fh-zaehler" id="fh-zaehler"></p>
         <div class="fh-knoepfe">
@@ -204,6 +211,7 @@ fieldset.fh-feld{border:0;padding:0}
           <button type="button" class="fh-btn fh-zweit" id="fh-neu">Neu beginnen</button>
         </div>
         <p class="fh-status" id="fh-status" role="status"></p>
+        <button type="button" class="fh-btn fh-zweit" id="fh-weiter" style="margin:0 0 10px">Weiter mit Themenfeld 2</button>
         <div id="fh-warnungen"></div>
         <div class="fh-fehlt" id="fh-fehlt"></div>
         <p class="fh-lernen">Formulierungsvorschlag zum Lernen. Sätze aus Auswahlfeldern sind vorformuliert. Die Pflegefachkraft prüft jeden Satz, passt ihn an die Person an und ergänzt eigene Beobachtungen.</p>
@@ -300,7 +308,25 @@ var app=d.getElementById('fh-app');
 if(!app) return;
 
 /* ---------- Hilfsfunktionen ---------- */
-function L(s){return String(s||'').replace(/\s+/g,' ').trim().replace(/[\s.,;:!?]+$/,'').trim();}
+function L(s){
+  s=String(s||'').replace(/\s+/g,' ').trim().replace(/[\s.,;:!?]+$/,'').trim();
+  var alt;
+  do{alt=s;s=s.replace(/^(wenn|weil|dass|daß|etwa|ca\.?|circa|zirka|ungefähr|rund)\s+/i,'');}while(s!==alt);
+  return s.replace(/([0-9])(ml|l|g|kg|cm|m)(?![A-Za-zäöüß])/g,'$1 $2');
+}
+/* Stichwort oder Satzteil? */
+var MODAL=/^(kann|können|muss|müssen|will|wollen|soll|sollen|darf|dürfen|ist|sind|hat|haben|wird|werden|war|waren|mag|möchte|fehlt|fällt|gibt)$/;
+function letztesWort(x){var w=x.split(/\s+/);return w[w.length-1]||'';}
+function istInfinitiv(x){var w=letztesWort(x);return /^[a-zäöüß]+(en|ern|eln)$/.test(w)&&x.split(/\s+/).length>=2;}
+function istNebensatz(x){var w=letztesWort(x);if(x.split(/\s+/).length<2)return false;return MODAL.test(w)||/^[a-zäöüß]+(t|en|ern|eln|st)$/.test(w);}
+function stichpunkt(x){
+  return x.split(/,\s*/).map(function(t,i){return (i===0||/^[a-zäöüß]+$/.test(t))?gross(t):t;}).join(', ');
+}
+function grundSatz(x){x=L(x);return istNebensatz(x)?'Das liegt daran, dass '+x+'.':'Grund: '+stichpunkt(x)+'.';}
+function grundRahmen(x){x=L(x);return (!x||istNebensatz(x))?'Das liegt daran, dass ___.':'Grund: ___.';}
+function ressSatz(x){x=L(x).replace(/^kann\s+(weiterhin\s+)?(sicher\s+)?/i,'').replace(/^(weiterhin\s+)?sicher\s+/i,'');return istInfinitiv(x)?'{P} kann weiterhin sicher '+x+'.':'Sicher gelingt {P3} weiterhin: '+stichpunkt(x)+'.';}
+function ressRahmen(x){x=L(x);return (!x||istInfinitiv(x))?'{P} kann weiterhin sicher ___.':'Sicher gelingt {P3} weiterhin: ___.';}
+var NP_START=/^(eine?|einen|einem|einer|den|die|das|dem|der|kein\w*|ihre?n?|seine?n?|morgens|abends|mittags|nachts|tägliche?n?|regelmäßige?n?)\s/i;
 function frei(s){return String(s||'').replace(/\s+/g,' ').trim();}
 function vorfeld(s){s=L(s);if(/,\s*(die|der|das|den|dem|deren|dessen|wenn|weil|da|dass|wo|welche|welcher|welches|soweit|sobald|solange|falls|obwohl|wobei|ob|als|bis)\b/i.test(s))s+=',';return s;}
 var EINZAHL=['eine unzureichende Beleuchtung','ungeeignetes Schuhwerk','ungeöffnete Post'];
@@ -310,6 +336,7 @@ function liste(a){a=a.filter(Boolean);if(a.length<2)return a[0]||'';return a.sli
 function zitat(s){
   s=frei(s).replace(/^[„“”"‚‘’'»«]+/,'').replace(/[„“”"‚‘’'»«]+$/,'').trim();
   if(!s)return '';
+  s=gross(s);
   if(!/[.!?…]$/.test(s))s+='.';
   return '„'+s+'“';
 }
@@ -364,10 +391,10 @@ function rahmenText(s,p){
 /* ---------- Gemeinsame Felder ---------- */
 var WUNSCH={t:'txt',id:'wunsch',l:'Was sagt die Person selbst dazu? (möglichst wörtlich)',r:'{P} äußert: „___“',b:'z. B. Ich möchte nicht, dass man für mich redet.'};
 var WEITERE={t:'ta',id:'weitere',l:'Weitere Beobachtung in eigenen Worten (ganze Sätze)',b:'z. B. Bei Besuch der Enkelin spricht sie deutlich mehr als sonst.'};
-var RESS={t:'txt',id:'ressource',l:'Was gelingt der Person noch sicher?',r:'{P} kann weiterhin sicher ___.'};
+var RESS={t:'txt',id:'ressource',l:'Was gelingt der Person noch sicher?',r:function(v){return ressRahmen(v.ressource);}};
 function ressource(b){var f={};for(var k in RESS)f[k]=RESS[k];f.b=b;return f;}
 function schluss(v,s,f){
-  if(L(v.ressource))s.push('{P} kann weiterhin sicher '+L(v.ressource)+'.');
+  if(L(v.ressource))s.push(ressSatz(v.ressource));
   if(frei(v.wunsch))s.push('{P} äußert: '+zitat(v.wunsch));
   else f.push('Sicht der Person: Was sagt sie selbst dazu? Ein Satz im O-Ton macht die Beschreibung persönlich.');
   if(frei(v.weitere))s.push(frei(v.weitere));
@@ -403,7 +430,7 @@ TF.push({nr:1,kurz:'Kognition',name:'Kognitive und kommunikative Fähigkeiten',
   {t:'txt',id:'uebersetzt',l:'Wer übersetzt bei Bedarf?',r:'Bei Bedarf übersetzt ___.',b:'z. B. der Sohn, werktags nachmittags erreichbar',w:function(v){return !!L(v.mutter);}},
   {t:'h',l:'Hören und Sehen'},
   {t:'sel',id:'hoeren',l:'Hören',o:[['gut','hört ohne Hörgerät ausreichend'],['hg_ja','Hörgerät vorhanden, wird getragen, Gespräch gut möglich'],['hg_selten','Hörgerät vorhanden, wird selten getragen'],['schlecht','Hören eingeschränkt, kein Hörgerät']]},
-  {t:'txt',id:'hg_warum',l:'Warum wird das Hörgerät selten getragen?',r:'Das liegt daran, dass ___.',b:'z. B. das Einsetzen mit den Fingern schwerfällt',w:function(v){return v.hoeren==='hg_selten';}},
+  {t:'txt',id:'hg_warum',l:'Warum wird das Hörgerät selten getragen?',r:function(v){return grundRahmen(v.hg_warum);},b:'z. B. das Einsetzen mit den Fingern schwerfällt',w:function(v){return v.hoeren==='hg_selten';}},
   {t:'sel',id:'sehen',l:'Sehen',o:[['gut','sieht ohne Brille ausreichend'],['br_ja','Brille vorhanden, wird getragen, sieht damit ausreichend'],['br_selten','Brille vorhanden, wird selten getragen'],['stark','Sehen stark eingeschränkt']]},
   {t:'txt',id:'sehen_wie',l:'Was erkennt die Person noch, was nicht mehr?',r:'___.',b:'z. B. Personen erkennt sie erst an der Stimme',w:function(v){return v.sehen==='stark'||v.sehen==='br_selten';}},
   {t:'h',l:'Tageszeit, Ressourcen und Sicht der Person'},
@@ -433,7 +460,7 @@ TF.push({nr:1,kurz:'Kognition',name:'Kognitive und kommunikative Fähigkeiten',
   if(L(v.mutter)){s.push('{P} spricht '+L(v.mutter)+' als Muttersprache.');if(L(v.uebersetzt))s.push('Bei Bedarf übersetzt '+L(v.uebersetzt)+'.');else f.push('Muttersprache: Wer übersetzt bei Bedarf?');}
   g={gut:'Ohne Hörgerät hört {P} im Gespräch ausreichend.',hg_ja:'Mit Hörgerät ist ein normales Gespräch möglich, das Hörgerät trägt {P} regelmäßig.',hg_selten:'Ein Hörgerät ist vorhanden, wird aber selten getragen.',schlecht:'Das Hören ist eingeschränkt, ein Hörgerät ist nicht vorhanden.'}[v.hoeren];
   if(g)s.push(g);
-  if(v.hoeren==='hg_selten'){if(L(v.hg_warum))s.push('Das liegt daran, dass '+L(v.hg_warum)+'.');else f.push('Hörgerät: Warum wird es selten getragen?');}
+  if(v.hoeren==='hg_selten'){if(L(v.hg_warum))s.push(grundSatz(v.hg_warum));else f.push('Hörgerät: Warum wird es selten getragen?');}
   if(v.hoeren==='schlecht')f.push('Hören: Wie gelingt die Verständigung trotzdem, zum Beispiel mit Ansprache im Blickfeld?');
   g={gut:'Im Alltag sieht {P} ohne Brille ausreichend.',br_ja:'Mit Brille sieht {P} im Alltag ausreichend.',br_selten:'Eine Brille ist vorhanden, wird aber selten getragen.',stark:'Das Sehen ist stark eingeschränkt.'}[v.sehen];
   if(g)s.push(g);
@@ -536,7 +563,7 @@ TF.push({nr:3,kurz:'Krankheit',name:'Krankheitsbezogene Anforderungen und Belast
   {t:'txt',id:'s_schlechter',l:'Schmerz: Was verstärkt ihn?',r:'Verstärkt werden die Schmerzen durch ___.',b:'z. B. längeres Stehen',w:function(v){return (v.symptome||[]).indexOf('schmerz')>-1;}},
   {t:'txt',id:'s_erkennbar',l:'Falls die Person Schmerz nicht benennen kann: Woran erkennt das Team ihn?',r:'Schmerz ist bei {P3} erkennbar an ___.',b:'z. B. Stirnrunzeln, Zurückzucken beim Bewegen des rechten Arms und leisem Stöhnen',w:function(v){return (v.symptome||[]).indexOf('schmerz')>-1&&v.s_staerke==='fremd';}},
   {t:'sel',id:'s_bedarf',l:'Schmerz: Umgang mit verordneter Bedarfsmedikation',o:[['nimmt','nimmt sie, wenn Schmerzen auftreten'],['zoegert','nimmt sie nur zögerlich'],['keine','keine Bedarfsmedikation verordnet']],w:function(v){return (v.symptome||[]).indexOf('schmerz')>-1;}},
-  {t:'txt',id:'s_zoegert',l:'Warum nimmt die Person sie nur zögerlich?',r:'Das liegt daran, dass ___.',b:'z. B. sie Angst vor Abhängigkeit hat',w:function(v){return v.s_bedarf==='zoegert';}},
+  {t:'txt',id:'s_zoegert',l:'Warum nimmt die Person sie nur zögerlich?',r:function(v){return grundRahmen(v.s_zoegert);},b:'z. B. sie Angst vor Abhängigkeit hat',w:function(v){return v.s_bedarf==='zoegert';}},
   {t:'txt',id:'b_wann',l:'Wann treten die übrigen Beschwerden auf?',r:'Das tritt vor allem ___ auf.',b:'z. B. bei Belastung wie dem Anziehen oder dem Weg zur Haustür',w:function(v){return (v.symptome||[]).filter(function(x){return x!=='schmerz';}).length>0;}},
   {t:'h',l:'Umgang und Notfall'},
   {t:'sel',id:'umgang',l:'Umgang mit der Erkrankung',o:[['sicher','geht informiert und sicher damit um'],['wenig','weiß nach eigener Angabe wenig darüber'],['sorgen','äußert Sorgen wegen der Erkrankung'],['ablehnt','lehnt einzelne Behandlungen ab']]},
@@ -579,7 +606,7 @@ TF.push({nr:3,kurz:'Krankheit',name:'Krankheitsbezogene Anforderungen und Belast
     if(L(v.s_schlechter))s.push('Verstärkt werden die Schmerzen durch '+L(v.s_schlechter)+'.');
     if(L(v.s_erkennbar)){s.push('Schmerz ist bei {P3} erkennbar an '+L(v.s_erkennbar)+'.');w.push(WARN.schmerz);}
     if(v.s_bedarf==='nimmt')s.push('Die verordnete Bedarfsmedikation nimmt {P}, wenn Schmerzen auftreten.');
-    if(v.s_bedarf==='zoegert'){s.push('Die verordnete Bedarfsmedikation nimmt {P} nur zögerlich.');if(L(v.s_zoegert))s.push('Das liegt daran, dass '+L(v.s_zoegert)+'.');else f.push('Bedarfsmedikation: Warum nimmt die Person sie nur zögerlich?');}
+    if(v.s_bedarf==='zoegert'){s.push('Die verordnete Bedarfsmedikation nimmt {P} nur zögerlich.');if(L(v.s_zoegert))s.push(grundSatz(v.s_zoegert));else f.push('Bedarfsmedikation: Warum nimmt die Person sie nur zögerlich?');}
     if(!L(v.s_ort))f.push('Schmerz: Wo genau?');
     if(!L(v.s_wann))f.push('Schmerz: Wann genau tritt er auf?');
     if(!v.s_staerke)f.push('Schmerz: Wie stark, zum Beispiel auf einer Skala von 0 bis 10?');
@@ -606,6 +633,7 @@ TF.push({nr:3,kurz:'Krankheit',name:'Krankheitsbezogene Anforderungen und Belast
 });
 
 /* Themenfeld 4 */
+function trinkMenge(x){x=L(x).replace(/^trinkt\s+/i,'');var alt;do{alt=x;x=L(x.replace(/\s*(am Tag|pro Tag|täglich|tägl\.?|tgl\.?|\/\s?Tag|am Tage)$/i,''));}while(x!==alt);return vorfeld(x);}
 var KP_ORT={wb_sitz:'am Waschbecken im Sitzen',wb_steh:'am Waschbecken im Stehen',dusche:'unter der Dusche',wanne:'in der Badewanne',bett:'im Bett'};
 TF.push({nr:4,kurz:'Selbstversorgung',name:'Selbstversorgung',
  leit:'Inwieweit ist die Fähigkeit der pflegebedürftigen Person zur Körperpflege, zum Kleiden, zur Ernährung und zur Ausscheidung eingeschränkt?',
@@ -613,11 +641,11 @@ TF.push({nr:4,kurz:'Selbstversorgung',name:'Selbstversorgung',
  felder:[
   {t:'h',l:'Körperpflege'},
   {t:'sel',id:'kp_ort',l:'Wo findet die Körperpflege statt?',o:[['wb_sitz','am Waschbecken im Sitzen'],['wb_steh','am Waschbecken im Stehen'],['dusche','unter der Dusche'],['wanne','in der Badewanne'],['bett','im Bett']]},
-  {t:'txt',id:'kp_selbst',l:'Was macht die Person bei der Körperpflege selbst?',r:function(v){return 'Bei der Körperpflege'+(KP_ORT[v.kp_ort]?' '+KP_ORT[v.kp_ort]:'')+' kann {P} selbst ___.';},b:'z. B. Gesicht, Hals und Arme waschen'},
-  {t:'txt',id:'kp_bed',l:'Unter welcher Bedingung gelingt das?',r:'Das gelingt, wenn ___.',b:'z. B. Waschlappen und Handtuch bereitliegen'},
+  {t:'txt',id:'kp_selbst',l:'Was macht die Person bei der Körperpflege selbst?',r:function(v){var o=KP_ORT[v.kp_ort]?' '+KP_ORT[v.kp_ort]:'',x=L(v.kp_selbst).replace(/^kann\s+(selbst\s+)?/i,'');return (!x||istInfinitiv(x))?'Bei der Körperpflege'+o+' kann {P} selbst ___.':'Selbst übernimmt {P} bei der Körperpflege'+o+': ___.';},b:'z. B. Gesicht, Hals und Arme waschen'},
+  {t:'txt',id:'kp_bed',l:'Unter welcher Bedingung gelingt das?',r:function(v){var x=L(v.kp_bed);return (!x||istNebensatz(x))?'Das gelingt, wenn ___.':'Voraussetzung: ___.';},b:'z. B. Waschlappen und Handtuch bereitliegen'},
   {t:'sel',id:'kp_art',l:'Wie sieht die Unterstützung bei der Körperpflege aus?',o:[['pd','der Pflegedienst übernimmt'],['anl','die Person wäscht mit Anleitung'],['teil','die Person wäscht mit teilweiser Unterstützung'],['ang','Angehörige übernehmen']]},
   {t:'txt',id:'kp_hilfe',l:'Welche Bereiche betrifft das?',r:function(v){return {pd:'___ wäscht der Pflegedienst.',anl:'___ wäscht {P} mit Anleitung.',teil:'___ wäscht {P} mit teilweiser Unterstützung.',ang:'___ waschen Angehörige.'}[v.kp_art]||'___ (Art der Unterstützung oben wählen)';},b:'z. B. Rücken, Beine und Intimbereich'},
-  {t:'txt',id:'kp_gewohn',l:'Gewohnheiten und Vorlieben',r:'{P} bevorzugt ___.',b:'z. B. eine Ganzkörperwaschung am Waschbecken mittwochs und samstags'},
+  {t:'txt',id:'kp_gewohn',l:'Gewohnheiten und Vorlieben',r:function(v){var x=L(v.kp_gewohn);return (!x||NP_START.test(x+' '))?'{P} bevorzugt ___.':'Gewohnheiten und Vorlieben bei der Körperpflege: ___.';},b:'z. B. eine Ganzkörperwaschung am Waschbecken mittwochs und samstags'},
   {t:'sel',id:'intim',l:'Intimpflege',o:[['frauen','wünscht dafür Mitarbeiterinnen'],['maenner','wünscht dafür Mitarbeiter'],['egal','keine Vorgabe']]},
   {t:'chk',id:'tuer',l:'Intimsphäre',o:[['tuer','möchte die Badezimmertür bei der Körperpflege geschlossen haben']]},
   {t:'txt',id:'haut',l:'Hautzustand',r:'Die Haut ist ___.',b:'z. B. trocken, besonders an den Unterschenkeln'},
@@ -630,11 +658,11 @@ TF.push({nr:4,kurz:'Selbstversorgung',name:'Selbstversorgung',
   {t:'txt',id:'kl_selbst',l:'Was zieht die Person selbst an?',r:'___ zieht {P} selbstständig an.',b:'z. B. Oberteile mit Druckknöpfen'},
   {t:'sel',id:'kl_art',l:'Wie sieht die Unterstützung beim Anziehen aus?',o:[['pd','der Pflegedienst übernimmt'],['anl','die Person zieht mit Anleitung an'],['teil','die Person zieht mit teilweiser Unterstützung an'],['ang','Angehörige übernehmen']]},
   {t:'txt',id:'kl_hilfe',l:'Welche Kleidungsstücke betrifft das?',r:function(v){return {pd:'Für ___ übernimmt der Pflegedienst das Anziehen.',anl:'___ zieht {P} mit Anleitung an.',teil:'___ zieht {P} mit teilweiser Unterstützung an.',ang:'Für ___ übernehmen Angehörige das Anziehen.'}[v.kl_art]||'___ (Art der Unterstützung oben wählen)';},b:'z. B. Hose, Strümpfe und Schuhe'},
-  {t:'txt',id:'kl_grund',l:'Woran liegt das?',r:'Das liegt daran, dass ___.',b:'z. B. das Bücken unsicher ist'},
+  {t:'txt',id:'kl_grund',l:'Woran liegt das?',r:function(v){return grundRahmen(v.kl_grund);},b:'z. B. das Bücken unsicher ist'},
   {t:'h',l:'Essen und Trinken'},
   {t:'sel',id:'essen',l:'Essen',o:[['selbst','isst selbstständig'],['mundg','isst selbst, wenn das Essen mundgerecht vorbereitet ist'],['anl','braucht beim Essen Anleitung oder Erinnerung'],['anreichen','Essen wird angereicht']]},
   {t:'txt',id:'menge',l:'Was und wie viel isst die Person?',r:'Zurzeit isst {P} ___.',b:'z. B. morgens ein halbes Brötchen, mittags einen Teil des gelieferten Essens'},
-  {t:'txt',id:'trinken',l:'Trinkmenge: Wie viel trinkt die Person tatsächlich?',r:'{P} trinkt etwa ___ am Tag.',b:'z. B. einen Liter'},
+  {t:'txt',id:'trinken',l:'Trinkmenge: Wie viel trinkt die Person tatsächlich?',r:function(v){var x=trinkMenge(v.trinken);return (!x||/[0-9]|einen|eine|zwei|drei/i.test(x))?'{P} trinkt etwa ___ am Tag.':'Trinkmenge pro Tag: ___.';},b:'z. B. einen Liter'},
   {t:'txt',id:'lieblings',l:'Was trinkt die Person gern?',r:'Am liebsten trinkt {P} ___.',b:'z. B. Kaffee und Apfelschorle'},
   {t:'sel',id:'schlucken',l:'Schlucken',o:[['ok','schluckt ohne Auffälligkeiten'],['husten','hustet beim Trinken dünnflüssiger Getränke']]},
   {t:'sel',id:'gewicht',l:'Gewicht',o:[['stabil','Gewicht nach Angabe stabil'],['ab','hat abgenommen']]},
@@ -643,7 +671,7 @@ TF.push({nr:4,kurz:'Selbstversorgung',name:'Selbstversorgung',
   {t:'sel',id:'toilette',l:'Toilettengang',o:[['selbst','geht selbstständig zur Toilette'],['begl','braucht Begleitung zur Toilette'],['stuhl','nutzt einen Toilettenstuhl']]},
   {t:'chk',id:'nacht',l:'Nachts',o:[['nachtstuhl','nachts Toilettenstuhl neben dem Bett']]},
   {t:'sel',id:'harn',l:'Kontinenz',o:[['kont','kann den Urin halten'],['drang','erreicht die Toilette nicht immer rechtzeitig'],['spuert','spürt den Harndrang nicht zuverlässig'],['kath','hat einen Blasenkatheter']]},
-  {t:'txt',id:'drang_warum',l:'Warum wird die Toilette nicht immer rechtzeitig erreicht?',r:'Das liegt daran, dass ___.',b:'z. B. der Weg über den Flur mit Rollator etwa zwei Minuten dauert',w:function(v){return v.harn==='drang';}},
+  {t:'txt',id:'drang_warum',l:'Warum wird die Toilette nicht immer rechtzeitig erreicht?',r:function(v){return grundRahmen(v.drang_warum);},b:'z. B. der Weg über den Flur mit Rollator etwa zwei Minuten dauert',w:function(v){return v.harn==='drang';}},
   {t:'sel',id:'vorlage',l:'Inkontinenzmaterial',o:[['selbst','trägt Vorlagen, wechselt sie selbst'],['pd','trägt Vorlagen, Wechsel durch den Pflegedienst']]},
   {t:'txt',id:'stuhlgang',l:'Stuhlgang',r:'Stuhlgang hat {P} ___.',b:'z. B. alle zwei bis drei Tage'},
   {t:'chk',id:'scham',l:'Scham',o:[['scham','das Thema ist unangenehm, die Person spricht es von sich aus nicht an']]},
@@ -651,9 +679,10 @@ TF.push({nr:4,kurz:'Selbstversorgung',name:'Selbstversorgung',
  ],
  bau:function(v){
   var s=[],f=[],w=[],g,ort=KP_ORT[v.kp_ort];
-  if(L(v.kp_selbst))s.push('Bei der Körperpflege'+(ort?' '+ort:'')+' kann {P} selbst '+L(v.kp_selbst)+'.');
+  var kps=L(v.kp_selbst).replace(/^kann\s+(selbst\s+)?/i,'').replace(/^selbst\s+/i,'');
+  if(kps)s.push(istInfinitiv(kps)?'Bei der Körperpflege'+(ort?' '+ort:'')+' kann {P} selbst '+kps+'.':'Selbst übernimmt {P} bei der Körperpflege'+(ort?' '+ort:'')+': '+stichpunkt(kps)+'.');
   else{ if(ort)s.push('Die Körperpflege findet '+ort+' statt.'); f.push('Körperpflege: Was macht die Person selbst?'); }
-  if(L(v.kp_bed))s.push((L(v.kp_selbst)?'Das gelingt':'Die Körperpflege gelingt besser')+', wenn '+L(v.kp_bed)+'.');
+  if(L(v.kp_bed))s.push(istNebensatz(L(v.kp_bed))?(L(v.kp_selbst)?'Das gelingt':'Die Körperpflege gelingt besser')+', wenn '+L(v.kp_bed)+'.':'Voraussetzung: '+stichpunkt(L(v.kp_bed))+'.');
   var h=vorfeld(v.kp_hilfe);
   if(h){
     g={pd:h+' wäscht der Pflegedienst.',anl:h+' wäscht {P} mit Anleitung.',teil:h+' wäscht {P} mit teilweiser Unterstützung.',ang:h+' waschen Angehörige.'}[v.kp_art];
@@ -662,7 +691,7 @@ TF.push({nr:4,kurz:'Selbstversorgung',name:'Selbstversorgung',
     s.push({pd:'Bei der Körperpflege unterstützt der Pflegedienst.',anl:'Bei der Körperpflege braucht {P} Anleitung.',teil:'Bei der Körperpflege braucht {P} teilweise Unterstützung.',ang:'Bei der Körperpflege unterstützen Angehörige.'}[v.kp_art]);
     f.push('Körperpflege: Welche Bereiche genau betrifft die Unterstützung?');
   }
-  if(L(v.kp_gewohn))s.push('{P} bevorzugt '+L(v.kp_gewohn)+'.');
+  if(L(v.kp_gewohn))s.push(NP_START.test(L(v.kp_gewohn)+' ')?'{P} bevorzugt '+L(v.kp_gewohn)+'.':'Gewohnheiten und Vorlieben bei der Körperpflege: '+stichpunkt(L(v.kp_gewohn))+'.');
   else f.push('Gewohnheiten: Wann und wie wäscht sich die Person am liebsten?');
   g={frauen:'Für die Intimpflege wünscht {P} ausdrücklich Mitarbeiterinnen.',maenner:'Für die Intimpflege wünscht {P} ausdrücklich Mitarbeiter.',egal:'Für die Intimpflege hat {P} keine Vorgabe zum Geschlecht der Pflegekraft.'}[v.intim];
   if(g)s.push(g);
@@ -686,12 +715,13 @@ TF.push({nr:4,kurz:'Selbstversorgung',name:'Selbstversorgung',
   }else if(v.kl_art){
     s.push({pd:'Beim An- und Auskleiden unterstützt der Pflegedienst.',anl:'Beim An- und Auskleiden braucht {P} Anleitung.',teil:'Beim An- und Auskleiden braucht {P} teilweise Unterstützung.',ang:'Beim An- und Auskleiden unterstützen Angehörige.'}[v.kl_art]);
   }
-  if(L(v.kl_grund))s.push('Das liegt daran, dass '+L(v.kl_grund)+'.');
+  if(L(v.kl_grund))s.push(grundSatz(v.kl_grund));
   if(!v.kl_wahl&&!L(v.kl_selbst)&&!k&&!v.kl_art)f.push('An- und Auskleiden: Was zieht die Person selbst an?');
   g={selbst:'{P} isst selbstständig.',mundg:'Wenn das Essen mundgerecht vorbereitet ist, isst {P} selbstständig.',anl:'Beim Essen braucht {P} Anleitung oder Erinnerung.',anreichen:'Das Essen wird {P3} angereicht.'}[v.essen];
   if(g)s.push(g);
   if(L(v.menge))s.push('Zurzeit isst {P} '+L(v.menge)+'.');
-  if(L(v.trinken))s.push('{P} trinkt etwa '+vorfeld(v.trinken)+' am Tag.');
+  var tm=trinkMenge(v.trinken);
+  if(tm)s.push(/[0-9]|einen|eine|zwei|drei/i.test(tm)?'{P} trinkt etwa '+tm+' am Tag.':'Trinkmenge pro Tag: '+stichpunkt(tm)+'.');
   if(L(v.lieblings))s.push('Am liebsten trinkt {P} '+L(v.lieblings)+'.');
   if(!L(v.trinken))f.push('Trinkmenge: Wie viel trinkt die Person tatsächlich? Was trinkt sie gern?');
   if(v.schlucken==='ok')s.push('Beim Schlucken zeigen sich keine Auffälligkeiten.');
@@ -707,7 +737,7 @@ TF.push({nr:4,kurz:'Selbstversorgung',name:'Selbstversorgung',
   }
   g={kont:'Den Urin kann {P} halten.',drang:'Die Toilette erreicht {P} nicht immer rechtzeitig.',spuert:'Den Harndrang spürt {P} nicht zuverlässig.',kath:'{P} hat einen Blasenkatheter.'}[v.harn];
   if(g)s.push(g);
-  if(v.harn==='drang'){if(L(v.drang_warum))s.push('Das liegt daran, dass '+L(v.drang_warum)+'.');else f.push('Kontinenz: Warum wird die Toilette nicht rechtzeitig erreicht?');}
+  if(v.harn==='drang'){if(L(v.drang_warum))s.push(grundSatz(v.drang_warum));else f.push('Kontinenz: Warum wird die Toilette nicht rechtzeitig erreicht?');}
   g={selbst:'{P} trägt Vorlagen und wechselt sie selbst.',pd:'{P} trägt Vorlagen, den Wechsel übernimmt der Pflegedienst.'}[v.vorlage];
   if(g)s.push(g);
   if(L(v.stuhlgang))s.push('Stuhlgang hat {P} '+L(v.stuhlgang)+'.');
@@ -734,7 +764,7 @@ TF.push({nr:5,kurz:'Soziales',name:'Leben in sozialen Beziehungen',
   {t:'chk',id:'keine',l:'Weitere Kontakte',o:[['keine','keine weiteren Kontakte']]},
   {t:'txt',id:'draussen',l:'Was ist der Person außerhalb der Wohnung wichtig?',r:'Wichtig ist {P3} ___.',b:'z. B. der Gottesdienst am Sonntag'},
   {t:'sel',id:'teilnahme',l:'Kann die Person daran teilnehmen?',o:[['ja','nimmt weiterhin teil'],['nein','kann zurzeit nicht teilnehmen']],w:function(v){return !!L(v.draussen);}},
-  {t:'txt',id:'teil_grund',l:'Woran liegt das?',r:'Das liegt daran, dass ___.',b:'z. B. der Weg mit dem Rollstuhl nicht gelingt',w:function(v){return v.teilnahme==='nein';}},
+  {t:'txt',id:'teil_grund',l:'Woran liegt das?',r:function(v){return grundRahmen(v.teil_grund);},b:'z. B. der Weg mit dem Rollstuhl nicht gelingt',w:function(v){return v.teilnahme==='nein';}},
   {t:'h',l:'Stimmung und Biografie'},
   {t:'sel',id:'stimmung',l:'Stimmung',o:[['gut','beschreibt die Stimmung als gut'],['einsam','äußert, sich einsam zu fühlen'],['rueckzug','zieht sich zurück, beteiligt sich kaum an Gesprächen']]},
   {t:'txt',id:'seit',l:'Seit wann?',r:'… seit ___.',b:'z. B. etwa zwei Monaten',w:function(v){return v.stimmung==='rueckzug'||v.stimmung==='einsam';}},
@@ -762,7 +792,7 @@ TF.push({nr:5,kurz:'Soziales',name:'Leben in sozialen Beziehungen',
   if(L(v.draussen)){
     s.push('Wichtig ist {P3} '+L(v.draussen)+'.');
     if(v.teilnahme==='ja')s.push('Daran nimmt {P} weiterhin teil.');
-    if(v.teilnahme==='nein'){s.push('Daran kann {P} zurzeit nicht teilnehmen.');if(L(v.teil_grund))s.push('Das liegt daran, dass '+L(v.teil_grund)+'.');else f.push('Teilhabe: Woran liegt es, dass die Person nicht teilnehmen kann?');}
+    if(v.teilnahme==='nein'){s.push('Daran kann {P} zurzeit nicht teilnehmen.');if(L(v.teil_grund))s.push(grundSatz(v.teil_grund));else f.push('Teilhabe: Woran liegt es, dass die Person nicht teilnehmen kann?');}
   }
   var seit=L(v.seit);
   if(v.stimmung==='gut')s.push('{P} beschreibt {sein}e Stimmung als gut.');
@@ -824,7 +854,7 @@ TF.push({nr:6,kurz:'Haushalt',name:'Haushaltsführung',
   if(v.vertretung==='ja')s.push('Fällt diese Unterstützung aus, ist eine Vertretung geregelt.');
   if(v.vertretung==='nein')s.push('Eine Vertretung für den Fall, dass diese Unterstützung ausfällt, ist nicht geregelt.');
   if(fremd&&!v.vertretung)f.push('Vertretung: Was passiert, wenn diese Unterstützung ausfällt?');
-  if(L(v.ressource))s.push('{P} kann weiterhin sicher '+L(v.ressource)+'.');
+  if(L(v.ressource))s.push(ressSatz(v.ressource));
   else f.push('Ressourcen: Was führt die Person selbst weiter?');
   g={sicher:'Den Herd bedient {P} sicher.',vergessen:'Mehrfach war der Herd nach dem Kochen noch eingeschaltet.',nicht:'Den Herd nutzt {P} nicht mehr.'}[v.herd];
   if(g)s.push(g);else f.push('Herd: Wie sicher wird der Herd bedient?');
@@ -902,8 +932,9 @@ function baueText(tf,f){
   if(f.b){var b=el('p',{'class':'fh-bsp',id:id+'-b',text:f.b});ids.push(id+'-b');wrap.appendChild(inp);wrap.appendChild(b);}
   else wrap.appendChild(inp);
   var warnEl=el('p',{'class':'fh-feldwarn',id:id+'-w'});warnEl.hidden=true;wrap.appendChild(warnEl);ids.push(id+'-w');
+  var hinwEl=el('p',{'class':'fh-feldhinweis',id:id+'-h'});hinwEl.hidden=true;wrap.appendChild(hinwEl);ids.push(id+'-h');
   inp.setAttribute('aria-describedby',ids.join(' '));
-  feldIndex.push({tf:tf,f:f,box:wrap,input:inp,rahmen:rahmen,warn:warnEl});
+  feldIndex.push({tf:tf,f:f,box:wrap,input:inp,rahmen:rahmen,warn:warnEl,hinw:hinwEl});
   return wrap;
 }
 function baueChk(tf,f){
@@ -981,6 +1012,9 @@ function werte(tf){
       x.treffer=sichtbar?treffer(tf,x.f.id,wert):null;
       if(x.treffer){wert='';x.warn.textContent=GRUND[x.treffer];x.warn.hidden=false;x.input.setAttribute('aria-invalid','true');}
       else{x.warn.textContent='';x.warn.hidden=true;x.input.removeAttribute('aria-invalid');}
+      var abk=(!x.treffer&&sichtbar)?abkuerzungen(x.input.value):[];
+      if(abk.length){x.hinw.textContent='Abkürzungen wie „'+abk.join('“, „')+'“ bitte ausschreiben. Die SIS lesen auch andere Berufsgruppen und Vertretungen.';x.hinw.hidden=false;}
+      else{x.hinw.textContent='';x.hinw.hidden=true;}
     }
     v[x.f.id]=wert;
   });
@@ -1002,53 +1036,91 @@ function rahmenSetzen(tf,v,p){
 }
 
 /* ---------- Erkennung: Dosierungen und Namen kommen nie in den Vorschlag ---------- */
+/* Lieber zu streng als zu locker. Jede Regel gilt in allen Feldern, nur die Ausnahmen sind eng gefasst. */
 var B='A-Za-zÄÖÜäöüß';
+var NB='(?![A-Za-zÄÖÜäöüß])';
 var ZAHL='[0-9½¼¾]+(?:[.,][0-9]+)?';
-function einheitRe(e){return new RegExp('(^|[^'+B+'0-9])('+ZAHL+')\\s?(?:'+e+')(?:\\/h|\\/d|\\/Tag)?(?![A-Za-zÄÖÜäöüß])','i');}
+function einheitRe(e){return new RegExp('(^|[^'+B+'0-9])('+ZAHL+')\\s?(?:'+e+')(?:\\/h|\\/d|\\/Tag)?'+NB,'i');}
 /* immer eine Dosisangabe */
-var EINH=einheitRe('mg|µg|ug|mcg|IE|I\\.E\\.|E|Hübe|Hub|Sprühstöße|Sprühstösse|Sprühstoß|Sprühstoss|Tropfen|Trpf\\.?|Tbl\\.?|Tabl\\.?|Tablette|Tabletten|Kapsel|Kapseln|Kps\\.?|Pflaster|Ampulle|Ampullen|Einheit|Einheiten|Globuli|Zäpfchen|Supp\\.?|%');
+var EINH=einheitRe('mg|µg|ug|mcg|IE|I\\.E\\.|E|Hübe|Hub|Sprühstöße|Sprühstösse|Sprühstoß|Sprühstoss|Tropfen|Trpf\\.?|Tr\\.|Tbl\\.?|Tabl\\.?|Tablette|Tabletten|Kapsel|Kapseln|Kps\\.?|Btl\\.?|Brs\\.?|Pflaster|Ampulle|Ampullen|Amp\\.|Einheit|Einheiten|Globuli|Zäpfchen|Supp\\.?|Sachet|Sachets|Hübe|Pumpstöße|%');
+/* Wirkstoffe und Handelsnamen: Liste plus typische Endungen */
+var LISTE='Ibu|Ibuprofen|ASS|Aspirin|Paracetamol|Novalgin|Novaminsulfon|Metamizol|Tilidin|Valoron|Tramadol|Tramal|Oxycodon|Targin|Morphin|MST|Fentanyl|Durogesic|Hydromorphon|Palladon|Palexia|Tapentadol|Buprenorphin|Norspan|Diclofenac|Voltaren|Arcoxia|Etoricoxib|Movicol|Lactulose|Macrogol|Laxans|Laxoberal|Dulcolax|Bisacodyl|Natriumpicosulfat|Thyroxin|L-Thyroxin|Euthyrox|Levothyroxin|Insulin|Lantus|Toujeo|Levemir|Tresiba|Novorapid|Humalog|Actrapid|Protaphan|Marcumar|Phenprocoumon|Falithrom|Eliquis|Apixaban|Xarelto|Lixiana|Pradaxa|Clopidogrel|Plavix|Torasemid|Furosemid|Lasix|Spironolacton|HCT|Hydrochlorothiazid|Amlodipin|Prednisolon|Prednison|Cortison|Decortin|Dexamethason|Pantozol|Melperon|Pipamperon|Dipiperon|Quetiapin|Seroquel|Risperidon|Risperdal|Haloperidol|Haldol|Lorazepam|Tavor|Diazepam|Oxazepam|Zopiclon|Zolpidem|Mirtazapin|Citalopram|Escitalopram|Sertralin|Venlafaxin|Duloxetin|Amitriptylin|Trimipramin|Donepezil|Aricept|Memantin|Rivastigmin|Exelon|Levodopa|Madopar|Nacom|Gabapentin|Pregabalin|Lyrica|Carbamazepin|Levetiracetam|Keppra|Valproat|Digitoxin|Digoxin|Kalium|Magnesium|Vigantol|Vigantoletten|Calcium|Eisen|Ferro|Spiriva|Salbutamol|Berodual|Symbicort|Foster|Viani|Nitro|Nitrolingual|Nitrospray|Metformin|Januvia|Sitagliptin|Jardiance|Forxiga|Allopurinol|Colchicin|MCP|Metoclopramid|Vomex|Buscopan|Iberogast|Ciprofloxacin|Amoxicillin|Cotrim|Nitrofurantoin|Fosfomycin|Monuril|Heparin|Clexane|Fragmin|Enoxaparin|Mono-Embolex|Vitamin\\s?D3?|Vitamin\\s?B12|Folsäure|Tamsulosin|Finasterid|Opipramol|Baldrian|Melatonin|Lefax|Imodium|Loperamid|Sab\\s?simplex';
+var ENDUNG='[A-Za-zÄÖÜäöüß-]{2,}(?:pril|sartan|olol|prazol|statin|mab|dipin|azepam|oxetin|triptan|cillin|mycin|floxacin|parin|xaban|gatran|setron|lukast|gliptin|gliflozin|formin|semid|thiazid|oxacin|profen|codon|morphon|tidin|olon|ason|azol|pin|pam)';
+var KEINE_ENDUNG=/^(April|Kopf|Pin|Spam|Toilettenstuhl|Pazol|Balkon|Salon|Person|Polizeiposten)$/i;
+var DRUG_RE=new RegExp('(^|[^'+B+'])((?:'+LISTE+')|'+ENDUNG+')'+NB,'gi');
+function drogen(t){
+  var m,out=[];DRUG_RE.lastIndex=0;
+  while((m=DRUG_RE.exec(t))){if(!KEINE_ENDUNG.test(m[2]))out.push({w:m[2],a:m.index+m[1].length,e:DRUG_RE.lastIndex});}
+  return out;
+}
+/* Zahl, die keine Jahreszahl ist und nicht für Zeit, Strecke, Personen oder Mengen beim Essen steht */
+var NICHT_MED='Uhr|Minute|Minuten|Min\\.?|Stunde|Stunden|Std\\.?|Tag|Tage|Tagen|Woche|Wochen|Monat|Monate|Monaten|Jahr|Jahre|Jahren|Meter|m|cm|km|Kilometer|Stufe|Stufen|Liter|l|Kilogramm|kg|Grad|°|Prozent|Personen|Person|Pflegekräfte|Mal|Zimmer|Etage|Stock|Stockwerk|Stockwerke|Kinder|Enkel|Stents|Bypässe|Tassen|Tasse|Gläser|Glas|Becher|Scheiben|Scheibe|Teller|Portionen|Brötchen|Schritte|Treppen';
+var ZAHL_MED=new RegExp('(^|[^0-9.,/])(?!(?:19|20)[0-9]{2}(?![0-9]))[0-9½¼¾]+(?:[.,/][0-9]+)?(?![0-9])(?!\\.\\s?[0-9])(?!\\s?(?:'+NICHT_MED+')'+NB+')');
+/* Menge einer Arzneiform: „1 Btl. Movicol“, „2 Ibu“, „2x Ibu“ */
+function drogeMitZahl(t){
+  var d=drogen(t);
+  for(var i=0;i<d.length;i++){
+    var nach=t.slice(d[i].e,d[i].e+28), vor=t.slice(Math.max(0,d[i].a-24),d[i].a);
+    /* Zahl direkt danach, erlaubt sind dazwischen nur Zusätze wie retard, forte, akut, comp */
+    if(/^\s*(?:(?:retard|ret\.|forte|mite|akut|comp\.?|plus|Tbl\.?|Tabl\.?|Kps\.?|Trpf\.?|Btl\.?|Hub|Saft|Tropfen|Spray)\s*)*[0-9½¼¾]/i.test(nach)&&ZAHL_MED.test(nach))return true;
+    /* Zahl direkt davor: „2 Ibu“, „1 Btl. Movicol“, „2x Ibu“ */
+    if(/[0-9½¼¾]\s*(?:x|×|mal)?\s*(?:Tbl\.?|Tabl\.?|Tabletten?|Kps\.?|Kapseln?|Btl\.?|Beutel|Trpf\.?|Tropfen|Hübe|Hub|Stück|St\.|Sprühstöße?)?\s*$/i.test(vor)&&!/(19|20)[0-9]{2}\s*$/.test(vor))return true;
+  }
+  return false;
+}
 /* ml, g und Beutel: Mengen bei Essen und Trinken sind erlaubt */
-var MENGE=new RegExp('(^|[^'+B+'0-9])'+ZAHL+'\\s?([mM][lL]|g|[Bb]eutel|[Mm]esslöffel)(?![A-Za-zÄÖÜäöüß])(\\s+([A-ZÄÖÜ][A-Za-zÄÖÜäöüß-]*))?','g');
-var ESSEN=/^(Wasser|Mineralwasser|Tee|Kaffee|Saft|Apfelsaft|Orangensaft|Milch|Buttermilch|Kakao|Suppe|Brühe|Quark|Joghurt|Pudding|Brei|Sondennahrung|Trinknahrung|Schorle|Apfelschorle|Saftschorle|Getränk|Getränke|Flüssigkeit|Flüssigkeiten|Bier|Wein|Limonade|Cola|Brot|Obst|Gemüse|Kartoffeln|Fleisch|Fisch|Nudeln|Reis|Kuchen|Müsli|Zucker|Butter|Käse|Wurst|Eis|Smoothie|Nahrung|Essen|Urin|Harn)$/i;
+var MENGE=new RegExp('(^|[^'+B+'0-9])'+ZAHL+'\\s?([mM][lL]|g|[Bb]eutel|[Mm]esslöffel)'+NB+'(\\s+([A-ZÄÖÜ][A-Za-zÄÖÜäöüß-]*))?','g');
+var ESSEN=/^(Wasser|Mineralwasser|Tee|Kaffee|Saft|Apfelsaft|Orangensaft|Milch|Buttermilch|Kakao|Suppe|Brühe|Quark|Joghurt|Pudding|Brei|Sondennahrung|Trinknahrung|Schorle|Apfelschorle|Saftschorle|Getränk|Getränke|Flüssigkeit|Flüssigkeiten|Bier|Wein|Limonade|Cola|Brot|Obst|Gemüse|Kartoffeln|Fleisch|Fisch|Nudeln|Reis|Kuchen|Müsli|Zucker|Butter|Käse|Wurst|Eis|Smoothie|Nahrung|Essen|Urin|Harn|Ausfuhr|Einfuhr)$/i;
 var KATHETER=/katheter|urin|harn|stoma|drainage/i;
-function mengeIstDosis(tf,t){
+function mengeIstDosis(tf,t,medKontext){
   MENGE.lastIndex=0;var m;
   while((m=MENGE.exec(t))){
     var einh=m[2].toLowerCase(),wort=m[4]||'';
-    if(einh==='beutel'||einh==='messlöffel'){ if((tf.nr===3||MEDWORT.test(t))&&!KATHETER.test(t))return true; continue; }
+    if(einh==='beutel'||einh==='messlöffel'){ if((tf.nr===3||medKontext)&&!KATHETER.test(t))return true; continue; }
     if(tf.nr===3)return true;                     /* in Themenfeld 3 sind ml und g immer verdächtig */
     if(wort&&!ESSEN.test(wort))return true;       /* „5 ml Lactulose“ */
-    if(!wort&&MEDWORT.test(t))return true;        /* „10 ml“ in einem Satz über Medikamente */
+    if(!wort&&medKontext)return true;             /* „10 ml“ in einem Satz über Medikamente */
   }
   return false;
 }
 var SCHEMA=/(^|[^0-9])[0-9½¼¾](?:[.,]5)?\s?[-–\/]\s?[0-9½¼¾](?:[.,]5)?\s?[-–\/]\s?[0-9½¼¾](?:[.,]5)?(?:\s?[-–\/]\s?[0-9½¼¾](?:[.,]5)?)?(?![0-9])/;
 var DOSISWORT=/(^|[^A-Za-zÄÖÜäöüß])((Abend|Morgen|Mittags|Nacht|Einzel|Tages|Erhaltungs)?dosis|Dosierung|Einnahmeschema|Wirkstärke)(?![A-Za-zäöüß])/i;
-var HAEUF=/(^|[^A-Za-zÄÖÜäöüß0-9])([0-9]+|ein|zwei|drei|vier|fünf|sechs)\s?(x|mal)\s?(tgl\.?|täglich|am Tag|pro Tag|tagsüber)(?![A-Za-zäöü])/i;
+/* „4x tgl.“, „1x täglich“, „2 x tägl.“: in allen Feldern eine Einnahmehäufigkeit, außer es geht erkennbar um Einsätze oder Besuche */
+var HAEUF_ZIFFER=/(^|[^A-Za-zÄÖÜäöüß0-9])[0-9]+\s?(x|×|mal)\s?(tgl\.?|tägl\.?|täglich|am Tag|pro Tag|tagsüber)(?![A-Za-zäöü])/i;
+var HAEUF_WORT=/(^|[^A-Za-zÄÖÜäöüß0-9])(ein|zwei|drei|vier|fünf|sechs)\s?mal\s?(tgl\.?|tägl\.?|täglich|am Tag|pro Tag)(?![A-Za-zäöü])/i;
+var EINSATZ=/einsatz|einsätze|besuch|kommt|kommen|pflegedienst|hausbesuch|anruf|ruft|telefon|geht|spazier|läuft|lauf|turn|übung|gymnast|dusch|wasch|bad|toilette|einkauf|lager|mobilis|transfer|personen|pflegekräfte/i;
+var TGL=/(^|[^A-Za-zÄÖÜäöüß])(tgl|tägl)\.?(?![A-Za-zäöü])/i;
+var BEDARF=/bei\s+Bedarf|b\.\s?B\.|\bbB\b/i;
 /* Einnahmezeit mit Menge; folgt ein Hauptwort („eine Runde“, „eine Tasse“), ist es keine Dosis */
 var TAGESZEIT=/(^|[^A-Za-zÄÖÜäöüß])([Mm]orgens|[Mm]ittags|[Aa]bends|[Nn]achts|[Zz]ur Nacht|[Nn]üchtern|[Ff]rüh)\s+([0-9½¼¾]+|[Ee]ine?|[Ee]inen|[Hh]albe|[Zz]wei|[Dd]rei|[Vv]ier)(?![A-Za-zäöü])(?!\s+[A-ZÄÖÜ])/;
 /* Anzahl einer Arzneiform, auch ausgeschrieben: „eine Tablette“, „zwei Hübe“, „eine halbe Tablette“ */
-var FORM=/(^|[^A-Za-zÄÖÜäöüß])([0-9½¼¾]+|eine?|einen|halbe|zwei|drei|vier|fünf)\s+(halbe\s+)?(Tablette|Tabletten|Kapsel|Kapseln|Tropfen|Hub|Hübe|Sprühstoß|Sprühstöße|Sprühstöße|Zäpfchen|Ampulle|Ampullen|Messlöffel)(?![A-Za-zäöüß])/i;
-var STOPP='Gegen|Etwa|Ca|Circa|Seit|Ab|Um|Bis|Nach|Vor|Über|Unter|Aus|Im|In|Am|Mit|Von|Hat|Habe|Hatte|Ist|War|Sind|Wird|Gibt|Kommt|Geht|Trinkt|Isst|Wiegt|Wohnt|Lebt|Misst|Insgesamt|Noch|Nur|Typ|Stadium|NYHA|GOLD|Gold|Stufe|Stufen|Skala|NRS|VAS|BESD|ECPA|BMI|Pflegegrad|Pflegestufe|Grad|Kategorie|Stärke|Klasse|Kompressionsklasse|Haus|Hausnummer|Zimmer|Raum|Etage|Stock|Stockwerk|Uhr|Jahr|Jahre|Seite|Nr|Nummer|Bett|Tag|Tage|Woche|Wochen|Monat|Monate|Linie|Bus|Platz|Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember|Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag|Minuten|Stunden|Liter|Kilometer|Meter|Kilogramm|Prozent|Personen|Mal|Weltkrieg|Operation|Herzinfarkt|Schlaganfall|Apoplex|Infarkt|Unfall|Sturz|Diagnose|Werte|Wert|Blutzucker|Puls|Blutdruck|Gewicht';
+var FORM=/(^|[^A-Za-zÄÖÜäöüß])([0-9½¼¾]+|eine?|einen|halbe|zwei|drei|vier|fünf)\s+(halbe\s+)?(Tablette|Tabletten|Kapsel|Kapseln|Tropfen|Hub|Hübe|Sprühstoß|Sprühstöße|Zäpfchen|Ampulle|Ampullen|Messlöffel)(?![A-Za-zäöüß])/i;
+var STOPP='Gegen|Etwa|Ca|Circa|Seit|Ab|Um|Bis|Nach|Vor|Über|Unter|Aus|Im|In|Am|Mit|Von|Hat|Habe|Hatte|Ist|War|Sind|Wird|Gibt|Kommt|Geht|Trinkt|Isst|Wiegt|Wohnt|Lebt|Misst|Insgesamt|Noch|Nur|Typ|Stadium|NYHA|GOLD|Gold|Stufe|Stufen|Skala|NRS|VAS|BESD|ECPA|BMI|Pflegegrad|Pflegestufe|Grad|Kategorie|Stärke|Klasse|Kompressionsklasse|Haus|Hausnummer|Zimmer|Raum|Etage|Stock|Stockwerk|Uhr|Jahr|Jahre|Seite|Nr|Nummer|Bett|Tag|Tage|Woche|Wochen|Monat|Monate|Linie|Bus|Platz|Januar|Februar|März|April|Mai|Juni|Juli|August|September|Oktober|November|Dezember|Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag|Minuten|Stunden|Liter|Kilometer|Meter|Kilogramm|Prozent|Personen|Mal|Weltkrieg|Operation|Herzinfarkt|Schlaganfall|Apoplex|Infarkt|Unfall|Sturz|Diagnose|Werte|Wert|Blutzucker|Puls|Blutdruck|Gewicht|Sauerstoff';
 /* Präparat mit Stärke: Wort plus Zahl. Keine Jahreszahl, danach kein Hauptwort (dann ist es eine Anzahl wie „2 Stents“) */
-var PRAEP=new RegExp('(^|[^'+B+'])(?!(?:'+STOPP+')(?![A-Za-zÄÖÜäöüß]))[A-ZÄÖÜ][A-Za-zÄÖÜäöüß-]{2,}\\s+(?!(?:19|20)[0-9]{2}(?![0-9]))[0-9]+(?:[.,][0-9]+)?(?![0-9.,])(?!\\s+[A-ZÄÖÜ])(?!\\s?(?:Uhr|Minute|Minuten|Min\\.?|Stunde|Stunden|Std\\.?|Tag|Tage|Tagen|Woche|Wochen|Monat|Monate|Monaten|Jahr|Jahre|Jahren|Meter|m|cm|km|Kilometer|Stufe|Stufen|Liter|l|Kilogramm|kg|Grad|°|von|bis|Prozent|Personen|Person|Mal|x|und|oder|Zimmer|Etage|Stock|Stockwerk|Kinder|Enkel|aus)(?![A-Za-zäöü]))');
-var MEDWORT=/medik|tablett|kapsel|tropfen|insulin|spray|salbe|pflaster|dosis|spritz|präparat|arznei|inhal|ampull|pille|zäpfchen|globuli|pen\b/i;
+var PRAEP=new RegExp('(^|[^'+B+'])(?!(?:'+STOPP+')'+NB+')[A-ZÄÖÜ][A-Za-zÄÖÜäöüß-]{2,}\\s+(?!(?:19|20)[0-9]{2}(?![0-9]))[0-9]+(?:[.,/][0-9]+)?(?![0-9.,])(?!\\s+[A-ZÄÖÜ])(?!\\s?(?:'+NICHT_MED+'|von|und|oder|aus)'+NB+')');
+var MEDWORT=/medik|tablett|kapsel|tropfen|insulin|spray|salbe|pflaster|dosis|spritz|präparat|arznei|inhal|ampull|pille|zäpfchen|globuli|retard|schmerzmittel|abführ|bedarfsmed|\bpen\b|\btbl\b|\bbtl\b|\bkps\b|\btrpf\b/i;
 var NAME1=/(^|[^A-Za-zÄÖÜäöüß])(Frau|Herrn?|Hr\.|Fr\.)\s+(?:(?:Dr|Prof)\.\s*(?:med\.\s*)?)?[A-ZÄÖÜ][a-zäöüß]+/;
 var NAME2=/(^|[^A-Za-zÄÖÜäöüß])(Dr|Prof)\.\s*(?:med\.\s*)?[A-ZÄÖÜ][a-zäöüß]+/;
 var VERW='Tochter|Sohn|Ehefrau|Ehemann|Mann|Gatte|Gattin|Nachbarin|Nachbar|Enkelin|Enkel|Schwester|Bruder|Neffe|Nichte|Lebensgefährtin|Lebensgefährte|Freundin|Freund|Schwiegertochter|Schwiegersohn|Schwägerin|Schwager|Cousine|Cousin|Tante|Onkel|Mutter|Vater|Betreuerin|Betreuer|Hausärztin|Hausarzt|Ärztin|Arzt|Pflegerin|Pfleger';
 var TAGE='Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag|Montags|Dienstags|Mittwochs|Donnerstags|Freitags|Samstags|Sonntags|Uhr|Abend|Abends|Morgen|Morgens|Mittag|Mittags|Nachmittag|Nachmittags|Wochenende|Einkauf|Einkäufe|Termine|Wäsche|Unterstützung|Hilfe|Bescheid';
-var NAME3=new RegExp('(^|[^'+B+'])(?:'+VERW+')\\s+(?!(?:'+TAGE+')(?![A-Za-zäöüß]))[A-ZÄÖÜ][a-zäöüß]{2,}');
+var NAME3=new RegExp('(^|[^'+B+'])(?:'+VERW+')\\s+(?!(?:'+TAGE+')'+NB+')[A-ZÄÖÜ][a-zäöüß]{2,}');
 /* Gibt null oder 'med' bzw. 'name' zurück */
 function treffer(tf,id,wert){
   var t=String(wert||'');
   if(!t.trim())return null;
   if(NAME1.test(t)||NAME2.test(t)||NAME3.test(t))return 'name';
-  if(EINH.test(t)||FORM.test(t)||mengeIstDosis(tf,t))return 'med';
-  if(SCHEMA.test(t)||DOSISWORT.test(t))return 'med';
-  var medKontext=tf.nr===3||MEDWORT.test(t);
-  if(medKontext&&(HAEUF.test(t)||TAGESZEIT.test(t)||PRAEP.test(t)))return 'med';
+  var drogeDa=drogen(t).length>0;
+  var medKontext=tf.nr===3||drogeDa||MEDWORT.test(t)||BEDARF.test(t);
+  if(EINH.test(t)||FORM.test(t)||SCHEMA.test(t)||DOSISWORT.test(t))return 'med';
+  if(drogeDa&&drogeMitZahl(t))return 'med';
+  if(mengeIstDosis(tf,t,medKontext))return 'med';
+  if(HAEUF_ZIFFER.test(t)&&(medKontext||!EINSATZ.test(t)))return 'med';
+  if((TGL.test(t)||BEDARF.test(t))&&ZAHL_MED.test(t)&&!(EINSATZ.test(t)&&!drogeDa&&!MEDWORT.test(t)))return 'med';
+  if(medKontext&&(HAEUF_WORT.test(t)||TAGESZEIT.test(t)||PRAEP.test(t)))return 'med';
   return null;
 }
+var ABK=/(^|[^A-Za-zÄÖÜäöüß])(Pat|re|li|wg|wgn|Mo|Di|Mi|Do|Fr|Sa|So|tgl|tägl|ggf|evtl|vorh|Pfl|PK|PFK|Kl|Ang|bds|Z\.\s?n|v\.\s?a|o\.\s?B)\.(?=\s|$|,)/g;
+function abkuerzungen(t){var m,a=[];ABK.lastIndex=0;while((m=ABK.exec(String(t||''))))if(a.indexOf(m[2]+'.')<0)a.push(m[2]+'.');return a.slice(0,3);}
 var GRUND={
   med:'Nicht im Vorschlag: Diese Eingabe enthält offenbar eine Dosierung, Einheit, Einnahmezeit oder ein Präparat mit Stärke. Solche Angaben gehören in die Medikamentendokumentation, in der SIS haben sie keinen Platz. Bitte ändern Sie die Eingabe.',
   name:'Nicht im Vorschlag: Diese Eingabe enthält offenbar einen echten Namen. Bitte verwenden Sie nur Anrede und Buchstaben oder Rollen wie „die Tochter“.'
@@ -1068,7 +1140,12 @@ function zeichnen(){
   tfname.textContent=tf.feldB?tf.name:'Themenfeld '+tf.nr+': '+tf.name;
   if(aktuellerText){ausgabe.textContent=aktuellerText;ausgabe.classList.remove('fh-leer');}
   else{ausgabe.textContent='Noch keine Angaben in diesem '+(tf.feldB?'Feld':'Themenfeld')+'. Der Vorschlag erscheint hier, sobald Sie die erste Frage beantworten.';ausgabe.classList.add('fh-leer');}
-  zaehler.textContent=aktuellerText?aktuellerText.length+' Zeichen':'';
+  var n=aktuellerText.length,nT=n.toLocaleString('de-DE');
+  zaehler.classList.toggle('fh-lang',!tf.feldB&&n>1024);
+  zaehler.textContent=!aktuellerText?'':(!tf.feldB&&n>1024?nT+' Zeichen, mehr als 1.024. Das Anforderungsprofil 3.0/3.1 begrenzt die sechs Themenfelder zusammen auf 6.144 Zeichen (6 × 1.024). Ein Themenfeld darf länger sein, wenn andere kürzer sind. Prüfen Sie, was wirklich wichtig ist.':nT+' Zeichen');
+  d.getElementById('fh-personanzeige').textContent='Person: '+p.S;
+  var nx=TF[(aktiv+1)%TF.length];
+  d.getElementById('fh-weiter').textContent=nx.feldB?'Weiter mit Feld B (Eingangsfrage)':'Weiter mit Themenfeld '+nx.nr;
   var warn=r.w.slice();
   warnBox.innerHTML='';
   feldIndex.forEach(function(x){
@@ -1172,6 +1249,16 @@ d.getElementById('fh-sprung').addEventListener('click',function(e){
   z.focus({preventScroll:true});
 });
 
+d.getElementById('fh-weiter').addEventListener('click',function(){
+  waehle((aktiv+1)%TF.length,false,false);TF[aktiv].tab.focus({preventScroll:true});
+  var t=d.getElementById('fh-tabs');var hin=function(){if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-80,behavior:'instant'});};hin();setTimeout(hin,60);
+});
+d.getElementById('fh-person-aendern').addEventListener('click',function(){
+  var i=d.getElementById('fh-initial');var b=d.querySelector('.fh-person');if(b)window.scrollTo({top:b.getBoundingClientRect().top+window.pageYOffset-80,behavior:'instant'});i.focus({preventScroll:true});
+});
+app.addEventListener('focusin',function(e){if(e.target.matches('input[type=text],textarea,select'))app.classList.add('fh-tippt');});
+app.addEventListener('focusout',function(){app.classList.remove('fh-tippt');});
+
 /* ---------- Start ---------- */
 allesLeeren();
 window.addEventListener('pageshow',function(e){if(e.persisted){allesLeeren();zeichnen();}});
@@ -1180,7 +1267,14 @@ app.hidden=false;
 var start=0,h=(location.hash||'').replace('#','');
 TF.forEach(function(tf,j){if(tf.panel.id===h)start=j;});
 waehle(start,false,true);
-if(h&&TF.some(function(tf){return tf.panel.id===h;})){var z=d.getElementById('werkzeug');if(z&&z.scrollIntoView)setTimeout(function(){z.scrollIntoView();},0);}
+if(h&&TF.some(function(tf){return tf.panel.id===h;})){
+  /* Beim Sprung den Personenblock zeigen, nicht nur den Reiter */
+  var zum=function(){var z=d.getElementById('werkzeug');if(z&&z.scrollIntoView)z.scrollIntoView({block:'start',behavior:'instant'});};
+  var bewegt=false;['wheel','touchmove','keydown'].forEach(function(ev){window.addEventListener(ev,function(){bewegt=true;},{once:true,passive:true});});
+  var noch=function(){if(!bewegt)zum();};
+  setTimeout(zum,0);window.addEventListener('load',function(){setTimeout(noch,60);setTimeout(noch,400);});
+  if(d.fonts&&d.fonts.ready)d.fonts.ready.then(function(){setTimeout(noch,0);});
+}
 })();
 </script>
 </body>
