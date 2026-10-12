@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dokuna – SIS &amp; Maßnahmenplan für ambulante Pflegedienste</title>
-<meta name="description" content="SIS und Maßnahmenplan in Minuten: Dokuna führt Pflegefachkräfte ambulanter Dienste durch die SIS, formuliert für die MD-Prüfung und erstellt den Maßnahmenplan. Klientendaten bleiben beim Pflegedienst.">
+<meta name="description" content="SIS und Maßnahmenplan in Minuten: Dokuna führt ambulante Pflegefachkräfte durch die SIS und erstellt den Maßnahmenplan. Klientendaten bleiben beim Pflegedienst.">
 <link rel="canonical" href="https://dokuna.de/">
 <link rel="preload" href="/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -241,9 +241,20 @@
   .schonkunde a{color:var(--akzent);text-decoration:none;font-weight:600}
   .schonkunde a:hover{text-decoration:underline}
   .faq details p a{color:var(--akzent)}
+  .videotext{max-width:720px;margin:22px auto 0;text-align:left;background:var(--weiss);border:1px solid var(--linie);border-radius:14px;padding:2px 20px}
+  .videotext summary{cursor:pointer;font-weight:600;color:var(--akzent);padding:12px 0}
+  .videotext-inhalt{padding:4px 0 8px}
+  .videotext-inhalt p{font-size:.98rem;color:var(--text);margin:0 0 12px}
+  .ratgeber-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:16px}
+  .ratgeber-grid .karte{padding:26px 24px}
+  .ratgeber-grid ul{list-style:none;padding:0;margin:12px 0 0}
+  .ratgeber-grid li{margin:0 0 10px;line-height:1.4;font-size:.96rem}
+  .ratgeber-grid a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--linie)}
+  .ratgeber-grid a:hover{color:var(--akzent);border-color:var(--akzent)}
+  .marke{font-size:.8rem;color:var(--grau);max-width:1024px;margin:0 auto;padding:0 24px 18px}
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Dokuna","applicationCategory":"HealthApplication","operatingSystem":"Webbrowser (Computer, iPad, Smartphone)","offers":{"@type":"Offer","priceSpecification":{"@type":"UnitPriceSpecification","price":"80.00","priceCurrency":"EUR","unitText":"pro Standort und Monat"},"description":"80 € pro Standort und Monat, keine Einrichtungsgebühr"},"description":"Software für die Strukturierte Informationssammlung (SIS) und die Maßnahmenplanung ambulanter Pflegedienste. Läuft im Browser am Computer, iPad und Handy. Die Klientendaten speichert der Pflegedienst in seinem eigenen Speicherort, nicht auf dem Dokuna-Server.","url":"https://dokuna.de/","inLanguage":"de"},{"@type":"WebSite","name":"Dokuna","url":"https://dokuna.de/","inLanguage":"de"},{"@type":"Organization","name":"Dokuna","url":"https://dokuna.de/","email":"info@dokuna.de","telephone":"+49 151 16833569","logo":{"@type":"ImageObject","url":"https://dokuna.de/favicon-512.png"},"sameAs":["https://www.linkedin.com/company/dokuna"],"founder":{"@type":"Person","name":"Jonas Jahrke","url":"https://dokuna.de/ueber/","image":"https://dokuna.de/jonas.jpg","sameAs":["https://www.linkedin.com/in/jonas-jahrke"]},"address":{"@type":"PostalAddress","streetAddress":"Pastoratsweg 22","postalCode":"45529","addressLocality":"Hattingen","addressCountry":"DE"}},{"@type":"VideoObject","name":"Dokuna im Überblick – von der SIS zum Maßnahmenplan","description":"Was der Assistent macht und der komplette Durchlauf mit Dokuna: von den Grunddaten über die sechs Themenfelder der Strukturierten Informationssammlung bis zum fertigen Maßnahmenplan.","thumbnailUrl":"https://dokuna.de/poster-v3.jpg","contentUrl":"https://dokuna.de/Dokuna-Erklaervideo-V3.mp4","uploadDate":"2026-10-11T08:00:00+02:00","duration":"PT3M30S","inLanguage":"de","isFamilyFriendly":true,"publisher":{"@type":"Organization","name":"Dokuna","url":"https://dokuna.de/"}}]}
+{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Dokuna","applicationCategory":"HealthApplication","operatingSystem":"Webbrowser (Computer, iPad, Smartphone)","offers":{"@type":"Offer","priceSpecification":{"@type":"UnitPriceSpecification","price":"80.00","priceCurrency":"EUR","unitText":"pro Standort und Monat"},"description":"80 € pro Standort und Monat, keine Einrichtungsgebühr"},"description":"Software für die Strukturierte Informationssammlung (SIS) und die Maßnahmenplanung ambulanter Pflegedienste. Läuft im Browser am Computer, iPad und Handy. Die Klientendaten speichert der Pflegedienst in seinem eigenen Speicherort, nicht auf dem Dokuna-Server.","url":"https://dokuna.de/","inLanguage":"de"},{"@type":"WebSite","name":"Dokuna","url":"https://dokuna.de/","inLanguage":"de"},{"@type":"Organization","name":"Dokuna","url":"https://dokuna.de/","email":"info@dokuna.de","telephone":"+49 151 16833569","logo":{"@type":"ImageObject","url":"https://dokuna.de/favicon-512.png"},"sameAs":["https://www.linkedin.com/company/dokuna"],"founder":{"@type":"Person","name":"Jonas Jahrke","url":"https://dokuna.de/ueber/","image":"https://dokuna.de/jonas.jpg","sameAs":["https://www.linkedin.com/in/jonas-jahrke"]},"address":{"@type":"PostalAddress","streetAddress":"Pastoratsweg 22","postalCode":"45529","addressLocality":"Hattingen","addressCountry":"DE"}},{"@type":"VideoObject","name":"Dokuna im Überblick – von der SIS zum Maßnahmenplan","description":"Was der Assistent macht und der komplette Durchlauf mit Dokuna: von den Grunddaten über die sechs Themenfelder der Strukturierten Informationssammlung bis zum fertigen Maßnahmenplan.","thumbnailUrl":"https://dokuna.de/poster-v3.jpg","contentUrl":"https://dokuna.de/Dokuna-Erklaervideo-V3.mp4","uploadDate":"2026-10-11T08:00:00+02:00","duration":"PT3M30S","transcript":"Dokuna ist der Assistent für die SIS in der ambulanten Pflege. Sie klicken an, was Sie im Gespräch erfahren haben. Dokuna schreibt daraus den fachlichen Text, wertet die Risiken aus und erstellt den Maßnahmenplan. Die Entscheidung behält die Pflegefachkraft. Der Assistent führt Sie Schritt für Schritt durch den ganzen Bogen: Grunddaten und Eingangsfrage, die sechs Themenfelder, die Risikomatrix, den Maßnahmenplan und zum Schluss die Prüfung. Jeder Schritt ist ein Lückentext mit passenden Vorschlägen. Wie weit Sie sind, zeigt der Balken oben links. Los geht es mit den Grunddaten. Sie tippen Name, Geburtsdatum und Pflegegrad ein, das Alter rechnet Dokuna selbst aus. Ihr Kürzel und die Daten Ihres Pflegedienstes stehen schon im Formular. In Feld B steht die Sicht der Person, möglichst in ihren eigenen Worten. Häufige Aussagen liegen als Vorschlag bereit. Ein Klick übernimmt sie. Alles Weitere tippen Sie einfach dazu. In den sechs Themenfeldern haken Sie zutreffende Sätze an und klicken an, was passt, zum Beispiel die Hilfsmittel. Eigene Beobachtungen ergänzen Sie als freien Text. Dokuna formuliert daraus einen fachlichen Text, der sofort mitwächst. Bei der Selbstversorgung wählen Sie, wie viel Hilfe die Person bei der Körperpflege braucht. Dann tippen Sie an, was sie selbst wäscht. Dokuna schreibt daraus ganze Sätze. Diese Angaben nutzt der Assistent später auch für die Körperpflege im Maßnahmenplan. In der Risikomatrix hat Dokuna die Angaben bereits ausgewertet. Vorschläge erscheinen aufgehellt, mit Begründung. Die Entscheidung trifft die Pflegefachkraft: Sie kreuzt selbst Ja oder Nein an. Aus SIS und Risikomatrix entsteht der Maßnahmenplan automatisch, geordnet nach Einsätzen. Prophylaxen schlägt Dokuna nur vor, immer passend zur Leistung im Einsatz. Ein Klick übernimmt sie. Jeder Text bleibt frei änderbar. Den Plan gibt es in zwei Stilen. Der kurze Stil ist der Standard und passt zum Dokuna-QM-Paket. Die Routinehandlungen stehen dann in den Verfahrensanleitungen Ihres Pflegedienstes. Ohne passendes QM schreibt Dokuna den ausführlichen Stil. Welcher gilt, wird einmal für Ihren Pflegedienst eingestellt. Vor dem Ausdruck weist Dokuna auf Lücken hin, zum Beispiel auf ein fehlendes Evaluationsdatum. Passende Vorschläge übernehmen Sie mit einem Klick. Die Pflegegrad-Ampel vergleicht die SIS mit dem eingetragenen Pflegegrad. Sie ist nur ein Hinweis am Bildschirm. Gedruckt oder gespeichert wird sie nie. Zum Schluss drucken Sie die SIS im Aufbau des Originalbogens, zusammen mit dem Maßnahmenplan. Kürzel und Pflegedienst stehen schon drauf. Gespeichert wird die SIS als Datei im Speicherort Ihres Pflegedienstes. Eingerichtet ist Dokuna schnell. Die Leitung legt für jede Pflegefachkraft einen eigenen Zugang an. Ihr Kürzel steht dann automatisch auf der SIS. Angemeldet wird im Browser, am Computer, am iPad und am Handy. Die Klientendaten bleiben im Speicherort Ihres Pflegedienstes, nicht auf dem Dokuna-Server. Dokuna. Die SIS in wenigen Klicks, fachlich formuliert und bereit für den Ausdruck. Möchten Sie mehr sehen? Fragen Sie auf dokuna.de eine Vorführung an.","inLanguage":"de","isFamilyFriendly":true,"publisher":{"@type":"Organization","name":"Dokuna","url":"https://dokuna.de/"}}]}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
@@ -276,8 +287,8 @@
   <div class="wrap hero2">
     <div class="links">
       <div><span class="badge" style="margin-bottom:0">Aus der Praxis eines ambulanten Pflegedienstes</span></div>
-      <h1>SIS und Maßnahmen&shy;plan in Minuten.</h1>
-      <p class="sub" style="margin:0;font-size:1.2rem">Dokuna führt Ihre Pflegefachkräfte Schritt für Schritt durch die SIS und erstellt daraus direkt den passenden Maßnahmenplan. Im Browser, ohne Installation.</p>
+      <h1>SIS® und Maßnahmen&shy;plan in Minuten.</h1>
+      <p class="sub" style="margin:0;font-size:1.2rem">Dokuna führt Ihre Pflegefachkräfte Schritt für Schritt durch die SIS® und erstellt daraus direkt den passenden Maßnahmenplan. Im Browser, ohne Installation.</p>
       <div class="haken">
         <div><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><span>Formuliert für die MD-Prüfung nach QPR 2026</span></div>
         <div><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><span>Nach dem Strukturmodell (EinSTEP) mit eigenem QM-Paket</span></div>
@@ -331,12 +342,29 @@
         <div class="videobox" data-noreveal>
           <video controls muted playsinline preload="metadata" poster="/poster-v3.jpg" data-poster-alt="/poster.jpg">
             <source src="/Dokuna-Erklaervideo-V3.mp4" type="video/mp4">
-            <source src="/Dokuna-Erklaervideo-V1.7.mp4" type="video/mp4">
             <track kind="captions" src="/Dokuna-Erklaervideo-V3.vtt" srclang="de" label="Deutsch">
             Ihr Browser kann dieses Video nicht abspielen.
           </video>
           <button class="videostart" type="button" aria-label="Erklärvideo abspielen"><span class="knopf"><span class="pfeil"></span></span></button>
         </div>
+        <details class="videotext">
+          <summary>Videotext lesen</summary>
+          <div class="videotext-inhalt">
+            <p>Dokuna ist der Assistent für die SIS in der ambulanten Pflege. Sie klicken an, was Sie im Gespräch erfahren haben. Dokuna schreibt daraus den fachlichen Text, wertet die Risiken aus und erstellt den Maßnahmenplan. Die Entscheidung behält die Pflegefachkraft.</p>
+            <p>Der Assistent führt Sie Schritt für Schritt durch den ganzen Bogen: Grunddaten und Eingangsfrage, die sechs Themenfelder, die Risikomatrix, den Maßnahmenplan und zum Schluss die Prüfung. Jeder Schritt ist ein Lückentext mit passenden Vorschlägen. Wie weit Sie sind, zeigt der Balken oben links.</p>
+            <p>Los geht es mit den Grunddaten. Sie tippen Name, Geburtsdatum und Pflegegrad ein, das Alter rechnet Dokuna selbst aus. Ihr Kürzel und die Daten Ihres Pflegedienstes stehen schon im Formular.</p>
+            <p>In Feld B steht die Sicht der Person, möglichst in ihren eigenen Worten. Häufige Aussagen liegen als Vorschlag bereit. Ein Klick übernimmt sie. Alles Weitere tippen Sie einfach dazu.</p>
+            <p>In den sechs Themenfeldern haken Sie zutreffende Sätze an und klicken an, was passt, zum Beispiel die Hilfsmittel. Eigene Beobachtungen ergänzen Sie als freien Text. Dokuna formuliert daraus einen fachlichen Text, der sofort mitwächst.</p>
+            <p>Bei der Selbstversorgung wählen Sie, wie viel Hilfe die Person bei der Körperpflege braucht. Dann tippen Sie an, was sie selbst wäscht. Dokuna schreibt daraus ganze Sätze. Diese Angaben nutzt der Assistent später auch für die Körperpflege im Maßnahmenplan.</p>
+            <p>In der Risikomatrix hat Dokuna die Angaben bereits ausgewertet. Vorschläge erscheinen aufgehellt, mit Begründung. Die Entscheidung trifft die Pflegefachkraft: Sie kreuzt selbst Ja oder Nein an.</p>
+            <p>Aus SIS und Risikomatrix entsteht der Maßnahmenplan automatisch, geordnet nach Einsätzen. Prophylaxen schlägt Dokuna nur vor, immer passend zur Leistung im Einsatz. Ein Klick übernimmt sie. Jeder Text bleibt frei änderbar.</p>
+            <p>Den Plan gibt es in zwei Stilen. Der kurze Stil ist der Standard und passt zum Dokuna-QM-Paket. Die Routinehandlungen stehen dann in den Verfahrensanleitungen Ihres Pflegedienstes. Ohne passendes QM schreibt Dokuna den ausführlichen Stil. Welcher gilt, wird einmal für Ihren Pflegedienst eingestellt.</p>
+            <p>Vor dem Ausdruck weist Dokuna auf Lücken hin, zum Beispiel auf ein fehlendes Evaluationsdatum. Passende Vorschläge übernehmen Sie mit einem Klick. Die Pflegegrad-Ampel vergleicht die SIS mit dem eingetragenen Pflegegrad. Sie ist nur ein Hinweis am Bildschirm. Gedruckt oder gespeichert wird sie nie.</p>
+            <p>Zum Schluss drucken Sie die SIS im Aufbau des Originalbogens, zusammen mit dem Maßnahmenplan. Kürzel und Pflegedienst stehen schon drauf. Gespeichert wird die SIS als Datei im Speicherort Ihres Pflegedienstes.</p>
+            <p>Eingerichtet ist Dokuna schnell. Die Leitung legt für jede Pflegefachkraft einen eigenen Zugang an. Ihr Kürzel steht dann automatisch auf der SIS. Angemeldet wird im Browser, am Computer, am iPad und am Handy. Die Klientendaten bleiben im Speicherort Ihres Pflegedienstes, nicht auf dem Dokuna-Server.</p>
+            <p>Dokuna. Die SIS in wenigen Klicks, fachlich formuliert und bereit für den Ausdruck. Möchten Sie mehr sehen? Fragen Sie auf dokuna.de eine Vorführung an.</p>
+          </div>
+        </details>
       </div>
 </section>
 
@@ -369,6 +397,24 @@
       <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="13" height="10" rx="1.5"/><path d="M6 18h6"/><rect x="17" y="8" width="4.5" height="12" rx="1"/></svg></span><h3>Computer, iPad und Handy</h3><p>Dokuna läuft im Browser, ohne Installation. Updates kommen automatisch. Jede Pflegefachkraft hat einen eigenen Zugang, die Leitung verwaltet alle Zugänge.</p></div>
       <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M2.5 21c1.4-3.3 4.2-5 7.5-5 1.2 0 2.4.2 3.4.7"/><path d="m15 18 2.2 2.2L21.5 16"/></svg></span><h3>Die Fachkraft entscheidet</h3><p>Jedes Dokument wird von Ihrer Pflegefachkraft geprüft und freigegeben. Dokuna assistiert, die fachliche Verantwortung bleibt, wo sie hingehört.</p></div>
     </div>
+  </div>
+</section>
+
+<section style="padding-top:0" id="anforderungsprofil">
+  <div class="wrap">
+    <div class="zentriert">
+      <h2>Nach dem EinSTEP-Anforderungsprofil 3.0/3.1.</h2>
+      <p class="lead">Seit Mai 2026 regelt das neue Anforderungsprofil, wie Software die SIS® und den Maßnahmenplan abbilden soll. So setzt Dokuna die wichtigsten Punkte um:</p>
+    </div>
+    <div class="punkte">
+      <div class="punkt"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><p><strong>Grundbotschaft:</strong> ein freies Feld mit höchstens 320 Zeichen, das nur die Fachkraft schreibt. Im Ausdruck ein eigener Kasten über dem Maßnahmenplan.</p></div>
+      <div class="punkt"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><p><strong>Leitfragen:</strong> Die Leitfragen der Themenfelder sind im Originalwortlaut einsehbar.</p></div>
+      <div class="punkt"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><p><strong>Zeichenzahl:</strong> ein Hinweis, sobald ein Themenfeld mehr als 1.024 Zeichen hat. Wer ihn beachtet, bleibt mit allen sechs Themenfeldern bei höchstens 6.144 Zeichen.</p></div>
+      <div class="punkt"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><p><strong>Risikomatrix:</strong> nur die fünf Original-Risiken plus „Sonstiges“. Vorschläge nur aufgehellt, die Fachkraft kreuzt selbst an.</p></div>
+      <div class="punkt"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><p><strong>Keine Extrafelder:</strong> Ressourcen stehen im Fließtext, Feld B ist Freitext im O-Ton der Person.</p></div>
+      <div class="punkt"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><p><strong>Die Fachkraft entscheidet:</strong> Prophylaxen sind nur Vorschläge, die Matrix kreuzt sie selbst an.</p></div>
+    </div>
+    <p class="zentriert" style="margin-top:22px"><a href="/sis-anforderungsprofil/" style="color:var(--akzent);font-weight:600;text-decoration:none">Was das Anforderungsprofil verlangt&nbsp;›</a></p>
   </div>
 </section>
 
@@ -489,6 +535,72 @@
   </div>
 </section>
 
+<section id="ratgeber" style="padding-top:0">
+  <div class="wrap">
+    <div class="zentriert">
+      <h2>Ratgeber.</h2>
+      <p class="lead">Frei zugänglich: alles rund um SIS®, Maßnahmenplan und Prüfung, geschrieben aus der Praxis.</p>
+    </div>
+    <div class="ratgeber-grid">
+      <div class="karte">
+        <h3>Neu: Anforderungsprofil 3.0/3.1</h3>
+        <ul>
+          <li><a href="/sis-anforderungsprofil/">SIS®-Anforderungsprofil 3.0/3.1: Was sich für Pflegedienste ändert</a></li>
+          <li><a href="/grundbotschaft-sis/">Grundbotschaft im Maßnahmenplan: Was sie ist und wie Sie sie schreiben</a></li>
+          <li><a href="/ki-in-der-sis/">KI in der SIS®: Was erlaubt ist und was nicht</a></li>
+        </ul>
+      </div>
+      <div class="karte">
+        <h3>Grundlagen</h3>
+        <ul>
+          <li><a href="/was-ist-die-sis/">Was ist die SIS? Die Strukturierte Informationssammlung einfach erklärt</a></li>
+          <li><a href="/sis-pflicht/">Ist die SIS Pflicht? Wer eine braucht – und wer nicht</a></li>
+          <li><a href="/sis-ausfuellen/">SIS ausfüllen: Schritt für Schritt zur fertigen Informationssammlung</a></li>
+          <li><a href="/sis-frist-neuaufnahme/">SIS-Frist nach Neuaufnahme: Bis wann muss die Doku stehen?</a></li>
+          <li><a href="/sis-formulierungshilfen/">SIS-Formulierungshilfen: Beispiele für alle sechs Themenfelder</a></li>
+          <li><a href="/sis-spickzettel/">SIS-Spickzettel – auf einen Blick</a></li>
+          <li><a href="/vorlagen/">SIS-Bogen &amp; Maßnahmenplan</a></li>
+        </ul>
+      </div>
+      <div class="karte">
+        <h3>Die sechs Themenfelder</h3>
+        <ul>
+          <li><a href="/sis-themenfeld-1-kognition-kommunikation/">Themenfeld 1: Kognitive und kommunikative Fähigkeiten</a></li>
+          <li><a href="/sis-themenfeld-2-mobilitaet/">Themenfeld 2: Mobilität und Beweglichkeit</a></li>
+          <li><a href="/sis-themenfeld-3-krankheitsbezogene-anforderungen/">Themenfeld 3: Krankheitsbezogene Anforderungen und Belastungen</a></li>
+          <li><a href="/sis-themenfeld-4-selbstversorgung/">Themenfeld 4: Selbstversorgung</a></li>
+          <li><a href="/sis-themenfeld-5-soziale-beziehungen/">Themenfeld 5: Leben in sozialen Beziehungen</a></li>
+          <li><a href="/sis-themenfeld-6-haushaltsfuehrung/">Themenfeld 6: Haushaltsführung</a></li>
+        </ul>
+      </div>
+      <div class="karte">
+        <h3>Planung und Prüfung</h3>
+        <ul>
+          <li><a href="/risikomatrix-sis/">Die Risikomatrix in der SIS: Aufbau, Ausfüllen, häufige Fehler</a></li>
+          <li><a href="/massnahmenplan-ambulant/">Maßnahmenplan ambulant: von der SIS zur Planung</a></li>
+          <li><a href="/berichteblatt/">Berichteblatt: nur Abweichungen dokumentieren</a></li>
+          <li><a href="/evaluation-pflegeplanung/">Evaluation: Wann die Planung auf den Prüfstand gehört</a></li>
+          <li><a href="/qpr-ambulant-2026/">QPR ambulant 2026: Was die neue Prüfung verlangt</a></li>
+          <li><a href="/md-pruefung-ambulant-vorbereiten/">MD-Prüfung ambulant vorbereiten: Checkliste und Fachgespräch</a></li>
+          <li><a href="/sis-software/">SIS-Software für ambulante Pflegedienste: Worauf es ankommt</a></li>
+        </ul>
+      </div>
+      <div class="karte">
+        <h3>Praxis und Beispiele</h3>
+        <ul>
+          <li><a href="/sis-beispiel-ambulant/">SIS-Beispiel ambulant: ein ausgefüllter Musterfall</a></li>
+          <li><a href="/sis-demenz/">SIS bei Menschen mit Demenz: Feld B, Grundbotschaft und Themenfeld 1</a></li>
+          <li><a href="/massnahmenplan-formulierungen/">Maßnahmenplan formulieren: Beispiele für den ambulanten Dienst</a></li>
+          <li><a href="/dekubitusprophylaxe-massnahmenplan/">Dekubitusprophylaxe im Maßnahmenplan richtig formulieren</a></li>
+          <li><a href="/sturzprophylaxe-ambulant/">Sturzrisiko in der SIS und im Maßnahmenplan</a></li>
+          <li><a href="/sis-pflegegrad/">SIS und Pflegegrad: Themenfelder und Module im Vergleich</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="zentriert" style="margin-top:22px"><a href="/neu-in-dokuna/" style="color:var(--akzent);font-weight:600;text-decoration:none">Neu in Dokuna: die neuen Funktionen&nbsp;›</a></p>
+  </div>
+</section>
+
 <section class="zentriert" id="kontakt" style="padding-top:0">
   <div class="wrap schmal">
     <h2>Lernen wir uns kennen.</h2>
@@ -498,7 +610,7 @@
       <p class="kontaktzeile"><a href="mailto:info@dokuna.de">info@dokuna.de</a><span aria-hidden="true"> · </span><a href="tel:+4915116833569">+49 151 16833569</a></p>
     </div>
     <div class="gruender">
-      <img class="avatar" src="/jonas.jpg" alt="Jonas Jahrke" width="64" height="64" loading="lazy" style="width:64px;height:64px;object-fit:cover">
+      <img class="avatar" src="/jonas.webp" alt="Jonas Jahrke" width="64" height="64" loading="lazy" style="width:64px;height:64px;object-fit:cover">
       <p class="info"><b>Jonas Jahrke</b>Gründer · Pflegefachassistent in Ausbildung zum Pflegefachmann · <a href="/ueber/">Mehr über mich&nbsp;›</a></p>
     </div>
     <p class="schonkunde">Schon Kunde? <a href="https://app.dokuna.de/login">Hier anmelden&nbsp;›</a></p>
@@ -511,6 +623,7 @@
     <nav>
       <a href="/sis-software/">SIS-Software</a>
       <a href="/sis-formulierungshilfen/">SIS-Ratgeber</a>
+      <a href="/neu-in-dokuna/">Neu in Dokuna</a>
       <a href="/ueber/">Über</a>
       <a href="https://app.dokuna.de/login">Anmelden</a>
       <a href="/impressum/">Impressum</a>
@@ -518,6 +631,7 @@
       <a href="/#kontakt">Kontakt</a>
     </nav>
   </div>
+  <p class="marke">SIS® ist eine eingetragene Marke.</p>
 </footer>
 
 <style>[data-countup]{font-variant-numeric:tabular-nums}.stats .s b [data-countup]{font-size:inherit;color:var(--text);font-weight:inherit}
