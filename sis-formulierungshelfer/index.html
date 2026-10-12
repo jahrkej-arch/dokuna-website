@@ -318,7 +318,14 @@ function L(s){
 var MODAL=/^(kann|können|muss|müssen|will|wollen|soll|sollen|darf|dürfen|ist|sind|hat|haben|wird|werden|war|waren|mag|möchte|fehlt|fällt|gibt)$/;
 function letztesWort(x){var w=x.split(/\s+/);return w[w.length-1]||'';}
 function istInfinitiv(x){var w=letztesWort(x);return /^[a-zäöüß]+(en|ern|eln)$/.test(w)&&x.split(/\s+/).length>=2;}
-function istNebensatz(x){var w=letztesWort(x);if(x.split(/\s+/).length<2)return false;return MODAL.test(w)||/^[a-zäöüß]+(t|en|ern|eln|st)$/.test(w);}
+function istNebensatz(x){
+  var w=letztesWort(x);if(x.split(/\s+/).length<2)return false;
+  if(MODAL.test(w)||/^[a-zäöüß]+(t|st)$/.test(w))return true;
+  /* Endung -en ist nur mit Mehrzahl-Subjekt ein Nebensatz („Waschlappen und Handtuch bereitliegen“), sonst ein Infinitiv („Waschschüssel bereitstellen“) */
+  return /^[a-zäöüß]+(en|ern|eln)$/.test(w)&&/(^|\s)(und|die|alle|beide|sie|wir|diese)(\s|$)/i.test(x.replace(/\s\S+$/,''));
+}
+var ADVERBIAL=/^(aus|von|vom|auf|in|im|an|am|bei|beim|nach|vor|zur|zum|unter|über|neben|hinter|mit|ohne|durch|morgens|mittags|abends|nachts|tagsüber|früh|spät|draußen|drinnen|zu|meist|meistens|oft|vor allem|besonders|immer|vorwiegend)(\s|$)/i;
+function adverbial(x){return ADVERBIAL.test(x)&&x.indexOf(',')<0;}
 function stichpunkt(x){
   return x.split(/,\s*/).map(function(t,i){return (i===0||/^[a-zäöüß]+$/.test(t))?gross(t):t;}).join(', ');
 }
@@ -326,7 +333,7 @@ function grundSatz(x){x=L(x);return istNebensatz(x)?'Das liegt daran, dass '+x+'
 function grundRahmen(x){x=L(x);return (!x||istNebensatz(x))?'Das liegt daran, dass ___.':'Grund: ___.';}
 function ressSatz(x){x=L(x).replace(/^kann\s+(weiterhin\s+)?(sicher\s+)?/i,'').replace(/^(weiterhin\s+)?sicher\s+/i,'');return istInfinitiv(x)?'{P} kann weiterhin sicher '+x+'.':'Sicher gelingt {P3} weiterhin: '+stichpunkt(x)+'.';}
 function ressRahmen(x){x=L(x);return (!x||istInfinitiv(x))?'{P} kann weiterhin sicher ___.':'Sicher gelingt {P3} weiterhin: ___.';}
-var NP_START=/^(eine?|einen|einem|einer|den|die|das|dem|der|kein\w*|ihre?n?|seine?n?|morgens|abends|mittags|nachts|tägliche?n?|regelmäßige?n?)\s/i;
+var NP_START=/^(eine?|einen|einem|einer|den|die|das|dem|der|kein\w*|ihre?n?|seine?n?|tägliche?n?|regelmäßige?n?)\s(?!.*,)/i;
 function frei(s){return String(s||'').replace(/\s+/g,' ').trim();}
 function vorfeld(s){s=L(s);if(/,\s*(die|der|das|den|dem|deren|dessen|wenn|weil|da|dass|wo|welche|welcher|welches|soweit|sobald|solange|falls|obwohl|wobei|ob|als|bis)\b/i.test(s))s+=',';return s;}
 var EINZAHL=['eine unzureichende Beleuchtung','ungeeignetes Schuhwerk','ungeöffnete Post'];
@@ -483,7 +490,7 @@ TF.push({nr:2,kurz:'Mobilität',name:'Mobilität und Beweglichkeit',
   {t:'sel',id:'bett',l:'Positionswechsel im Bett',o:[['selbst','dreht sich und setzt sich selbstständig auf'],['eine','braucht dafür Unterstützung durch eine Person'],['zwei','braucht dafür Unterstützung durch zwei Personen'],['nicht','verändert die Position im Bett nicht selbst']]},
   {t:'txt',id:'haelt',l:'Wie lange hält die Person eine Position, was passiert danach?',r:'Eine Position hält {P} etwa ___.',b:'z. B. 20 Minuten, danach rutscht sie in die Rückenlage zurück',w:function(v){return v.bett==='eine'||v.bett==='zwei'||v.bett==='nicht';}},
   {t:'sel',id:'aufstehen',l:'Aufstehen und Transfer',o:[['selbst','steht selbstständig auf'],['halt','steht mit Festhalten an Möbeln oder Haltegriff allein auf'],['anschub','braucht beim Aufstehen Anschub durch eine Person'],['sicherung','Transfer in den Rollstuhl mit Sicherung durch eine Person'],['zwei','Transfer nur mit zwei Personen']]},
-  {t:'txt',id:'aufort',l:'Wo fällt das Aufstehen besonders schwer?',r:'Besonders schwer fällt das Aufstehen ___.',b:'z. B. aus dem tiefen Sessel im Wohnzimmer'},
+  {t:'txt',id:'aufort',l:'Wo fällt das Aufstehen besonders schwer?',r:function(v){var x=L(v.aufort);return (!x||adverbial(x))?'Besonders schwer fällt das Aufstehen ___.':'Schwierig beim Aufstehen: ___.';},b:'z. B. aus dem tiefen Sessel im Wohnzimmer'},
   {t:'sel',id:'gehen',l:'Fortbewegung in der Wohnung',o:[['frei','geht frei und sicher'],['moebel','geht frei, hält sich an Möbeln oder Wand fest'],['rollator','geht mit Rollator'],['stock','geht mit Gehstock'],['rs_selbst','bewegt sich im Rollstuhl selbst fort'],['rs_geschoben','wird im Rollstuhl geschoben'],['bett','verbringt den Tag überwiegend im Bett']]},
   {t:'txt',id:'ohne',l:'Wann nutzt die Person das Hilfsmittel nicht?',r:function(v){return 'Ohne '+(v.gehen==='stock'?'Gehstock':'Rollator')+' geht {P} ___.';},b:'z. B. nachts zur Toilette',w:function(v){return v.gehen==='rollator'||v.gehen==='stock';}},
   {t:'sel',id:'draussen',l:'Wohnung verlassen',o:[['allein','verlässt die Wohnung allein'],['begleitung','verlässt die Wohnung nur in Begleitung'],['nicht','verlässt die Wohnung zurzeit nicht']]},
@@ -494,7 +501,7 @@ TF.push({nr:2,kurz:'Mobilität',name:'Mobilität und Beweglichkeit',
   {t:'sel',id:'sturzfolge',l:'Folgen des letzten Sturzes',o:[['ohne','ohne Verletzung'],['mit','mit Verletzung']],w:function(v){return v.sturz==='ja';}},
   {t:'chk',id:'angst',l:'Sturzangst',o:[['angst','äußert Angst vor einem Sturz'],['vermeidet','vermeidet aus Unsicherheit Bewegung']]},
   {t:'chk',id:'umgebung',l:'Sturzgefahren im Wohnumfeld',zwei:true,o:[['lose Teppiche oder Läufer','lose Teppiche oder Läufer'],['Türschwellen','Türschwellen'],['eine unzureichende Beleuchtung','unzureichende Beleuchtung'],['Hindernisse auf den Wegen','Hindernisse auf den Wegen'],['ungeeignetes Schuhwerk','ungeeignetes Schuhwerk'],['fehlende Haltegriffe im Bad','fehlende Haltegriffe im Bad']]},
-  {t:'txt',id:'wann',l:'Wann und wo ist die Person am unsichersten?',r:'Am unsichersten ist {P} ___.',b:'z. B. nachts auf dem Weg zur Toilette'},
+  {t:'txt',id:'wann',l:'Wann und wo ist die Person am unsichersten?',r:function(v){var x=L(v.wann);return (!x||adverbial(x))?'Am unsichersten ist {P} ___.':'Am unsichersten ist {P} in diesen Situationen: ___.';},b:'z. B. nachts auf dem Weg zur Toilette'},
   {t:'h',l:'Ressourcen und Sicht der Person'},
   ressource('z. B. die vier Stufen zur Haustür mit Festhalten am Geländer bewältigen'),
   WUNSCH,WEITERE
@@ -506,7 +513,7 @@ TF.push({nr:2,kurz:'Mobilität',name:'Mobilität und Beweglichkeit',
   if(v.bett&&v.bett!=='selbst'){if(L(v.haelt))s.push('Eine Position hält {P} etwa '+L(v.haelt)+'.');else f.push('Position: Wie lange hält die Person eine Position und was passiert danach?');}
   g={selbst:'Vom Bett und vom Stuhl steht {P} selbstständig auf.',halt:'{P} hält sich beim Aufstehen an Möbeln oder an einem Haltegriff fest und kommt so allein hoch.',anschub:'Beim Aufstehen braucht {P} Anschub durch eine Person.',sicherung:'Den Transfer in den Rollstuhl schafft {P} mit Sicherung durch eine Person.',zwei:'Der Transfer gelingt nur mit Unterstützung durch zwei Personen.'}[v.aufstehen];
   if(g)s.push(g);
-  if(L(v.aufort))s.push('Besonders schwer fällt das Aufstehen '+L(v.aufort)+'.');
+  if(L(v.aufort))s.push(adverbial(L(v.aufort))?'Besonders schwer fällt das Aufstehen '+L(v.aufort)+'.':'Schwierig beim Aufstehen: '+stichpunkt(L(v.aufort))+'.');
   if(!g&&!L(v.aufort))f.push('Transfer: Wie steht die Person auf, vom Bett, vom Stuhl, von der Toilette?');
   g={frei:'In der Wohnung geht {P} frei und sicher.',moebel:'In der Wohnung geht {P} frei und hält sich dabei an Möbeln oder an der Wand fest.',rollator:'In der Wohnung geht {P} mit Rollator.',stock:'In der Wohnung geht {P} mit Gehstock.',rs_selbst:'{P} bewegt sich in der Wohnung im Rollstuhl selbstständig fort.',rs_geschoben:'In der Wohnung wird {P} im Rollstuhl geschoben.',bett:'{P} verbringt den Tag überwiegend im Bett.'}[v.gehen];
   if(g)s.push(g);else f.push('Fortbewegung: Wie bewegt sich die Person in der Wohnung fort?');
@@ -529,7 +536,7 @@ TF.push({nr:2,kurz:'Mobilität',name:'Mobilität und Beweglichkeit',
   else if(a.indexOf('angst')>-1)s.push('{P} äußert Angst vor einem Sturz.');
   else if(a.indexOf('vermeidet')>-1)s.push('Aus Unsicherheit vermeidet {P} Bewegung.');
   if((v.umgebung||[]).length)s.push(auffaellig(v.umgebung,(v.umgebung.length===1?'Als Sturzgefahr':'Als Sturzgefahren')));
-  if(L(v.wann))s.push('Am unsichersten ist {P} '+L(v.wann)+'.');
+  if(L(v.wann))s.push(adverbial(L(v.wann))?'Am unsichersten ist {P} '+L(v.wann)+'.':'Am unsichersten ist {P} in diesen Situationen: '+stichpunkt(L(v.wann))+'.');
   else f.push('Wann genau? Zu welcher Tageszeit und an welchem Ort ist die Person am unsichersten?');
   if(!L(v.ressource))f.push('Ressourcen: Was macht die Person selbst?');
   schluss(v,s,f);
@@ -756,7 +763,7 @@ TF.push({nr:5,kurz:'Soziales',name:'Leben in sozialen Beziehungen',
  felder:[
   {t:'h',l:'Tagesablauf und Freude'},
   {t:'txt',id:'auf',l:'Wann steht die Person auf?',r:'{P} steht gegen ___ auf.',b:'z. B. 7 Uhr'},
-  {t:'txt',id:'tag',l:'Wo verbringt die Person den Tag?',r:'Den Tag verbringt {P} überwiegend ___.',b:'z. B. im Sessel am Fenster'},
+  {t:'txt',id:'tag',l:'Wo verbringt die Person den Tag?',r:function(v){var x=L(v.tag);return (!x||adverbial(x))?'Den Tag verbringt {P} überwiegend ___.':'Aufenthalt tagsüber: ___.';},b:'z. B. im Sessel am Fenster'},
   {t:'txt',id:'ritual',l:'Was gehört fest zum Tag?',r:'Zum Tag gehört fest ___.',b:'z. B. das Abendgebet, für das sie ungestört sein möchte'},
   {t:'txt',id:'freude',l:'Was macht der Person Freude?',r:'Freude bereitet {P3} vor allem ___.',b:'z. B. das Radiohören am Vormittag'},
   {t:'h',l:'Kontakte und Teilhabe'},
@@ -780,8 +787,9 @@ TF.push({nr:5,kurz:'Soziales',name:'Leben in sozialen Beziehungen',
  ],
  bau:function(v){
   var s=[],f=[],w=[],hin=[],g;
-  if(L(v.auf)&&L(v.tag))s.push('{P} steht gegen '+L(v.auf)+' auf und verbringt den Tag überwiegend '+L(v.tag)+'.');
-  else{ if(L(v.auf))s.push('{P} steht gegen '+L(v.auf)+' auf.'); if(L(v.tag))s.push('Den Tag verbringt {P} überwiegend '+L(v.tag)+'.'); }
+  var tagOk=!L(v.tag)||adverbial(L(v.tag));
+  if(L(v.auf)&&L(v.tag)&&tagOk)s.push('{P} steht gegen '+L(v.auf)+' auf und verbringt den Tag überwiegend '+L(v.tag)+'.');
+  else{ if(L(v.auf))s.push('{P} steht gegen '+L(v.auf)+' auf.'); if(L(v.tag))s.push(tagOk?'Den Tag verbringt {P} überwiegend '+L(v.tag)+'.':'Aufenthalt tagsüber: '+stichpunkt(L(v.tag))+'.'); }
   if(!L(v.auf)&&!L(v.tag))f.push('Tagesablauf: Wann steht die Person auf? Wo verbringt sie den Tag?');
   if(L(v.ritual))s.push('Zum Tag gehört fest '+L(v.ritual)+'.');
   if(L(v.freude))s.push('Freude bereitet {P3} vor allem '+L(v.freude)+'.');
@@ -1104,19 +1112,30 @@ var NAME2=/(^|[^A-Za-zÄÖÜäöüß])(Dr|Prof)\.\s*(?:med\.\s*)?[A-ZÄÖÜ][a-z
 var VERW='Tochter|Sohn|Ehefrau|Ehemann|Mann|Gatte|Gattin|Nachbarin|Nachbar|Enkelin|Enkel|Schwester|Bruder|Neffe|Nichte|Lebensgefährtin|Lebensgefährte|Freundin|Freund|Schwiegertochter|Schwiegersohn|Schwägerin|Schwager|Cousine|Cousin|Tante|Onkel|Mutter|Vater|Betreuerin|Betreuer|Hausärztin|Hausarzt|Ärztin|Arzt|Pflegerin|Pfleger';
 var TAGE='Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag|Montags|Dienstags|Mittwochs|Donnerstags|Freitags|Samstags|Sonntags|Uhr|Abend|Abends|Morgen|Morgens|Mittag|Mittags|Nachmittag|Nachmittags|Wochenende|Einkauf|Einkäufe|Termine|Wäsche|Unterstützung|Hilfe|Bescheid';
 var NAME3=new RegExp('(^|[^'+B+'])(?:'+VERW+')\\s+(?!(?:'+TAGE+')'+NB+')[A-ZÄÖÜ][a-zäöüß]{2,}');
+/* Musterregel für unbekannte Präparate: Wort + Zahl + Einnahme- oder Zeitangabe („Torem 10 morgens“, „Oxygesic 10 alle 12 h“) */
+var ZEIT_ANGABE='morgens|mittags|abends|nachts|zur\\s+Nacht|nüchtern|stündlich|wöchentlich|wöchtl\\.?|alle\\s+[0-9]+\\s*(?:h|Std\\.?|Stunden)'+NB+'|(?:vor|nach|zum|zu)\\s+(?:dem|den)?\\s*(?:Essen|Mahlzeiten|Frühstück|Mittagessen|Abendessen|Schlafen)|tgl\\.?|tägl\\.?|täglich|retard|ret\\.|bei\\s+Bedarf|b\\.\\s?B\\.|[0-9]*\\s?x\\s?(?:tgl|tägl|täglich)';
+var VOR_AUSNAHME='um|gegen|ab|bis|seit|etwa|ca|circa|zwischen|nach|vor|von|alle|jeden|jede|jeder|am|im|in|an|mit|und|oder|bei|zu|zur|zum|für|nur|noch|insgesamt|rund|trinkt|isst|geht|läuft|kommt|kommen|macht|schläft|steht|liegt|wacht|wird|ist|sind|hat|war|Einsatz|Einsätze|Besuch|Besuche|Besuchen|Tour|Runde|Runden|Spaziergang|Spaziergänge|Gang|Gänge|Stuhlgang|Toilettengang|Toilettengänge|Miktion|Miktionen|Vorlage|Vorlagen|Windel|Windeln|Wechsel|Mahlzeit|Mahlzeiten|Portion|Portionen|Stock|Etage|Zimmer|Bus|Linie|Seite|Nr|Nummer|Stufe|Stufen|Pflegegrad|Pflegestufe|Typ|Uhr|Minuten|Std|Stunden|Mal|mal|x|Tag|Tage|Woche|Wochen|Liter|Becher|Tassen|Gläser|Glas|Gymnastik|Übung|Übungen|Training|Bewegungsübungen|Atemübungen|Lagerung|Lagerungen|Mobilisation|Toilettentraining|Rundgang|Rundgänge';
+var WORT_ZAHL_ZEIT=new RegExp('(^|[^'+B+'])(?!(?:'+VOR_AUSNAHME+')'+NB+')[A-Za-zÄÖÜäöüß][A-Za-zÄÖÜäöüß-]+\\.?\\s+(?!(?:19|20)[0-9]{2}(?![0-9]))[0-9½¼¾]+(?:[.,/][0-9]+)?(?![0-9])\\s*(?:(?:retard|ret\\.|forte|akut|mite|comp\\.?|plus)\\s*)?(?:'+ZEIT_ANGABE+')(?![A-Za-zäöüß])','i');
+/* Zeit- oder Einnahmeangabe vorn: „nimmt abends Somnal 7,5“, „morgens Torem 10“ */
+var VORN_ZEIT=new RegExp('(^|[^'+B+'])(?:nimmt|nehme|nehmen|bekommt|bekomme|erhält|gibt|spritzt|inhaliert|schluckt|braucht|morgens|mittags|abends|nachts|zur\\s+Nacht|nüchtern|täglich|tgl\\.?)\\s+(?:(?:morgens|mittags|abends|nachts|zur\\s+Nacht|nüchtern|täglich|tgl\\.?|noch|auch|immer|zusätzlich)\\s+)?(?!(?:'+VOR_AUSNAHME+')'+NB+')[A-ZÄÖÜ][A-Za-zÄÖÜäöüß-]+\\s+(?!(?:19|20)[0-9]{2}(?![0-9]))[0-9½¼¾]+(?:[.,/][0-9]+)?(?![0-9])(?!\\s?(?:'+NICHT_MED+')'+NB+')(?!\\s+[A-ZÄÖÜ])','i');
+/* eindeutig Bewegung oder Aktivität */
+var BEWEGUNG=/spazier|spaziergang|geht|gehen|läuft|laufen|gymnastik|übung|training|bewegung|rollator|gehstock|rollstuhl|treppe|aufstehen|mobilis|einsatz|einsätze|besuch|kommt|kommen|pflegedienst/i;
 /* Gibt null oder 'med' bzw. 'name' zurück */
 function treffer(tf,id,wert){
   var t=String(wert||'');
   if(!t.trim())return null;
   if(NAME1.test(t)||NAME2.test(t)||NAME3.test(t))return 'name';
   var drogeDa=drogen(t).length>0;
-  var medKontext=tf.nr===3||drogeDa||MEDWORT.test(t)||BEDARF.test(t);
+  var stark=drogeDa||MEDWORT.test(t)||BEDARF.test(t);
+  var medKontext=tf.nr===3||stark;
+  var aktiv=!stark&&BEWEGUNG.test(t);
   if(EINH.test(t)||FORM.test(t)||SCHEMA.test(t)||DOSISWORT.test(t))return 'med';
   if(drogeDa&&drogeMitZahl(t))return 'med';
   if(mengeIstDosis(tf,t,medKontext))return 'med';
-  if(HAEUF_ZIFFER.test(t)&&(medKontext||!EINSATZ.test(t)))return 'med';
+  if(WORT_ZAHL_ZEIT.test(t)||VORN_ZEIT.test(t))return 'med';
+  if(HAEUF_ZIFFER.test(t)&&(stark||!EINSATZ.test(t)))return 'med';
   if((TGL.test(t)||BEDARF.test(t))&&ZAHL_MED.test(t)&&!(EINSATZ.test(t)&&!drogeDa&&!MEDWORT.test(t)))return 'med';
-  if(medKontext&&(HAEUF_WORT.test(t)||TAGESZEIT.test(t)||PRAEP.test(t)))return 'med';
+  if(medKontext&&!aktiv&&(HAEUF_WORT.test(t)||TAGESZEIT.test(t)||PRAEP.test(t)))return 'med';
   return null;
 }
 var ABK=/(^|[^A-Za-zÄÖÜäöüß])(Pat|re|li|wg|wgn|Mo|Di|Mi|Do|Fr|Sa|So|tgl|tägl|ggf|evtl|vorh|Pfl|PK|PFK|Kl|Ang|bds|Z\.\s?n|v\.\s?a|o\.\s?B)\.(?=\s|$|,)/g;
