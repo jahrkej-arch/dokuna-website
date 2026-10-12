@@ -252,6 +252,22 @@
   .ratgeber-grid a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--linie)}
   .ratgeber-grid a:hover{color:var(--akzent);border-color:var(--akzent)}
   .marke{font-size:.8rem;color:var(--grau);max-width:1024px;margin:0 auto;padding:0 24px 18px}
+  .vn{position:relative;margin:22px 0 8px;border-radius:18px;overflow:hidden;border:1px solid var(--linie);background:var(--weiss);--pos:50%;user-select:none;touch-action:pan-y}
+  .vn-karte{padding:20px 22px 24px;background:var(--weiss);font-size:.95rem;line-height:1.55}
+  .vn-karte p{margin:0 0 .5em}
+  .vn-kopf{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.8rem;color:var(--grau);border-bottom:2px solid var(--akzent);padding-bottom:8px;margin-bottom:12px}
+  .vn-marke{position:absolute;top:12px;z-index:2;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:4px 10px;border-radius:99px;pointer-events:none}
+  .vn-marke.l{left:12px;background:var(--akzent);color:#fff}.vn-marke.r{right:12px;background:var(--text);color:#fff}
+  .vn-kopf{padding-top:26px}
+  .vn{max-height:640px}
+  .vn::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(rgba(255,255,255,0),#fff);pointer-events:none}
+  .vn-oben{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--pos)) 0 0);background:var(--weiss)}
+  .vn-oben .vn-karte{background:var(--akzent-hell);min-height:100%;box-sizing:border-box}
+  .vn-linie{position:absolute;top:0;bottom:0;left:var(--pos);width:3px;margin-left:-1.5px;background:var(--akzent);pointer-events:none}
+  .vn-griff{position:absolute;top:50%;left:var(--pos);width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:var(--akzent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 2px 8px rgba(0,0,0,.2);pointer-events:none}
+  .vn input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize}
+  .vn input:focus-visible ~ .vn-griff{outline:3px solid var(--text);outline-offset:2px}
+  .vn-hinweis{font-size:.85rem;color:var(--grau);margin:0 0 18px}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Dokuna","applicationCategory":"HealthApplication","operatingSystem":"Webbrowser (Computer, iPad, Smartphone)","offers":{"@type":"Offer","priceSpecification":{"@type":"UnitPriceSpecification","price":"80.00","priceCurrency":"EUR","unitText":"pro Standort und Monat"},"description":"80 € pro Standort und Monat, keine Einrichtungsgebühr"},"description":"Software für die Strukturierte Informationssammlung (SIS) und die Maßnahmenplanung ambulanter Pflegedienste. Läuft im Browser am Computer, iPad und Handy. Die Klientendaten speichert der Pflegedienst in seinem eigenen Speicherort, nicht auf dem Dokuna-Server.","url":"https://dokuna.de/","inLanguage":"de"},{"@type":"WebSite","name":"Dokuna","url":"https://dokuna.de/","inLanguage":"de"},{"@type":"Organization","name":"Dokuna","url":"https://dokuna.de/","email":"info@dokuna.de","telephone":"+49 151 16833569","logo":{"@type":"ImageObject","url":"https://dokuna.de/favicon-512.png"},"sameAs":["https://www.linkedin.com/company/dokuna"],"founder":{"@type":"Person","name":"Jonas Jahrke","url":"https://dokuna.de/ueber/","image":"https://dokuna.de/jonas.jpg","sameAs":["https://www.linkedin.com/in/jonas-jahrke"]},"address":{"@type":"PostalAddress","streetAddress":"Pastoratsweg 22","postalCode":"45529","addressLocality":"Hattingen","addressCountry":"DE"}},{"@type":"VideoObject","name":"Dokuna im Überblick – von der SIS zum Maßnahmenplan","description":"Was der Assistent macht und der komplette Durchlauf mit Dokuna: von den Grunddaten über die sechs Themenfelder der Strukturierten Informationssammlung bis zum fertigen Maßnahmenplan.","thumbnailUrl":"https://dokuna.de/poster-v3.jpg","contentUrl":"https://dokuna.de/Dokuna-Erklaervideo-V3.mp4","uploadDate":"2026-10-11T08:00:00+02:00","duration":"PT3M30S","transcript":"Dokuna ist der Assistent für die SIS in der ambulanten Pflege. Sie klicken an, was Sie im Gespräch erfahren haben. Dokuna schreibt daraus den fachlichen Text, wertet die Risiken aus und erstellt den Maßnahmenplan. Die Entscheidung behält die Pflegefachkraft. Der Assistent führt Sie Schritt für Schritt durch den ganzen Bogen: Grunddaten und Eingangsfrage, die sechs Themenfelder, die Risikomatrix, den Maßnahmenplan und zum Schluss die Prüfung. Jeder Schritt ist ein Lückentext mit passenden Vorschlägen. Wie weit Sie sind, zeigt der Balken oben links. Los geht es mit den Grunddaten. Sie tippen Name, Geburtsdatum und Pflegegrad ein, das Alter rechnet Dokuna selbst aus. Ihr Kürzel und die Daten Ihres Pflegedienstes stehen schon im Formular. In Feld B steht die Sicht der Person, möglichst in ihren eigenen Worten. Häufige Aussagen liegen als Vorschlag bereit. Ein Klick übernimmt sie. Alles Weitere tippen Sie einfach dazu. In den sechs Themenfeldern haken Sie zutreffende Sätze an und klicken an, was passt, zum Beispiel die Hilfsmittel. Eigene Beobachtungen ergänzen Sie als freien Text. Dokuna formuliert daraus einen fachlichen Text, der sofort mitwächst. Bei der Selbstversorgung wählen Sie, wie viel Hilfe die Person bei der Körperpflege braucht. Dann tippen Sie an, was sie selbst wäscht. Dokuna schreibt daraus ganze Sätze. Diese Angaben nutzt der Assistent später auch für die Körperpflege im Maßnahmenplan. In der Risikomatrix hat Dokuna die Angaben bereits ausgewertet. Vorschläge erscheinen aufgehellt, mit Begründung. Die Entscheidung trifft die Pflegefachkraft: Sie kreuzt selbst Ja oder Nein an. Aus SIS und Risikomatrix entsteht der Maßnahmenplan automatisch, geordnet nach Einsätzen. Prophylaxen schlägt Dokuna nur vor, immer passend zur Leistung im Einsatz. Ein Klick übernimmt sie. Jeder Text bleibt frei änderbar. Den Plan gibt es in zwei Stilen. Der kurze Stil ist der Standard und passt zum Dokuna-QM-Paket. Die Routinehandlungen stehen dann in den Verfahrensanleitungen Ihres Pflegedienstes. Ohne passendes QM schreibt Dokuna den ausführlichen Stil. Welcher gilt, wird einmal für Ihren Pflegedienst eingestellt. Vor dem Ausdruck weist Dokuna auf Lücken hin, zum Beispiel auf ein fehlendes Evaluationsdatum. Passende Vorschläge übernehmen Sie mit einem Klick. Die Pflegegrad-Ampel vergleicht die SIS mit dem eingetragenen Pflegegrad. Sie ist nur ein Hinweis am Bildschirm. Gedruckt oder gespeichert wird sie nie. Zum Schluss drucken Sie die SIS im Aufbau des Originalbogens, zusammen mit dem Maßnahmenplan. Kürzel und Pflegedienst stehen schon drauf. Gespeichert wird die SIS als Datei im Speicherort Ihres Pflegedienstes. Eingerichtet ist Dokuna schnell. Die Leitung legt für jede Pflegefachkraft einen eigenen Zugang an. Ihr Kürzel steht dann automatisch auf der SIS. Angemeldet wird im Browser, am Computer, am iPad und am Handy. Die Klientendaten bleiben im Speicherort Ihres Pflegedienstes, nicht auf dem Dokuna-Server. Dokuna. Die SIS in wenigen Klicks, fachlich formuliert und bereit für den Ausdruck. Möchten Sie mehr sehen? Fragen Sie auf dokuna.de eine Vorführung an.","inLanguage":"de","isFamilyFriendly":true,"publisher":{"@type":"Organization","name":"Dokuna","url":"https://dokuna.de/"}}]}
@@ -301,7 +317,7 @@
     </div>
     <div class="rechts">
       <picture><source srcset="/jonas.webp" type="image/webp"><img src="/jonas.jpg" alt="Jonas Jahrke, Gründer von Dokuna" width="300" height="300" fetchpriority="high" class="heldenfoto"></picture>
-      <div class="fotokarte"><b>Jonas Jahrke</b><span>Pflegefachassistent, Ausbildung zum Pflegefachmann</span><span>entwickelt Dokuna mitten im Pflegealltag</span></div>
+      <div class="fotokarte"><b>Jonas Jahrke</b><span>Gründer von Dokuna</span><span>aus der Praxis der ambulanten Pflege</span></div>
     </div>
   </div>
 </section>
@@ -396,6 +412,27 @@
       <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10l2 2h6.5A1.5 1.5 0 0 1 20 7.5v11a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5Z"/><path d="m9 13 2 2 4-4"/></svg></span><h3>Eigenes QM-Paket</h3><p>Passend zu Dokuna gibt es das Dokuna-QM-Paket mit 37 Muster-Verfahrensanleitungen: Expertenstandards, Grundpflege und Behandlungspflege. Gibt Ihre PDL es frei, wird der Maßnahmenplan kurz und übersichtlich.</p></div>
       <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="13" height="10" rx="1.5"/><path d="M6 18h6"/><rect x="17" y="8" width="4.5" height="12" rx="1"/></svg></span><h3>Computer, iPad und Handy</h3><p>Dokuna läuft im Browser, ohne Installation. Updates kommen automatisch. Jede Pflegefachkraft hat einen eigenen Zugang, die Leitung verwaltet alle Zugänge.</p></div>
       <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M2.5 21c1.4-3.3 4.2-5 7.5-5 1.2 0 2.4.2 3.4.7"/><path d="m15 18 2.2 2.2L21.5 16"/></svg></span><h3>Die Fachkraft entscheidet</h3><p>Jedes Dokument wird von Ihrer Pflegefachkraft geprüft und freigegeben. Dokuna assistiert, die fachliche Verantwortung bleibt, wo sie hingehört.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0" id="plan-stile">
+  <div class="wrap">
+    <div class="zentriert">
+      <h2>Kurz oder ausführlich. Sie wählen.</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">Mit Verfahrensanleitungen im QM reicht ein kurzer Maßnahmenplan. Ohne beschreibt Dokuna jeden Handgriff. Ziehen Sie den Kreis und sehen Sie denselben Einsatz in beiden Stilen.</p>
+    </div>
+    <div style="max-width:760px;margin:0 auto">
+<div class="vn" id="vn-start">
+<div class="vn-karte"><div class="vn-kopf"><span>Morgens · 07:30–08:00 Uhr · Sa</span></div><p>Die Pflegekraft entnimmt den Schlüssel aus dem Schlüsseltresor und öffnet die Tür. Die Pflegekraft betritt die Wohnung, begrüßt Frau Beispiel und erfragt das aktuelle Wohlbefinden.</p><p>Die Pflegekraft begleitet Frau Beispiel in die Dusche. Die Pflegekraft bereitet die Waschutensilien vor. Die Pflegekraft desinfiziert sich die Hände und zieht für die Waschung Einmalhandschuhe an. Die Pflegekraft unterstützt beim Auskleiden. Beim An- und Auskleiden ist zu beachten: Bücken ist wegen der Knieschmerzen nicht möglich, Hose und Schuhe zieht die Pflegekraft an. Dabei gilt die Reihenfolge: zuerst das Gesicht mit klarem Wasser, dann der übrige Körper mit Duschgel, der Intim- und Gesäßbereich zuletzt. Die Pflegekraft übernimmt die Teilkörperpflege am Rücken, an den Beinen und an den Füßen. Gesicht und Hals, Brust, Arme, Hände, Bauch, Intimbereich und Gesäß wäscht Frau Beispiel selbstständig. Dabei beobachtet die Pflegekraft die Haut, besonders an Hautfalten, Leisten und Zehenzwischenräumen. Zum Abschluss trocknet die Pflegekraft die von ihr gewaschenen Bereiche ab, beginnend am Kopf; die selbst gewaschenen Stellen trocknet Frau Beispiel selbstständig ab. Danach zieht die Pflegekraft die Handschuhe aus, desinfiziert sich die Hände und zieht frische Einmalhandschuhe an. Anschließend unterstützt die Pflegekraft beim Ankleiden. Danach zieht die Pflegekraft die Handschuhe aus und desinfiziert sich abschließend die Hände. Die Pflegekraft zieht die Kompressionsstrümpfe an, achtet auf einen faltenfreien Sitz und kontrolliert Haut und Durchblutung. Zum Abschluss desinfiziert sich die Pflegekraft erneut die Hände.</p><p>Die Pflegekraft dokumentiert die durchgeführten Leistungen, verabschiedet sich von Frau Beispiel und verlässt die Wohnung.</p></div>
+<div class="vn-oben" aria-hidden="true"><div class="vn-karte"><div class="vn-kopf"><span>Morgens · 07:30–08:00 Uhr · Sa</span></div><p>Die Pflegekraft begleitet Frau Beispiel in die Dusche. Die Pflegekraft unterstützt beim Duschen. Beim An- und Auskleiden ist zu beachten: Bücken ist wegen der Knieschmerzen nicht möglich, Hose und Schuhe zieht die Pflegekraft an. Die Pflegekraft zieht die Kompressionsstrümpfe an.</p></div></div>
+<div class="vn-linie"></div>
+<span class="vn-marke l">Kurz · mit QM</span><span class="vn-marke r">Ausführlich</span>
+<input type="range" min="0" max="100" value="50" aria-label="Vergleich: nach links ziehen zeigt den ausführlichen Plan, nach rechts den kurzen">
+<div class="vn-griff" aria-hidden="true">⇆</div>
+</div>
+      <p class="vn-hinweis">Erfundener Fall, Texte unverändert aus Dokuna. Mit der Tastatur: Pfeiltasten.</p>
+      <p style="text-align:center;margin-top:18px"><a class="btn" href="/massnahmenplan-kurz-oder-ausfuehrlich/">Kurz und ausführlich vergleichen</a></p>
     </div>
   </div>
 </section>
@@ -611,7 +648,7 @@
     </div>
     <div class="gruender">
       <img class="avatar" src="/jonas.webp" alt="Jonas Jahrke" width="64" height="64" loading="lazy" style="width:64px;height:64px;object-fit:cover">
-      <p class="info"><b>Jonas Jahrke</b>Gründer · Pflegefachassistent in Ausbildung zum Pflegefachmann · <a href="/ueber/">Mehr über mich&nbsp;›</a></p>
+      <p class="info"><b>Jonas Jahrke</b>Gründer von Dokuna · aus der Praxis der ambulanten Pflege · <a href="/ueber/">Mehr über mich&nbsp;›</a></p>
     </div>
     <p class="schonkunde">Schon Kunde? <a href="https://app.dokuna.de/login">Hier anmelden&nbsp;›</a></p>
   </div>
@@ -820,5 +857,8 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 
 <script src="/reveal.js" defer></script>
 
+<script>
+(function(){var b=document.getElementById("vn-start");if(!b)return;var r=b.querySelector("input");function s(){b.style.setProperty("--pos",r.value+"%")}r.addEventListener("input",s);s();})();
+</script>
 </body>
 </html>
