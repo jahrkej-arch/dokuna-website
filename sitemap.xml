@@ -13,10 +13,22 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://dokuna.de/foerderung-pflegesoftware/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dokuna.de/sis-formulierungshilfen/</loc>
     <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dokuna.de/sis-formulierungshelfer/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dokuna.de/was-ist-die-sis/</loc>
@@ -38,7 +50,7 @@
   </url>
   <url>
     <loc>https://dokuna.de/sis-ausfuellen/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -128,7 +140,7 @@
   </url>
   <url>
     <loc>https://dokuna.de/evaluation-pflegeplanung/</loc>
-    <lastmod>2026-08-21</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -140,7 +152,7 @@
   </url>
   <url>
     <loc>https://dokuna.de/sis-anforderungsprofil/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -170,19 +182,19 @@
   </url>
   <url>
     <loc>https://dokuna.de/md-pruefung-ambulant-vorbereiten/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dokuna.de/sis-demenz/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dokuna.de/dekubitusprophylaxe-massnahmenplan/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -193,14 +205,32 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dokuna.de/schmerz-sis-massnahmenplan/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dokuna.de/ernaehrung-sis-massnahmenplan/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dokuna.de/inkontinenz-sis-massnahmenplan/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dokuna.de/massnahmenplan-formulierungen/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dokuna.de/sis-pflegegrad/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

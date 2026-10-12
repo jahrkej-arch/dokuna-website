@@ -6,6 +6,7 @@ Autor aller Ratgeber: Jonas Jahrke, Gründer von Dokuna, aus der Praxis der ambu
 
 ## Ratgeber
 - [SIS-Formulierungshilfen (Übersicht)](https://dokuna.de/sis-formulierungshilfen/): Aufbau der SIS, Risikomatrix, häufige Fehler, Beispiele für alle sechs Themenfelder
+- [SIS-Formulierungshelfer](https://dokuna.de/sis-formulierungshelfer/): Kostenloses Online-Werkzeug. Lückentext je Themenfeld (1 bis 6) und für Feld B, daraus ein Formulierungsvorschlag in der dritten Person mit Rückfragen zu fehlenden Angaben. Läuft nur im Browser, sendet und speichert nichts, keine KI, keine Risikomatrix, keine Medikamente oder Dosierungen.
 - [Ist die SIS Pflicht?](https://dokuna.de/sis-pflicht/): Wann der Pflegeprozess verbindlich ist (SGB XI), wann keine SIS nötig ist (reine Behandlungspflege nach SGB V) und was die QPR 2026 daran ändert.
 - [SIS ausfüllen: Schritt-für-Schritt-Anleitung](https://dokuna.de/sis-ausfuellen/): Vom Erstgespräch über Eingangsfrage, Themenfelder und Risikomatrix bis zum Abgleich – mit Zeitbedarf und häufigen Fragen.
 - [SIS-Frist nach Neuaufnahme](https://dokuna.de/sis-frist-neuaufnahme/): Bis wann die SIS nach Versorgungsbeginn fertig sein muss – keine Rechtsfrist, EinSTEP-Empfehlung von sieben Tagen, sofortige Dokumentation von Risiken, Fahrplan Tag 0 bis Tag 7.
@@ -32,12 +33,16 @@ Autor aller Ratgeber: Jonas Jahrke, Gründer von Dokuna, aus der Praxis der ambu
 - [SIS bei Demenz](https://dokuna.de/sis-demenz/): Feld B mit Originalton und stellvertretendem Gespräch, Themenfeld 1 mit konkreten Beobachtungen, Grundbotschaft und Maßnahmenplan bei kognitiver Einschränkung.
 - [Dekubitusprophylaxe im Maßnahmenplan](https://dokuna.de/dekubitusprophylaxe-massnahmenplan/): Pflichtangaben (bewegungsfreies Intervall, Lagerungsarten, Hilfsmittel), Kriterien des DNQP-Audits, Rolle der Angehörigen ambulant, Formulierungsbeispiele.
 - [Sturzrisiko ambulant](https://dokuna.de/sturzprophylaxe-ambulant/): Sturzrisiko in SIS, Risikomatrix und Maßnahmenplan, Kriterien des DNQP-Expertenstandards, Umgang mit Ablehnung, Vorgehen nach einem Sturz.
+- [Schmerz in der SIS](https://dokuna.de/schmerz-sis-massnahmenplan/): Ja oder Nein in der Risikomatrix auch bei stabiler Schmerzsituation, weitere Einschätzung nach DNQP-Audit, Maßnahmenplan nach Einsätzen ohne Dosierungen, Warnzeichen mit Reaktion.
+- [Ernährung in der SIS](https://dokuna.de/ernaehrung-sis-massnahmenplan/): Essen und Trinken in der Risikomatrix, befristete Trink- und Ernährungsprotokolle nach EinSTEP-Handreichung, Gewicht nach QPR 2.6, Maßnahmenplan nach Einsätzen, Warnzeichen mit Reaktion.
+- [Inkontinenz in der SIS](https://dokuna.de/inkontinenz-sis-massnahmenplan/): Ja in der Risikomatrix auch bei gut versorgter Inkontinenz, Kontinenzprofil nach DNQP 2024 und QPR 2.7, Toilettengang und Hilfsmittel im Maßnahmenplan, Hautschutz nur bei Risiko, Warnzeichen.
 - [Maßnahmenplan formulieren](https://dokuna.de/massnahmenplan-formulierungen/): Grundregeln nach der EinSTEP-Handreichung, kurzer und ausführlicher Stil, Beispiele für Grundpflege, Behandlungspflege und Prophylaxen, Checkliste vor der Freigabe.
 - [SIS und Pflegegrad](https://dokuna.de/sis-pflegegrad/): Wie die Themenfelder zu den Modulen der Begutachtung passen, Gewichtung nach § 15 SGB XI, Unterschiede und Pflegegradmanagement nach EinSTEP.
 
 ## Produkt
 - [Startseite mit Preisen und Erklärvideo](https://dokuna.de/): 80 € je Standort und Monat, keine Einrichtungsgebühr, Dokuna-QM-Paket mit 37 Muster-Verfahrensanleitungen
 - [SIS-Software: Worauf es bei der Auswahl ankommt](https://dokuna.de/sis-software/): Kriterien für SIS-Software, wo Klientendaten liegen sollten, Checkliste und häufige Fragen.
+- [Förderung für Pflegesoftware](https://dokuna.de/foerderung-pflegesoftware/): Digitalisierungsförderung nach § 8 Abs. 8 SGB XI für ambulante Dienste: bis 40 Prozent, höchstens 12.000 Euro je Einrichtung, Anträge bis 31.12.2030, laufende Kosten ausgeschlossen, Antrag in sechs Schritten.
 - [Über Dokuna](https://dokuna.de/ueber/)
 - [Neu in Dokuna](https://dokuna.de/neu-in-dokuna/): Neue Funktionen für Pflegefachkräfte, Leitung und Datenschutz
 - Im Einsatz: 3 ambulante Pflegedienste mit zusammen 11 Standorten (Prima Pflege Netzwerk mit 5 Standorten, Pflegeagentur 24 mit 5 Standorten, Bauer B+V in Castrop-Rauxel)
