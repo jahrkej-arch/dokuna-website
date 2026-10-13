@@ -118,3 +118,12 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
     radial-gradient(60rem 40rem at 85% 8%, rgba(14,132,119,.055), transparent 62%),
     radial-gradient(50rem 34rem at 5% 42%, rgba(176,138,74,.045), transparent 60%),
     radial-gradient(55rem 38rem at 92% 78%, rgba(14,132,119,.04), transparent 62%)}
+
+/* App-Bilder: Bildschirmfotos aus Dokuna mit erfundenem Musterfall (Einbau 145) */
+.appbild{margin:24px 0 28px}
+.appbild a{display:block;border-radius:14px}
+.appbild img{display:block;max-width:100%;height:auto;border:1px solid var(--linie);border-radius:14px;background:var(--weiss);box-shadow:0 8px 22px rgba(15,42,67,.07)}
+.appbild figcaption{font-size:.85rem;color:var(--grau);line-height:1.5;margin-top:9px}
+.appbilder{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;margin:24px 0 28px}
+.appbilder>.appbild{margin:0;min-width:0}
+@media (max-width:720px){.appbilder{grid-template-columns:1fr}}
