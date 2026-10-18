@@ -1,6 +1,6 @@
 # dokuna.de – SIS & Maßnahmenplanung für ambulante Pflegedienste
 
-> Dokuna ist eine Software für die Pflegedokumentation ambulanter Pflegedienste in Deutschland: Sie führt Pflegefachkräfte durch die Strukturierte Informationssammlung (SIS) und erstellt daraus die individuelle Maßnahmenplanung. Dokuna läuft im Browser am Computer, iPad und Handy. Die Klientendaten speichert der Pflegedienst in seinem eigenen Speicherort, auf dem Dokuna-Server (Hetzner, Deutschland) liegen nur die Benutzerkonten. Die Ratgeber-Seiten erklären das Strukturmodell mit Formulierungsbeispielen und sind frei zugänglich.
+> Dokuna ist eine Software für die Pflegedokumentation ambulanter Pflegedienste in Deutschland: Sie führt Pflegefachkräfte durch die Strukturierte Informationssammlung (SIS) und erstellt daraus die individuelle Maßnahmenplanung. Dokuna läuft im Browser am Computer, iPad und Handy. Die Klientendaten speichert der Pflegedienst in seinem eigenen Speicherort, auf dem Dokuna-Server (Hetzner, Deutschland) liegen nur die Benutzerkonten. Ein Diktat per Mikrofon wandelt Sprache auf diesem Server in Text um, die Aufnahme wird nicht gespeichert. Die Ratgeber-Seiten erklären das Strukturmodell mit Formulierungsbeispielen und sind frei zugänglich.
 
 Autor aller Ratgeber: Jonas Jahrke, Gründer von Dokuna, aus der Praxis der ambulanten Pflege (https://dokuna.de/ueber/). Quellen: EinSTEP-Schulungsunterlagen und Veröffentlichungen des Medizinischen Dienstes Bund.
 
