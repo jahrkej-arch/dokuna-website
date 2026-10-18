@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://dokuna.de/</loc>
     <lastmod>2026-10-12</lastmod>
@@ -11,16 +12,31 @@
     <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-sis-uebersicht.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://dokuna.de/foerderung-pflegesoftware/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dokuna.de/sis-formulierungshilfen/</loc>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-08-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dokuna.de/was-ist-die-sis/</loc>
+    <loc>https://dokuna.de/sis-formulierungshelfer/</loc>
     <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dokuna.de/was-ist-die-sis/</loc>
+    <lastmod>2026-08-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -29,28 +45,34 @@
     <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-risikomatrix.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://dokuna.de/sis-pflicht/</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-08-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dokuna.de/sis-ausfuellen/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-feld-b-eingangsfrage.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://dokuna.de/sis-spickzettel/</loc>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://dokuna.de/vorlagen/</loc>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-08-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -71,36 +93,72 @@
     <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-sis-themenfeld-1-kognition-kommunikation.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-sis-themenfeld-1-kognition-kommunikation-gross.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://dokuna.de/sis-themenfeld-2-mobilitaet/</loc>
     <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-sis-themenfeld-2-mobilitaet.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-sis-themenfeld-2-mobilitaet-gross.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://dokuna.de/sis-themenfeld-3-krankheitsbezogene-anforderungen/</loc>
     <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-sis-themenfeld-3-krankheitsbezogene-anforderungen.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-sis-themenfeld-3-krankheitsbezogene-anforderungen-gross.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://dokuna.de/sis-themenfeld-4-selbstversorgung/</loc>
     <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-sis-themenfeld-4-selbstversorgung.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-sis-themenfeld-4-selbstversorgung-gross.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://dokuna.de/sis-themenfeld-5-soziale-beziehungen/</loc>
     <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-sis-themenfeld-5-soziale-beziehungen.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-sis-themenfeld-5-soziale-beziehungen-gross.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://dokuna.de/sis-themenfeld-6-haushaltsfuehrung/</loc>
     <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-sis-themenfeld-6-haushaltsfuehrung.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-sis-themenfeld-6-haushaltsfuehrung-gross.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://dokuna.de/impressum/</loc>
@@ -122,25 +180,25 @@
   </url>
   <url>
     <loc>https://dokuna.de/berichteblatt/</loc>
-    <lastmod>2026-10-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dokuna.de/evaluation-pflegeplanung/</loc>
     <lastmod>2026-08-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dokuna.de/sis-frist-neuaufnahme/</loc>
+    <loc>https://dokuna.de/evaluation-pflegeplanung/</loc>
     <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dokuna.de/sis-frist-neuaufnahme/</loc>
+    <lastmod>2026-08-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dokuna.de/sis-anforderungsprofil/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -193,6 +251,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dokuna.de/schmerz-sis-massnahmenplan/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dokuna.de/ernaehrung-sis-massnahmenplan/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dokuna.de/inkontinenz-sis-massnahmenplan/</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dokuna.de/massnahmenplan-formulierungen/</loc>
     <lastmod>2026-10-11</lastmod>
     <changefreq>monthly</changefreq>
@@ -200,13 +276,16 @@
   </url>
   <url>
     <loc>https://dokuna.de/sis-pflegegrad/</loc>
-    <lastmod>2026-10-11</lastmod>
+    <lastmod>2026-10-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://dokuna.de/bilder/app/dokuna-pflegegrad-abgleich.webp</image:loc>
+    </image:image>
   </url>
   <url>
     <loc>https://dokuna.de/massnahmenplan-kurz-oder-ausfuehrlich/</loc>
-    <lastmod>2026-10-12</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
