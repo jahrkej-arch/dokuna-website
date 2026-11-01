@@ -106,6 +106,8 @@
 
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
   .karte{background:var(--card);border-radius:20px;padding:32px 28px}
+  .karte p a{color:var(--akzent);font-weight:600;text-decoration:none}
+  .karte p a:hover{text-decoration:underline}
   .karte .icon{display:block;margin-bottom:16px;color:var(--akzent)}
   .karte .icon svg{width:30px;height:30px}
   .karte.gross .icon svg{width:38px;height:38px}
@@ -337,7 +339,7 @@
       <figure class="appfenster">
         <div class="appleiste" aria-hidden="true"><i></i><i></i><i></i><span>app.dokuna.de</span></div>
         <div class="appbild">
-          <img src="/bilder/app/dokuna-themenfeld-4-nur-klicks.webp" alt="Dokuna, Themenfeld 4 Selbstversorgung: angeklickt sind die Körperbereiche, die Frau Beispiel selbst wäscht, und die Kleidung, die sie selbst an- und auszieht. Unten steht der Text, den Dokuna allein aus diesen Klicks formuliert hat" width="1260" height="1523" fetchpriority="high">
+          <img src="/bilder/app/dokuna-themenfeld-4-nur-klicks.webp" alt="Dokuna, Themenfeld 4 Selbstversorgung: angeklickt sind die Körperbereiche, die Frau Beispiel selbst wäscht, sowie die Kleidung, die sie selbst an- und auszieht. Unten steht der Text, den Dokuna allein aus diesen Klicks formuliert hat" width="1260" height="1523" fetchpriority="high">
           <span class="klick k1"><b>1</b>Sie klicken an</span>
           <span class="klick k2"><b>2</b>Dokuna schreibt den Text</span>
         </div>
@@ -436,7 +438,10 @@
       <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><h3>Nach dem Strukturmodell</h3><p>Dokuna folgt dem SIS-Bogen ambulant und den EinSTEP-Erläuterungen: Risikomatrix mit den fünf Original-Risiken, keine Medikamentenlisten in der SIS. Vorschläge sind nur hell markiert, das Kreuz setzt die Fachkraft.</p></div>
       <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10l2 2h6.5A1.5 1.5 0 0 1 20 7.5v11a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5Z"/><path d="m9 13 2 2 4-4"/></svg></span><h3>Eigenes QM-Paket</h3><p>Passend zu Dokuna gibt es das Dokuna-QM-Paket mit 37 Muster-Verfahrensanleitungen: Expertenstandards, Grundpflege und Behandlungspflege. Gibt Ihre PDL es frei, wird der Maßnahmenplan kurz und übersichtlich.</p></div>
       <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="13" height="10" rx="1.5"/><path d="M6 18h6"/><rect x="17" y="8" width="4.5" height="12" rx="1"/></svg></span><h3>Computer, iPad und Handy</h3><p>Dokuna läuft im Browser, ohne Installation. Updates kommen automatisch. Jede Pflegefachkraft hat einen eigenen Zugang, die Leitung verwaltet alle Zugänge.</p></div>
-      <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M2.5 21c1.4-3.3 4.2-5 7.5-5 1.2 0 2.4.2 3.4.7"/><path d="m15 18 2.2 2.2L21.5 16"/></svg></span><h3>Die Fachkraft entscheidet</h3><p>Jedes Dokument wird von Ihrer Pflegefachkraft geprüft und freigegeben. Dokuna assistiert, die fachliche Verantwortung bleibt, wo sie hingehört.</p></div>
+      <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M2.5 21c1.4-3.3 4.2-5 7.5-5 1.2 0 2.4.2 3.4.7"/><path d="m15 18 2.2 2.2L21.5 16"/></svg></span><h3>Keine Aufnahme, keine Blackbox</h3><p>Dokuna zeichnet kein Gespräch auf. Jeder Satz entsteht aus den Klicks Ihrer Pflegefachkraft und bleibt nachvollziehbar. Sie prüft und gibt frei, die fachliche Verantwortung bleibt, wo sie hingehört.</p></div>
+      <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.8-.3-4-1L3 20l1-5.5a8.5 8.5 0 1 1 17-3Z"/></svg></span><h3>Beratungsnachweise (Beta)</h3><p>Nach dem Maßnahmenplan je Thema ein Beratungsnachweis, etwa zu Sturz, Dekubitus oder Schmerz. Was zur SIS passt, ist grün markiert. Die Person unterschreibt am iPad oder Handy. <a href="/neu-in-dokuna/">Mehr dazu</a></p></div>
+      <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10l2 2h6.5A1.5 1.5 0 0 1 20 7.5v11a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5Z"/><path d="m9 13 2 2 4-4"/></svg></span><h3>Ihre Pflegesoftware bleibt</h3><p>Dokuna macht SIS, Maßnahmenplan und Beratung. Abrechnung und Tourenplanung bleiben in Ihrem Programm. Mit „Maßnahme kopieren“ übertragen Sie den Plan samt Tageszeit und Tagen.</p></div>
+      <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/><path d="M10 12h4m0 0-1.8-1.8M14 12l-1.8 1.8"/></svg></span><h3>Offener Preis</h3><p>80 € je Standort und Monat. Keine Einrichtungsgebühr, keine Kosten pro Dokument, kein „Preis auf Anfrage“. <a href="#preise">Zum Preis</a></p></div>
     </div>
   </div>
 </section>
