@@ -214,26 +214,27 @@
   @media (max-width:760px){.knoepfe{justify-content:center}}
   .hero .wrap{max-width:1180px}
   .hero2 .rechts{flex:1 1 0;min-width:0;position:relative}
-  .appfenster{margin:0;width:100%;background:var(--weiss);border:1px solid var(--linie);border-radius:14px;overflow:hidden;box-shadow:0 28px 64px rgba(15,42,67,.16),0 4px 12px rgba(15,42,67,.06);transform:perspective(1400px) rotateY(-4deg);transition:transform .45s var(--ease)}
-  .hero2 .rechts:hover .appfenster{transform:none}
-  .appleiste{display:flex;align-items:center;gap:6px;padding:9px 12px;background:var(--card);border-bottom:1px solid var(--linie)}
+  .appfenster{margin:0;width:100%;background:var(--weiss);border:1px solid var(--linie);border-radius:14px;box-shadow:0 28px 64px rgba(15,42,67,.16),0 4px 12px rgba(15,42,67,.06)}
+  .appleiste{border-radius:14px 14px 0 0;display:flex;align-items:center;gap:6px;padding:9px 12px;background:var(--card);border-bottom:1px solid var(--linie)}
   .appleiste i{width:9px;height:9px;border-radius:50%;background:#d9d6cf}
   .appleiste span{margin-left:10px;font-size:.72rem;color:var(--grau);background:var(--weiss);border-radius:6px;padding:2px 10px}
   .appfenster img{display:block;width:100%;height:auto}
-  .appkarte{position:absolute;left:-22px;bottom:-26px;max-width:250px;background:var(--weiss);border:1px solid var(--linie);border-radius:14px;padding:12px 16px;box-shadow:0 10px 26px rgba(15,42,67,.12);text-align:left}
-  .appkarte b{display:block;font-size:.92rem;font-weight:650}
-  .appkarte span{display:block;font-size:.8rem;color:var(--grau);line-height:1.45}
+  .appbild{position:relative}
+  .klick{position:absolute;right:-14px;display:flex;align-items:center;gap:8px;background:var(--akzent);color:#fff;font-size:.82rem;font-weight:600;padding:7px 14px 7px 7px;border-radius:99px;box-shadow:0 8px 20px rgba(14,132,119,.28)}
+  .klick b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:var(--akzent);font-size:.78rem}
+  .klick.k1{top:28.5%}
+  .klick.k2{top:51%}
+  .appfenster figcaption{font-size:.75rem;color:var(--grau);padding:8px 14px;border-top:1px solid var(--linie);background:var(--card);border-radius:0 0 14px 14px}
   .heldgruender{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);text-align:left;margin-top:6px}
   .heldgruender img{width:48px;height:48px;border-radius:50%;object-fit:cover;display:block}
   .heldgruender b{display:block;font-size:.92rem;font-weight:650}
   .heldgruender span{font-size:.82rem;color:var(--grau);line-height:1.4}
-  @media (prefers-reduced-motion:reduce){.appfenster{transform:none;transition:none}}
   @media (max-width:760px){
     .hero{padding:36px 0 56px}
     .hero2 .rechts{width:100%;margin-top:0}
     .hero2{gap:36px}
-    .appfenster{transform:none}
-    .appkarte{position:static;margin:-18px auto 0;max-width:290px;text-align:center}
+    .klick{right:8px;font-size:.74rem;padding:5px 11px 5px 5px}
+    .klick b{width:19px;height:19px}
   }
   .einsatz{padding:44px 0 40px}
   .einsatz-titel{font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--grau);margin-bottom:18px}
@@ -334,9 +335,13 @@
     <div class="rechts">
       <figure class="appfenster">
         <div class="appleiste" aria-hidden="true"><i></i><i></i><i></i><span>app.dokuna.de</span></div>
-        <img src="/bilder/app/dokuna-sis-uebersicht.webp" alt="Dokuna am Bildschirm: Themenfeld 2 Mobilität als Lückentext mit Auswahl der Hilfsmittel, oben die Schritte von den Grunddaten bis zum Maßnahmenplan" width="1600" height="1000" fetchpriority="high">
+        <div class="appbild">
+          <img src="/bilder/app/dokuna-sis-themenfeld-4-selbstversorgung.webp" alt="Dokuna, Themenfeld 4 Selbstversorgung: oben sind die Körperbereiche angeklickt, die Frau Beispiel selbst wäscht, unten steht der daraus formulierte Text der SIS" width="1260" height="1207" fetchpriority="high">
+          <span class="klick k1"><b>1</b>Sie klicken an</span>
+          <span class="klick k2"><b>2</b>Dokuna schreibt den Text</span>
+        </div>
+        <figcaption>Echter Bildschirm aus Dokuna · erfundener Fall</figcaption>
       </figure>
-      <div class="appkarte"><b>Anklicken statt schreiben</b><span>Dokuna formuliert daraus die SIS und den Maßnahmenplan</span></div>
     </div>
   </div>
 </section>
