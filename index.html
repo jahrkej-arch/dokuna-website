@@ -70,9 +70,8 @@
   .hero2 .rechts{animation:aufblende .7s .15s cubic-bezier(.2,.7,.2,1) backwards}
   @media (prefers-reduced-motion:reduce){
     .hero2 .links>*,.hero2 .rechts{animation:none}
-    .btn,a.karte,.fotokarte{transition:none}
+    .btn,a.karte{transition:none}
     .btn:hover,.btn:active,a.karte:hover{transform:none}
-    .hero2 .rechts:hover .fotokarte{transform:rotate(-1.4deg)}
   }
   .hero2{display:flex;gap:48px;align-items:center}
   .hero2 .links{display:flex;flex-direction:column;gap:20px;max-width:480px}
@@ -80,11 +79,6 @@
   .haken{display:flex;flex-direction:column;gap:10px}
   .haken div{display:flex;align-items:center;gap:10px;font-size:.98rem}
   .haken svg{width:18px;height:18px;flex-shrink:0;color:var(--akzent)}
-  .fotokarte{background:var(--weiss);border:1px solid var(--linie);border-radius:14px;padding:12px 18px;margin-top:-26px;box-shadow:0 10px 26px rgba(15,42,67,.10);text-align:center;position:relative;
-    transform:rotate(-1.4deg);transition:transform .35s var(--ease)}
-  .hero2 .rechts:hover .fotokarte{transform:rotate(0deg)}
-  .fotokarte b{font-size:.92rem;font-weight:650;display:block}
-  .fotokarte span{font-size:.8rem;color:var(--grau);display:block;line-height:1.45}
   .stats{display:flex;justify-content:center;gap:52px;padding:24px 0;border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);background:var(--card);flex-wrap:wrap}
   .stats .s{text-align:center}
   .stats .s b{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:1.3rem;font-weight:700;color:var(--akzent);display:block}
@@ -218,8 +212,29 @@
   }
   .knoepfe{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
   @media (max-width:760px){.knoepfe{justify-content:center}}
-  .heldenfoto{width:300px;height:300px;object-fit:cover;border-radius:24px;box-shadow:0 24px 60px rgba(15,42,67,.18);display:block}
-  @media (max-width:420px){.heldenfoto{width:240px;height:240px}}
+  .hero .wrap{max-width:1180px}
+  .hero2 .rechts{flex:1 1 0;min-width:0;position:relative}
+  .appfenster{margin:0;width:100%;background:var(--weiss);border:1px solid var(--linie);border-radius:14px;overflow:hidden;box-shadow:0 28px 64px rgba(15,42,67,.16),0 4px 12px rgba(15,42,67,.06);transform:perspective(1400px) rotateY(-4deg);transition:transform .45s var(--ease)}
+  .hero2 .rechts:hover .appfenster{transform:none}
+  .appleiste{display:flex;align-items:center;gap:6px;padding:9px 12px;background:var(--card);border-bottom:1px solid var(--linie)}
+  .appleiste i{width:9px;height:9px;border-radius:50%;background:#d9d6cf}
+  .appleiste span{margin-left:10px;font-size:.72rem;color:var(--grau);background:var(--weiss);border-radius:6px;padding:2px 10px}
+  .appfenster img{display:block;width:100%;height:auto}
+  .appkarte{position:absolute;left:-22px;bottom:-26px;max-width:250px;background:var(--weiss);border:1px solid var(--linie);border-radius:14px;padding:12px 16px;box-shadow:0 10px 26px rgba(15,42,67,.12);text-align:left}
+  .appkarte b{display:block;font-size:.92rem;font-weight:650}
+  .appkarte span{display:block;font-size:.8rem;color:var(--grau);line-height:1.45}
+  .heldgruender{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);text-align:left;margin-top:6px}
+  .heldgruender img{width:48px;height:48px;border-radius:50%;object-fit:cover;display:block}
+  .heldgruender b{display:block;font-size:.92rem;font-weight:650}
+  .heldgruender span{font-size:.82rem;color:var(--grau);line-height:1.4}
+  @media (prefers-reduced-motion:reduce){.appfenster{transform:none;transition:none}}
+  @media (max-width:760px){
+    .hero{padding:36px 0 56px}
+    .hero2 .rechts{width:100%;margin-top:0}
+    .hero2{gap:36px}
+    .appfenster{transform:none}
+    .appkarte{position:static;margin:-18px auto 0;max-width:290px;text-align:center}
+  }
   .einsatz{padding:44px 0 40px}
   .einsatz-titel{font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--grau);margin-bottom:18px}
   .logoleiste{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
@@ -314,10 +329,14 @@
         <a class="btn" href="#kontakt">Vorführung anfragen</a>
         <a class="btn leise" href="#video">Video ansehen ›</a>
       </div>
+      <a class="heldgruender" href="/ueber/"><picture><source srcset="/jonas.webp" type="image/webp"><img src="/jonas.jpg" alt="" width="48" height="48"></picture><span><b>Jonas Jahrke</b>Gründer von Dokuna · aus der Praxis der ambulanten Pflege</span></a>
     </div>
     <div class="rechts">
-      <picture><source srcset="/jonas.webp" type="image/webp"><img src="/jonas.jpg" alt="Jonas Jahrke, Gründer von Dokuna" width="300" height="300" fetchpriority="high" class="heldenfoto"></picture>
-      <div class="fotokarte"><b>Jonas Jahrke</b><span>Gründer von Dokuna</span><span>aus der Praxis der ambulanten Pflege</span></div>
+      <figure class="appfenster">
+        <div class="appleiste" aria-hidden="true"><i></i><i></i><i></i><span>app.dokuna.de</span></div>
+        <img src="/bilder/app/dokuna-sis-uebersicht.webp" alt="Dokuna am Bildschirm: Themenfeld 2 Mobilität als Lückentext mit Auswahl der Hilfsmittel, oben die Schritte von den Grunddaten bis zum Maßnahmenplan" width="1600" height="1000" fetchpriority="high">
+      </figure>
+      <div class="appkarte"><b>Anklicken statt schreiben</b><span>Dokuna formuliert daraus die SIS und den Maßnahmenplan</span></div>
     </div>
   </div>
 </section>
