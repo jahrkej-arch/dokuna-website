@@ -113,8 +113,8 @@
     b.className = 'yt-start';
     b.innerHTML = '<span class="yt-play" aria-hidden="true">▶</span>' +
       '<span class="yt-titel"></span>' +
-      '<span class="yt-hinweis">Beim Abspielen wird das Video von YouTube (Google) geladen. ' +
-      'Dabei werden Daten an Google übertragen.</span>';
+      '<span class="yt-hinweis">Mit dem Klick wird das Video von YouTube geladen. ' +
+      'Dabei werden Daten an Google übertragen. Mehr in der Datenschutzerklärung.</span>';
     b.querySelector('.yt-titel').textContent = titel;
     b.addEventListener('click', function () {
       zeigeVideo(box);
@@ -145,39 +145,50 @@
   var kategorien = { notwendig: { enabled: true, readOnly: true } };
   var abschnitte = [
     {
-      title: 'Was wir speichern',
-      description: 'Wir verwenden Cookies und ähnliche Techniken nur, wenn Sie zustimmen. Ihre Auswahl können Sie jederzeit unten auf jeder Seite unter „Cookie-Einstellungen“ ändern. Mehr dazu in der <a href="/datenschutz/">Datenschutzerklärung</a>.'
+      title: 'Ihre Privatsphäre',
+      description: 'Hier legen Sie fest, welche Cookies und Dienste wir verwenden dürfen. Ihre Auswahl gilt für 6 Monate und kann jederzeit über „Cookie-Einstellungen“ am Seitenende geändert werden. Weitere Informationen finden Sie in unserer <a href="/datenschutz/">Datenschutzerklärung</a>.'
     },
     {
-      title: 'Notwendig',
-      description: 'Speichert nur Ihre Auswahl in diesem Fenster (Cookie „cc_cookie“, 6 Monate). Ohne diese Angabe würde das Fenster bei jedem Seitenaufruf erscheinen.',
+      title: 'Unbedingt erforderlich',
+      description: 'Diese Cookies sind für den Betrieb der Website erforderlich und können nicht deaktiviert werden. Gespeichert wird ausschließlich Ihre Auswahl in diesen Einstellungen (Cookie „cc_cookie“, Speicherdauer 6 Monate). Rechtsgrundlage: § 25 Abs. 2 Nr. 2 TDDDG.',
       linkedCategory: 'notwendig'
     }
   ];
+  var ANBIETER = ' Anbieter: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Eine Übermittlung von Daten in die USA ist möglich.';
+  var zwecke = [];
   if (GA4_ID) {
     kategorien.analyse = { enabled: false };
+    zwecke.push('die Nutzung unserer Website statistisch auszuwerten');
     abschnitte.push({
-      title: 'Statistik (Google Analytics)',
-      description: 'Zeigt uns, welche Seiten gelesen werden und wie Besucher auf dokuna.de kommen. Anbieter: Google Ireland Ltd. Dabei können Daten in die USA übertragen werden.',
+      title: 'Statistik',
+      description: 'Mit Google Analytics 4 erfassen wir in pseudonymisierter Form, wie Besucher unsere Website nutzen, zum Beispiel welche Seiten aufgerufen werden und über welche Wege Besucher zu uns kommen.' + ANBIETER + ' Speicherdauer: bis zu 14 Monate.',
       linkedCategory: 'analyse'
     });
   }
   if (GOOGLE_ADS_ID) {
     kategorien.werbung = { enabled: false };
+    zwecke.push('den Erfolg unserer Werbung zu messen');
     abschnitte.push({
-      title: 'Werbung (Google Ads)',
-      description: 'Misst, ob eine Anzeige bei Google oder YouTube zu einer Anfrage geführt hat, damit wir nur für Anzeigen bezahlen, die wirklich helfen. Anbieter: Google Ireland Ltd. Dabei können Daten in die USA übertragen werden.',
+      title: 'Marketing',
+      description: 'Mit Google Ads messen wir, ob ein Besuch über eine unserer Anzeigen bei Google oder YouTube zu einer Anfrage geführt hat (Conversion-Messung).' + ANBIETER + ' Speicherdauer: bis zu 90 Tage.',
       linkedCategory: 'werbung'
     });
   }
   if (hatVideo) {
     kategorien.medien = { enabled: false };
+    zwecke.push('Videos von YouTube einzubinden');
     abschnitte.push({
-      title: 'Externe Medien (YouTube)',
-      description: 'Lädt eingebundene YouTube-Videos direkt beim Aufruf der Seite. Ohne Zustimmung laden Videos erst, wenn Sie sie anklicken. Anbieter: Google Ireland Ltd.',
+      title: 'Externe Medien',
+      description: 'Eingebundene Videos von YouTube werden direkt beim Aufruf der Seite geladen. Ohne Einwilligung wird ein Video erst geladen, wenn Sie es anklicken.' + ANBIETER,
       linkedCategory: 'medien'
     });
   }
+  var zweckText = zwecke.length > 1
+    ? zwecke.slice(0, -1).join(', ') + ' und ' + zwecke[zwecke.length - 1]
+    : zwecke[0];
+  var bannerText = 'Wir verwenden Cookies und ähnliche Technologien. Mit Ihrer Einwilligung setzen wir Dienste von Google ein, um ' + zweckText +
+    ' (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 lit. a DSGVO). Dabei können Daten in die USA übertragen werden. ' +
+    'Die Einwilligung ist freiwillig und jederzeit über „Cookie-Einstellungen“ am Seitenende widerrufbar.';
 
   function start() {
     var cc = window.CookieConsent;
@@ -187,7 +198,7 @@
       revision: 1,
       cookie: { name: 'cc_cookie', expiresAfterDays: 182, sameSite: 'Lax' },
       guiOptions: {
-        consentModal: { layout: 'box', position: 'bottom left', equalWeightButtons: true, flipButtons: false },
+        consentModal: { layout: 'cloud inline', position: 'bottom center', equalWeightButtons: true, flipButtons: false },
         preferencesModal: { layout: 'box', equalWeightButtons: true }
       },
       categories: kategorien,
@@ -204,17 +215,17 @@
         translations: {
           de: {
             consentModal: {
-              title: 'Dürfen wir messen?',
-              description: 'Wir möchten sehen, wie Besucher auf dokuna.de kommen und ob unsere Anzeigen helfen. Dafür setzen wir Dienste von Google ein, aber nur mit Ihrer Zustimmung. Ablehnen ist genauso einfach und hat keine Nachteile.',
-              acceptAllBtn: 'Alle erlauben',
-              acceptNecessaryBtn: 'Nur notwendige',
+              title: 'Datenschutz-Einstellungen',
+              description: bannerText,
+              acceptAllBtn: 'Alle akzeptieren',
+              acceptNecessaryBtn: 'Alle ablehnen',
               showPreferencesBtn: 'Einstellungen',
-              footer: '<a href="/datenschutz/">Datenschutz</a> <a href="/impressum/">Impressum</a>'
+              footer: '<a href="/datenschutz/">Datenschutzerklärung</a> <a href="/impressum/">Impressum</a>'
             },
             preferencesModal: {
-              title: 'Cookie-Einstellungen',
-              acceptAllBtn: 'Alle erlauben',
-              acceptNecessaryBtn: 'Nur notwendige',
+              title: 'Datenschutz-Einstellungen',
+              acceptAllBtn: 'Alle akzeptieren',
+              acceptNecessaryBtn: 'Alle ablehnen',
               savePreferencesBtn: 'Auswahl speichern',
               closeIconLabel: 'Schließen',
               sections: abschnitte
