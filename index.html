@@ -98,6 +98,18 @@
   .btn.leise:hover,.btn.leise:active{transform:none;box-shadow:none;opacity:.75}
   .badge{display:inline-block;background:var(--akzent-hell);color:var(--akzent);padding:6px 18px;border-radius:99px;font-size:.85rem;font-weight:600;margin-bottom:22px}
 
+
+  .mdband{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;max-width:932px;margin:22px auto 0;padding:26px 30px;background:var(--weiss);border:1px solid var(--linie);border-radius:16px;text-align:left}
+  .mdband .ober{font-size:.82rem;font-weight:600;color:var(--akzent);letter-spacing:.01em}
+  .mdband .aussage{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:1.35rem;font-weight:700;line-height:1.25;letter-spacing:-.01em;margin:6px 0 14px;text-wrap:balance}
+  .mdband .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .mdband .chips span{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:99px;background:var(--akzent-hell);font-size:.85rem;font-weight:500}
+  .mdband .chips i{display:inline-flex;gap:2px}.mdband .chips i::before{content:"";width:22px;height:7px;background:repeating-linear-gradient(90deg,var(--akzent) 0 4px,transparent 4px 6px);display:block}
+  .mdband .fuss{font-size:.78rem;color:var(--grau);margin-top:12px}
+  .mdband a.beleg{display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:var(--akzent);font-weight:600;font-size:.88rem}
+  .mdband a.beleg img{width:118px;height:auto;border:1px solid var(--linie);border-radius:6px;box-shadow:0 8px 20px rgba(15,42,67,.10);transition:transform .25s var(--ease)}
+  .mdband a.beleg:hover img{transform:translateY(-2px) rotate(-1deg)}
+  @media(max-width:700px){.mdband{grid-template-columns:1fr;padding:22px;max-width:300px}.mdband a.beleg{flex-direction:row;justify-content:flex-start}.mdband a.beleg img{width:72px}}
   section{padding:88px 0}
   h2{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;letter-spacing:-.015em;line-height:1.14;margin-bottom:14px;text-wrap:balance}
   .lead{font-size:1.15rem;color:var(--grau);max-width:620px;margin-bottom:48px;text-wrap:pretty}
@@ -323,7 +335,7 @@
       <h1>SIS® und Maßnahmen&shy;plan in Minuten.</h1>
       <p class="sub" style="margin:0;font-size:1.2rem">Dokuna führt Ihre Pflegefachkräfte Schritt für Schritt durch die SIS® und erstellt daraus direkt den passenden Maßnahmenplan. Im Browser, ohne Installation.</p>
       <div class="haken">
-        <div><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><span>Formuliert für die MD-Prüfung nach QPR 2026</span></div>
+        <div><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><span>MD-Prüfung nach QPR 2026: bestes Ergebnis bei der Pflegeagentur 24</span></div>
         <div><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><span>Nach dem Strukturmodell (EinSTEP) mit eigenem QM-Paket</span></div>
         <div><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><span>Klientendaten bleiben bei Ihnen, nicht auf unserem Server</span></div>
       </div>
@@ -371,6 +383,20 @@
         <img src="/logos/bauer-bv.png" alt="Bauer B+V Pflegedienst.Besser.Versorgt GmbH" width="526" height="120" hidden>
         <span class="wortmarke"><b>Bauer B+V</b></span>
         <small class="logo-ort">Pflegedienst · Castrop-Rauxel</small>
+      </a>
+    </div>
+    <div class="mdband" id="md-pruefung">
+      <div>
+        <div class="ober">MD-Regelprüfung · 21.10.2026 · Pflegeagentur 24</div>
+        <p class="aussage">Bestes Ergebnis in allen 5 Bereichen zu SIS und Maßnahmenplan.</p>
+        <div class="chips">
+          <span>Aufnahme<i></i></span><span>Risiken<i></i></span><span>Mobilität<i></i></span><span>Körperpflege<i></i></span><span>Ausscheidung<i></i></span>
+        </div>
+        <p class="fuss">Jede SIS und jeder Maßnahmenplan der geprüften Klienten kam aus Dokuna. Alle 8 geprüften Aspekte in der besten Stufe, 13 konnten nicht geprüft werden.</p>
+      </div>
+      <a class="beleg" href="/bilder/md-pruefung-2026-seite2.jpg" target="_blank" rel="noopener">
+        <picture><source srcset="/bilder/md-pruefung-2026-seite2.webp" type="image/webp"><img src="/bilder/md-pruefung-2026-seite2.jpg" alt="Seite 2 des Qualitätsberichts der Pflegeagentur 24 vom 21.10.2026, rot markiert die Bereiche 1.1, 1.2, 2.1, 2.5 und 2.7" width="873" height="1180" loading="lazy"></picture>
+        <span>Bericht ansehen ›</span>
       </a>
     </div>
   </div>
