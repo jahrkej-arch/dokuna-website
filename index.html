@@ -251,8 +251,8 @@
   }
   .einsatz{padding:44px 0 40px}
   .einsatz-titel{font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--grau);margin-bottom:18px}
-  .logoleiste{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
-  .logokasten{display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center;width:300px;max-width:100%;min-height:96px;padding:16px 22px;background:var(--weiss);border:1px solid var(--linie);border-radius:16px;text-decoration:none;color:var(--text);transition:border-color .2s,box-shadow .25s var(--ease)}
+  .logoleiste{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  .logokasten{display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center;width:auto;max-width:100%;min-height:96px;padding:16px 22px;background:var(--weiss);border:1px solid var(--linie);border-radius:16px;text-decoration:none;color:var(--text);transition:border-color .2s,box-shadow .25s var(--ease)}
   a.logokasten:hover{border-color:#cfe5e0;box-shadow:0 10px 24px rgba(15,42,67,.07)}
   .logokasten img{max-width:100%;max-height:52px;width:auto;height:auto;display:block}
   .logokasten img{margin:auto 0}.logo-ort{margin-top:auto}.logokasten img[src*="prima"]{max-height:64px}.logokasten img[src*="bauer"]{max-height:40px}
@@ -261,7 +261,8 @@
   .wortmarke b{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:1.25rem;font-weight:700;letter-spacing:-.015em;color:#3d3b37}
   .wortmarke small,.logo-ort{font-size:.78rem;color:var(--grau)}
   .stats{gap:28px 52px}
-  @media (max-width:640px){.stats{display:grid;grid-template-columns:1fr 1fr;gap:18px 10px;padding:22px 12px}.stats .s b{font-size:1.12rem}.einsatz{padding:36px 0 28px}.logokasten{min-height:80px}}
+  @media (max-width:900px){.logoleiste{grid-template-columns:repeat(2,minmax(0,1fr));max-width:640px;margin:0 auto}}
+  @media (max-width:640px){.stats{display:grid;grid-template-columns:1fr 1fr;gap:18px 10px;padding:22px 12px}.stats .s b{font-size:1.12rem}.einsatz{padding:36px 0 28px}.logoleiste{gap:10px}.logokasten{min-height:80px;padding:14px 10px;gap:8px;border-radius:14px}.logokasten img{max-height:40px}.logokasten img[src*="prima"]{max-height:50px}.logokasten img[src*="bauer"]{max-height:30px}.logo-ort{font-size:.74rem;display:flex;flex-direction:column;align-items:center;line-height:1.35}.logo-ort .pkt{display:none}}
   .kontaktwege{display:flex;flex-direction:column;align-items:center;gap:14px}
   .kontaktzeile{font-size:1rem;color:var(--grau)}
   .kontaktzeile a{color:var(--akzent);text-decoration:none;font-weight:600}
@@ -360,7 +361,7 @@
 </section>
 
 <div class="stats">
-    <div class="s"><b><span data-countup="11">11</span> Standorte</b><span>von 3 Pflegediensten nutzen Dokuna</span></div>
+    <div class="s"><b><span data-countup="14">14</span> Standorte</b><span>von 4 Pflegediensten nutzen Dokuna</span></div>
     <div class="s"><b><span data-countup="6">6</span> Themenfelder</b><span>geführt bis zum fertigen Plan</span></div>
     <div class="s"><b><span data-countup="37">37</span> Anleitungen</b><span>im Dokuna-QM-Paket</span></div>
     <div class="s"><b>0 Klientendaten</b><span>auf unserem Server</span></div></div>
@@ -372,17 +373,22 @@
       <a class="logokasten" href="https://primapflege-netzwerk.de/" target="_blank" rel="noopener" title="Prima Pflege Netzwerk">
         <img src="/logos/prima-pflege.png" alt="Prima Pflege Netzwerk" width="203" height="120" hidden>
         <span class="wortmarke"><b>Prima Pflege</b></span>
-        <small class="logo-ort">Pflegenetzwerk · 5 Standorte</small>
+        <small class="logo-ort"><span>Pflegenetzwerk</span><span class="pkt"> · </span><span>5 Standorte</span></small>
       </a>
       <a class="logokasten" href="https://pflegeagentur24-pflegedienst.de/" target="_blank" rel="noopener" title="Pflegeagentur 24">
         <img src="/logos/pflegeagentur24.png" alt="Pflegeagentur 24" width="408" height="120" hidden>
         <span class="wortmarke"><b>Pflegeagentur 24</b></span>
-        <small class="logo-ort">Ambulante Pflege · 5 Standorte</small>
+        <small class="logo-ort"><span>Ambulante Pflege</span><span class="pkt"> · </span><span>5 Standorte</span></small>
       </a>
       <a class="logokasten" href="https://bauerbv.de/pflegedienst/" target="_blank" rel="noopener" title="Bauer B+V Pflegedienst.Besser.Versorgt GmbH">
         <img src="/logos/bauer-bv.png" alt="Bauer B+V Pflegedienst.Besser.Versorgt GmbH" width="526" height="120" hidden>
         <span class="wortmarke"><b>Bauer B+V</b></span>
-        <small class="logo-ort">Pflegedienst · Castrop-Rauxel</small>
+        <small class="logo-ort"><span>Pflegedienst</span><span class="pkt"> · </span><span>Castrop-Rauxel</span></small>
+      </a>
+      <a class="logokasten" href="https://goldenpflege24.de/" target="_blank" rel="noopener" title="GoldenPflege24 GmbH">
+        <img src="/logos/goldenpflege24.png" alt="GoldenPflege24" width="400" height="120" hidden>
+        <span class="wortmarke"><b>GoldenPflege24</b></span>
+        <small class="logo-ort"><span>GoldenPflege24</span><span class="pkt"> · </span><span>3 Standorte</span></small>
       </a>
     </div>
     <div class="mdband" id="md-pruefung">
@@ -525,7 +531,7 @@
   <div class="wrap zitat">
     <p class="text">„Nach einem harten Arbeitstag noch eine SIS schreiben zu müssen – genau da ist Dokuna eine echte Erleichterung. Und für Kolleginnen und Kollegen, deren Muttersprache nicht Deutsch ist, gleicht es enorm viel aus.“</p>
     <picture><source srcset="/marco.webp" type="image/webp"><img class="avatar" src="/marco.jpg" alt="Marco Jahrke" width="144" height="144" loading="lazy" style="width:72px;height:72px;object-fit:cover"></picture>
-    <p class="wer" style="margin-top:0">Marco Jahrke, Geschäftsführer der <a href="https://www.pflegeagentur24-pflegedienst.de/" target="_blank" rel="noopener">Pflegeagentur 24</a> ambulante Alten- und Krankenpflege GmbH<br>
+    <p class="wer" style="margin-top:0">Marco Jahrke, Geschäftsführer der <a href="https://pflegeagentur24-pflegedienst.de/" target="_blank" rel="noopener">Pflegeagentur 24</a> ambulante Alten- und Krankenpflege GmbH<br>
     <span style="font-size:.92rem">Fünf Standorte im Ruhrgebiet und Umgebung · Nutzer der ersten Stunde</span></p>
   </div>
 </section>
