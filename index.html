@@ -251,18 +251,18 @@
   }
   .einsatz{padding:44px 0 40px}
   .einsatz-titel{font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--grau);margin-bottom:18px}
-  .logoleiste{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  .logoleiste{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
   .logokasten{display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center;width:auto;max-width:100%;min-height:96px;padding:16px 22px;background:var(--weiss);border:1px solid var(--linie);border-radius:16px;text-decoration:none;color:var(--text);transition:border-color .2s,box-shadow .25s var(--ease)}
   a.logokasten:hover{border-color:#cfe5e0;box-shadow:0 10px 24px rgba(15,42,67,.07)}
   .logokasten img{max-width:100%;max-height:52px;width:auto;height:auto;display:block}
-  .logokasten img,.logokasten .wortmarke{margin:auto 0}.logo-ort{margin-top:auto}.logokasten img[src*="prima"]{max-height:64px}.logokasten img[src*="bauer"]{max-height:40px}.logokasten img[src*="golden"]{max-height:72px}
+  .logokasten img,.logokasten .wortmarke{margin:auto 0}.logo-ort{margin-top:auto}.logokasten img[src*="prima"]{max-height:64px}.logokasten img[src*="bauer"]{max-height:40px}.logokasten img[src*="golden"]{max-height:72px}.logokasten img[src*="rosental"]{max-height:44px}
   .logokasten img[hidden],.logokasten .wortmarke[hidden]{display:none}
   .wortmarke{display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.25}
   .wortmarke b{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:1.25rem;font-weight:700;letter-spacing:-.015em;color:#3d3b37}
   .wortmarke small,.logo-ort{font-size:.78rem;color:var(--grau)}
   .stats{gap:28px 52px}
-  @media (max-width:900px){.logoleiste{grid-template-columns:repeat(2,minmax(0,1fr));max-width:640px;margin:0 auto}}
-  @media (max-width:640px){.stats{display:grid;grid-template-columns:1fr 1fr;gap:18px 10px;padding:22px 12px}.stats .s b{font-size:1.12rem}.einsatz{padding:36px 0 28px}.logoleiste{gap:10px}.logokasten{min-height:80px;padding:14px 10px;gap:8px;border-radius:14px}.logokasten img{max-height:40px}.logokasten img[src*="prima"]{max-height:50px}.logokasten img[src*="bauer"]{max-height:30px}.logokasten img[src*="golden"]{max-height:54px}.logo-ort{font-size:.74rem}}
+  @media (max-width:900px){.logoleiste{display:flex;flex-wrap:wrap;justify-content:center;max-width:640px;margin:0 auto}.logoleiste .logokasten{flex:0 1 calc(50% - 8px)}}
+  @media (max-width:640px){.stats{display:grid;grid-template-columns:1fr 1fr;gap:18px 10px;padding:22px 12px}.stats .s b{font-size:1.12rem}.einsatz{padding:36px 0 28px}.logoleiste{gap:10px}.logokasten{min-height:80px;padding:14px 10px;gap:8px;border-radius:14px}.logokasten img{max-height:40px}.logokasten img[src*="prima"]{max-height:50px}.logokasten img[src*="bauer"]{max-height:30px}.logokasten img[src*="golden"]{max-height:54px}.logokasten img[src*="rosental"]{max-height:32px}.logoleiste .logokasten{flex-basis:calc(50% - 5px)}.logo-ort{font-size:.74rem}}
   .kontaktwege{display:flex;flex-direction:column;align-items:center;gap:14px}
   .kontaktzeile{font-size:1rem;color:var(--grau)}
   .kontaktzeile a{color:var(--akzent);text-decoration:none;font-weight:600}
@@ -361,7 +361,7 @@
 </section>
 
 <div class="stats">
-    <div class="s"><b><span data-countup="14">14</span> Standorte</b><span>von 4 Pflegediensten nutzen Dokuna</span></div>
+    <div class="s"><b><span data-countup="15">15</span> Standorte</b><span>von 5 Pflegediensten nutzen Dokuna</span></div>
     <div class="s"><b><span data-countup="6">6</span> Themenfelder</b><span>geführt bis zum fertigen Plan</span></div>
     <div class="s"><b><span data-countup="37">37</span> Anleitungen</b><span>im Dokuna-QM-Paket</span></div>
     <div class="s"><b>0 Klientendaten</b><span>auf unserem Server</span></div></div>
@@ -389,6 +389,11 @@
         <img src="/logos/goldenpflege24.png" alt="GoldenPflege24 Pflege- und Betreuungsdienst" width="419" height="196" hidden>
         <span class="wortmarke"><b>GoldenPflege24</b></span>
         <small class="logo-ort">3 Standorte</small>
+      </a>
+      <a class="logokasten" href="https://www.pflegedienst-rosental.de/" target="_blank" rel="noopener" title="Pflegedienst Rosental GmbH, Bochum">
+        <img src="/logos/rosental.png" alt="Pflegedienst Rosental" width="516" height="120" hidden>
+        <span class="wortmarke"><b>Pflegedienst Rosental</b></span>
+        <small class="logo-ort">1 Standort</small>
       </a>
     </div>
     <div class="mdband" id="md-pruefung">
