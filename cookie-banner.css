@@ -1,0 +1,63 @@
+/* Dokuna-Farben für den Cookie-Banner */
+#cc-main{
+  --cc-font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Helvetica,Arial,sans-serif;
+  --cc-bg:#ffffff;
+  --cc-primary-color:#201f1c;
+  --cc-secondary-color:#4f4d48;
+  --cc-link-color:#0e8477;
+  --cc-btn-primary-bg:#0e8477;
+  --cc-btn-primary-color:#ffffff;
+  --cc-btn-primary-border-color:#0e8477;
+  --cc-btn-primary-hover-bg:#0a6459;
+  --cc-btn-primary-hover-color:#ffffff;
+  --cc-btn-primary-hover-border-color:#0a6459;
+  --cc-btn-secondary-bg:#0e8477;
+  --cc-btn-secondary-color:#ffffff;
+  --cc-btn-secondary-border-color:#0e8477;
+  --cc-btn-secondary-hover-bg:#0a6459;
+  --cc-btn-secondary-hover-color:#ffffff;
+  --cc-btn-secondary-hover-border-color:#0a6459;
+  --cc-separator-border-color:#e9e7e2;
+  --cc-toggle-on-bg:#0e8477;
+  --cc-toggle-off-bg:#8a8781;
+  --cc-toggle-readonly-bg:#c9e3de;
+  --cc-toggle-readonly-knob-icon-color:#0e8477;
+  --cc-cookie-category-block-bg:#f4f3ef;
+  --cc-cookie-category-block-border:#e9e7e2;
+  --cc-cookie-category-block-hover-bg:#ecebe6;
+  --cc-cookie-category-block-hover-border:#e2e0da;
+  --cc-cookie-category-expanded-block-bg:#fbfaf8;
+  --cc-footer-bg:#f4f3ef;
+  --cc-footer-color:#4f4d48;
+  --cc-footer-border-color:#e9e7e2;
+  --cc-overlay-bg:rgba(32,31,28,.45);
+  --cc-btn-border-radius:99px;
+  --cc-modal-border-radius:16px;
+  --cc-z-index:2147483000;
+}
+#cc-main .cm__title,#cc-main .pm__title{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;letter-spacing:-.01em}
+#cc-main .cm,#cc-main .pm{box-shadow:0 12px 40px rgba(32,31,28,.18)}
+#cc-main .cm__btn,#cc-main .pm__btn{font-weight:600}
+#cc-main .pm__badge{background:#e5f2ef;color:#0a6459}
+.cookie-einstellungen{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;text-decoration:none}
+.cookie-einstellungen:hover{color:#201f1c;text-decoration:underline}
+/* „Einstellungen“ zurückhaltender, Annehmen und Ablehnen bleiben gleich stark */
+#cc-main .cm__btn[data-role="show"]{background:#fff;color:#0e8477;border-color:#0e8477}
+#cc-main .cm__btn[data-role="show"]:hover{background:#e5f2ef;color:#0a6459;border-color:#0a6459}
+/* Annehmen und Ablehnen exakt gleich breit */
+#cc-main .cm .cm__btns .cm__btn-group:first-child{display:grid!important;grid-template-columns:1fr 1fr;gap:8px;align-items:stretch}
+#cc-main .cm .cm__btns .cm__btn-group:first-child .cm__btn{margin:0!important;height:auto!important;min-height:44px}
+#cc-main .cm__btn-group:first-child .cm__btn{min-width:10.5em;margin:0;width:100%}
+@media screen and (max-width:640px){
+  #cc-main .cm__body{padding-top:.2em}
+  #cc-main .cm__texts{padding-bottom:.4em}
+  #cc-main .cm__desc{font-size:.86em;line-height:1.45}
+  #cc-main .cm__btn-group:first-child .cm__btn{min-width:0}
+  #cc-main .cm__btn{padding-top:.75em;padding-bottom:.75em}
+}
+/* Kästen im Einstellungsfenster eckig statt Pille */
+#cc-main .pm__section,#cc-main .pm__section-title,#cc-main .pm__section--toggle,#cc-main .pm__section--expandable{border-radius:14px!important}
+#cc-main .pm__close-btn{background:#fff!important;border:1px solid #e9e7e2!important}
+#cc-main .pm__close-btn svg{stroke:#201f1c!important}
+#cc-main .pm__close-btn:hover{background:#f4f3ef!important}
+@media print{#cc-main{display:none!important}}
