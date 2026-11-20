@@ -5,6 +5,18 @@
    Solange GOOGLE_ADS_ID leer ist, lädt die Seite nichts von Google. */
 (function () {
   var GOOGLE_ADS_ID = ''; // später z. B. 'AW-123456789' eintragen
+  var UMAMI_ID = '9f432958-acad-4e71-b5aa-e869678e8c0d'; // Umami Cloud, Region EU, Konto jonas@dokuna.de
+
+  function umamiLaden() {
+    if (!UMAMI_ID || window.__dokunaUmami) return;
+    window.__dokunaUmami = true;
+    var s = document.createElement('script');
+    s.defer = true;
+    s.src = 'https://cloud.umami.is/script.js';
+    s.setAttribute('data-website-id', UMAMI_ID);
+    s.setAttribute('data-domains', 'dokuna.de,www.dokuna.de');
+    document.head.appendChild(s);
+  }
 
   function gtagLaden() {
     if (!GOOGLE_ADS_ID || window.__dokunaGtag) return;
@@ -25,6 +37,7 @@
       ad_personalization: werbung ? 'granted' : 'denied'
     });
     if (werbung) gtagLaden();
+    if (CookieConsent.acceptedCategory('statistik')) umamiLaden();
   }
 
   // Banner an den Anfang der Seite stellen, damit er mit der Tab-Taste zuerst erreichbar ist
@@ -42,6 +55,7 @@
     cookie: { name: 'dokuna_einwilligung', expiresAfterDays: 182, sameSite: 'Lax' },
     categories: {
       notwendig: { enabled: true, readOnly: true },
+      statistik: {},
       werbung: {
         autoClear: { cookies: [{ name: /^_gcl_/ }, { name: /^_gac_/ }] }
       }
@@ -56,7 +70,7 @@
         de: {
           consentModal: {
             title: 'Cookies auf dokuna.de',
-            description: 'Ohne Ihre Zustimmung nutzen wir nur technisch notwendige Cookies. Mit Zustimmung messen wir außerdem, ob unsere Google-Anzeigen zu Anfragen führen. Ändern können Sie das jederzeit unter „Cookie-Einstellungen“ unten auf der Seite.',
+            description: 'Ohne Ihre Zustimmung nutzen wir nur technisch notwendige Cookies. Mit Zustimmung zählen wir außerdem Besucher und messen, ob unsere Google-Anzeigen zu Anfragen führen. Ändern können Sie das jederzeit unter „Cookie-Einstellungen“ unten auf der Seite.',
             acceptAllBtn: 'Alle akzeptieren',
             acceptNecessaryBtn: 'Nur notwendige',
             showPreferencesBtn: 'Einstellungen',
@@ -76,6 +90,11 @@
                 title: 'Technisch notwendig <span class="pm__badge">Immer aktiv</span>',
                 description: 'Speichert nur Ihre Auswahl in diesem Fenster (Cookie „dokuna_einwilligung“). Ohne dieses Cookie würde die Frage bei jedem Besuch neu erscheinen.',
                 linkedCategory: 'notwendig'
+              },
+              {
+                title: 'Statistik',
+                description: 'Umami zählt ohne Cookies, wie viele Besucher kommen, welche Seiten sie ansehen und woher sie kommen. Wir sehen nur Zahlen, nie wer Sie sind. Anbieter ist die Umami Software, Inc. Die Daten liegen auf Servern in der EU.',
+                linkedCategory: 'statistik'
               },
               {
                 title: 'Werbung',
