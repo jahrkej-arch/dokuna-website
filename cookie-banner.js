@@ -1,10 +1,14 @@
 /* Dokuna – Cookie-Banner (CookieConsent 3.3.0, MIT, lokal unter /vendor/cookieconsent-3.3.0/).
-   Google Ads wird erst geladen, wenn
-   1. unten eine Conversion-ID eingetragen ist und
-   2. die Person der Kategorie „Werbung“ zugestimmt hat.
-   Solange GOOGLE_ADS_ID leer ist, lädt die Seite nichts von Google. */
+   Google Ads wird erst geladen, wenn die Person der Kategorie „Werbung“ zugestimmt hat.
+   Umami (Statistik) erst nach Zustimmung zu „Statistik“.
+   Eine Anfrage (Klick auf Mail oder Telefon) wird gezählt:
+   1. in Google Ads als Conversion „Anfrage Vorführung“, nur mit Zustimmung zu „Werbung“
+   2. in Umami als Ereignis „Anfrage“, nur mit Zustimmung zu „Statistik“
+   Ohne Zustimmung steht bei Besuchern über eine Anzeige trotzdem „(Google-Anzeige)“
+   im Betreff der Anfrage-Mail. Dafür wird nichts gespeichert, nur die Adresse gelesen. */
 (function () {
-  var GOOGLE_ADS_ID = ''; // später z. B. 'AW-123456789' eintragen
+  var GOOGLE_ADS_ID = 'AW-18590440664'; // Google-Ads-Konto 703-841-0423 (jonas@dokuna.de)
+  var ANFRAGE_LABEL = 'jWrACOe_xr0dENi5zqBF'; // Conversion-Aktion „Anfrage Vorführung“
   var UMAMI_ID = '9f432958-acad-4e71-b5aa-e869678e8c0d'; // Umami Cloud, Region EU, Konto jonas@dokuna.de
 
   function umamiLaden() {
@@ -39,6 +43,58 @@
     if (werbung) gtagLaden();
     if (CookieConsent.acceptedCategory('statistik')) umamiLaden();
   }
+
+  // Herkunft aus der Adresse lesen (nur diese Seite, nichts wird gespeichert)
+  function adresseLesen(name) {
+    try { return new URLSearchParams(location.search).get(name) || ''; } catch (e) { return ''; }
+  }
+  function sauber(text) {
+    return String(text || '').replace(/[^0-9A-Za-zÄÖÜäöüß \-]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 60);
+  }
+  var vonAnzeige = adresseLesen('utm_source') === 'google' && adresseLesen('utm_medium') === 'cpc';
+  var suchbegriff = sauber(adresseLesen('utm_term'));
+
+  // Anfrage-Mail bei Besuchern über eine Anzeige kennzeichnen
+  function mailLinksKennzeichnen() {
+    if (!vonAnzeige) return;
+    var links = document.querySelectorAll('a[href^="mailto:"]');
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i];
+      if (a.getAttribute('data-anzeige')) continue;
+      a.setAttribute('data-anzeige', '1');
+      var href = a.getAttribute('href');
+      var teile = href.split('?');
+      var params = new URLSearchParams(teile[1] || '');
+      var betreff = params.get('subject') || 'Vorführung Dokuna';
+      params.set('subject', betreff + ' (Google-Anzeige)');
+      var vermerk = 'Gefunden über: Google-Anzeige' + (suchbegriff ? ' (Suchbegriff: ' + suchbegriff + ')' : '');
+      params.set('body', (params.get('body') ? params.get('body') + '\n\n' : '') + vermerk);
+      a.setAttribute('href', teile[0] + '?' + params.toString().replace(/\+/g, '%20'));
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', mailLinksKennzeichnen);
+  } else {
+    mailLinksKennzeichnen();
+  }
+
+  // Anfrage zählen: Klick auf Mail oder Telefon
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="mailto:"], a[href^="tel:"]') : null;
+    if (!a) return;
+    var art = a.getAttribute('href').indexOf('tel:') === 0 ? 'Telefon' : 'Mail';
+    if (window.__dokunaGtag && typeof gtag === 'function') {
+      gtag('event', 'conversion', { send_to: GOOGLE_ADS_ID + '/' + ANFRAGE_LABEL });
+    }
+    if (window.umami && typeof window.umami.track === 'function') {
+      window.umami.track('Anfrage', {
+        art: art,
+        seite: location.pathname,
+        quelle: vonAnzeige ? 'Google-Anzeige' : 'andere',
+        suchbegriff: vonAnzeige ? suchbegriff : ''
+      });
+    }
+  }, true);
 
   // Banner an den Anfang der Seite stellen, damit er mit der Tab-Taste zuerst erreichbar ist
   function nachVorn() {
