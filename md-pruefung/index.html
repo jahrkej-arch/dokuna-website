@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<script src="/consent-default.js"></script>
+<link rel="stylesheet" href="/vendor/cookieconsent-3.3.0/cookieconsent.css">
+<link rel="stylesheet" href="/cookie-banner.css">
+<script src="/vendor/cookieconsent-3.3.0/cookieconsent.umd.js" defer></script>
+<script src="/cookie-banner.js" defer></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MD-Prüfung ambulant: SIS und Maßnahmenplan mit Dokuna</title>
+<meta name="robots" content="noindex, follow">
+<meta name="description" content="MD-Prüfung angekündigt? Dokuna führt durch die SIS und erstellt den Maßnahmenplan. Bestes MD-Ergebnis bei der Pflegeagentur 24. Vorführung anfragen.">
+<link rel="canonical" href="https://dokuna.de/md-pruefung/">
+<link rel="preload" href="/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dokuna.de/md-pruefung/">
+<meta property="og:title" content="Dokuna – SIS &amp; Maßnahmenplan für ambulante Pflegedienste">
+<meta property="og:description" content="Führt Pflegefachkräfte durch die Strukturierte Informationssammlung und erstellt daraus direkt den Maßnahmenplan. Im Browser, die Klientendaten bleiben beim Pflegedienst.">
+<meta property="og:image" content="https://dokuna.de/og-bild-v2.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Dokuna">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dokuna – SIS &amp; Maßnahmenplan für ambulante Pflegedienste">
+<meta name="twitter:description" content="SIS und Maßnahmenplan in Minuten. Die Klientendaten bleiben beim Pflegedienst.">
+<meta name="twitter:image" content="https://dokuna.de/og-bild-v2.jpg">
+<meta name="author" content="Jonas Jahrke">
+<style>
+  @font-face{font-family:"Bricolage Grotesque";font-style:normal;font-weight:600 800;font-stretch:100%;font-display:swap;
+    src:url("/fonts/bricolage-grotesque-latin.woff2") format("woff2");
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+  :root{
+    --bg:#fbfaf8; --card:#f4f3ef; --text:#201f1c; --grau:#6f6d68;
+    --akzent:#0e8477; --akzent-hell:#e5f2ef; --weiss:#ffffff; --linie:#e9e7e2;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+  body::after{content:"";position:fixed;inset:0;z-index:999;pointer-events:none;opacity:.028;
+       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  ::selection{background:var(--akzent);color:#fff}
+  :focus-visible{outline:2px solid var(--akzent);outline-offset:3px}
+  [id]{scroll-margin-top:84px}
+  .wrap{max-width:1024px;margin:0 auto;padding:0 24px}
+  .schmal{max-width:760px;margin:0 auto}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(251,250,248,.85);backdrop-filter:blur(18px);border-bottom:1px solid var(--linie)}
+  .nav{display:flex;justify-content:space-between;align-items:center;height:52px}
+  .logo{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:1.25rem;font-weight:700;letter-spacing:-.02em}
+  .logo b{color:var(--akzent);font-weight:700}
+  .nav a.cta{background:var(--akzent);color:#fff;padding:12px 18px;border-radius:99px;text-decoration:none;font-size:.9rem;font-weight:500;transition:background .2s}
+  .nav a.cta:hover{background:#0a6459}
+  .nav .rechts{display:flex;align-items:center;gap:18px}
+  .nav .rechts a.text{color:var(--grau);text-decoration:none;font-size:.9rem;white-space:nowrap}
+  .nav .rechts a.text:hover{color:var(--text)}
+  @media (max-width:640px){
+    .nav{height:auto;min-height:52px;flex-wrap:wrap;justify-content:center;column-gap:14px;row-gap:2px;padding-top:8px;padding-bottom:8px}
+    .nav .rechts{gap:12px}
+    .nav .rechts a.text{font-size:.85rem}
+  }
+
+  .hero{padding:84px 0 64px;background:
+    radial-gradient(52rem 30rem at 78% 18%,rgba(14,132,119,.075),transparent 68%),
+    radial-gradient(38rem 22rem at 6% 96%,rgba(176,138,74,.045),transparent 70%)}
+  @keyframes aufblende{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .hero2 .links>*{animation:aufblende .6s cubic-bezier(.2,.7,.2,1) backwards}
+  .hero2 .links>*:nth-child(2){animation-delay:.06s}.hero2 .links>*:nth-child(3){animation-delay:.12s}
+  .hero2 .links>*:nth-child(4){animation-delay:.18s}.hero2 .links>*:nth-child(5){animation-delay:.24s}
+  .hero2 .rechts{animation:aufblende .7s .15s cubic-bezier(.2,.7,.2,1) backwards}
+  @media (prefers-reduced-motion:reduce){
+    .hero2 .links>*,.hero2 .rechts{animation:none}
+    .btn,a.karte{transition:none}
+    .btn:hover,.btn:active,a.karte:hover{transform:none}
+  }
+  .hero2{display:flex;gap:48px;align-items:center}
+  .hero2 .links{display:flex;flex-direction:column;gap:20px;max-width:480px}
+  .hero2 .rechts{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+  .haken{display:flex;flex-direction:column;gap:10px}
+  .haken div{display:flex;align-items:center;gap:10px;font-size:.98rem}
+  .haken svg{width:18px;height:18px;flex-shrink:0;color:var(--akzent)}
+  .stats{display:flex;justify-content:center;gap:52px;padding:24px 0;border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);background:var(--card);flex-wrap:wrap}
+  .stats .s{text-align:center}
+  .stats .s b{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:1.3rem;font-weight:700;color:var(--akzent);display:block}
+  .stats .s span{font-size:.82rem;color:var(--grau)}
+  .punkte{display:flex;flex-direction:column;gap:10px;max-width:720px;margin:0 auto}
+  .punkt{display:flex;align-items:center;gap:14px;background:var(--weiss);border:1px solid var(--linie);border-radius:14px;padding:15px 20px;text-align:left}
+  .punkt svg{width:20px;height:20px;flex-shrink:0;color:var(--akzent)}
+  .punkt p{color:var(--text);font-size:.98rem;margin:0}
+  @media (max-width:760px){.hero2{flex-direction:column;text-align:center}.hero2 .links{align-items:center}.haken div{text-align:left}}
+  .eyebrow{color:var(--akzent);font-weight:600;font-size:1rem;letter-spacing:.01em;margin-bottom:14px}
+  h1{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:clamp(2.4rem,6vw,3.8rem);font-weight:800;letter-spacing:-.028em;line-height:1.06}
+  .hero .sub{font-size:1.35rem;color:var(--grau);max-width:640px;margin:24px auto 36px;font-weight:400}
+  .btn{display:inline-block;background:var(--akzent);color:#fff;padding:14px 30px;border-radius:99px;text-decoration:none;font-weight:600;font-size:1.05rem;transition:transform .25s var(--ease),box-shadow .25s var(--ease),opacity .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(14,132,119,.28)}
+  .btn:active{transform:translateY(0);box-shadow:0 4px 12px rgba(14,132,119,.2)}
+  .btn.leise{background:transparent;color:var(--akzent);font-weight:500}
+  .btn.leise:hover,.btn.leise:active{transform:none;box-shadow:none;opacity:.75}
+  .badge{display:inline-block;background:var(--akzent-hell);color:var(--akzent);padding:6px 18px;border-radius:99px;font-size:.85rem;font-weight:600;margin-bottom:22px}
+
+
+  .mdband{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;max-width:932px;margin:22px auto 0;padding:26px 30px;background:var(--weiss);border:1px solid var(--linie);border-radius:16px;text-align:left}
+  .mdband .ober{font-size:.82rem;font-weight:600;color:var(--akzent);letter-spacing:.01em}
+  .mdband .aussage{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:1.35rem;font-weight:700;line-height:1.25;letter-spacing:-.01em;margin:6px 0 14px;text-wrap:balance}
+  .mdband .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .mdband .chips span{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:99px;background:var(--akzent-hell);font-size:.85rem;font-weight:500}
+  .mdband .chips i{display:inline-flex;gap:2px}.mdband .chips i::before{content:"";width:22px;height:7px;background:repeating-linear-gradient(90deg,var(--akzent) 0 4px,transparent 4px 6px);display:block}
+  .mdband .fuss{font-size:.78rem;color:var(--grau);margin-top:12px}
+  .mdband a.beleg{display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;color:var(--akzent);font-weight:600;font-size:.88rem}
+  .mdband a.beleg img{width:118px;height:auto;border:1px solid var(--linie);border-radius:6px;box-shadow:0 8px 20px rgba(15,42,67,.10);transition:transform .25s var(--ease)}
+  .mdband a.beleg:hover img{transform:translateY(-2px) rotate(-1deg)}
+  @media(max-width:700px){.mdband{grid-template-columns:1fr;padding:22px;max-width:300px}.mdband a.beleg{flex-direction:row;justify-content:flex-start}.mdband a.beleg img{width:72px}}
+  section{padding:88px 0}
+  h2{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;letter-spacing:-.015em;line-height:1.14;margin-bottom:14px;text-wrap:balance}
+  .lead{font-size:1.15rem;color:var(--grau);max-width:620px;margin-bottom:48px;text-wrap:pretty}
+  .zentriert{text-align:center}
+  .zentriert .lead{margin-left:auto;margin-right:auto}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+  .karte{background:var(--card);border-radius:20px;padding:32px 28px}
+  .karte .icon{display:block;margin-bottom:16px;color:var(--akzent)}
+  .karte .icon svg{width:30px;height:30px}
+  .karte.gross .icon svg{width:38px;height:38px}
+  .karte.gross .icon{color:#fff}
+  .avatar{width:56px;height:56px;border-radius:50%;background:var(--akzent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.15rem;letter-spacing:.02em}
+  .zitat .avatar{margin:28px auto 12px}
+  .gruender{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:30px;text-align:left}
+  .gruender .info{font-size:.92rem;color:var(--grau);line-height:1.45}
+  .gruender .info b{color:var(--text);font-weight:600;display:block}
+  .gruender .info a{color:var(--akzent);text-decoration:none}
+  .karte h3{font-size:1.15rem;font-weight:650;letter-spacing:-.01em;margin-bottom:8px}
+  .karte p{color:var(--grau);font-size:.98rem}
+  .karte.gross{grid-column:1 / -1;background:linear-gradient(135deg,var(--akzent) 0%,#0a6459 100%);color:#fff;padding:44px 40px}
+  .karte.gross h3{color:#fff;font-size:1.6rem;letter-spacing:-.02em}
+  .karte.gross p{color:rgba(255,255,255,.85);font-size:1.05rem;max-width:640px}
+  .karte.gross .icon{font-size:2.2rem}
+
+  a.karte{text-decoration:none;color:var(--text);display:block;transition:background .2s,transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
+  a.karte:hover{background:var(--akzent-hell);transform:translateY(-3px);box-shadow:0 12px 28px rgba(15,42,67,.08)}
+  a.karte .tf{color:var(--akzent);font-weight:700;font-size:.82rem;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:5px}
+
+  .dunkel{background:var(--text) radial-gradient(42rem 26rem at 85% -5%,rgba(111,211,198,.12),transparent 65%);border-radius:28px;color:#fff;padding:72px 48px;margin:0 24px;
+    background-image:radial-gradient(42rem 26rem at 85% -5%,rgba(111,211,198,.12),transparent 65%),radial-gradient(32rem 22rem at 4% 108%,rgba(111,211,198,.07),transparent 62%)}
+  .dunkel h2{color:#fff}
+  .dunkel .lead{color:#a1a1a6}
+  .dunkel .karte{background:rgba(255,255,255,.08)}
+  .dunkel .karte h3{color:#6fd3c6}
+  .dunkel .karte p{color:#a1a1a6}
+
+  .zitat{text-align:center;max-width:780px;margin:0 auto}
+  .zitat .text{font-size:clamp(1.3rem,3vw,1.8rem);font-weight:550;letter-spacing:-.015em;line-height:1.35;hanging-punctuation:first;text-wrap:pretty}
+    .zitat .wer{margin-top:22px;color:var(--grau);font-size:1rem;line-height:1.5}
+  .zitat .wer a{color:var(--akzent);text-decoration:none;font-weight:600}
+  .zitat .wer a:hover{text-decoration:underline}
+
+  .preise{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;max-width:780px;margin:0 auto}
+  .preis{background:var(--weiss);border:1px solid var(--linie);border-radius:24px;padding:38px 32px;text-align:left;position:relative}
+  .preis.hervor{background:var(--card);border:none}
+  .preis .tag{display:inline-block;background:var(--akzent);color:#fff;padding:4px 14px;border-radius:99px;font-size:.78rem;font-weight:600;margin-bottom:16px}
+  .preis h3{font-size:1.2rem;font-weight:650;margin-bottom:14px}
+  .preis .p{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:2.6rem;font-weight:700;letter-spacing:-.02em}
+  .preis .p small{font-size:1rem;color:var(--grau);font-weight:400;letter-spacing:0}
+  .preis .einr{color:var(--grau);margin:4px 0 22px;font-size:.95rem}
+  .preis ul{list-style:none;margin-bottom:26px}
+  .preis li{padding:7px 0 7px 26px;position:relative;font-size:.95rem}
+  .preis li::before{content:"";position:absolute;left:0;top:.62em;width:15px;height:15px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%230e8477' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 10.5 8 15 17 5'/%3E%3C/svg%3E") no-repeat center/contain}
+  .hinweis{font-size:.82rem;color:var(--grau);max-width:780px;margin:26px auto 0;text-align:center;line-height:1.5}
+
+  .ablauf{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;counter-reset:schritt}
+  .schritt{background:var(--card);border-radius:20px;padding:28px 24px;counter-increment:schritt}
+  .schritt::before{content:counter(schritt);display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--akzent-hell);color:var(--akzent);font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-weight:700;font-size:1.15rem;margin-bottom:16px}
+  .ablauf.laeuft .schritt{opacity:.3;transition:opacity .5s var(--ease),transform .5s var(--ease);transform:translateY(8px)}
+  .ablauf.laeuft .schritt::before{transition:background .45s var(--ease),color .45s var(--ease),transform .45s var(--ease)}
+  .ablauf.laeuft .schritt.war{opacity:.62;transform:none}
+  .ablauf.laeuft .schritt.dran{opacity:1;transform:none}
+  .ablauf.laeuft .schritt.dran::before{background:var(--akzent);color:#fff;transform:scale(1.06)}
+  @media (prefers-reduced-motion:reduce){.ablauf.laeuft .schritt{opacity:1;transform:none;transition:none}.ablauf.laeuft .schritt::before{transition:none}}
+  .schritt h3{font-size:1.08rem;font-weight:650;letter-spacing:-.01em;margin-bottom:6px}
+  .schritt p{color:var(--grau);font-size:.95rem}
+
+  .faq{max-width:760px;margin:0 auto;text-align:left}
+  .faq details{border-bottom:1px solid var(--linie)}
+  .faq details:first-of-type{border-top:1px solid var(--linie)}
+  .faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 2px;font-weight:600;font-size:1.02rem}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"";flex-shrink:0;width:11px;height:11px;border-right:2px solid var(--akzent);border-bottom:2px solid var(--akzent);transform:rotate(45deg) translate(-2px,-2px);transition:transform .25s var(--ease);margin-right:6px}
+  .faq details[open] summary::after{transform:rotate(225deg)}
+  .faq details p{color:var(--grau);padding:0 36px 18px 2px;font-size:.98rem}
+    .videobox{position:relative;max-width:880px;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 24px 60px rgba(15,42,67,.18);line-height:0}
+  .videobox video{display:block;width:100%}
+  .videostart{position:absolute;inset:0;width:100%;border:0;padding:0;cursor:pointer;background:rgba(20,20,20,.28);display:flex;align-items:center;justify-content:center;transition:opacity .45s var(--ease),background .3s}
+  .videostart:hover{background:rgba(20,20,20,.36)}
+  .videostart.weg{opacity:0;pointer-events:none}
+  .videostart .knopf{position:relative;width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.94);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(15,42,67,.22)}
+  .videostart .knopf::before{content:"";position:absolute;inset:-1px;border-radius:50%;border:2px solid #fff;opacity:0}
+  .videostart.atmet .knopf::before{animation:videoAtem 1.9s var(--ease) 2}
+  .videostart .pfeil{width:0;height:0;margin-left:5px;border-left:20px solid var(--akzent);border-top:13px solid transparent;border-bottom:13px solid transparent}
+  @keyframes videoAtem{0%{transform:scale(1);opacity:.55}70%,100%{transform:scale(1.85);opacity:0}}
+  @media (prefers-reduced-motion:reduce){.videostart .knopf::before{animation:none}.videostart{transition:none}}
+  .faq details .faq-inhalt{overflow:hidden}
+    @supports (interpolate-size: allow-keywords){
+          html{interpolate-size:allow-keywords}
+          .faq details::details-content{height:0;overflow:hidden;transition:height .3s var(--ease),content-visibility .3s allow-discrete}
+          .faq details[open]::details-content{height:auto}
+    }
+    @media (prefers-reduced-motion:reduce){.faq summary::after{transition:none}.faq details::details-content{transition:none}}
+
+  footer{border-top:1px solid var(--linie);padding:18px 0;font-size:.85rem;color:var(--grau);background:var(--card)}
+  footer .balken{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+  footer nav{display:flex;gap:12px 22px;flex-wrap:wrap;justify-content:center}
+  footer a{color:var(--grau);text-decoration:none}
+  footer a:hover{color:var(--text)}
+  @media (max-width:640px){.dunkel{margin:0;border-radius:0;padding:56px 24px}}
+  /* Neu 08.10.2026: Anmelden, Logoleiste, Kontakt */
+  .logo{text-decoration:none;color:var(--text)}
+  .nav a.anmelden{color:var(--akzent);border:1.5px solid var(--akzent);padding:10.5px 16px;border-radius:99px;text-decoration:none;font-size:.9rem;font-weight:500;white-space:nowrap;transition:background .2s,color .2s}
+  .nav a.anmelden:hover{background:var(--akzent-hell)}
+  .nav a.cta{white-space:nowrap}
+  @media (max-width:640px){
+    .nur-breit{display:none}
+    .nav a.anmelden{padding:8px 13px;font-size:.85rem}
+    .nav a.cta{padding:9.5px 14px;font-size:.85rem}
+  }
+  .knoepfe{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  @media (max-width:760px){.knoepfe{justify-content:center}}
+  .hero .wrap{max-width:1180px}
+  .hero2 .rechts{flex:1 1 0;min-width:0;position:relative}
+  .appfenster{margin:0;width:100%;background:var(--weiss);border:1px solid var(--linie);border-radius:14px;box-shadow:0 28px 64px rgba(15,42,67,.16),0 4px 12px rgba(15,42,67,.06)}
+  .appleiste{border-radius:14px 14px 0 0;display:flex;align-items:center;gap:6px;padding:9px 12px;background:var(--card);border-bottom:1px solid var(--linie)}
+  .appleiste i{width:9px;height:9px;border-radius:50%;background:#d9d6cf}
+  .appleiste span{margin-left:10px;font-size:.72rem;color:var(--grau);background:var(--weiss);border-radius:6px;padding:2px 10px}
+  .appfenster img{display:block;width:100%;height:auto}
+  .appbild{position:relative}
+  .klick{position:absolute;right:-14px;display:flex;align-items:center;gap:8px;background:var(--akzent);color:#fff;font-size:.82rem;font-weight:600;padding:7px 14px 7px 7px;border-radius:99px;box-shadow:0 8px 20px rgba(14,132,119,.28)}
+  .klick b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:var(--akzent);font-size:.78rem}
+  .klick.k1{top:24%}
+  .klick.k2{top:79%}
+  .appfenster figcaption{font-size:.75rem;color:var(--grau);padding:8px 14px;border-top:1px solid var(--linie);background:var(--card);border-radius:0 0 14px 14px}
+  .heldgruender{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);text-align:left;margin-top:6px}
+  .heldgruender img{width:48px;height:48px;border-radius:50%;object-fit:cover;display:block}
+  .heldgruender b{display:block;font-size:.92rem;font-weight:650}
+  .heldgruender span{font-size:.82rem;color:var(--grau);line-height:1.4}
+  @media (max-width:760px){
+    .hero{padding:36px 0 56px}
+    .hero2 .rechts{width:100%;margin-top:0}
+    .hero2{gap:36px}
+    .klick{right:8px;font-size:.74rem;padding:5px 11px 5px 5px}
+    .klick b{width:19px;height:19px}
+    .klick.k1{top:17%}
+  }
+  .einsatz{padding:44px 0 40px}
+  .einsatz-titel{font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--grau);margin-bottom:18px}
+  .logoleiste{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px}
+  .logokasten{display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center;width:auto;max-width:100%;min-height:96px;padding:16px 22px;background:var(--weiss);border:1px solid var(--linie);border-radius:16px;text-decoration:none;color:var(--text);transition:border-color .2s,box-shadow .25s var(--ease)}
+  a.logokasten:hover{border-color:#cfe5e0;box-shadow:0 10px 24px rgba(15,42,67,.07)}
+  .logokasten img{max-width:100%;max-height:52px;width:auto;height:auto;display:block}
+  .logokasten img,.logokasten .wortmarke{margin:auto 0}.logo-ort{margin-top:auto}.logokasten img[src*="prima"]{max-height:64px}.logokasten img[src*="bauer"]{max-height:40px}.logokasten img[src*="golden"]{max-height:72px}.logokasten img[src*="rosental"]{max-height:44px}
+  .logokasten img[hidden],.logokasten .wortmarke[hidden]{display:none}
+  .wortmarke{display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.25}
+  .wortmarke b{font-family:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:1.25rem;font-weight:700;letter-spacing:-.015em;color:#3d3b37}
+  .wortmarke small,.logo-ort{font-size:.78rem;color:var(--grau)}
+  .stats{gap:28px 52px}
+  @media (max-width:900px){.logoleiste{display:flex;flex-wrap:wrap;justify-content:center;max-width:640px;margin:0 auto}.logoleiste .logokasten{flex:0 1 calc(50% - 8px)}}
+  @media (max-width:640px){.stats{display:grid;grid-template-columns:1fr 1fr;gap:18px 10px;padding:22px 12px}.stats .s b{font-size:1.12rem}.einsatz{padding:36px 0 28px}.logoleiste{gap:10px}.logokasten{min-height:80px;padding:14px 10px;gap:8px;border-radius:14px}.logokasten img{max-height:40px}.logokasten img[src*="prima"]{max-height:50px}.logokasten img[src*="bauer"]{max-height:30px}.logokasten img[src*="golden"]{max-height:54px}.logokasten img[src*="rosental"]{max-height:32px}.logoleiste .logokasten{flex-basis:calc(50% - 5px)}.logo-ort{font-size:.74rem}}
+  .kontaktwege{display:flex;flex-direction:column;align-items:center;gap:14px}
+  .kontaktzeile{font-size:1rem;color:var(--grau)}
+  .kontaktzeile a{color:var(--akzent);text-decoration:none;font-weight:600}
+  .kontaktzeile a:hover{text-decoration:underline}
+  .schonkunde{margin-top:26px;font-size:.92rem;color:var(--grau)}
+  .schonkunde a{color:var(--akzent);text-decoration:none;font-weight:600}
+  .schonkunde a:hover{text-decoration:underline}
+  .faq details p a{color:var(--akzent)}
+  .videotext{max-width:720px;margin:22px auto 0;text-align:left;background:var(--weiss);border:1px solid var(--linie);border-radius:14px;padding:2px 20px}
+  .videotext summary{cursor:pointer;font-weight:600;color:var(--akzent);padding:12px 0}
+  .videotext-inhalt{padding:4px 0 8px}
+  .videotext-inhalt p{font-size:.98rem;color:var(--text);margin:0 0 12px}
+  .ratgeber-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:16px}
+  .ratgeber-grid .karte{padding:26px 24px}
+  .ratgeber-grid ul{list-style:none;padding:0;margin:12px 0 0}
+  .ratgeber-grid li{margin:0 0 10px;line-height:1.4;font-size:.96rem}
+  .ratgeber-grid a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--linie)}
+  .ratgeber-grid a:hover{color:var(--akzent);border-color:var(--akzent)}
+  .marke{font-size:.8rem;color:var(--grau);max-width:1024px;margin:0 auto;padding:0 24px 18px}
+  .vn{position:relative;margin:22px 0 8px;border-radius:18px;overflow:hidden;border:1px solid var(--linie);background:var(--weiss);--pos:50%;user-select:none;touch-action:pan-y}
+  .vn-karte{padding:20px 22px 24px;background:var(--weiss);font-size:.95rem;line-height:1.55}
+  .vn-karte p{margin:0 0 .5em}
+  .vn-kopf{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.8rem;color:var(--grau);border-bottom:2px solid var(--akzent);padding-bottom:8px;margin-bottom:12px}
+  .vn-marke{position:absolute;top:12px;z-index:2;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:4px 10px;border-radius:99px;pointer-events:none}
+  .vn-marke.l{left:12px;background:var(--akzent);color:#fff}.vn-marke.r{right:12px;background:var(--text);color:#fff}
+  .vn-kopf{padding-top:26px}
+  .vn{max-height:640px}
+  .vn::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(rgba(255,255,255,0),#fff);pointer-events:none}
+  .vn-oben{position:absolute;inset:0;clip-path:inset(0 calc(100% - var(--pos)) 0 0);background:var(--weiss)}
+  .vn-oben .vn-karte{background:var(--akzent-hell);min-height:100%;box-sizing:border-box}
+  .vn-linie{position:absolute;top:0;bottom:0;left:var(--pos);width:3px;margin-left:-1.5px;background:var(--akzent);pointer-events:none}
+  .vn-griff{position:absolute;top:50%;left:var(--pos);width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:var(--akzent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 2px 8px rgba(0,0,0,.2);pointer-events:none}
+  .vn input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize}
+  .vn input:focus-visible ~ .vn-griff{outline:3px solid var(--text);outline-offset:2px}
+  .vn-hinweis{font-size:.85rem;color:var(--grau);margin:0 0 18px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="/">Dokuna<b>.</b></a>
+    <div class="rechts">
+      <a class="anmelden" href="https://app.dokuna.de/login">Anmelden</a>
+      <a class="cta" href="#kontakt">Vorführung<span class="nur-breit"> anfragen</span></a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero2">
+    <div class="links">
+      <div><span class="badge" style="margin-bottom:0">Für ambulante Pflegedienste vor der MD&#8209;Prüfung</span></div>
+      <h1>MD-Prüfung angekündigt? SIS® und Maßnahmen&shy;plan in Minuten.</h1>
+      <p class="sub" style="margin:0;font-size:1.2rem">Dokuna führt Ihre Pflegefachkräfte Schritt für Schritt durch die SIS® nach dem Strukturmodell und erstellt daraus direkt den passenden Maßnahmenplan. In der Praxis unter 10 Minuten je SIS samt Plan.</p>
+      <div class="haken">
+        <div><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><span>MD-Prüfung nach QPR 2026: bestes Ergebnis bei der Pflegeagentur 24</span></div>
+        <div><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><span>Zugang in wenigen Minuten eingerichtet, Start noch vor der Prüfung</span></div>
+        <div><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><span>Vorführung online oder vor Ort, Antwort werktags innerhalb von 24 Stunden</span></div>
+      </div>
+      <div class="knoepfe">
+        <a class="btn" href="#kontakt">Vorführung anfragen</a>
+        <a class="btn leise" href="#video">Video ansehen ›</a>
+      </div>
+      <a class="heldgruender" href="/ueber/"><picture><source srcset="/jonas.webp" type="image/webp"><img src="/jonas.jpg" alt="" width="48" height="48"></picture><span><b>Jonas Jahrke</b>Gründer von Dokuna · aus der Praxis der ambulanten Pflege</span></a>
+    </div>
+    <div class="rechts">
+      <figure class="appfenster">
+        <div class="appleiste" aria-hidden="true"><i></i><i></i><i></i><span>app.dokuna.de</span></div>
+        <div class="appbild">
+          <img src="/bilder/app/dokuna-themenfeld-4-nur-klicks.webp" alt="Dokuna, Themenfeld 4 Selbstversorgung: angeklickt sind die Körperbereiche, die Frau Beispiel selbst wäscht und die Kleidung, die sie selbst an- und auszieht. Unten steht der Text, den Dokuna allein aus diesen Klicks formuliert hat" width="1260" height="1523" fetchpriority="high">
+          <span class="klick k1"><b>1</b>Sie klicken an</span>
+          <span class="klick k2"><b>2</b>Dokuna schreibt den Text</span>
+        </div>
+        <figcaption>Echter Bildschirm aus Dokuna · erfundener Fall · Text nur aus Klicks, nichts getippt</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+    <div class="s"><b><span data-countup="15">15</span> Standorte</b><span>von 5 Pflegediensten nutzen Dokuna</span></div>
+    <div class="s"><b><span data-countup="6">6</span> Themenfelder</b><span>geführt bis zum fertigen Plan</span></div>
+    <div class="s"><b><span data-countup="37">37</span> Anleitungen</b><span>im Dokuna-QM-Paket</span></div>
+    <div class="s"><b>0 Klientendaten</b><span>auf unserem Server</span></div></div>
+
+<section class="einsatz" aria-labelledby="einsatz-titel">
+  <div class="wrap zentriert">
+    <p class="einsatz-titel" id="einsatz-titel">Im Einsatz bei diesen ambulanten Pflegediensten</p>
+    <div class="logoleiste">
+      <a class="logokasten" href="https://primapflege-netzwerk.de/" target="_blank" rel="noopener" title="Prima Pflege Netzwerk">
+        <img src="/logos/prima-pflege.png" alt="Prima Pflege Netzwerk" width="203" height="120" hidden>
+        <span class="wortmarke"><b>Prima Pflege</b></span>
+        <small class="logo-ort">5 Standorte</small>
+      </a>
+      <a class="logokasten" href="https://pflegeagentur24-pflegedienst.de/" target="_blank" rel="noopener" title="Pflegeagentur 24">
+        <img src="/logos/pflegeagentur24.png" alt="Pflegeagentur 24" width="408" height="120" hidden>
+        <span class="wortmarke"><b>Pflegeagentur 24</b></span>
+        <small class="logo-ort">5 Standorte</small>
+      </a>
+      <a class="logokasten" href="https://bauerbv.de/pflegedienst/" target="_blank" rel="noopener" title="Bauer B+V Pflegedienst.Besser.Versorgt GmbH">
+        <img src="/logos/bauer-bv.png" alt="Bauer B+V Pflegedienst.Besser.Versorgt GmbH" width="526" height="120" hidden>
+        <span class="wortmarke"><b>Bauer B+V</b></span>
+        <small class="logo-ort">1 Standort</small>
+      </a>
+      <a class="logokasten" href="https://goldenpflege24.de/" target="_blank" rel="noopener" title="GoldenPflege24 GmbH">
+        <img src="/logos/goldenpflege24.png" alt="GoldenPflege24 Pflege- und Betreuungsdienst" width="419" height="196" hidden>
+        <span class="wortmarke"><b>GoldenPflege24</b></span>
+        <small class="logo-ort">3 Standorte</small>
+      </a>
+      <a class="logokasten" href="https://www.pflegedienst-rosental.de/" target="_blank" rel="noopener" title="Pflegedienst Rosental GmbH, Bochum">
+        <img src="/logos/rosental.png" alt="Pflegedienst Rosental" width="516" height="120" hidden>
+        <span class="wortmarke"><b>Pflegedienst Rosental</b></span>
+        <small class="logo-ort">1 Standort</small>
+      </a>
+    </div>
+    <div class="mdband" id="md-pruefung">
+      <div>
+        <div class="ober">MD-Regelprüfung · 21.10.2026 · Pflegeagentur 24</div>
+        <p class="aussage">Bestes Ergebnis in allen 5 Bereichen zu SIS und Maßnahmenplan.</p>
+        <div class="chips">
+          <span>Aufnahme<i></i></span><span>Risiken<i></i></span><span>Mobilität<i></i></span><span>Körperpflege<i></i></span><span>Ausscheidung<i></i></span>
+        </div>
+        <p class="fuss">Jede SIS und jeder Maßnahmenplan der geprüften Klienten kam aus Dokuna. Alle 8 geprüften Aspekte in der besten Stufe, 13 konnten nicht geprüft werden.</p>
+      </div>
+      <a class="beleg" href="/bilder/md-pruefung-2026-seite2.jpg" target="_blank" rel="noopener">
+        <picture><source srcset="/bilder/md-pruefung-2026-seite2.webp" type="image/webp"><img src="/bilder/md-pruefung-2026-seite2.jpg" alt="Seite 2 des Qualitätsberichts der Pflegeagentur 24 vom 21.10.2026, rot markiert die Bereiche 1.1, 1.2, 2.1, 2.5 und 2.7" width="873" height="1180" loading="lazy"></picture>
+        <span>Bericht ansehen ›</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="getoent">
+  <div class="wrap">
+    <div class="zentriert">
+      <h2>Die Prüfung ist angekündigt.</h2>
+      <p class="lead">Dann bleibt wenig Zeit und jede SIS muss zur Versorgung passen.</p>
+    </div>
+    <div class="punkte">
+      <div class="punkt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><p>SIS-Bögen sind veraltet oder lückenhaft. Für die Überarbeitung fehlt neben den Touren die Zeit.</p></div>
+      <div class="punkt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/></svg><p>Der Maßnahmenplan passt nicht mehr zur SIS, weil beides getrennt geschrieben wurde.</p></div>
+      <div class="punkt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><p>Fachlich ist alles klar, aber es nachvollziehbar aufzuschreiben kostet Kraft. Dokuna formuliert aus Ihren Klicks, die Fachkraft prüft und entscheidet.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="video" style="padding-top:24px">
+  <div class="wrap zentriert">
+    <h2>So sieht Dokuna aus.</h2>
+    <p class="lead" style="margin-left:auto;margin-right:auto">Was der Assistent für Sie schreibt: von den Grunddaten bis zum fertigen Maßnahmenplan und Beratungsnachweis in knapp vier Minuten.</p>
+        <div class="videobox" data-noreveal>
+          <video controls muted playsinline preload="metadata" poster="/poster-v4.jpg" data-poster-alt="/poster.jpg">
+            <source src="/Dokuna-Erklaervideo-V4.mp4" type="video/mp4">
+            <track kind="captions" src="/Dokuna-Erklaervideo-V4.vtt" srclang="de" label="Deutsch">
+            Ihr Browser kann dieses Video nicht abspielen.
+          </video>
+          <button class="videostart" type="button" aria-label="Erklärvideo abspielen"><span class="knopf"><span class="pfeil"></span></span></button>
+        </div>
+        <details class="videotext">
+          <summary>Videotext lesen</summary>
+          <div class="videotext-inhalt">
+            <p>Dokuna ist der Assistent für die SIS in der ambulanten Pflege. Sie klicken an, was Sie im Gespräch erfahren haben. Dokuna schreibt daraus den fachlichen Text, wertet die Risiken aus, erstellt den Maßnahmenplan und hilft beim Beratungsnachweis. Die Entscheidung behält die Pflegefachkraft.</p>
+            <p>Der Assistent führt Sie Schritt für Schritt durch den ganzen Bogen: Grunddaten und Eingangsfrage, die sechs Themenfelder, die Risikomatrix, den Maßnahmenplan, den Beratungsnachweis und zum Schluss die Prüfung. Jeder Schritt ist ein Lückentext mit passenden Vorschlägen. Wie weit Sie sind, zeigt der Balken oben rechts.</p>
+            <p>Los geht es mit den Grunddaten. Sie tippen Name, Geburtsdatum und Pflegegrad ein, das Alter rechnet Dokuna selbst aus. Ihr Kürzel und die Daten Ihres Pflegedienstes stehen schon im Formular.</p>
+            <p>In Feld B steht die Sicht der Person, möglichst in ihren eigenen Worten. Häufige Aussagen liegen als Vorschlag bereit. Ein Klick übernimmt sie. Alles Weitere tippen Sie einfach dazu.</p>
+            <p>In den sechs Themenfeldern haken Sie zutreffende Sätze an und klicken an, was passt, zum Beispiel die Hilfsmittel. Eigene Beobachtungen ergänzen Sie als freien Text. Dokuna formuliert daraus einen fachlichen Text, der sofort mitwächst.</p>
+            <p>Bei der Selbstversorgung wählen Sie, wie viel Hilfe die Person bei der Körperpflege braucht. Dann tippen Sie an, was sie selbst wäscht. Dokuna schreibt daraus ganze Sätze. Diese Angaben nutzt der Assistent später auch für die Körperpflege im Maßnahmenplan.</p>
+            <p>In der Risikomatrix hat Dokuna die Angaben bereits ausgewertet. Vorschläge erscheinen aufgehellt, mit Begründung. Die Entscheidung trifft die Pflegefachkraft: Sie kreuzt selbst Ja oder Nein an.</p>
+            <p>Aus SIS und Risikomatrix entsteht der Maßnahmenplan automatisch, geordnet nach Einsätzen. Prophylaxen schlägt Dokuna nur vor, immer passend zur Leistung im Einsatz. Ein Klick übernimmt sie. Jeder Text bleibt frei änderbar.</p>
+            <p>Den Plan gibt es in zwei Stilen. Der kurze Stil ist der Standard und passt zum Dokuna-QM-Paket. Die Routinehandlungen stehen dann in den Verfahrensanleitungen Ihres Pflegedienstes. Ohne passendes QM schreibt Dokuna den ausführlichen Stil. Welcher gilt, wird einmal für Ihren Pflegedienst eingestellt.</p>
+            <p>Vor dem Ausdruck weist Dokuna auf Lücken hin, zum Beispiel auf ein fehlendes Evaluationsdatum. Passende Vorschläge übernehmen Sie mit einem Klick. Die Pflegegrad-Ampel vergleicht die SIS mit dem eingetragenen Pflegegrad. Sie ist nur ein Hinweis am Bildschirm. Gedruckt oder gespeichert wird sie nie.</p>
+            <p>Zum Schluss drucken Sie die SIS im Aufbau des Originalbogens, zusammen mit dem Maßnahmenplan. Kürzel und Pflegedienst stehen schon drauf. Gespeichert wird die SIS als Datei im Speicherort Ihres Pflegedienstes.</p>
+            <p>Auch die Beratung dokumentieren Sie direkt beim Besuch. Dokuna markiert grün, was zur SIS passt. Angekreuzt wird von Hand. Die Risikofaktoren kommen aus der SIS. Dann unterschreibt die Person am iPad oder Handy, direkt danach auch die beratende Pflegefachkraft. Zum Schluss wird der Nachweis gesperrt und ist bereit für den Ausdruck.</p>
+            <p>Eingerichtet ist Dokuna schnell. Die Leitung legt für jede Pflegefachkraft einen eigenen Zugang an. Hinterlegt die Leitung ein Kürzel, steht es automatisch auf der SIS. Angemeldet wird im Browser, am Computer, am iPad und am Handy. Die Klientendaten bleiben im Speicherort Ihres Pflegedienstes, nicht auf dem Dokuna-Server.</p>
+            <p>Dokuna. Die SIS in wenigen Klicks, fachlich formuliert und bereit für den Ausdruck. Möchten Sie mehr sehen? Fragen Sie auf dokuna.de eine Vorführung an.</p>
+          </div>
+        </details>
+      </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="zentriert">
+      <h2>Was Dokuna kann.</h2>
+      <p class="lead">Ein schlankes Werkzeug für die zwei größten Doku-Aufgaben im ambulanten Dienst: SIS und Maßnahmenplanung.</p>
+    </div>
+    <div class="grid">
+      <div class="karte gross"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/><path d="M10 12h4m0 0-1.8-1.8M14 12l-1.8 1.8"/></svg></span><h3>Von der SIS direkt zum Maßnahmenplan</h3><p>Das Herzstück: Aus der fertigen SIS entsteht auf Knopfdruck der individuelle Maßnahmenplan – stimmig mit den Themenfeldern und nachvollziehbar für jede Prüfung. Genau der Schritt, der sonst die meiste Zeit frisst.</p></div>
+      <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.5" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.5" cy="18" r="1.3" fill="currentColor" stroke="none"/></svg></span><h3>Alle sechs Themenfelder, geführt</h3><p>Von der Sicht der pflegebedürftigen Person über die sechs Themenfelder bis zur Risikomatrix. Vieles per Klick statt langer Texte: Nichts wird vergessen, alles landet am richtigen Platz.</p></div>
+      <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.8-.3-4-1L3 20l1-5.5a8.5 8.5 0 1 1 17-3Z"/></svg></span><h3>Formuliert für die MD&#8209;Prüfung</h3><p>Aus Ihren Angaben entstehen fachlich saubere, individuelle Sätze statt Textbausteine – ausgerichtet auf die Prüfung nach QPR 2026. Eine echte Hilfe auch für Fachkräfte, deren Muttersprache nicht Deutsch ist.</p></div>
+      <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><h3>Nach dem Strukturmodell</h3><p>Dokuna folgt dem SIS-Bogen ambulant und den EinSTEP-Erläuterungen: Risikomatrix mit den fünf Original-Risiken, keine Medikamentenlisten in der SIS. Vorschläge sind nur hell markiert, das Kreuz setzt die Fachkraft.</p></div>
+      <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10l2 2h6.5A1.5 1.5 0 0 1 20 7.5v11a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5Z"/><path d="m9 13 2 2 4-4"/></svg></span><h3>Eigenes QM-Paket</h3><p>Passend zu Dokuna gibt es das Dokuna-QM-Paket mit 37 Muster-Verfahrensanleitungen: Expertenstandards, Grundpflege und Behandlungspflege. Gibt Ihre PDL es frei, wird der Maßnahmenplan kurz und übersichtlich.</p></div>
+      <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="13" height="10" rx="1.5"/><path d="M6 18h6"/><rect x="17" y="8" width="4.5" height="12" rx="1"/></svg></span><h3>Computer, iPad und Handy</h3><p>Dokuna läuft im Browser, ohne Installation. Updates kommen automatisch. Jede Pflegefachkraft hat einen eigenen Zugang, die Leitung verwaltet alle Zugänge.</p></div>
+      <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M2.5 21c1.4-3.3 4.2-5 7.5-5 1.2 0 2.4.2 3.4.7"/><path d="m15 18 2.2 2.2L21.5 16"/></svg></span><h3>Die Fachkraft entscheidet</h3><p>Jedes Dokument wird von Ihrer Pflegefachkraft geprüft und freigegeben. Dokuna assistiert, die fachliche Verantwortung bleibt, wo sie hingehört.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="dunkel" id="datenschutz-kurz" style="max-width:1024px;margin-left:auto;margin-right:auto">
+  <div style="max-width:928px;margin:0 auto">
+    <div class="zentriert">
+      <h2>Im Browser.<br>Ihre Klientendaten bleiben bei Ihnen.</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">Gesundheitsdaten sind die sensibelsten Daten überhaupt. Deshalb kommen sie bei Dokuna gar nicht erst auf unseren Server.</p>
+    </div>
+    <div class="grid">
+      <div class="karte"><h3>Sie bestimmen den Speicherort</h3><p>Jede SIS wird als Datei dort gespeichert, wo Ihr Pflegedienst es festlegt: in einem Ordner am Computer oder auf dem Netzlaufwerk. Am iPad und Handy über das Teilen-Menü. Ältere Fassungen werden nie überschrieben.</p></div>
+      <div class="karte"><h3>Server in Deutschland</h3><p>Auf unserem Server bei Hetzner in Deutschland liegen nur die Benutzerkonten: Name, E-Mail-Adresse und Kürzel. Dazu Standorte und Abo. Passwörter speichern wir so, dass auch wir sie nicht lesen können.</p></div>
+      <div class="karte"><h3>Eigene Zugänge, sichere Anmeldung</h3><p>Jede Pflegefachkraft meldet sich mit ihrem eigenen Zugang an. Die Leitung legt die Zugänge an und meldet sich selbst zusätzlich mit einem Code vom Handy an.</p></div>
+    </div>
+  </div>
+</div>
+
+<section class="getoent">
+  <div class="wrap zitat">
+    <p class="text">„Nach einem harten Arbeitstag noch eine SIS schreiben zu müssen – genau da ist Dokuna eine echte Erleichterung. Und für Kolleginnen und Kollegen, deren Muttersprache nicht Deutsch ist, gleicht es enorm viel aus.“</p>
+    <picture><source srcset="/marco.webp" type="image/webp"><img class="avatar" src="/marco.jpg" alt="Marco Jahrke" width="144" height="144" loading="lazy" style="width:72px;height:72px;object-fit:cover"></picture>
+    <p class="wer" style="margin-top:0">Marco Jahrke, Geschäftsführer der <a href="https://pflegeagentur24-pflegedienst.de/" target="_blank" rel="noopener">Pflegeagentur 24</a> ambulante Alten- und Krankenpflege GmbH<br>
+    <span style="font-size:.92rem">Fünf Standorte im Ruhrgebiet und Umgebung · Nutzer der ersten Stunde</span></p>
+  </div>
+</section>
+
+<section class="getoent" id="preise" style="padding-top:0">
+  <div class="wrap">
+    <div class="zentriert">
+      <h2>Ein klarer Preis.<br>Je Standort.</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">Keine Einrichtungsgebühr, keine Kosten pro Dokument.</p>
+    </div>
+    <div class="preise">
+      <div class="preis">
+        <h3>Dokuna</h3>
+        <p class="p">80 €<small> je Standort und Monat</small></p>
+        <p class="einr">Endpreis · keine Einrichtungsgebühr</p>
+        <ul>
+          <li>SIS und Maßnahmenplanung unbegrenzt</li>
+          <li>Eigener Zugang für die Leitung und für jede Pflegefachkraft (im Standard bis zu 3 je Standort, mehr auf Anfrage)</li>
+          <li>Läuft am Computer, iPad und Handy</li>
+          <li>Alle Updates inklusive, sie kommen automatisch</li>
+          <li>Hilfe beim Einrichten und per E-Mail</li>
+        </ul>
+        <a class="btn" href="#kontakt">Vorführung anfragen</a>
+      </div>
+      <div class="preis hervor">
+        <span class="tag">Erst sehen, dann entscheiden</span>
+        <h3>Persönliche Vorführung</h3>
+        <p class="einr" style="margin-bottom:16px">Wir zeigen Ihnen Dokuna mit Ihren eigenen Fragen und Fällen. Unverbindlich.</p>
+        <ul>
+          <li>Eine SIS live vom Erstgespräch bis zum Maßnahmenplan</li>
+          <li>Ihre Fragen zu Datenschutz, Speicherort und Zugängen</li>
+          <li>Wie Dokuna zu Ihrem QM passt</li>
+        </ul>
+        <a class="btn" href="#kontakt">Termin vereinbaren</a>
+      </div>
+    </div>
+    <p class="hinweis">Als Standort zählt jeder Standort mit eigenem Institutionskennzeichen (IK). Alle Preise sind Endpreise, gemäß § 19 UStG wird keine Umsatzsteuer berechnet. Dokuna ist ein Dokumentations-Hilfsmittel, die pflegefachliche Verantwortung für Inhalte und Freigabe verbleibt bei der Pflegefachkraft des Pflegedienstes.</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="zentriert">
+      <h2>So starten Sie.</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto">Vier Schritte von der ersten Nachricht bis zur ersten SIS – ohne Installation.</p>
+    </div>
+    <div class="ablauf" data-noreveal>
+      <div class="schritt"><h3>Kennenlernen</h3><p>Sie schreiben eine kurze Mail oder rufen an. Sie bekommen werktags innerhalb von 24 Stunden eine persönliche Antwort.</p></div>
+      <div class="schritt"><h3>Vorführung</h3><p>Sie sehen Dokuna im Einsatz – mit Ihren Fragen und Fällen, unverbindlich.</p></div>
+      <div class="schritt"><h3>Zugang einrichten</h3><p>Die Leitung bekommt eine Einladung per E-Mail, legt die Standorte und die Zugänge der Pflegefachkräfte an und wählt den Speicherort. Auf Wunsch gehen wir das gemeinsam durch.</p></div>
+      <div class="schritt"><h3>Loslegen</h3><p>Ihre Pflegefachkräfte melden sich an und erstellen die erste SIS. Updates und Hilfe per E-Mail sind inklusive.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="zentriert" id="kontakt" style="padding-top:0">
+  <div class="wrap schmal">
+    <h2>Vor der Prüfung starten.</h2>
+    <p class="lead" style="margin-left:auto;margin-right:auto">Kurze Mail oder Anruf genügt: Sie bekommen werktags innerhalb von 24 Stunden eine persönliche Antwort und einen Termin für Ihre Vorführung.</p>
+    <div class="kontaktwege">
+      <a class="btn" href="mailto:info@dokuna.de?subject=Vorf%C3%BChrung%20Dokuna%20(MD-Pr%C3%BCfung)&amp;body=Guten%20Tag%2C%0A%0Awir%20interessieren%20uns%20f%C3%BCr%20eine%20Vorf%C3%BChrung%20von%20Dokuna.%0A%0APflegedienst%3A%20%0AAnzahl%20Standorte%3A%20%0AAnsprechperson%3A%20%0ATelefon%3A%20%0A">Vorführung anfragen</a>
+      <p class="kontaktzeile"><a href="mailto:info@dokuna.de">info@dokuna.de</a><span aria-hidden="true"> · </span><a href="tel:+4915116833569">+49 151 16833569</a></p>
+    </div>
+    <div class="gruender">
+      <img class="avatar" src="/jonas.webp" alt="Jonas Jahrke" width="64" height="64" loading="lazy" style="width:64px;height:64px;object-fit:cover">
+      <p class="info"><b>Jonas Jahrke</b>Gründer von Dokuna · aus der Praxis der ambulanten Pflege</p>
+    </div>
+    <p class="schonkunde">Schon Kunde? <a href="https://app.dokuna.de/login">Hier anmelden&nbsp;›</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap balken">
+    <span>© 2026 Dokuna · Jonas Jahrke · Hattingen</span>
+    <nav>
+      <a href="/sis-software/">SIS-Software</a>
+      <a href="/sis-formulierungshilfen/">SIS-Ratgeber</a>
+      <a href="/neu-in-dokuna/">Neu in Dokuna</a>
+      <a href="/ueber/">Über</a>
+      <a href="https://app.dokuna.de/login">Anmelden</a>
+      <a href="/impressum/">Impressum</a>
+      <a href="/datenschutz/">Datenschutz</a>
+      <button type="button" class="cookie-einstellungen" data-cc="show-preferencesModal">Cookie-Einstellungen</button>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+  <p class="marke">SIS® ist eine eingetragene Marke.</p>
+</footer>
+
+<style>[data-countup]{font-variant-numeric:tabular-nums}.stats .s b [data-countup]{font-size:inherit;color:var(--text);font-weight:inherit}
+html.reveal-on [data-reveal]{
+  opacity:.28;
+  transform:translateY(18px);
+  transition:opacity .7s cubic-bezier(.22,.61,.36,1),
+             transform .7s cubic-bezier(.22,.61,.36,1);
+}
+html.reveal-on [data-reveal].is-in{opacity:1;transform:none}
+
+/* Rhythmus: jeder zweite Abschnitt sanft getoent, mit weichen Uebergaengen */
+section.getoent{background:linear-gradient(180deg,rgba(244,243,239,0) 0%,rgba(244,243,239,.75) 12%,rgba(244,243,239,.75) 88%,rgba(244,243,239,0) 100%)}
+@media (prefers-reduced-motion:reduce){
+  html.reveal-on [data-reveal]{opacity:1;transform:none;transition:none}
+}
+
+/* Weiche Farbfelder im Hintergrund - nimmt der Flaeche die Leere, ohne mit dem Text zu konkurrieren */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(60rem 40rem at 85% 8%, rgba(14,132,119,.055), transparent 62%),
+    radial-gradient(50rem 34rem at 5% 42%, rgba(176,138,74,.045), transparent 60%),
+    radial-gradient(55rem 38rem at 92% 78%, rgba(14,132,119,.04), transparent 62%)}
+</style>
+<script>
+(function () {
+  var els = document.querySelectorAll('[data-countup]');
+  if (!els.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      io.unobserve(entry.target);
+      count(entry.target);
+    });
+  }, { threshold: 0.6 });
+
+  els.forEach(function (el) { io.observe(el); });
+
+  function count(el) {
+    var final = el.textContent;
+    var target = parseFloat(el.getAttribute('data-countup'));
+    var suffix = el.getAttribute('data-countup-suffix') || '';
+    var start = null;
+    el.textContent = '0' + suffix;
+    requestAnimationFrame(function step(now) {
+      if (start === null) start = now;
+      var p = Math.min(1, (now - start) / 900);
+      if (p < 1) {
+        el.textContent = Math.round((1 - Math.pow(1 - p, 3)) * target) + suffix;
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = final;
+      }
+    });
+  }
+})();
+</script>
+
+  <script>
+  (function () {
+    var items = document.querySelectorAll('.faq details');
+    if (!items.length || !Element.prototype.animate) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.CSS && CSS.supports && CSS.supports('interpolate-size', 'allow-keywords')) return;
+
+    items.forEach(function (d) {
+      var summary = d.querySelector('summary');
+      if (!summary) return;
+      var inhalt = document.createElement('div');
+      inhalt.className = 'faq-inhalt';
+      while (summary.nextSibling) inhalt.appendChild(summary.nextSibling);
+      d.appendChild(inhalt);
+      var lauf = null;
+
+      summary.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (lauf) lauf.cancel();
+        var schliessen = d.open;
+        var hoehe = inhalt.offsetHeight;
+        if (!schliessen) d.open = true;
+        var ziel = schliessen ? 0 : inhalt.offsetHeight;
+        var meine = inhalt.animate(
+          schliessen ? [{ height: hoehe + 'px' }, { height: '0px' }] : [{ height: '0px' }, { height: ziel + 'px' }],
+          { duration: schliessen ? 260 : 300, easing: 'cubic-bezier(.2,.7,.2,1)' }
+        );
+        lauf = meine;
+        var fertig = function () {
+          if (lauf !== meine) return;
+          if (schliessen && d.open) d.open = false;
+          lauf = null;
+        };
+        meine.finished.then(fertig).catch(function () {});
+        setTimeout(fertig, schliessen ? 300 : 340);
+      });
+    });
+  })();
+  </script>
+  
+<script>
+(function () {
+  var box = document.querySelector('.videobox');
+  if (!box) return;
+  var video = box.querySelector('video');
+  var knopf = box.querySelector('.videostart');
+  if (!video || !knopf) return;
+
+  var ersatz = video.getAttribute('data-poster-alt');
+  if (ersatz) {
+    var probe = new Image();
+    probe.onerror = function () { video.setAttribute('poster', ersatz); };
+    probe.src = video.getAttribute('poster');
+  }
+
+  knopf.addEventListener('click', function () {
+    video.muted = false;
+    var lauf = video.play();
+    if (lauf && lauf.catch) lauf.catch(function () { video.muted = true; video.play(); });
+  });
+  video.addEventListener('play', function () { knopf.classList.add('weg'); });
+  video.addEventListener('pause', function () { if (video.currentTime === 0) knopf.classList.remove('weg'); });
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      io.unobserve(entry.target);
+      knopf.classList.add('atmet');
+    });
+  }, { threshold: 0.5 });
+  io.observe(box);
+})();
+</script>
+
+<script>
+(function () {
+  var ablauf = document.querySelector('.ablauf');
+  if (!ablauf) return;
+  var schritte = ablauf.querySelectorAll('.schritt');
+  if (!schritte.length || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  ablauf.classList.add('laeuft');
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      io.unobserve(entry.target);
+      schritte.forEach(function (el, i) {
+        setTimeout(function () {
+          schritte.forEach(function (a) { a.classList.remove('dran'); });
+          el.classList.add('dran');
+          for (var k = 0; k < i; k++) schritte[k].classList.add('war');
+          if (i === schritte.length - 1) {
+            setTimeout(function () {
+              schritte.forEach(function (a) { a.classList.add('war', 'dran'); });
+            }, 850);
+          }
+        }, 250 + i * 850);
+      });
+    });
+  }, { threshold: 0.35 });
+  io.observe(ablauf);
+})();
+</script>
+
+<script>
+(function () {
+  /* Logos der Kunden unter /logos/ (.png). Fehlt eine Datei, bleibt der Schriftzug stehen. */
+  document.querySelectorAll('.logokasten img').forEach(function (bild) {
+    var marke = bild.parentNode.querySelector('.wortmarke');
+    bild.addEventListener('load', function () { bild.hidden = false; if (marke) marke.hidden = true; });
+    bild.addEventListener('error', function () {
+      var weiter = bild.getAttribute('data-weiter');
+      if (weiter) { bild.removeAttribute('data-weiter'); bild.src = weiter; }
+    });
+    if (bild.complete) {
+      if (bild.naturalWidth) { bild.hidden = false; if (marke) marke.hidden = true; }
+      else if (bild.getAttribute('data-weiter')) { var w = bild.getAttribute('data-weiter'); bild.removeAttribute('data-weiter'); bild.src = w; }
+    }
+  });
+})();
+</script>
+
+<script src="/reveal.js" defer></script>
+
+<script>
+(function(){var b=document.getElementById("vn-start");if(!b)return;var r=b.querySelector("input");function s(){b.style.setProperty("--pos",r.value+"%")}r.addEventListener("input",s);s();})();
+</script>
+</body>
+</html>
