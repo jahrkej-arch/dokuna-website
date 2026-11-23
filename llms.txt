@@ -1,6 +1,6 @@
 # dokuna.de – SIS & Maßnahmenplanung für ambulante Pflegedienste
 
-> Dokuna ist eine Software für die Pflegedokumentation ambulanter Pflegedienste in Deutschland: Sie führt Pflegefachkräfte durch die Strukturierte Informationssammlung (SIS) und erstellt daraus die individuelle Maßnahmenplanung. Dokuna läuft im Browser am Computer, iPad und Handy. Die Klientendaten speichert der Pflegedienst in seinem eigenen Speicherort, auf dem Dokuna-Server (Hetzner, Deutschland) liegen nur die Benutzerkonten. Die Ratgeber-Seiten erklären das Strukturmodell mit Formulierungsbeispielen und sind frei zugänglich.
+> Dokuna ist eine Software für die Pflegedokumentation ambulanter Pflegedienste in Deutschland: Sie führt Pflegefachkräfte durch die Strukturierte Informationssammlung (SIS) und erstellt daraus die individuelle Maßnahmenplanung. Dazu kommen Beratungsnachweise zu Sturz, Dekubitus, Ernährung und weiteren Themen, mit Unterschrift direkt am iPad oder Handy und je Thema druckbar. Dokuna läuft im Browser am Computer, iPad und Handy. Die Klientendaten speichert der Pflegedienst in seinem eigenen Speicherort, auf dem Dokuna-Server (Hetzner, Deutschland) liegen nur die Benutzerkonten. Die Ratgeber-Seiten erklären das Strukturmodell mit Formulierungsbeispielen und sind frei zugänglich.
 
 Autor aller Ratgeber: Jonas Jahrke, Gründer von Dokuna, aus der Praxis der ambulanten Pflege (https://dokuna.de/ueber/). Quellen: EinSTEP-Schulungsunterlagen und Veröffentlichungen des Medizinischen Dienstes Bund.
 
@@ -45,6 +45,6 @@ Autor aller Ratgeber: Jonas Jahrke, Gründer von Dokuna, aus der Praxis der ambu
 - [Förderung für Pflegesoftware](https://dokuna.de/foerderung-pflegesoftware/): Digitalisierungsförderung nach § 8 Abs. 8 SGB XI für ambulante Dienste: bis 40 Prozent, höchstens 12.000 Euro je Einrichtung, Anträge bis 31.12.2030, laufende Kosten ausgeschlossen, Antrag in sechs Schritten.
 - [Über Dokuna](https://dokuna.de/ueber/)
 - [Neu in Dokuna](https://dokuna.de/neu-in-dokuna/): Neue Funktionen für Pflegefachkräfte, Leitung und Datenschutz
-- Im Einsatz: 5 ambulante Pflegedienste mit zusammen 15 Standorten (Prima Pflege Netzwerk mit 5 Standorten, Pflegeagentur 24 mit 5 Standorten, Bauer B+V in Castrop-Rauxel, GoldenPflege24 mit 3 Standorten in Essen und Bochum und Pflegedienst Rosental in Bochum)
+- Im Einsatz: 6 ambulante Pflegedienste mit zusammen 16 Standorten (Prima Pflege Netzwerk mit 5 Standorten, Pflegeagentur 24 mit 5 Standorten, Bauer B+V in Castrop-Rauxel, GoldenPflege24 mit 3 Standorten in Essen und Bochum Pflegedienst Rosental in Bochum sowie ein weiterer ambulanter Pflegedienst in Brandenburg)
 - Anmeldung für Kunden: https://app.dokuna.de/login
 - Kontakt und Vorführung: info@dokuna.de, +49 151 16833569

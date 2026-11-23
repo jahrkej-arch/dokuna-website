@@ -280,6 +280,28 @@
   .videotext summary{cursor:pointer;font-weight:600;color:var(--akzent);padding:12px 0}
   .videotext-inhalt{padding:4px 0 8px}
   .videotext-inhalt p{font-size:.98rem;color:var(--text);margin:0 0 12px}
+  .kurz{background:var(--weiss);border:1px solid var(--linie);border-radius:20px;padding:32px 30px;max-width:928px;margin:0 auto}
+  .kurz h2{margin:0 0 18px}
+  .kurz dl{margin:0;display:grid;gap:0}
+  .kurz dl>div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:12px 0;border-top:1px solid var(--linie)}
+  .kurz dt{font-weight:700;color:var(--akzent)}
+  .kurz dd{margin:0;line-height:1.5}
+  @media (max-width:600px){.kurz dl>div{grid-template-columns:1fr;gap:2px}.kurz{padding:24px 20px}}
+  .tf-reihe{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px;margin:0 0 18px}
+  .tf{display:flex;flex-direction:column;gap:4px;background:var(--akzent-hell);border-radius:16px;padding:18px 16px;color:var(--text);text-decoration:none;font-weight:600;line-height:1.3;transition:transform .2s,background .2s}
+  .tf b{font-size:1.9rem;line-height:1;color:var(--akzent)}
+  .tf span{font-size:.8rem;font-weight:500;color:var(--grau)}
+  .tf:hover{background:#d6ebe6;transform:translateY(-2px)}
+  .werkzeuge{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;margin:0 0 22px}
+  .werkzeuge a{color:var(--akzent);font-weight:600;text-decoration:none}
+  @media (prefers-reduced-motion:reduce){.tf{transition:none}}
+  .rg summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .rg summary::-webkit-details-marker{display:none}
+  .rg summary h3{margin:0}
+  .rg summary::after{content:"";width:9px;height:9px;border-right:2px solid var(--akzent);border-bottom:2px solid var(--akzent);transform:rotate(45deg);flex:none;transition:transform .2s}
+  .rg[open] summary::after{transform:rotate(-135deg)}
+  @media (min-width:700px){.rg summary{cursor:default}.rg summary::after{display:none}}
+  .grid .karte.breit{grid-column:1/-1;background:var(--akzent-hell)}
   .ratgeber-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:16px}
   .ratgeber-grid .karte{padding:26px 24px}
   .ratgeber-grid ul{list-style:none;padding:0;margin:12px 0 0}
@@ -327,7 +349,8 @@
     <a class="logo" href="/">Dokuna<b>.</b></a>
     <div class="rechts">
       <a class="text" href="/sis-formulierungshilfen/">SIS-Ratgeber</a>
-      <a class="text nur-breit" href="/vorlagen/">SIS-Bogen &amp; Vorlagen</a>
+      <a class="text nur-breit" href="/md-pruefung-ambulant-vorbereiten/">MD-Prüfung</a>
+      <a class="text nur-breit" href="#preise">Preise</a>
       <a class="anmelden" href="https://app.dokuna.de/login">Anmelden</a>
       <a class="cta" href="/#kontakt">Vorführung<span class="nur-breit"> anfragen</span></a>
     </div>
@@ -339,7 +362,7 @@
     <div class="links">
       <div><span class="badge" style="margin-bottom:0">Aus der Praxis eines ambulanten Pflegedienstes</span></div>
       <h1>SIS® und Maßnahmen&shy;plan in Minuten.</h1>
-      <p class="sub" style="margin:0;font-size:1.2rem">Dokuna führt Ihre Pflegefachkräfte Schritt für Schritt durch die SIS® und erstellt daraus direkt den passenden Maßnahmenplan. Im Browser, ohne Installation.</p>
+      <p class="sub" style="margin:0;font-size:1.2rem">Dokuna führt Ihre Pflegefachkräfte Schritt für Schritt durch die SIS® und erstellt daraus direkt den passenden Maßnahmenplan und die Beratungsnachweise. Im Browser, ohne Installation.</p>
       <div class="haken">
         <div><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><span>MD-Prüfung nach QPR 2026: bestes Ergebnis bei der Pflegeagentur 24</span></div>
         <div><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><span>Nach dem Strukturmodell (EinSTEP) mit eigenem QM-Paket</span></div>
@@ -355,7 +378,7 @@
       <figure class="appfenster">
         <div class="appleiste" aria-hidden="true"><i></i><i></i><i></i><span>app.dokuna.de</span></div>
         <div class="appbild">
-          <img src="/bilder/app/dokuna-themenfeld-4-nur-klicks.webp" alt="Dokuna, Themenfeld 4 Selbstversorgung: angeklickt sind die Körperbereiche, die Frau Beispiel selbst wäscht, und die Kleidung, die sie selbst an- und auszieht. Unten steht der Text, den Dokuna allein aus diesen Klicks formuliert hat" width="1260" height="1523" fetchpriority="high">
+          <img src="/bilder/app/dokuna-themenfeld-4-nur-klicks.webp" alt="Dokuna, Themenfeld 4 Selbstversorgung: angeklickt sind die Körperbereiche, die Frau Beispiel selbst wäscht und die Kleidung, die sie selbst an- und auszieht. Unten steht der Text, den Dokuna allein aus diesen Klicks formuliert hat" width="1260" height="1523" fetchpriority="high">
           <span class="klick k1"><b>1</b>Sie klicken an</span>
           <span class="klick k2"><b>2</b>Dokuna schreibt den Text</span>
         </div>
@@ -366,8 +389,8 @@
 </section>
 
 <div class="stats">
-    <div class="s"><b><span data-countup="15">15</span> Standorte</b><span>von 5 Pflegediensten nutzen Dokuna</span></div>
-    <div class="s"><b><span data-countup="6">6</span> Themenfelder</b><span>geführt bis zum fertigen Plan</span></div>
+    <div class="s"><b><span data-countup="16">16</span> Standorte</b><span>von 6 Pflegediensten nutzen Dokuna</span></div>
+    <div class="s"><b><span data-countup="5">5</span> von 5 Bereichen</b><span>bestes Ergebnis in der MD-Prüfung</span></div>
     <div class="s"><b><span data-countup="37">37</span> Anleitungen</b><span>im Dokuna-QM-Paket</span></div>
     <div class="s"><b>0 Klientendaten</b><span>auf unserem Server</span></div></div>
 
@@ -418,6 +441,21 @@
   </div>
 </section>
 
+
+<section class="getoent">
+  <div class="wrap">
+    <div class="zentriert">
+      <h2>Kennen Sie das?</h2>
+      <p class="lead">Am Fachwissen liegt es selten. Es fehlen Zeit und die passenden Worte.</p>
+    </div>
+    <div class="punkte">
+      <div class="punkt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><p>Nach einer vollen Tour noch SIS und Maßnahmenplan schreiben, wenn der Kopf längst durch ist.</p></div>
+      <div class="punkt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><p>Fachlich ist alles klar, aber es so aufzuschreiben, dass es für andere nachvollziehbar ist, kostet Kraft. Besonders, wenn Deutsch nicht die Muttersprache ist.</p></div>
+      <div class="punkt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><p>Die MD-Prüfung ist angekündigt und die SIS-Bögen passen nicht mehr zur Versorgung. Seit der QPR 2026 schaut der MD genau darauf.</p></div>
+    </div>
+    </div>
+</section>
+
 <section id="video" style="padding-top:24px">
   <div class="wrap zentriert">
     <h2>So sieht Dokuna aus.</h2>
@@ -452,31 +490,19 @@
       </div>
 </section>
 
-<section class="getoent" style="padding-top:0">
-  <div class="wrap">
-    <div class="zentriert">
-      <h2>Kennen Sie das?</h2>
-      <p class="lead">Gute Dokumentation scheitert selten am Fachwissen, sondern an Zeit und Formulierung.</p>
-    </div>
-    <div class="punkte">
-      <div class="punkt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><p>Nach einer vollen Tour noch SIS und Maßnahmenplan schreiben – unter Druck, wenn der Kopf längst durch ist.</p></div>
-      <div class="punkt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg><p>Fachlich ist alles klar, aber es so aufzuschreiben, dass es für andere nachvollziehbar ist, kostet Kraft. Besonders, wenn Deutsch nicht die Muttersprache ist.</p></div>
-      <div class="punkt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><p>Seit der neuen QPR 2026 zählt individuelle, fachlich nachvollziehbare Dokumentation mehr denn je.</p></div>
-    </div>
-    </div>
-</section>
 
 <section style="padding-top:0">
   <div class="wrap">
     <div class="zentriert">
       <h2>Was Dokuna kann.</h2>
-      <p class="lead">Ein schlankes Werkzeug für die zwei größten Doku-Aufgaben im ambulanten Dienst: SIS und Maßnahmenplanung.</p>
+      <p class="lead">Für die großen Doku-Aufgaben im ambulanten Dienst: SIS, Maßnahmenplanung und Beratungsnachweis.</p>
     </div>
     <div class="grid">
-      <div class="karte gross"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/><path d="M10 12h4m0 0-1.8-1.8M14 12l-1.8 1.8"/></svg></span><h3>Von der SIS direkt zum Maßnahmenplan</h3><p>Das Herzstück: Aus der fertigen SIS entsteht auf Knopfdruck der individuelle Maßnahmenplan – stimmig mit den Themenfeldern und nachvollziehbar für jede Prüfung. Genau der Schritt, der sonst die meiste Zeit frisst.</p></div>
+      <div class="karte gross"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/><path d="M10 12h4m0 0-1.8-1.8M14 12l-1.8 1.8"/></svg></span><h3>Von der SIS direkt zum Maßnahmenplan</h3><p>Aus der fertigen SIS entsteht auf Knopfdruck der individuelle Maßnahmenplan, passend zu den Themenfeldern und nachvollziehbar für jede Prüfung. Das ist der Schritt, der sonst am längsten dauert.</p></div>
+      <div class="karte breit"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5"/><path d="M8 17c1.2-1.6 2.2-1.6 3 0s1.8 1.6 3 0"/></svg></span><h3>Beratungsnachweis mit Unterschrift</h3><p>Zu Sturz, Dekubitus, Ernährung und weiteren Themen. Was die SIS schon hergibt, ist grün vorgemerkt. Unterschrieben wird direkt am iPad oder Handy, jedes Thema ist einzeln druckbar.</p></div>
       <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.5" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.5" cy="18" r="1.3" fill="currentColor" stroke="none"/></svg></span><h3>Alle sechs Themenfelder, geführt</h3><p>Von der Sicht der pflegebedürftigen Person über die sechs Themenfelder bis zur Risikomatrix. Vieles per Klick statt langer Texte: Nichts wird vergessen, alles landet am richtigen Platz.</p></div>
-      <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.8-.3-4-1L3 20l1-5.5a8.5 8.5 0 1 1 17-3Z"/></svg></span><h3>Formuliert für die MD&#8209;Prüfung</h3><p>Aus Ihren Angaben entstehen fachlich saubere, individuelle Sätze statt Textbausteine – ausgerichtet auf die Prüfung nach QPR 2026. Eine echte Hilfe auch für Fachkräfte, deren Muttersprache nicht Deutsch ist.</p></div>
-      <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><h3>Nach dem Strukturmodell</h3><p>Dokuna folgt dem SIS-Bogen ambulant und den EinSTEP-Erläuterungen: Risikomatrix mit den fünf Original-Risiken, keine Medikamentenlisten in der SIS. Vorschläge sind nur hell markiert, das Kreuz setzt die Fachkraft.</p></div>
+      <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.8-.3-4-1L3 20l1-5.5a8.5 8.5 0 1 1 17-3Z"/></svg></span><h3>Formuliert für die MD&#8209;Prüfung</h3><p>Aus Ihren Angaben entstehen fachlich saubere, individuelle Sätze, ausgerichtet auf die Prüfung nach QPR 2026. Das hilft auch Fachkräften, deren Muttersprache nicht Deutsch ist.</p></div>
+      <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><h3>Nach dem Strukturmodell</h3><p>Dokuna folgt dem SIS-Bogen ambulant und dem neuen EinSTEP-Anforderungsprofil 3.0/3.1. <a href="#anforderungsprofil" style="color:var(--akzent);font-weight:600;text-decoration:none">So setzen wir es um&nbsp;›</a></p></div>
       <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10l2 2h6.5A1.5 1.5 0 0 1 20 7.5v11a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5Z"/><path d="m9 13 2 2 4-4"/></svg></span><h3>Eigenes QM-Paket</h3><p>Passend zu Dokuna gibt es das Dokuna-QM-Paket mit 37 Muster-Verfahrensanleitungen: Expertenstandards, Grundpflege und Behandlungspflege. Gibt Ihre PDL es frei, wird der Maßnahmenplan kurz und übersichtlich.</p></div>
       <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="13" height="10" rx="1.5"/><path d="M6 18h6"/><rect x="17" y="8" width="4.5" height="12" rx="1"/></svg></span><h3>Computer, iPad und Handy</h3><p>Dokuna läuft im Browser, ohne Installation. Updates kommen automatisch. Jede Pflegefachkraft hat einen eigenen Zugang, die Leitung verwaltet alle Zugänge.</p></div>
       <div class="karte"><span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M2.5 21c1.4-3.3 4.2-5 7.5-5 1.2 0 2.4.2 3.4.7"/><path d="m15 18 2.2 2.2L21.5 16"/></svg></span><h3>Die Fachkraft entscheidet</h3><p>Jedes Dokument wird von Ihrer Pflegefachkraft geprüft und freigegeben. Dokuna assistiert, die fachliche Verantwortung bleibt, wo sie hingehört.</p></div>
@@ -517,7 +543,7 @@
       <div class="punkt"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><p><strong>Zeichenzahl:</strong> ein Hinweis, sobald ein Themenfeld mehr als 1.024 Zeichen hat. Wer ihn beachtet, bleibt mit allen sechs Themenfeldern bei höchstens 6.144 Zeichen.</p></div>
       <div class="punkt"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><p><strong>Risikomatrix:</strong> nur die fünf Original-Risiken plus „Sonstiges“. Vorschläge nur aufgehellt, die Fachkraft kreuzt selbst an.</p></div>
       <div class="punkt"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><p><strong>Keine Extrafelder:</strong> Ressourcen stehen im Fließtext, Feld B ist Freitext im O-Ton der Person.</p></div>
-      <div class="punkt"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><p><strong>Die Fachkraft entscheidet:</strong> Prophylaxen sind nur Vorschläge, die Matrix kreuzt sie selbst an.</p></div>
+      <div class="punkt"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 8 15 17 5"/></svg><p><strong>Prophylaxen:</strong> nur Vorschläge im Plan, die Fachkraft übernimmt sie selbst.</p></div>
     </div>
     <p class="zentriert" style="margin-top:22px"><a href="/sis-anforderungsprofil/" style="color:var(--akzent);font-weight:600;text-decoration:none">Was das Anforderungsprofil verlangt&nbsp;›</a></p>
   </div>
@@ -527,7 +553,7 @@
   <div style="max-width:928px;margin:0 auto">
     <div class="zentriert">
       <h2>Im Browser.<br>Ihre Klientendaten bleiben bei Ihnen.</h2>
-      <p class="lead" style="margin-left:auto;margin-right:auto">Gesundheitsdaten sind die sensibelsten Daten überhaupt. Deshalb kommen sie bei Dokuna gar nicht erst auf unseren Server.</p>
+      <p class="lead" style="margin-left:auto;margin-right:auto">Gesundheitsdaten sind besonders sensibel. Deshalb kommen sie bei Dokuna nicht auf unseren Server.</p>
     </div>
     <div class="grid">
       <div class="karte"><h3>Sie bestimmen den Speicherort</h3><p>Jede SIS wird als Datei dort gespeichert, wo Ihr Pflegedienst es festlegt: in einem Ordner am Computer oder auf dem Netzlaufwerk. Am iPad und Handy über das Teilen-Menü. Ältere Fassungen werden nie überschrieben.</p></div>
@@ -558,7 +584,8 @@
         <p class="p">80 €<small> je Standort und Monat</small></p>
         <p class="einr">Endpreis · keine Einrichtungsgebühr</p>
         <ul>
-          <li>SIS und Maßnahmenplanung unbegrenzt</li>
+          <li>SIS, Maßnahmenplanung und Beratungsnachweise unbegrenzt</li>
+          <li>Dokuna-QM-Paket mit 37 Muster-Verfahrensanleitungen</li>
           <li>Eigener Zugang für die Leitung und für jede Pflegefachkraft (im Standard bis zu 3 je Standort, mehr auf Anfrage)</li>
           <li>Läuft am Computer, iPad und Handy</li>
           <li>Alle Updates inklusive, sie kommen automatisch</li>
@@ -569,7 +596,7 @@
       <div class="preis hervor">
         <span class="tag">Erst sehen, dann entscheiden</span>
         <h3>Persönliche Vorführung</h3>
-        <p class="einr" style="margin-bottom:16px">Wir zeigen Ihnen Dokuna mit Ihren eigenen Fragen und Fällen. Unverbindlich.</p>
+        <p class="einr" style="margin-bottom:16px">Online oder bei Ihnen vor Ort. Wir zeigen Ihnen Dokuna mit Ihren eigenen Fragen und Fällen. Unverbindlich.</p>
         <ul>
           <li>Eine SIS live vom Erstgespräch bis zum Maßnahmenplan</li>
           <li>Ihre Fragen zu Datenschutz, Speicherort und Zugängen</li>
@@ -586,13 +613,30 @@
   <div class="wrap">
     <div class="zentriert">
       <h2>So starten Sie.</h2>
-      <p class="lead" style="margin-left:auto;margin-right:auto">Vier Schritte von der ersten Nachricht bis zur ersten SIS – ohne Installation.</p>
+      <p class="lead" style="margin-left:auto;margin-right:auto">Vier Schritte von der ersten Nachricht bis zur ersten SIS. Ohne Installation.</p>
     </div>
     <div class="ablauf" data-noreveal>
       <div class="schritt"><h3>Kennenlernen</h3><p>Sie schreiben eine kurze Mail oder rufen an. Sie bekommen werktags innerhalb von 24 Stunden eine persönliche Antwort.</p></div>
-      <div class="schritt"><h3>Vorführung</h3><p>Sie sehen Dokuna im Einsatz – mit Ihren Fragen und Fällen, unverbindlich.</p></div>
-      <div class="schritt"><h3>Zugang einrichten</h3><p>Die Leitung bekommt eine Einladung per E-Mail, legt die Standorte und die Zugänge der Pflegefachkräfte an und wählt den Speicherort. Auf Wunsch gehen wir das gemeinsam durch.</p></div>
+      <div class="schritt"><h3>Vorführung</h3><p>Sie sehen Dokuna im Einsatz mit Ihren Fragen und Fällen. Unverbindlich.</p></div>
+      <div class="schritt"><h3>Zugang einrichten</h3><p>Die Leitung bekommt eine Einladung per E-Mail und legt Standorte und Zugänge an. Das dauert wenige Minuten, auf Wunsch machen wir es gemeinsam.</p></div>
       <div class="schritt"><h3>Loslegen</h3><p>Ihre Pflegefachkräfte melden sich an und erstellen die erste SIS. Updates und Hilfe per E-Mail sind inklusive.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0" id="in-kuerze">
+  <div class="wrap">
+    <div class="kurz">
+      <h2>Dokuna in Kürze.</h2>
+      <dl>
+        <div><dt>Was</dt><dd>Software für die SIS® und den Maßnahmenplan in der ambulanten Pflege. Die Fachkraft klickt an, Dokuna formuliert nach festen Regeln und erstellt daraus den Maßnahmenplan und die Beratungsnachweise.</dd></div>
+        <div><dt>Für wen</dt><dd>Ambulante Pflegedienste in Deutschland: Pflegefachkräfte, Pflegedienstleitungen und Qualitätsbeauftragte.</dd></div>
+        <div><dt>Grundlage</dt><dd>Strukturmodell mit SIS-Bogen ambulant, EinSTEP-Anforderungsprofil 3.0/3.1 und Risikomatrix mit den fünf Original-Risiken.</dd></div>
+        <div><dt>Geräte</dt><dd>Im Browser am Computer, iPad und Handy, ohne Installation.</dd></div>
+        <div><dt>Daten</dt><dd>Klientendaten bleiben im Speicherort des Pflegedienstes. Auf dem Server in Deutschland liegen nur Benutzerkonten.</dd></div>
+        <div><dt>Im Einsatz</dt><dd>6 ambulante Pflegedienste mit 16 Standorten. MD-Regelprüfung der Pflegeagentur 24 am 21.10.2026: bestes Ergebnis in allen 5 Bereichen zu SIS und Maßnahmenplan.</dd></div>
+        <div><dt>Preis</dt><dd>80 € je Standort und Monat, keine Einrichtungsgebühr.</dd></div>
+      </dl>
     </div>
   </div>
 </section>
@@ -601,7 +645,7 @@
   <div class="wrap">
     <div class="zentriert">
       <h2>Häufige Fragen.</h2>
-      <p class="lead" style="margin-left:auto;margin-right:auto">Kurz beantwortet – alles Weitere klären wir gern persönlich.</p>
+      <p class="lead" style="margin-left:auto;margin-right:auto">Kurz beantwortet. Alles Weitere klären wir gern persönlich.</p>
     </div>
     <div class="faq">
       <details>
@@ -644,64 +688,68 @@
   <div class="wrap">
     <div class="zentriert">
       <h2>Ratgeber.</h2>
-      <p class="lead">Frei zugänglich: alles rund um SIS®, Maßnahmenplan und Prüfung, geschrieben aus der Praxis.</p>
+      <p class="lead">Frei zugänglich: alles rund um SIS®, Maßnahmenplan und MD-Prüfung, geschrieben aus der Praxis.</p>
+    </div>
+    <div class="tf-reihe">
+      <a class="tf" href="/sis-themenfeld-1-kognition-kommunikation/"><b>1</b><span>Themenfeld 1</span>Kognition und Kommunikation</a>
+      <a class="tf" href="/sis-themenfeld-2-mobilitaet/"><b>2</b><span>Themenfeld 2</span>Mobilität und Beweglichkeit</a>
+      <a class="tf" href="/sis-themenfeld-3-krankheitsbezogene-anforderungen/"><b>3</b><span>Themenfeld 3</span>Krankheits&shy;bezogene Anforderungen</a>
+      <a class="tf" href="/sis-themenfeld-4-selbstversorgung/"><b>4</b><span>Themenfeld 4</span>Selbstversorgung</a>
+      <a class="tf" href="/sis-themenfeld-5-soziale-beziehungen/"><b>5</b><span>Themenfeld 5</span>Leben in sozialen Beziehungen</a>
+      <a class="tf" href="/sis-themenfeld-6-haushaltsfuehrung/"><b>6</b><span>Themenfeld 6</span>Haushaltsführung</a>
+    </div>
+    <div class="werkzeuge">
+      <a href="/sis-formulierungshelfer/">SIS-Formulierungshelfer (Lückentext)&nbsp;›</a>
+      <a href="/sis-formulierungshilfen/">Formulierungshilfen für alle Themenfelder&nbsp;›</a>
+      <a href="/sis-spickzettel/">SIS-Spickzettel&nbsp;›</a>
+      <a href="/vorlagen/">SIS-Bogen und Maßnahmenplan als Vorlage&nbsp;›</a>
     </div>
     <div class="ratgeber-grid">
-      <div class="karte">
-        <h3>Neu: Anforderungsprofil 3.0/3.1</h3>
+      <details class="karte rg" open>
+        <summary><h3>SIS Schritt für Schritt</h3></summary>
         <ul>
-          <li><a href="/sis-anforderungsprofil/">SIS®-Anforderungsprofil 3.0/3.1: Was sich für Pflegedienste ändert</a></li>
-          <li><a href="/grundbotschaft-sis/">Grundbotschaft im Maßnahmenplan: Was sie ist und wie Sie sie schreiben</a></li>
-          <li><a href="/ki-in-der-sis/">KI in der SIS®: Was erlaubt ist und was nicht</a></li>
+          <li><a href="/was-ist-die-sis/">Was ist die SIS? Einfach erklärt</a></li>
+          <li><a href="/sis-pflicht/">Ist die SIS Pflicht?</a></li>
+          <li><a href="/sis-ausfuellen/">SIS ausfüllen: Schritt für Schritt</a></li>
+          <li><a href="/sis-frist-neuaufnahme/">SIS-Frist nach Neuaufnahme</a></li>
+          <li><a href="/sis-anforderungsprofil/">Anforderungsprofil 3.0/3.1: was sich ändert</a></li>
+          <li><a href="/sis-beispiel-ambulant/">SIS-Beispiel ambulant: ein Musterfall</a></li>
+          <li><a href="/sis-demenz/">SIS bei Menschen mit Demenz</a></li>
+          <li><a href="/sis-pflegegrad/">SIS und Pflegegrad im Vergleich</a></li>
+          <li><a href="/ki-in-der-sis/">KI in der SIS: was erlaubt ist</a></li>
         </ul>
-      </div>
-      <div class="karte">
-        <h3>Grundlagen</h3>
+      </details>
+      <details class="karte rg" open>
+        <summary><h3>Maßnahmenplan</h3></summary>
         <ul>
-          <li><a href="/was-ist-die-sis/">Was ist die SIS? Die Strukturierte Informationssammlung einfach erklärt</a></li>
-          <li><a href="/sis-pflicht/">Ist die SIS Pflicht? Wer eine braucht – und wer nicht</a></li>
-          <li><a href="/sis-ausfuellen/">SIS ausfüllen: Schritt für Schritt zur fertigen Informationssammlung</a></li>
-          <li><a href="/sis-frist-neuaufnahme/">SIS-Frist nach Neuaufnahme: Bis wann muss die Doku stehen?</a></li>
-          <li><a href="/sis-formulierungshilfen/">SIS-Formulierungshilfen: Beispiele für alle sechs Themenfelder</a></li>
-          <li><a href="/sis-spickzettel/">SIS-Spickzettel – auf einen Blick</a></li>
-          <li><a href="/vorlagen/">SIS-Bogen &amp; Maßnahmenplan</a></li>
-        </ul>
-      </div>
-      <div class="karte">
-        <h3>Die sechs Themenfelder</h3>
-        <ul>
-          <li><a href="/sis-themenfeld-1-kognition-kommunikation/">Themenfeld 1: Kognitive und kommunikative Fähigkeiten</a></li>
-          <li><a href="/sis-themenfeld-2-mobilitaet/">Themenfeld 2: Mobilität und Beweglichkeit</a></li>
-          <li><a href="/sis-themenfeld-3-krankheitsbezogene-anforderungen/">Themenfeld 3: Krankheitsbezogene Anforderungen und Belastungen</a></li>
-          <li><a href="/sis-themenfeld-4-selbstversorgung/">Themenfeld 4: Selbstversorgung</a></li>
-          <li><a href="/sis-themenfeld-5-soziale-beziehungen/">Themenfeld 5: Leben in sozialen Beziehungen</a></li>
-          <li><a href="/sis-themenfeld-6-haushaltsfuehrung/">Themenfeld 6: Haushaltsführung</a></li>
-        </ul>
-      </div>
-      <div class="karte">
-        <h3>Planung und Prüfung</h3>
-        <ul>
-          <li><a href="/risikomatrix-sis/">Die Risikomatrix in der SIS: Aufbau, Ausfüllen, häufige Fehler</a></li>
           <li><a href="/massnahmenplan-ambulant/">Maßnahmenplan ambulant: von der SIS zur Planung</a></li>
-          <li><a href="/berichteblatt/">Berichteblatt: nur Abweichungen dokumentieren</a></li>
-          <li><a href="/evaluation-pflegeplanung/">Evaluation: Wann die Planung auf den Prüfstand gehört</a></li>
-          <li><a href="/qpr-ambulant-2026/">QPR ambulant 2026: Was die neue Prüfung verlangt</a></li>
-          <li><a href="/md-pruefung-ambulant-vorbereiten/">MD-Prüfung ambulant vorbereiten: Checkliste und Fachgespräch</a></li>
-          <li><a href="/sis-software/">Software für ambulante Pflegedienste: SIS® und Maßnahmenplan</a></li>
+          <li><a href="/massnahmenplan-formulierungen/">Maßnahmenplan formulieren: Beispiele</a></li>
+          <li><a href="/massnahmenplan-kurz-oder-ausfuehrlich/">Kurz oder ausführlich: Vergleich mit Beispiel</a></li>
+          <li><a href="/grundbotschaft-sis/">Grundbotschaft im Maßnahmenplan</a></li>
+          <li><a href="/berichteblatt/">Berichteblatt: nur Abweichungen</a></li>
+          <li><a href="/evaluation-pflegeplanung/">Evaluation der Pflegeplanung</a></li>
         </ul>
-      </div>
-      <div class="karte">
-        <h3>Praxis und Beispiele</h3>
+      </details>
+      <details class="karte rg" open>
+        <summary><h3>Risiken und Prophylaxen</h3></summary>
         <ul>
-          <li><a href="/sis-formulierungshelfer/">SIS-Formulierungshelfer: kostenloser Lückentext für jedes Themenfeld</a></li>
-          <li><a href="/sis-beispiel-ambulant/">SIS-Beispiel ambulant: ein ausgefüllter Musterfall</a></li>
-          <li><a href="/sis-demenz/">SIS bei Menschen mit Demenz: Feld B, Grundbotschaft und Themenfeld 1</a></li>
-          <li><a href="/massnahmenplan-formulierungen/">Maßnahmenplan formulieren: Beispiele für den ambulanten Dienst</a></li>
-          <li><a href="/dekubitusprophylaxe-massnahmenplan/">Dekubitusprophylaxe im Maßnahmenplan richtig formulieren</a></li>
-          <li><a href="/sturzprophylaxe-ambulant/">Sturzrisiko in der SIS und im Maßnahmenplan</a></li>
-          <li><a href="/sis-pflegegrad/">SIS und Pflegegrad: Themenfelder und Module im Vergleich</a></li>
+          <li><a href="/risikomatrix-sis/">Die Risikomatrix in der SIS</a></li>
+          <li><a href="/sturzprophylaxe-ambulant/">Sturzrisiko in SIS und Plan</a></li>
+          <li><a href="/dekubitusprophylaxe-massnahmenplan/">Dekubitusprophylaxe formulieren</a></li>
+          <li><a href="/inkontinenz-sis-massnahmenplan/">Inkontinenz in SIS und Plan</a></li>
+          <li><a href="/ernaehrung-sis-massnahmenplan/">Ernährung in SIS und Plan</a></li>
+          <li><a href="/schmerz-sis-massnahmenplan/">Schmerz in SIS und Plan</a></li>
         </ul>
-      </div>
+      </details>
+      <details class="karte rg" open>
+        <summary><h3>MD-Prüfung und Software</h3></summary>
+        <ul>
+          <li><a href="/md-pruefung-ambulant-vorbereiten/">MD-Prüfung ambulant vorbereiten</a></li>
+          <li><a href="/qpr-ambulant-2026/">QPR ambulant 2026: was geprüft wird</a></li>
+          <li><a href="/sis-software/">SIS-Software: worauf es ankommt</a></li>
+          <li><a href="/foerderung-pflegesoftware/">Förderung bis 12.000 € nach § 8 SGB XI</a></li>
+        </ul>
+      </details>
     </div>
     <p class="zentriert" style="margin-top:22px"><a href="/neu-in-dokuna/" style="color:var(--akzent);font-weight:600;text-decoration:none">Neu in Dokuna: die neuen Funktionen&nbsp;›</a></p>
   </div>
@@ -925,6 +973,12 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 })();
 </script>
 
+<script>
+(function(){var schmal=window.matchMedia('(max-width:699px)');
+function setzen(){document.querySelectorAll('details.rg').forEach(function(d){d.open=!schmal.matches;});}
+setzen();if(schmal.addEventListener)schmal.addEventListener('change',setzen);
+document.querySelectorAll('details.rg summary').forEach(function(su){su.addEventListener('click',function(e){if(!schmal.matches)e.preventDefault();});});})();
+</script>
 <script src="/reveal.js" defer></script>
 
 <script>
