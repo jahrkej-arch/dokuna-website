@@ -280,6 +280,21 @@
   .videotext summary{cursor:pointer;font-weight:600;color:var(--akzent);padding:12px 0}
   .videotext-inhalt{padding:4px 0 8px}
   .videotext-inhalt p{font-size:.98rem;color:var(--text);margin:0 0 12px}
+  .kurz{background:var(--weiss);border:1px solid var(--linie);border-radius:20px;padding:32px 30px;max-width:928px;margin:0 auto}
+  .kurz h2{margin:0 0 18px}
+  .kurz dl{margin:0;display:grid;gap:0}
+  .kurz dl>div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:12px 0;border-top:1px solid var(--linie)}
+  .kurz dt{font-weight:700;color:var(--akzent)}
+  .kurz dd{margin:0;line-height:1.5}
+  @media (max-width:600px){.kurz dl>div{grid-template-columns:1fr;gap:2px}.kurz{padding:24px 20px}}
+  .tf-reihe{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px;margin:0 0 18px}
+  .tf{display:flex;flex-direction:column;gap:4px;background:var(--akzent-hell);border-radius:16px;padding:18px 16px;color:var(--text);text-decoration:none;font-weight:600;line-height:1.3;transition:transform .2s,background .2s}
+  .tf b{font-size:1.9rem;line-height:1;color:var(--akzent)}
+  .tf span{font-size:.8rem;font-weight:500;color:var(--grau)}
+  .tf:hover{background:#d6ebe6;transform:translateY(-2px)}
+  .werkzeuge{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;margin:0 0 22px}
+  .werkzeuge a{color:var(--akzent);font-weight:600;text-decoration:none}
+  @media (prefers-reduced-motion:reduce){.tf{transition:none}}
   .ratgeber-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:16px}
   .ratgeber-grid .karte{padding:26px 24px}
   .ratgeber-grid ul{list-style:none;padding:0;margin:12px 0 0}
@@ -327,7 +342,8 @@
     <a class="logo" href="/">Dokuna<b>.</b></a>
     <div class="rechts">
       <a class="text" href="/sis-formulierungshilfen/">SIS-Ratgeber</a>
-      <a class="text nur-breit" href="/vorlagen/">SIS-Bogen &amp; Vorlagen</a>
+      <a class="text nur-breit" href="/md-pruefung-ambulant-vorbereiten/">MD-Prüfung</a>
+      <a class="text nur-breit" href="#preise">Preise</a>
       <a class="anmelden" href="https://app.dokuna.de/login">Anmelden</a>
       <a class="cta" href="/#kontakt">Vorführung<span class="nur-breit"> anfragen</span></a>
     </div>
@@ -414,6 +430,23 @@
         <picture><source srcset="/bilder/md-pruefung-2026-seite2.webp" type="image/webp"><img src="/bilder/md-pruefung-2026-seite2.jpg" alt="Seite 2 des Qualitätsberichts der Pflegeagentur 24 vom 21.10.2026, rot markiert die Bereiche 1.1, 1.2, 2.1, 2.5 und 2.7" width="873" height="1180" loading="lazy"></picture>
         <span>Bericht ansehen ›</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0" id="in-kuerze">
+  <div class="wrap">
+    <div class="kurz">
+      <h2>Dokuna in Kürze.</h2>
+      <dl>
+        <div><dt>Was</dt><dd>Software für die SIS® und den Maßnahmenplan in der ambulanten Pflege. Die Fachkraft klickt an, Dokuna formuliert nach festen Regeln und erstellt daraus den Maßnahmenplan.</dd></div>
+        <div><dt>Für wen</dt><dd>Ambulante Pflegedienste in Deutschland: Pflegefachkräfte, Pflegedienstleitungen und Qualitätsbeauftragte.</dd></div>
+        <div><dt>Grundlage</dt><dd>Strukturmodell mit SIS-Bogen ambulant, EinSTEP-Anforderungsprofil 3.0/3.1 und Risikomatrix mit den fünf Original-Risiken.</dd></div>
+        <div><dt>Geräte</dt><dd>Im Browser am Computer, iPad und Handy, ohne Installation.</dd></div>
+        <div><dt>Daten</dt><dd>Klientendaten bleiben im Speicherort des Pflegedienstes. Auf dem Server in Deutschland liegen nur Benutzerkonten.</dd></div>
+        <div><dt>Im Einsatz</dt><dd>5 ambulante Pflegedienste mit 15 Standorten. MD-Regelprüfung der Pflegeagentur 24 am 21.10.2026: bestes Ergebnis in allen 5 Bereichen zu SIS und Maßnahmenplan.</dd></div>
+        <div><dt>Preis</dt><dd>80 € je Standort und Monat, keine Einrichtungsgebühr.</dd></div>
+      </dl>
     </div>
   </div>
 </section>
@@ -644,62 +677,66 @@
   <div class="wrap">
     <div class="zentriert">
       <h2>Ratgeber.</h2>
-      <p class="lead">Frei zugänglich: alles rund um SIS®, Maßnahmenplan und Prüfung, geschrieben aus der Praxis.</p>
+      <p class="lead">Frei zugänglich: alles rund um SIS®, Maßnahmenplan und MD-Prüfung, geschrieben aus der Praxis.</p>
+    </div>
+    <div class="tf-reihe">
+      <a class="tf" href="/sis-themenfeld-1-kognition-kommunikation/"><b>1</b><span>Themenfeld 1</span>Kognition und Kommunikation</a>
+      <a class="tf" href="/sis-themenfeld-2-mobilitaet/"><b>2</b><span>Themenfeld 2</span>Mobilität und Beweglichkeit</a>
+      <a class="tf" href="/sis-themenfeld-3-krankheitsbezogene-anforderungen/"><b>3</b><span>Themenfeld 3</span>Krankheits&shy;bezogene Anforderungen</a>
+      <a class="tf" href="/sis-themenfeld-4-selbstversorgung/"><b>4</b><span>Themenfeld 4</span>Selbstversorgung</a>
+      <a class="tf" href="/sis-themenfeld-5-soziale-beziehungen/"><b>5</b><span>Themenfeld 5</span>Leben in sozialen Beziehungen</a>
+      <a class="tf" href="/sis-themenfeld-6-haushaltsfuehrung/"><b>6</b><span>Themenfeld 6</span>Haushaltsführung</a>
+    </div>
+    <div class="werkzeuge">
+      <a href="/sis-formulierungshelfer/">SIS-Formulierungshelfer (Lückentext)&nbsp;›</a>
+      <a href="/sis-formulierungshilfen/">Formulierungshilfen für alle Themenfelder&nbsp;›</a>
+      <a href="/sis-spickzettel/">SIS-Spickzettel&nbsp;›</a>
+      <a href="/vorlagen/">SIS-Bogen und Maßnahmenplan als Vorlage&nbsp;›</a>
     </div>
     <div class="ratgeber-grid">
       <div class="karte">
-        <h3>Neu: Anforderungsprofil 3.0/3.1</h3>
+        <h3>SIS Schritt für Schritt</h3>
         <ul>
-          <li><a href="/sis-anforderungsprofil/">SIS®-Anforderungsprofil 3.0/3.1: Was sich für Pflegedienste ändert</a></li>
-          <li><a href="/grundbotschaft-sis/">Grundbotschaft im Maßnahmenplan: Was sie ist und wie Sie sie schreiben</a></li>
-          <li><a href="/ki-in-der-sis/">KI in der SIS®: Was erlaubt ist und was nicht</a></li>
+          <li><a href="/was-ist-die-sis/">Was ist die SIS? Einfach erklärt</a></li>
+          <li><a href="/sis-pflicht/">Ist die SIS Pflicht?</a></li>
+          <li><a href="/sis-ausfuellen/">SIS ausfüllen: Schritt für Schritt</a></li>
+          <li><a href="/sis-frist-neuaufnahme/">SIS-Frist nach Neuaufnahme</a></li>
+          <li><a href="/sis-anforderungsprofil/">Anforderungsprofil 3.0/3.1: was sich ändert</a></li>
+          <li><a href="/sis-beispiel-ambulant/">SIS-Beispiel ambulant: ein Musterfall</a></li>
+          <li><a href="/sis-demenz/">SIS bei Menschen mit Demenz</a></li>
+          <li><a href="/sis-pflegegrad/">SIS und Pflegegrad im Vergleich</a></li>
+          <li><a href="/ki-in-der-sis/">KI in der SIS: was erlaubt ist</a></li>
         </ul>
       </div>
       <div class="karte">
-        <h3>Grundlagen</h3>
+        <h3>Maßnahmenplan</h3>
         <ul>
-          <li><a href="/was-ist-die-sis/">Was ist die SIS? Die Strukturierte Informationssammlung einfach erklärt</a></li>
-          <li><a href="/sis-pflicht/">Ist die SIS Pflicht? Wer eine braucht – und wer nicht</a></li>
-          <li><a href="/sis-ausfuellen/">SIS ausfüllen: Schritt für Schritt zur fertigen Informationssammlung</a></li>
-          <li><a href="/sis-frist-neuaufnahme/">SIS-Frist nach Neuaufnahme: Bis wann muss die Doku stehen?</a></li>
-          <li><a href="/sis-formulierungshilfen/">SIS-Formulierungshilfen: Beispiele für alle sechs Themenfelder</a></li>
-          <li><a href="/sis-spickzettel/">SIS-Spickzettel – auf einen Blick</a></li>
-          <li><a href="/vorlagen/">SIS-Bogen &amp; Maßnahmenplan</a></li>
-        </ul>
-      </div>
-      <div class="karte">
-        <h3>Die sechs Themenfelder</h3>
-        <ul>
-          <li><a href="/sis-themenfeld-1-kognition-kommunikation/">Themenfeld 1: Kognitive und kommunikative Fähigkeiten</a></li>
-          <li><a href="/sis-themenfeld-2-mobilitaet/">Themenfeld 2: Mobilität und Beweglichkeit</a></li>
-          <li><a href="/sis-themenfeld-3-krankheitsbezogene-anforderungen/">Themenfeld 3: Krankheitsbezogene Anforderungen und Belastungen</a></li>
-          <li><a href="/sis-themenfeld-4-selbstversorgung/">Themenfeld 4: Selbstversorgung</a></li>
-          <li><a href="/sis-themenfeld-5-soziale-beziehungen/">Themenfeld 5: Leben in sozialen Beziehungen</a></li>
-          <li><a href="/sis-themenfeld-6-haushaltsfuehrung/">Themenfeld 6: Haushaltsführung</a></li>
-        </ul>
-      </div>
-      <div class="karte">
-        <h3>Planung und Prüfung</h3>
-        <ul>
-          <li><a href="/risikomatrix-sis/">Die Risikomatrix in der SIS: Aufbau, Ausfüllen, häufige Fehler</a></li>
           <li><a href="/massnahmenplan-ambulant/">Maßnahmenplan ambulant: von der SIS zur Planung</a></li>
-          <li><a href="/berichteblatt/">Berichteblatt: nur Abweichungen dokumentieren</a></li>
-          <li><a href="/evaluation-pflegeplanung/">Evaluation: Wann die Planung auf den Prüfstand gehört</a></li>
-          <li><a href="/qpr-ambulant-2026/">QPR ambulant 2026: Was die neue Prüfung verlangt</a></li>
-          <li><a href="/md-pruefung-ambulant-vorbereiten/">MD-Prüfung ambulant vorbereiten: Checkliste und Fachgespräch</a></li>
-          <li><a href="/sis-software/">Software für ambulante Pflegedienste: SIS® und Maßnahmenplan</a></li>
+          <li><a href="/massnahmenplan-formulierungen/">Maßnahmenplan formulieren: Beispiele</a></li>
+          <li><a href="/massnahmenplan-kurz-oder-ausfuehrlich/">Kurz oder ausführlich: Vergleich mit Beispiel</a></li>
+          <li><a href="/grundbotschaft-sis/">Grundbotschaft im Maßnahmenplan</a></li>
+          <li><a href="/berichteblatt/">Berichteblatt: nur Abweichungen</a></li>
+          <li><a href="/evaluation-pflegeplanung/">Evaluation der Pflegeplanung</a></li>
         </ul>
       </div>
       <div class="karte">
-        <h3>Praxis und Beispiele</h3>
+        <h3>Risiken und Prophylaxen</h3>
         <ul>
-          <li><a href="/sis-formulierungshelfer/">SIS-Formulierungshelfer: kostenloser Lückentext für jedes Themenfeld</a></li>
-          <li><a href="/sis-beispiel-ambulant/">SIS-Beispiel ambulant: ein ausgefüllter Musterfall</a></li>
-          <li><a href="/sis-demenz/">SIS bei Menschen mit Demenz: Feld B, Grundbotschaft und Themenfeld 1</a></li>
-          <li><a href="/massnahmenplan-formulierungen/">Maßnahmenplan formulieren: Beispiele für den ambulanten Dienst</a></li>
-          <li><a href="/dekubitusprophylaxe-massnahmenplan/">Dekubitusprophylaxe im Maßnahmenplan richtig formulieren</a></li>
-          <li><a href="/sturzprophylaxe-ambulant/">Sturzrisiko in der SIS und im Maßnahmenplan</a></li>
-          <li><a href="/sis-pflegegrad/">SIS und Pflegegrad: Themenfelder und Module im Vergleich</a></li>
+          <li><a href="/risikomatrix-sis/">Die Risikomatrix in der SIS</a></li>
+          <li><a href="/sturzprophylaxe-ambulant/">Sturzrisiko in SIS und Plan</a></li>
+          <li><a href="/dekubitusprophylaxe-massnahmenplan/">Dekubitusprophylaxe formulieren</a></li>
+          <li><a href="/inkontinenz-sis-massnahmenplan/">Inkontinenz in SIS und Plan</a></li>
+          <li><a href="/ernaehrung-sis-massnahmenplan/">Ernährung in SIS und Plan</a></li>
+          <li><a href="/schmerz-sis-massnahmenplan/">Schmerz in SIS und Plan</a></li>
+        </ul>
+      </div>
+      <div class="karte">
+        <h3>MD-Prüfung und Software</h3>
+        <ul>
+          <li><a href="/md-pruefung-ambulant-vorbereiten/">MD-Prüfung ambulant vorbereiten</a></li>
+          <li><a href="/qpr-ambulant-2026/">QPR ambulant 2026: was geprüft wird</a></li>
+          <li><a href="/sis-software/">SIS-Software: worauf es ankommt</a></li>
+          <li><a href="/foerderung-pflegesoftware/">Förderung bis 12.000 € nach § 8 SGB XI</a></li>
         </ul>
       </div>
     </div>
