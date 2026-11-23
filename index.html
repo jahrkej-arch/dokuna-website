@@ -295,6 +295,12 @@
   .werkzeuge{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;margin:0 0 22px}
   .werkzeuge a{color:var(--akzent);font-weight:600;text-decoration:none}
   @media (prefers-reduced-motion:reduce){.tf{transition:none}}
+  .rg summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .rg summary::-webkit-details-marker{display:none}
+  .rg summary h3{margin:0}
+  .rg summary::after{content:"";width:9px;height:9px;border-right:2px solid var(--akzent);border-bottom:2px solid var(--akzent);transform:rotate(45deg);flex:none;transition:transform .2s}
+  .rg[open] summary::after{transform:rotate(-135deg)}
+  @media (min-width:700px){.rg summary{cursor:default}.rg summary::after{display:none}}
   .ratgeber-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:16px}
   .ratgeber-grid .karte{padding:26px 24px}
   .ratgeber-grid ul{list-style:none;padding:0;margin:12px 0 0}
@@ -434,22 +440,6 @@
   </div>
 </section>
 
-<section style="padding-top:0" id="in-kuerze">
-  <div class="wrap">
-    <div class="kurz">
-      <h2>Dokuna in Kürze.</h2>
-      <dl>
-        <div><dt>Was</dt><dd>Software für die SIS® und den Maßnahmenplan in der ambulanten Pflege. Die Fachkraft klickt an, Dokuna formuliert nach festen Regeln und erstellt daraus den Maßnahmenplan.</dd></div>
-        <div><dt>Für wen</dt><dd>Ambulante Pflegedienste in Deutschland: Pflegefachkräfte, Pflegedienstleitungen und Qualitätsbeauftragte.</dd></div>
-        <div><dt>Grundlage</dt><dd>Strukturmodell mit SIS-Bogen ambulant, EinSTEP-Anforderungsprofil 3.0/3.1 und Risikomatrix mit den fünf Original-Risiken.</dd></div>
-        <div><dt>Geräte</dt><dd>Im Browser am Computer, iPad und Handy, ohne Installation.</dd></div>
-        <div><dt>Daten</dt><dd>Klientendaten bleiben im Speicherort des Pflegedienstes. Auf dem Server in Deutschland liegen nur Benutzerkonten.</dd></div>
-        <div><dt>Im Einsatz</dt><dd>5 ambulante Pflegedienste mit 15 Standorten. MD-Regelprüfung der Pflegeagentur 24 am 21.10.2026: bestes Ergebnis in allen 5 Bereichen zu SIS und Maßnahmenplan.</dd></div>
-        <div><dt>Preis</dt><dd>80 € je Standort und Monat, keine Einrichtungsgebühr.</dd></div>
-      </dl>
-    </div>
-  </div>
-</section>
 
 <section id="video" style="padding-top:24px">
   <div class="wrap zentriert">
@@ -630,6 +620,23 @@
   </div>
 </section>
 
+<section style="padding-top:0" id="in-kuerze">
+  <div class="wrap">
+    <div class="kurz">
+      <h2>Dokuna in Kürze.</h2>
+      <dl>
+        <div><dt>Was</dt><dd>Software für die SIS® und den Maßnahmenplan in der ambulanten Pflege. Die Fachkraft klickt an, Dokuna formuliert nach festen Regeln und erstellt daraus den Maßnahmenplan.</dd></div>
+        <div><dt>Für wen</dt><dd>Ambulante Pflegedienste in Deutschland: Pflegefachkräfte, Pflegedienstleitungen und Qualitätsbeauftragte.</dd></div>
+        <div><dt>Grundlage</dt><dd>Strukturmodell mit SIS-Bogen ambulant, EinSTEP-Anforderungsprofil 3.0/3.1 und Risikomatrix mit den fünf Original-Risiken.</dd></div>
+        <div><dt>Geräte</dt><dd>Im Browser am Computer, iPad und Handy, ohne Installation.</dd></div>
+        <div><dt>Daten</dt><dd>Klientendaten bleiben im Speicherort des Pflegedienstes. Auf dem Server in Deutschland liegen nur Benutzerkonten.</dd></div>
+        <div><dt>Im Einsatz</dt><dd>6 ambulante Pflegedienste mit 16 Standorten. MD-Regelprüfung der Pflegeagentur 24 am 21.10.2026: bestes Ergebnis in allen 5 Bereichen zu SIS und Maßnahmenplan.</dd></div>
+        <div><dt>Preis</dt><dd>80 € je Standort und Monat, keine Einrichtungsgebühr.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
 <section class="getoent" id="faq" style="padding-top:0">
   <div class="wrap">
     <div class="zentriert">
@@ -694,8 +701,8 @@
       <a href="/vorlagen/">SIS-Bogen und Maßnahmenplan als Vorlage&nbsp;›</a>
     </div>
     <div class="ratgeber-grid">
-      <div class="karte">
-        <h3>SIS Schritt für Schritt</h3>
+      <details class="karte rg" open>
+        <summary><h3>SIS Schritt für Schritt</h3></summary>
         <ul>
           <li><a href="/was-ist-die-sis/">Was ist die SIS? Einfach erklärt</a></li>
           <li><a href="/sis-pflicht/">Ist die SIS Pflicht?</a></li>
@@ -707,9 +714,9 @@
           <li><a href="/sis-pflegegrad/">SIS und Pflegegrad im Vergleich</a></li>
           <li><a href="/ki-in-der-sis/">KI in der SIS: was erlaubt ist</a></li>
         </ul>
-      </div>
-      <div class="karte">
-        <h3>Maßnahmenplan</h3>
+      </details>
+      <details class="karte rg" open>
+        <summary><h3>Maßnahmenplan</h3></summary>
         <ul>
           <li><a href="/massnahmenplan-ambulant/">Maßnahmenplan ambulant: von der SIS zur Planung</a></li>
           <li><a href="/massnahmenplan-formulierungen/">Maßnahmenplan formulieren: Beispiele</a></li>
@@ -718,9 +725,9 @@
           <li><a href="/berichteblatt/">Berichteblatt: nur Abweichungen</a></li>
           <li><a href="/evaluation-pflegeplanung/">Evaluation der Pflegeplanung</a></li>
         </ul>
-      </div>
-      <div class="karte">
-        <h3>Risiken und Prophylaxen</h3>
+      </details>
+      <details class="karte rg" open>
+        <summary><h3>Risiken und Prophylaxen</h3></summary>
         <ul>
           <li><a href="/risikomatrix-sis/">Die Risikomatrix in der SIS</a></li>
           <li><a href="/sturzprophylaxe-ambulant/">Sturzrisiko in SIS und Plan</a></li>
@@ -729,16 +736,16 @@
           <li><a href="/ernaehrung-sis-massnahmenplan/">Ernährung in SIS und Plan</a></li>
           <li><a href="/schmerz-sis-massnahmenplan/">Schmerz in SIS und Plan</a></li>
         </ul>
-      </div>
-      <div class="karte">
-        <h3>MD-Prüfung und Software</h3>
+      </details>
+      <details class="karte rg" open>
+        <summary><h3>MD-Prüfung und Software</h3></summary>
         <ul>
           <li><a href="/md-pruefung-ambulant-vorbereiten/">MD-Prüfung ambulant vorbereiten</a></li>
           <li><a href="/qpr-ambulant-2026/">QPR ambulant 2026: was geprüft wird</a></li>
           <li><a href="/sis-software/">SIS-Software: worauf es ankommt</a></li>
           <li><a href="/foerderung-pflegesoftware/">Förderung bis 12.000 € nach § 8 SGB XI</a></li>
         </ul>
-      </div>
+      </details>
     </div>
     <p class="zentriert" style="margin-top:22px"><a href="/neu-in-dokuna/" style="color:var(--akzent);font-weight:600;text-decoration:none">Neu in Dokuna: die neuen Funktionen&nbsp;›</a></p>
   </div>
@@ -962,6 +969,12 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 })();
 </script>
 
+<script>
+(function(){var schmal=window.matchMedia('(max-width:699px)');
+function setzen(){document.querySelectorAll('details.rg').forEach(function(d){d.open=!schmal.matches;});}
+setzen();if(schmal.addEventListener)schmal.addEventListener('change',setzen);
+document.querySelectorAll('details.rg summary').forEach(function(su){su.addEventListener('click',function(e){if(!schmal.matches)e.preventDefault();});});})();
+</script>
 <script src="/reveal.js" defer></script>
 
 <script>
