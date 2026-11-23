@@ -128,15 +128,20 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
 .appbilder>.appbild{margin:0;min-width:0}
 @media (max-width:720px){.appbilder{grid-template-columns:1fr}}
 
-/* YouTube-Video: erst nach Klick laden (youtube-nocookie), vorher keine Verbindung zu YouTube */
-.ytbox{margin:26px 0 30px;border-radius:16px;overflow:hidden;background:#16211f;color:#fff}
-.ytbox button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:16px;width:100%;padding:22px 22px;cursor:pointer;background:linear-gradient(135deg,#0e8477,#0a5e55)}
-.ytbox button:focus-visible{outline:3px solid #fff;outline-offset:-6px}
-.ytbox .play{flex:none;width:56px;height:56px;border-radius:50%;background:#fff;display:grid;place-items:center}
-.ytbox .play::before{content:"";margin-left:5px;border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent var(--akzent)}
-.ytbox .yt-text b{display:block;font-size:1.05rem;line-height:1.3}
-.ytbox .yt-text span{display:block;font-size:.85rem;opacity:.85;margin-top:4px}
-.ytbox .yt-hinweis{hyphens:none;-webkit-hyphens:none;padding:9px 22px 11px;font-size:.78rem;color:#cfe3df;background:#0b4a43}
+/* YouTube-Video: erst nach Klick laden (youtube-nocookie), Vorschaubild liegt auf dokuna.de */
+.ytbox{margin:28px 0 32px;border-radius:18px;overflow:hidden;background:#0b1513;box-shadow:0 10px 30px rgba(14,60,54,.18)}
+.ytbox button{all:unset;box-sizing:border-box;position:relative;display:block;width:100%;aspect-ratio:16/9;cursor:pointer;background:#0b1513}
+.ytbox button img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease,filter .35s ease}
+.ytbox button:hover img{transform:scale(1.02);filter:brightness(.92)}
+.ytbox button:focus-visible{outline:3px solid var(--akzent);outline-offset:-3px}
+.ytbox .play{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:rgba(14,132,119,.94);box-shadow:0 6px 24px rgba(0,0,0,.35);transition:transform .2s ease}
+.ytbox .play::before{content:"";position:absolute;left:34px;top:26px;border-style:solid;border-width:16px 0 16px 26px;border-color:transparent transparent transparent #fff}
+.ytbox button:hover .play{transform:scale(1.07)}
+.ytbox .dauer{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.72);color:#fff;font-size:.8rem;font-weight:600;padding:3px 8px;border-radius:6px}
+.ytbox .yt-hinweis{margin:0;padding:12px 18px 14px;font-size:.8rem;line-height:1.45;color:#cfe3df;background:#0b4a43;hyphens:none;-webkit-hyphens:none}
+.ytbox .yt-hinweis b{color:#fff;font-size:.92rem}
 .ytbox .yt-hinweis a{color:#fff}
 .ytbox .yt-rahmen{position:relative;aspect-ratio:16/9}
 .ytbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+@media (max-width:600px){.ytbox .play{width:64px;height:64px;margin:-32px 0 0 -32px}.ytbox .play::before{left:26px;top:20px;border-width:12px 0 12px 20px}}
+@media (prefers-reduced-motion:reduce){.ytbox button img,.ytbox .play{transition:none}}
