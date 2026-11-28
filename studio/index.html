@@ -283,6 +283,7 @@ body.focus .stagemsg{z-index:7}
 .cut-r.k-pause,.cut-r.k-start,.cut-r.k-ende{background:#8b95a5}.cut-r.k-pause.off,.cut-r.k-start.off,.cut-r.k-ende.off{background:transparent;box-shadow:inset 0 0 0 1.5px #8b95a5}
 .cut-r.k-claude{background:#b48cff}.cut-r.k-claude.off{background:transparent;box-shadow:inset 0 0 0 1.5px #b48cff}
 .cut-r.k-aehm{background:#ffb44d}.cut-r.k-hand{background:#ff6b5f}
+.cut-r.k-doppelt{background:#4f8fd6}.cut-r.k-doppelt.off{background:transparent;box-shadow:inset 0 0 0 1.5px #4f8fd6}.cut-r.k-skript{background:#c9b44a}.cut-r.k-skript.off{background:transparent;box-shadow:inset 0 0 0 1.5px #c9b44a}
 .cut-ph{position:absolute;top:0;bottom:0;width:2px;background:#fff;pointer-events:none;left:0}
 .cut-list{display:grid;gap:4px}
 .crow{display:grid;grid-template-columns:auto auto auto minmax(0,1fr) auto;gap:8px;align-items:center;padding:5px 8px;border-radius:8px;background:var(--p2);font-size:13px}
@@ -292,6 +293,10 @@ body.focus .stagemsg{z-index:7}
 .ck.k-nochmal,.ck.k-hand{background:#4a2420;color:#ffb3ab}.ck.k-claude{background:#33264d;color:#d4bfff}.ck.k-aehm{background:#4a3515;color:#ffd08a}
 .cut-words{line-height:1.9;font-size:15px}.cwd{cursor:pointer;border-radius:4px;padding:1px 2px}.cwd:hover{background:var(--p3)}
 .cwd.cut{text-decoration:line-through;color:#ff8a80;opacity:.75}.cwd.hand{text-decoration:line-through;color:#ff8a80;background:#3a1d1d}
+.cwd.sug{text-decoration:underline dotted #c9b44a 2px;text-underline-offset:4px}
+.ck.k-doppelt{background:#1e3550;color:#a9d2ff}.ck.k-skript{background:#3c3818;color:#efe08c}
+.clbox{border-bottom:1px solid var(--line);padding-bottom:12px}#cut-units-box{padding-bottom:4px}.ptx{display:grid;gap:4px}.ptx .pre{white-space:pre-wrap;background:var(--p2);padding:8px 10px;border-radius:8px}
+#btn-screen.on{background:var(--acc);border-color:var(--acc);color:#fff}
 .cut-out{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding-top:4px;border-top:1px solid var(--line)}
 .cut-prog{position:relative;height:30px;border-radius:8px;background:var(--p2);overflow:hidden}.cut-prog i{position:absolute;inset:0 auto 0 0;width:0;background:#24406f;transition:width .3s}
 .cut-prog span{position:relative;display:block;padding:6px 10px;font-size:13px}
@@ -414,6 +419,14 @@ kbd{display:inline-block;min-width:24px;padding:1px 6px;border-radius:6px;border
        <button role="tab" data-tab="takes" aria-selected="false">Takes <span id="take-n" class="muted"></span></button>
       </div>
       <div class="pane" data-pane="szene">
+       <div class="stack-sm" id="scr-opts" hidden><h3>Bildschirm-Aufnahme</h3>
+        <div class="seg" data-k="scrLay"><button data-v="kreis">Gesicht im Kreis</button><button data-v="geteilt">Geteilt</button><button data-v="nur">Nur Bildschirm</button></div>
+        <div class="seg" data-k="pipPos"><button data-v="tl">Oben links</button><button data-v="tr">Oben rechts</button><button data-v="bl">Unten links</button><button data-v="br">Unten rechts</button></div>
+        <label class="f"><span>Größe Gesicht <output data-o="pipSize"></output></span><input type="range" min="18" max="50" data-k="pipSize"></label>
+        <label class="check"><input type="checkbox" data-k="scrPip"> Prompter als kleines Fenster über allem</label>
+        <p class="note" id="scr-pip-note" hidden>Dieser Browser kann den Prompter nicht schweben lassen. Stell das Studio-Fenster neben Dokuna, dann siehst du ihn.</p>
+        <p class="note">Teile nur das Fenster oder den Tab mit Dokuna, nicht den ganzen Bildschirm. Bildschirm und Gesicht werden getrennt aufgenommen und erst beim Schneiden zusammengesetzt. So läuft die Aufnahme auch, wenn das Studio im Hintergrund ist. Für YouTube und LinkedIn passt das Format 16:9, für Reels 9:16 mit „Geteilt“.</p>
+       </div>
        <div class="stack-sm"><h3>Format</h3>
         <div class="seg" data-k="format"><button data-v="9:16">9:16 Reel</button><button data-v="16:9">16:9 YouTube</button><button data-v="4:5">4:5 Feed</button><button data-v="1:1">1:1</button></div></div>
        <div class="stack-sm"><h3>Layout</h3>
@@ -495,6 +508,7 @@ kbd{display:inline-block;min-width:24px;padding:1px 6px;border-radius:6px;border
         <div class="seg" data-k="countdown"><button data-v="0">Kein Countdown</button><button data-v="3">3 Sek.</button><button data-v="5">5 Sek.</button></div>
         <label class="check"><input type="checkbox" data-k="promptOnRec"> Prompter startet mit der Aufnahme</label>
         <label class="check"><input type="checkbox" data-k="noise"> Rauschunterdrückung am Mikrofon</label>
+        <label class="check" id="mitschrift-row" hidden><input type="checkbox" data-k="mitschrift"> Mitschreiben für den Vorschnitt, findet doppelte Sätze</label>
        </div>
        <div class="stack-sm"><h3>Speichern</h3>
         <label class="f"><span>Ordner auf dem Mac</span><input type="text" data-k="folder"></label>
@@ -520,6 +534,7 @@ kbd{display:inline-block;min-width:24px;padding:1px 6px;border-radius:6px;border
      <div class="timer" id="timer">0:00 <small>/ ~0:00</small></div>
      <div class="meter" title="Mikrofon-Pegel"><i id="meter"></i></div>
      <button class="btn" data-act="focus" id="btn-focus" title="Aufnahmemodus: Vollbild mit Prompter unter der Kamera (F)">Aufnahmemodus</button>
+     <button class="btn" data-act="screen" id="btn-screen" hidden aria-pressed="false" title="Bildschirm aufnehmen, zum Beispiel für Dokuna-Vorführungen">Bildschirm</button>
      <div class="tgroup t-prompt">
       <button class="ico" data-act="ptop" title="Zum Anfang (Pos1)" aria-label="Zum Anfang"><svg viewBox="0 0 24 24"><path d="M6 5v14M19 6l-9 6 9 6z"/></svg></button>
       <button class="ico" data-act="pplay" id="btn-pplay" title="Prompter starten oder pausieren (Leertaste)" aria-label="Prompter starten"><svg viewBox="0 0 24 24" id="pplay-ico"><path d="M7 5l12 7-12 7z"/></svg></button>
@@ -695,7 +710,7 @@ const DEF={
  wpm:140,font:46,pwidth:62,mirror:false,marker:30,
  format:'9:16',layout:'voll',bg:'original',backdrop:'studio',zoom:1,ox:0,oy:0,camMirror:false,bright:1,contrast:1,warm:0,sat:1,keyTol:45,pipPos:'br',pipSize:30,
  headline:true,headlineSrc:'skript',headlineText:'',captions:true,capStyle:'kontur',capSize:100,lower:'start',name:'Jonas Jahrke',role:'Gründer von Dokuna',progress:false,wm:true,wmText:'dokuna.de',safe:true,accent:'#5b8cff',
- quality:'1080',countdown:3,promptOnRec:true,noise:true,srt:true,folder:'~/Movies/Social Studio',camId:'',micId:'',
+ quality:'1080',countdown:3,promptOnRec:true,noise:true,srt:true,mitschrift:true,scrLay:'kreis',scrPip:true,folder:'~/Movies/Social Studio',camId:'',micId:'',
  anrede:'sie',
  brandFacts:'Dokuna (dokuna.de) ist eine Software für ambulante Pflegedienste. Sie hilft bei der Pflegedokumentation nach dem Strukturmodell, also bei der SIS und der Maßnahmenplanung. Dokuna läuft offline und lokal auf dem eigenen PC. Dokuna hat keine KI-Funktionen und nichts mit Abrechnung zu tun. Gründer Jonas Jahrke kommt selbst aus der Pflege.',
  audience:'Pflegedienstleitungen, Qualitätsbeauftragte und Inhaber ambulanter Pflegedienste in Deutschland',
@@ -902,6 +917,7 @@ function elapsedForAnim(t){return R.on?R.elapsed():((t-V.t0)/1000)%14}
 function renderStage(t){
  const c=V.ctx,W=V.W,H=V.H,u=Math.min(W,H)/1080,port=H>W*1.15;
  c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.filter='none';c.globalCompositeOperation='source-over';c.textBaseline='alphabetic';
+ if(SCR.on){const bub=drawScreenScene(c,W,H,SCR.video,camSrc(),{lay:S.set.scrLay||'kreis'});if(S.set.captions&&P.chunk>=0&&(P.playing||R.on||P.off>0))drawCapText(c,W,H,P.data.chunks[P.chunk]||'',bub);return}
  const L=S.set.layout,hl=headline(),dark=isLight()?'#11151b':'#ffffff';
  if(L==='karte'){
   backdrop(c,0,0,W,H);
@@ -973,11 +989,14 @@ function mimeNote(){const m=pickMime();$('#mime-note').textContent=!window.Media
 async function toggleRec(){if(R.counting){R.cancel=true;return}if(R.on)stopRec();else startRec()}
 async function startRec(){
  if(!window.MediaRecorder){toast('Aufnehmen geht in diesem Browser nicht.','bad');return}
- if(!camSrc()&&!(S.set.layout==='split'||S.set.layout==='pip')){const go=await ask('Ohne Kamera aufnehmen?','Die Kamera ist aus. Willst du trotzdem aufnehmen, zum Beispiel nur Folie und Ton?','Trotzdem aufnehmen');if(!go)return}
+ if(R.saving){toast('Einen Moment, der letzte Take wird noch gespeichert.');return}
+ if(SCR.on)await pipOpen();
+ if(!SCR.on&&!camSrc()&&!(S.set.layout==='split'||S.set.layout==='pip')){const go=await ask('Ohne Kamera aufnehmen?','Die Kamera ist aus. Willst du trotzdem aufnehmen, zum Beispiel nur Folie und Ton?','Trotzdem aufnehmen');if(!go)return}
  if(S.isApp&&S.perm['full-access']==='prompt'){await requestPerm(['full-access'])}
  const cd=+S.set.countdown||0;R.cancel=false;
- if(cd){R.counting=true;const el=$('#countdown');el.hidden=false;for(let i=cd;i>0;i--){el.textContent=i;beep(i===1?880:660);await sleep(1000);if(R.cancel)break}el.hidden=true;R.counting=false;if(R.cancel){toast('Aufnahme abgebrochen');return}}
- R.marks=[];R.mac=false;
+ if(cd){R.counting=true;const el=$('#countdown');el.hidden=false;for(let i=cd;i>0;i--){el.textContent=i;beep(i===1?880:660);await sleep(1000);if(R.cancel)break}el.hidden=true;R.counting=false;if(R.cancel){toast('Aufnahme abgebrochen');pipClose();return}}
+ R.marks=[];R.mac=false;R.scr=null;
+ if(SCR.on){R.timeline=[];R.script=curScript()||null;if(!await startScreenRec()){pipClose();return}R.on=true;R.t0=performance.now();document.body.classList.add('rec');$('#recbadge').hidden=false;$('#btn-rec').textContent='Stopp';txStart();if(P.chunk>=0)R.timeline.push({t:0,c:P.chunk});if(S.set.promptOnRec&&P.data?.words.length)pPlay(true);updateTray();return}
  if(M.has&&!V.cam){R.timeline=[];R.script=curScript()||null;$('#btn-rec').disabled=true;const ok=await macRecStart();$('#btn-rec').disabled=false;if(!ok){toast('Die Aufnahme konnte nicht starten.','bad');return}
   R.mac=true;R.on=true;R.t0=performance.now()-70;document.body.classList.add('rec');$('#recbadge').hidden=false;$('#btn-rec').textContent='Stopp';
   if(P.chunk>=0)R.timeline.push({t:0,c:P.chunk});if(S.set.promptOnRec&&P.data?.words.length)pPlay(true);updateTray();return}
@@ -985,21 +1004,22 @@ async function startRec(){
  R.mime=pickMime();const hi=S.set.quality!=='720';
  try{R.rec=new MediaRecorder(stream,R.mime?{mimeType:R.mime,videoBitsPerSecond:hi?12e6:6e6,audioBitsPerSecond:160000}:{})}catch(e){toast('Aufnahme konnte nicht starten: '+e.message,'bad');return}
  R.chunks=[];R.timeline=[];R.script=curScript()||null;R.rec.ondataavailable=e=>{if(e.data&&e.data.size)R.chunks.push(e.data)};R.rec.onstop=finishRec;
- R.rec.start(1000);R.on=true;R.t0=performance.now();document.body.classList.add('rec');$('#recbadge').hidden=false;$('#btn-rec').textContent='Stopp';
+ R.rec.start(1000);R.on=true;R.t0=performance.now();document.body.classList.add('rec');$('#recbadge').hidden=false;$('#btn-rec').textContent='Stopp';txStart();
  if(P.chunk>=0)R.timeline.push({t:0,c:P.chunk});
  if(S.set.promptOnRec&&P.data?.words.length)pPlay(true);
  updateTray();
 }
-function stopRec(){if(!R.on)return;R.dur=R.elapsed();R.on=false;if(R.mac){R.mac=false;macRecStop()}else{try{R.rec.stop()}catch{}}document.body.classList.remove('rec');$('#recbadge').hidden=true;$('#btn-rec').textContent='Aufnehmen';pPlay(false);updateTray()}
+function stopRec(){if(!R.on)return;R.dur=R.elapsed();R.on=false;if(R.tx){R.txUntil=performance.now()+1500;R.saving=true}if(R.mac){R.mac=false;macRecStop()}else if(R.scr){const x=R.scr;try{x.r1.stop()}catch{}try{x.r2?.stop()}catch{}x.done.then(()=>finishScreenRec(x))}else{try{R.rec.stop()}catch{}}document.body.classList.remove('rec');$('#recbadge').hidden=true;$('#btn-rec').textContent='Aufnehmen';pPlay(false);updateTray()}
 function beep(f){try{V.ac=V.ac||new AudioContext();const o=V.ac.createOscillator(),g=V.ac.createGain();o.frequency.value=f;g.gain.value=.06;o.connect(g).connect(V.ac.destination);o.start();o.stop(V.ac.currentTime+.09)}catch{}}
 function srtFrom(tl,chunks,dur){const ts=s=>{const ms=Math.max(0,Math.round(s*1000));return pad(Math.floor(ms/36e5))+':'+pad(Math.floor(ms/6e4)%60)+':'+pad(Math.floor(ms/1e3)%60)+','+String(ms%1000).padStart(3,'0')};const ev=tl.filter((e,i)=>i===0||e.c!==tl[i-1].c);return ev.map((e,i)=>`${i+1}\n${ts(e.t)} --> ${ts(Math.min(ev[i+1]?.t??e.t+2.5,dur))}\n${chunks[e.c]||''}\n`).join('\n')}
 async function finishRec(){
  const type=(R.mime||'video/webm').split(';')[0];const blob=new Blob(R.chunks,{type});R.chunks=[];
  if(!blob.size){toast('Die Aufnahme ist leer.','bad');return}
+ await txFinish();
  const ext=type.includes('mp4')?'mp4':'webm';const d=new Date();const title=R.script?.title||'Aufnahme';
  const n=S.takes.filter(t=>t.scriptId===(R.script?.id||'')).length+1;
  const name=`${dKey(d)} ${pad(d.getHours())}-${pad(d.getMinutes())} ${slug(title)} T${n}`;
- const take={id:uid(),name,ext,scriptId:R.script?.id||'',title,created:Date.now(),dur:R.dur,size:blob.size,mime:type,fav:false,file:'',url:URL.createObjectURL(blob),blob,marks:R.marks||[],tl:R.timeline.slice(0,5000),chunks:P.data?.chunks||[]};
+ const take={id:uid(),name,ext,scriptId:R.script?.id||'',title,created:Date.now(),dur:R.dur,size:blob.size,mime:type,fav:false,file:'',url:URL.createObjectURL(blob),blob,marks:R.marks||[],tl:R.timeline.slice(0,5000),chunks:P.data?.chunks||[],skript:R.script?.text||'',tx:TX.list.slice()};
  const srt=P.data&&S.set.srt&&R.timeline.length?srtFrom(R.timeline,P.data.chunks,R.dur):'';take.srt=srt;
  S.takes.unshift(take);renderTakes();
  if(WEB){await webSaveTake(take,blob,srt);if(S.set.autoCut)cutAnalyzeWeb(take,{auto:true})}
@@ -1033,8 +1053,8 @@ async function loadTakes(){
 function renderTakes(){
  const el=$('#takes');$('#take-n').textContent=S.takes.length?'('+S.takes.length+')':'';
  if(!S.takes.length){el.innerHTML=`<div class="empty small">Noch keine Takes. Drück auf „Aufnehmen“ oder die Taste R.</div>`;return}
- const cs=t=>t.cut?`<span class="cs done">Fertiger Schnitt ${esc(t.fmt||'')}</span>`:CUT.busy.has(t.id)&&t.cutState==='läuft'?`<span class="cs">${esc(t.cutStep||'Vorschnitt läuft')} …</span>`:t.cutState==='fehler'?'<span class="cs bad">Vorschnitt fehlgeschlagen</span>':t.edit?`<span class="cs">Vorschnitt bereit: ${t.edit.cuts.filter(c=>c.on).length} Schnitte${t.cutDone?' · geschnitten':''}</span>`:'';
- el.innerHTML=S.takes.map(t=>`<div class="take" data-id="${esc(t.id)}"><button class="star" data-act="tfav" aria-pressed="${!!t.fav}" aria-label="Favorit">★</button><div><div class="tn" title="${esc(t.name)}">${esc(t.title)}</div><div class="tm">${fmtDur(t.dur)} · ${fmtSize(t.size||0)} · ${esc(new Date(t.created).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}))}${t.file?' · auf dem Mac':t.folder?' · im Ordner „'+esc(t.folder)+'“':t.dl?' · in Downloads':WEB?' · hier gespeichert':' · nur hier'}</div>${cs(t)}</div><div class="acts"><button class="btn sm" data-act="tplay">Ansehen</button>${(t.file&&!t.cut&&S.isApp)||(WEB&&t.blob&&!t.cut)?`<button class="btn sm ${t.edit?'pri':''}" data-act="tcut">${t.edit?'Vorschnitt prüfen':'Vorschnitt'}</button>`:''}${WEB&&canShareFile(t)?'<button class="btn sm" data-act="tshare">Teilen</button>':''}${t.file?`<button class="btn sm ghost" data-act="tshow">Finder</button>`:`<button class="btn sm ghost" data-act="tsave">${WEB?'Laden':'Sichern'}</button>`}<button class="btn sm ghost" data-act="tdel" aria-label="Löschen">✕</button></div></div>`).join('');
+ const cs=t=>t.cut?`<span class="cs done">Fertiger Schnitt ${esc(t.fmt||'')}</span>`:CUT.busy.has(t.id)&&t.cutState==='läuft'?`<span class="cs">${esc(t.cutStep||'Vorschnitt läuft')} …</span>`:t.cutState==='fehler'?'<span class="cs bad">Vorschnitt fehlgeschlagen</span>':t.edit?`<span class="cs">Vorschnitt bereit: ${t.edit.cuts.filter(c=>c.on).length} Schnitte${t.claude?.n?' · mit Claude':''}${t.cutDone?' · geschnitten':''}</span>`:'';
+ el.innerHTML=S.takes.map(t=>`<div class="take" data-id="${esc(t.id)}"><button class="star" data-act="tfav" aria-pressed="${!!t.fav}" aria-label="Favorit">★</button><div><div class="tn" title="${esc(t.name)}">${esc(t.title)}</div><div class="tm">${fmtDur(t.dur)} · ${fmtSize(t.size||0)} · ${esc(new Date(t.created).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}))}${t.mode==='bildschirm'?' · Bildschirm'+(t.cam?' mit Gesicht':''):''}${t.file?' · auf dem Mac':t.folder?' · im Ordner „'+esc(t.folder)+'“':t.dl?' · in Downloads':WEB?' · hier gespeichert':' · nur hier'}</div>${cs(t)}</div><div class="acts"><button class="btn sm" data-act="tplay">Ansehen</button>${(t.file&&!t.cut&&S.isApp)||(WEB&&t.blob&&!t.cut)?`<button class="btn sm ${t.edit?'pri':''}" data-act="tcut">${t.edit?'Vorschnitt prüfen':'Vorschnitt'}</button>`:''}${WEB&&canShareFile(t)?'<button class="btn sm" data-act="tshare">Teilen</button>':''}${t.file?`<button class="btn sm ghost" data-act="tshow">Finder</button>`:`<button class="btn sm ghost" data-act="tsave">${WEB?'Laden':'Sichern'}</button>`}<button class="btn sm ghost" data-act="tdel" aria-label="Löschen">✕</button></div></div>`).join('');
 }
 async function takeUrl(t){if(t.url)return t.url;if(t.blob){t.url=URL.createObjectURL(t.blob);return t.url}if(!t.file||!fsOK())return'';const bytes=await D().fs.readFile(t.file);t.url=URL.createObjectURL(new Blob([bytes],{type:t.mime||'video/mp4'}));return t.url}
 async function takeMeta(t){if(!t.file||!fsOK())return;const m={...t};delete m.url;delete m.blob;delete m.srt;delete m.meta;delete m.proxyUrl;delete m.cutStep;if(m.cutState==='läuft')delete m.cutState;try{await D().fs.writeFile(t.file.replace(/\.(mp4|webm)$/,'.take.json'),JSON.stringify(m,null,1),'utf8')}catch{}}
@@ -1201,7 +1221,7 @@ function macRecAbort(){if(!R.on)return;R.dur=R.elapsed();R.on=false;R.mac=false;
 async function macFinish(){
  const file=R.macFile;const st=await D().fs.stat(file).catch(()=>null);
  if(!st||!st.size){toast('Die Aufnahme ist leer.','bad');return}
- const take={id:uid(),name:R.macName,ext:'mp4',scriptId:R.script?.id||'',title:R.macTitle,created:Date.now(),dur:R.dur,size:st.size,mime:'video/mp4',fav:false,file,mac:true,marks:R.marks||[],tl:R.timeline.slice(0,5000),chunks:P.data?.chunks||[]};
+ const take={id:uid(),name:R.macName,ext:'mp4',scriptId:R.script?.id||'',title:R.macTitle,created:Date.now(),dur:R.dur,size:st.size,mime:'video/mp4',fav:false,file,mac:true,marks:R.marks||[],tl:R.timeline.slice(0,5000),chunks:P.data?.chunks||[],skript:R.script?.text||'',tx:TX.list.slice()};
  const srt=P.data&&S.set.srt&&R.timeline.length?srtFrom(R.timeline,P.data.chunks,R.dur):'';
  if(srt){take.srtFile=file.replace(/\.mp4$/,'.srt');try{await D().fs.writeFile(take.srtFile,srt,'utf8');take.srt=srt}catch{take.srtFile=''}}
  await takeMeta(take);S.takes.unshift(take);renderTakes();toast('Take gespeichert: '+take.name+'.mp4','ok');
@@ -1220,7 +1240,7 @@ function againMark(){
 
 /* ---------- Vorschnitt ---------- */
 const CUT={busy:new Set(),t:null,vid:null,raf:0,skip:true,ranges:[],listenEnd:0,saveT:0,rendering:false};
-const KIND={pause:'Pause',start:'Anfang',ende:'Ende',nochmal:'Satz nochmal',aehm:'Füllwort',claude:'Claude',hand:'Von dir'};
+const KIND={pause:'Pause',start:'Anfang',ende:'Ende',nochmal:'Satz nochmal',aehm:'Füllwort',claude:'Claude',hand:'Von dir',doppelt:'Doppelt',skript:'Nicht im Skript'};
 const fmtT=s=>{s=Math.max(0,s);const m=Math.floor(s/60),r=s-m*60;return m+':'+(r<10?'0':'')+r.toFixed(1).replace('.',',')};
 async function probeInfo(f){const r=await run(T.ff,['-hide_banner','-i',f],{timeout:30000});const e=r.err;const d=e.match(/Duration:\s*(\d+):(\d+):([\d.]+)/);const v=e.match(/Stream #[^\n]*Video:[^\n]*?\b(\d{2,5})x(\d{2,5})\b/);const rot=/rotation of -?90|displaymatrix: rotation of -?90/i.test(e);
  let w=v?+v[1]:1280,h=v?+v[2]:720;if(rot)[w,h]=[h,w];return{dur:d?(+d[1])*3600+(+d[2])*60+(+d[3]):0,w,h,audio:/Stream #[^\n]*Audio:/.test(e)}}
@@ -1286,7 +1306,7 @@ ${sc?'Skript:\n'+spoken(sc.text).slice(0,6000)+'\n\n':''}Transkript:\n${list.sli
  const h=o?.hook;return{cuts,hook:h&&isFinite(+h.score)?{score:clamp(Math.round(+h.score),0,100),why:String(h.warum||'').slice(0,240),tip:String(h.tipp||'').slice(0,240)}:null};
 }
 function normCuts(cs,dur){const seen=new Set();return cs.map(c=>({...c,a:+Math.max(0,c.a).toFixed(3),b:+Math.min(dur||c.b,c.b).toFixed(3)})).filter(c=>c.b-c.a>=.06).sort((x,y)=>x.a-y.a).filter(c=>{const k=c.kind+c.a.toFixed(2)+c.b.toFixed(2);if(seen.has(k))return false;seen.add(k);return true}).map((c,i)=>({...c,id:'c'+i}))}
-function cutRanges(ed){const rs=ed.cuts.filter(c=>c.on).map(c=>[c.a,c.b]);for(const w of ed.words||[])if(w.x)rs.push([Math.max(0,w.a-.03),w.b+.03]);rs.sort((x,y)=>x[0]-y[0]);const m=[];for(const[a,b]of rs){const l=m.at(-1);if(l&&a<=l[1]+.04)l[1]=Math.max(l[1],b);else m.push([a,b])}return m}
+function cutRanges(ed){const rs=ed.cuts.filter(c=>c.on).map(c=>[c.a,c.b]);for(const w of ed.words||[])if(w.x)rs.push([Math.max(0,w.a-.03),w.b+.03]);for(const u of ed.units||[])if(u.x)rs.push([u.ca,u.cb]);rs.sort((x,y)=>x[0]-y[0]);const m=[];for(const[a,b]of rs){const l=m.at(-1);if(l&&a<=l[1]+.04)l[1]=Math.max(l[1],b);else m.push([a,b])}return m}
 function keepSegs(ed,dur){const k=[];let t=0;for(const[a,b]of cutRanges(ed)){if(a-t>.08)k.push([t,Math.min(a,dur)]);t=Math.max(t,b)}if(dur-t>.08)k.push([t,dur]);return k}
 function mapT(t,keep){let acc=0;for(const[a,b]of keep){if(t<a)return{t:acc,cut:true};if(t<=b)return{t:acc+t-a,cut:false};acc+=b-a}return{t:acc,cut:true}}
 const segLen=keep=>keep.reduce((s,[a,b])=>s+b-a,0);
@@ -1303,13 +1323,13 @@ async function openCut(t){
   <div class="cut-tl" id="cut-tl"><div class="cut-ph" id="cut-ph"></div></div>
   <div class="row"><button class="btn pri" data-act="cutplay" id="cut-playb">Vorschnitt abspielen</button><label class="check"><input type="checkbox" id="cut-skip" checked> Schnitte überspringen</label><span class="muted small" id="cut-time"></span></div>
   <div id="cut-hook"></div></div>
-  <div class="stack-sm cut-side"><h4>Schnitte <span class="muted small">Haken weg = bleibt drin</span></h4><div class="cut-list" id="cut-list"></div>
+  <div class="stack-sm cut-side"><div id="cut-units-box" hidden><h4>Was du gesagt hast <span class="muted small">Klick auf einen Satz schneidet ihn raus oder holt ihn zurück</span></h4><div class="cut-words" id="cut-units"></div></div><div class="stack-sm clbox" id="cl-box" hidden></div><h4>Schnitte <span class="muted small">Haken weg = bleibt drin</span></h4><div class="cut-list" id="cut-list"></div>
   <div id="cut-words-box" hidden><h4>Text <span class="muted small">Klick auf ein Wort schneidet es raus oder holt es zurück</span></h4><div class="cut-words" id="cut-words"></div></div></div></div>
- ${t.edit.web?`<div class="cut-out"><label class="check"><input type="checkbox" data-cutopt="zoom" ${o.zoom?'checked':''}> Zoom-Wechsel bei Schnitten</label><p class="note" style="flex-basis:100%;margin:0">Untertitel, Einblendungen und Effekte sind schon im Take drin. Der Schnitt läuft in Echtzeit, lass das Fenster dabei offen.</p></div>`:`<div class="cut-out"><div class="seg" id="cut-fmt">${Object.keys(FORMATS).map(f=>`<button data-cutfmt="${f}" aria-pressed="${f===fmt}">${f}</button>`).join('')}</div>
+ ${t.edit.web?(t.mode==='bildschirm'?`<div class="cut-out"><div class="seg" id="cut-fmt">${['16:9','9:16','4:5','1:1'].map(f=>`<button data-cutfmt="${f}" aria-pressed="${f===(t.edit.fmt||'16:9')}">${f}</button>`).join('')}</div><div class="seg" id="cut-lay">${[['kreis','Gesicht im Kreis'],['geteilt','Geteilt'],['nur','Nur Bildschirm']].map(([k,l])=>`<button data-cutlay="${k}" aria-pressed="${k===(t.edit.lay||'kreis')}">${l}</button>`).join('')}</div>${t.tl?.length?`<label class="check"><input type="checkbox" data-cutopt="caps" ${o.caps?'checked':''}> Untertitel einbrennen</label>`:''}<p class="note" style="flex-basis:100%;margin:0">${t.cam?'Bildschirm und Gesicht werden beim Schneiden zusammengesetzt.':'Für diesen Take gibt es kein Kamerabild.'} Der Schnitt läuft in Echtzeit, lass das Fenster dabei offen.</p></div>`:`<div class="cut-out"><label class="check"><input type="checkbox" data-cutopt="zoom" ${o.zoom?'checked':''}> Zoom-Wechsel bei Schnitten</label><p class="note" style="flex-basis:100%;margin:0">Untertitel, Einblendungen und Effekte sind schon im Take drin. Der Schnitt läuft in Echtzeit, lass das Fenster dabei offen.</p></div>`):`<div class="cut-out"><div class="seg" id="cut-fmt">${Object.keys(FORMATS).map(f=>`<button data-cutfmt="${f}" aria-pressed="${f===fmt}">${f}</button>`).join('')}</div>
   <label class="check"><input type="checkbox" data-cutopt="caps" ${o.caps?'checked':''}> Untertitel einbrennen</label><label class="check"><input type="checkbox" data-cutopt="overlay" ${o.overlay?'checked':''}> Überschrift, Bauchbinde, Wasserzeichen</label><label class="check"><input type="checkbox" data-cutopt="zoom" ${o.zoom?'checked':''}> Zoom-Wechsel bei Schnitten</label><label class="check"><input type="checkbox" data-cutopt="polish" ${o.polish?'checked':''}> Ton verbessern</label>${S.set.bg!=='original'||S.set.layout!=='voll'?'<p class="note" style="flex-basis:100%;margin:0">Hintergrund-Effekte und Layouts außer Vollbild kommen noch nicht in den fertigen Schnitt. Dort landet dein Kamerabild im gewählten Format.</p>':''}</div>`}
  <div class="cut-prog" id="cut-prog" hidden><i></i><span id="cut-step"></span></div>
  <div class="row" style="justify-content:flex-end"><button class="btn ghost" data-act="cutredo">Neu analysieren</button><button class="btn" data-act="m-no">Schließen</button><button class="btn pri" data-act="cutrender" id="cut-go">Fertig schneiden</button></div>`,'xwide');
- CUT.vid=$('#cut-v');CUT.skip=true;CUT.listenEnd=0;renderCut();cancelAnimationFrame(CUT.raf);CUT.raf=requestAnimationFrame(cutTick);
+ CUT.vid=$('#cut-v');CUT.skip=true;CUT.listenEnd=0;renderCut();renderClaudeBox(t);cancelAnimationFrame(CUT.raf);CUT.raf=requestAnimationFrame(cutTick);
  CUT.vid.addEventListener('play',()=>$('#cut-playb').textContent='Pause');CUT.vid.addEventListener('pause',()=>$('#cut-playb').textContent='Vorschnitt abspielen');
 }
 function renderCut(){
@@ -1318,10 +1338,11 @@ function renderCut(){
  $('#cut-tl').innerHTML=ed.cuts.map(c=>`<button class="cut-r k-${c.kind} ${c.on?'':'off'}" data-cutid="${c.id}" style="left:${c.a/dur*100}%;width:${Math.max(.4,(c.b-c.a)/dur*100)}%" title="${esc(KIND[c.kind]+': '+c.why)}"></button>`).join('')+(ed.words||[]).filter(w=>w.x).map(w=>`<span class="cut-r k-hand" style="left:${w.a/dur*100}%;width:${Math.max(.4,(w.b-w.a)/dur*100)}%"></span>`).join('')+'<div class="cut-ph" id="cut-ph"></div>';
  $('#cut-list').innerHTML=ed.cuts.length?ed.cuts.map(c=>`<div class="crow ${c.on?'':'off'}"><input type="checkbox" data-cuttog="${c.id}" ${c.on?'checked':''} aria-label="Schnitt bei ${fmtT(c.a)}"><span class="ct">${fmtT(c.a)}</span><span class="ck k-${c.kind}">${esc(KIND[c.kind]||c.kind)}</span><span class="cw2">${esc(c.why)} · ${(c.b-c.a).toFixed(1).replace('.',',')} s</span><button class="btn sm ghost" data-act="cutlisten" data-cutid="${c.id}">Anhören</button></div>`).join(''):'<p class="muted small" style="margin:0">Keine Schnitte gefunden. Der Take ist schon sauber.</p>';
  const wb=$('#cut-words-box');wb.hidden=!ed.words?.length;if(ed.words?.length)$('#cut-words').innerHTML=ed.words.map((w,i)=>`<span class="cwd ${w.x?'hand':inCut((w.a+w.b)/2,CUT.ranges)?'cut':''}" data-wi="${i}">${esc(w.w)}</span>`).join(' ');
- const h=ed.hook;$('#cut-hook').innerHTML=h?`<div class="hook"><div class="hs ${h.score>=70?'ok':h.score>=45?'mid':'low'}">${h.score}</div><div><b>Einstieg laut Claude</b><div class="small">${esc(h.why)}</div>${h.tip?`<div class="small muted">Tipp: ${esc(h.tip)}</div>`:''}</div></div>`:ed.claudeErr?`<p class="note warn">${esc(ed.claudeErr)}</p>`:!ed.words?`<p class="note">Mit der Spracherkennung findet das Studio auch Versprecher, doppelte Sätze und „ähm“, und Claude bewertet deinen Einstieg. <button class="btn sm" data-act="setup">Einrichten</button></p>`:'';
+ const ub=$('#cut-units-box');if(ub){const us=ed.units||[];ub.hidden=!us.length;if(us.length)$('#cut-units').innerHTML=us.map((u,i)=>{const cut=u.x?'hand':inCut((u.a+u.b)/2,CUT.ranges)?'cut':'';const sug=!cut&&ed.cuts.find(c=>!c.on&&c.unit===u.n);return`<span class="cwd cun ${cut}${sug?' sug':''}" data-ui="${i}" title="${fmtT(u.a)} bis ${fmtT(u.b)}${sug?' · Vorschlag: '+esc(KIND[sug.kind]||'raus')+'. Klick schneidet ihn raus':''}">${esc(u.text||'…')}</span>`}).join(' ')}
+ const h=ed.hook;$('#cut-hook').innerHTML=h?`<div class="hook"><div class="hs ${h.score>=70?'ok':h.score>=45?'mid':'low'}">${h.score}</div><div><b>Einstieg laut Claude</b><div class="small">${esc(h.why)}</div>${h.tip?`<div class="small muted">Tipp: ${esc(h.tip)}</div>`:''}</div></div>`:ed.claudeErr?`<p class="note warn">${esc(ed.claudeErr)}</p>`:ed.web?(ed.units?'':`<p class="note">Mit „Mitschreiben“ unter „Aufnahme“ findet der Vorschnitt auch doppelte Sätze und du kannst den Take an Claude geben.</p>`):!ed.words?`<p class="note">Mit der Spracherkennung findet das Studio auch Versprecher, doppelte Sätze und „ähm“. Claude bewertet außerdem deinen Einstieg. <button class="btn sm" data-act="setup">Einrichten</button></p>`:'';
  const pg=$('#cut-prog');if(t.cutStep){pg.hidden=false;$('#cut-step').textContent=t.cutStep}else if(!CUT.rendering)pg.hidden=true;
 }
-function cutSave(){const t=CUT.t;if(!t)return;clearTimeout(CUT.saveT);CUT.saveT=setTimeout(()=>takeMeta(t),600)}
+function cutSave(){const t=CUT.t;if(!t)return;clearTimeout(CUT.saveT);CUT.saveT=setTimeout(()=>{if(WEB){saveTakeLocal(t);writeSide(t)}else takeMeta(t)},600)}
 function cutTick(){const v=CUT.vid;if(!v||!v.isConnected){CUT.vid=null;return}const t=v.currentTime,d=v.duration||CUT.t?.dur||1;
  if(!v.paused){if(CUT.listenEnd&&t>=CUT.listenEnd){v.pause();CUT.listenEnd=0}else if(CUT.skip&&!CUT.listenEnd){const r=CUT.ranges.find(([a,b])=>t>=a-.01&&t<b-.03);if(r){if(r[1]>=d-.05){v.pause();v.currentTime=Math.max(0,r[0]-.02)}else v.currentTime=r[1]}}}
  const ph=$('#cut-ph');if(ph)ph.style.left=(t/d*100)+'%';const tm=$('#cut-time');if(tm){const k=keepSegs(CUT.t.edit,d);tm.textContent=fmtT(mapT(t,k).t)+' / '+fmtT(segLen(k))}
@@ -1417,10 +1438,10 @@ const TDB={db:null,
  async req(store,mode,fn){const d=await this.open();return new Promise((res,rej)=>{const t=d.transaction(store,mode);const q=fn(t.objectStore(store));let out;if(q)q.onsuccess=()=>{out=q.result};t.oncomplete=()=>res(out);t.onerror=()=>rej(t.error);t.onabort=()=>rej(t.error)})},
  put(rec){return this.req('takes','readwrite',s=>s.put(rec))},del(id){return this.req('takes','readwrite',s=>s.delete(id))},all(){return this.req('takes','readonly',s=>s.getAll())},
  get(k){return this.req('kv','readonly',s=>s.get(k))},set(k,v){return this.req('kv','readwrite',s=>s.put(v,k))}};
-const KEEP=['id','name','ext','scriptId','title','created','dur','size','mime','fav','marks','tl','chunks','edit','cut','parent','fmt','cutDone','cutState','srt','folder','dl'];
-function takeRec(t){const m={};for(const k of KEEP)if(t[k]!==undefined)m[k]=t[k];if(m.cutState==='läuft')delete m.cutState;return{id:t.id,meta:m,blob:t.blob}}
+const KEEP=['id','name','ext','scriptId','title','created','dur','size','mime','fav','marks','tl','chunks','edit','cut','parent','fmt','cutDone','cutState','srt','folder','dl','mode','camExt','camOff','scrW','scrH','skript','tx','claude'];
+function takeRec(t){const m={};for(const k of KEEP)if(t[k]!==undefined)m[k]=t[k];if(m.cutState==='läuft')delete m.cutState;return{id:t.id,meta:m,blob:t.blob,cam:t.cam||null}}
 async function saveTakeLocal(t){if(!WEB||!t.blob)return;try{await TDB.put(takeRec(t))}catch(e){toast('Take konnte im Browser nicht gespeichert werden: '+(e?.message||e),'bad')}}
-async function loadTakesLocal(){if(!WEB)return;try{const all=await TDB.all();const have=new Set(S.takes.map(t=>t.id));for(const r of all||[]){if(have.has(r.id)||!r.blob)continue;S.takes.push({...r.meta,blob:r.blob,url:'',file:''})}S.takes.sort((a,b)=>b.created-a.created);renderTakes();renderStore()}catch{}}
+async function loadTakesLocal(){if(!WEB)return;try{const all=await TDB.all();const have=new Set(S.takes.map(t=>t.id));for(const r of all||[]){if(have.has(r.id)||!r.blob)continue;S.takes.push({...r.meta,blob:r.blob,cam:r.cam||null,url:'',file:''})}S.takes.sort((a,b)=>b.created-a.created);renderTakes();renderStore()}catch{}}
 const DIR={h:null,ok:false};
 async function dirInit(){if(!WEB||!window.showDirectoryPicker)return;try{DIR.h=await TDB.get('dir')||null;if(DIR.h)DIR.ok=(await DIR.h.queryPermission({mode:'readwrite'}))==='granted'}catch{DIR.h=null}renderStore()}
 async function dirPick(){try{const h=await window.showDirectoryPicker({id:'kamera-studio',mode:'readwrite',startIn:'videos'});DIR.h=h;DIR.ok=true;try{await TDB.set('dir',h)}catch{}toast('Neue Takes landen jetzt im Ordner „'+h.name+'“.','ok')}catch(e){if(e?.name!=='AbortError')toast('Ordner ging nicht: '+(e?.message||e),'bad')}renderStore()}
@@ -1428,9 +1449,9 @@ async function dirAllow(){if(!DIR.h)return dirPick();try{DIR.ok=(await DIR.h.req
 async function dirWrite(name,blob){const fh=await DIR.h.getFileHandle(name,{create:true});const w=await fh.createWritable();await w.write(blob);await w.close()}
 async function deliverTake(t,blob,srt){
  const base='Social Studio - '+t.name;
- if(DIR.h&&DIR.ok){try{await dirWrite(base+'.'+t.ext,blob);if(srt)await dirWrite(base+'.srt',new Blob([srt],{type:'text/plain'}));t.folder=DIR.h.name;saveTakeLocal(t);renderTakes();toast('Take gespeichert in „'+DIR.h.name+'“: '+t.name,'ok');return}catch(e){DIR.ok=false;renderStore();toast('Ordner nicht erreichbar, der Take kommt in die Downloads.','bad')}}
+ if(DIR.h&&DIR.ok){try{await dirWrite(base+'.'+t.ext,blob);if(srt)await dirWrite(base+'.srt',new Blob([srt],{type:'text/plain'}));if(t.cam)await dirWrite(base+' Kamera.'+(t.camExt||t.ext),t.cam);t.folder=DIR.h.name;await writeSide(t);saveTakeLocal(t);renderTakes();toast('Take gespeichert in „'+DIR.h.name+'“: '+t.name,'ok');return}catch(e){DIR.ok=false;renderStore();toast('Ordner nicht erreichbar, der Take kommt in die Downloads.','bad')}}
  if(IOS){toast('Take ist gespeichert. Unter „Takes“ kannst du ihn teilen oder in Fotos sichern.','ok');return}
- dlBlob(blob,base+'.'+t.ext);t.dl=true;saveTakeLocal(t);renderTakes();toast('Take ist in deinen Downloads: '+base+'.'+t.ext,'ok');
+ dlBlob(blob,base+'.'+t.ext);if(t.cam)setTimeout(()=>dlBlob(t.cam,base+' Kamera.'+(t.camExt||t.ext)),600);t.dl=true;saveTakeLocal(t);renderTakes();toast('Take ist in deinen Downloads: '+base+'.'+t.ext,'ok');
 }
 async function webSaveTake(t,blob,srt){await saveTakeLocal(t);if(!S.persistAsked){S.persistAsked=true;try{await navigator.storage?.persist?.()}catch{}}await deliverTake(t,blob,srt);renderStore()}
 function canShareFile(t){try{return!!(t.blob&&navigator.canShare&&navigator.canShare({files:[new File([t.blob],'x.'+t.ext,{type:t.mime||'video/mp4'})]}))}catch{return false}}
@@ -1445,56 +1466,70 @@ async function renderStore(){
 
 /* ---------- Vorschnitt im Browser (ohne ffmpeg) ---------- */
 function pausesToCuts(raw,dur){const out=[];for(const[a,b]of raw){const head=a<=.05,tail=dur&&b>=dur-.08;const A=head?0:a+.12,B=tail?dur:b-(head?.1:.12);if(B-A>=.25)out.push({a:A,b:B,kind:head?'start':tail?'ende':'pause',on:true,why:head?'Stille vor dem ersten Wort':tail?'Stille nach dem letzten Wort':'Pause von '+(b-a).toFixed(1).replace('.',',')+' s'})}return out}
-function webPauses(buf,dur){
+function webSil(buf,dur){
  const ch=buf.numberOfChannels,sr=buf.sampleRate,win=Math.max(1,Math.round(sr*.02)),n=Math.floor(buf.length/win);if(n<5)return[];
  const data=[];for(let c=0;c<ch;c++)data.push(buf.getChannelData(c));const db=new Float32Array(n);
  for(let i=0;i<n;i++){let s=0;for(let c=0;c<ch;c++){const d=data[c];for(let j=i*win,e=j+win;j<e;j++)s+=d[j]*d[j]}db[i]=10*Math.log10(s/(win*ch)+1e-12)}
  const so=Array.from(db).sort((a,b)=>a-b);const floor=so[Math.floor(n*.1)],loud=so[Math.floor(n*.9)];
  const thr=Math.min(loud-16,Math.max(floor+9,-52));const min=+S.set.cutPause||.6;
  const raw=[];let st=-1;for(let i=0;i<=n;i++){const sil=i<n&&db[i]<thr;if(sil&&st<0)st=i;if(!sil&&st>=0){const a=st*.02,b=Math.min(dur,i*.02);if(b-a>=min||(st===0&&b-a>=.3)||(i===n&&b-a>=.3))raw.push([a,b]);st=-1}}
- return pausesToCuts(raw,dur);
+ return raw;
 }
+function webPauses(buf,dur){return pausesToCuts(webSil(buf,dur),dur)}
 async function cutAnalyzeWeb(t,o={}){
  if(!t?.blob){toast('Dieser Take ist nicht mehr da.','bad');return}if(CUT.busy.has(t.id))return;CUT.busy.add(t.id);t.cutState='läuft';
  let ac;try{setCutStep(t,'Ton wird gelesen');const AC=window.AudioContext||window.webkitAudioContext;ac=new AC();
   const buf=await ac.decodeAudioData(await t.blob.arrayBuffer());const dur=buf.duration||t.dur||0;t.dur=dur;
-  setCutStep(t,'Pausen werden gesucht');const cuts=webPauses(buf,dur);
+  setCutStep(t,'Pausen werden gesucht');const sil=webSil(buf,dur);const cuts=pausesToCuts(sil,dur);
   for(const m of t.marks||[])cuts.push({a:m.a,b:m.b,kind:'nochmal',on:true,why:'Du hast „Satz nochmal“ gedrückt'});
-  t.edit={v:1,made:Date.now(),cuts:normCuts(cuts,dur),words:null,hook:null,fmt:'',opts:{zoom:true},web:true};t.cutState='bereit';t.cutStep='';
-  await saveTakeLocal(t);renderTakes();if(CUT.t===t)renderCut();
-  if(o.auto)toast(`Vorschnitt für „${t.title}“ ist fertig: ${t.edit.cuts.length} Schnitte vorgeschlagen. Prüfen unter „Takes“.`,'ok');
+  let units=null;if(t.tx?.length){setCutStep(t,'Text wird mit dem Skript abgeglichen');units=txUnits(speechSegs(sil,dur),t.tx);cuts.push(...smartCuts(units,t.chunks));units=units.map(({toks,span,dup,...u})=>u)}
+  const scr=t.mode==='bildschirm';
+  t.edit={v:2,made:Date.now(),cuts:normCuts(cuts,dur),units,words:null,hook:null,fmt:scr?S.set.format:'',lay:scr?(S.set.scrLay||'kreis'):'',opts:{zoom:!scr,caps:scr&&!!S.set.captions&&!!t.tl?.length},web:true};t.cutState='bereit';t.cutStep='';
+  if(t.claude){t.claude.n=0;t.claude.stale=true}
+  await saveTakeLocal(t);writeSide(t);renderTakes();if(CUT.t===t){renderCut();renderClaudeBox(t)}
+  if(o.auto){const sm=t.edit.cuts.filter(c=>c.on&&(c.kind==='doppelt'||c.kind==='skript')).length;toast(`Vorschnitt für „${t.title}“ ist fertig: ${t.edit.cuts.filter(c=>c.on).length} Schnitte${sm?', davon '+sm+' doppelte oder überflüssige Sätze':''}. Prüfen unter „Takes“.`,'ok')}
  }catch(e){t.cutState='fehler';t.cutStep='';renderTakes();toast('Vorschnitt ging nicht: '+(e?.message||e),'bad')}
  finally{CUT.busy.delete(t.id);try{ac?.close()}catch{}}
 }
 async function cutRenderWeb(){
  const t=CUT.t;if(!t||CUT.rendering)return;CUT.rendering=true;CUT.vid?.pause();$('#cut-go').disabled=true;$('#cut-prog').hidden=false;
- const bar=$('#cut-prog i'),step=s=>{const e=$('#cut-step');if(e)e.textContent=s};let ac=null,drawing=true;
+ const bar=$('#cut-prog i'),step=s=>{const e=$('#cut-step');if(e)e.textContent=s};let ac=null,drawing=true,camUrl='';
  try{
-  const dur=t.dur||0,keep=keepSegs(t.edit,dur);if(!keep.length)throw new Error('Alles ist weggeschnitten');const outDur=segLen(keep);
+  const dur=t.dur||0,keep=keepSegs(t.edit,dur);if(!keep.length)throw new Error('Alles ist weggeschnitten');const outDur=segLen(keep),scr=t.mode==='bildschirm',off=+t.camOff||0;
   const v=document.createElement('video');v.playsInline=true;v.preload='auto';v.src=await takeUrl(t);
   await new Promise((res,rej)=>{v.onloadedmetadata=res;v.onerror=()=>rej(new Error('Video nicht lesbar'))});
-  const W=v.videoWidth||1080,H=v.videoHeight||1920,cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d');
+  let cv2=null;
+  if(scr&&t.cam&&t.edit.lay!=='nur'){cv2=document.createElement('video');cv2.muted=true;cv2.playsInline=true;cv2.preload='auto';camUrl=URL.createObjectURL(t.cam);cv2.src=camUrl;
+   const ok=await new Promise(r=>{cv2.onloadeddata=()=>r(true);cv2.onerror=()=>r(false);setTimeout(()=>r(cv2.readyState>=1),5000)});if(!ok)cv2=null}
+  let W=v.videoWidth||1080,H=v.videoHeight||1920;
+  if(scr){const[w0,h0]=FORMATS[t.edit.fmt]||FORMATS['16:9'],k=S.set.quality==='720'?2/3:1;W=Math.round(w0*k/2)*2;H=Math.round(h0*k/2)*2}
+  const cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d');
   const AC=window.AudioContext||window.webkitAudioContext;ac=new AC();await ac.resume().catch(()=>{});const src=ac.createMediaElementSource(v),g=ac.createGain(),dst=ac.createMediaStreamDestination();g.gain.value=0;src.connect(g);g.connect(dst);
   const stream=cv.captureStream(30);dst.stream.getAudioTracks().forEach(x=>stream.addTrack(x));
   const mime=pickMime();const rec=new MediaRecorder(stream,mime?{mimeType:mime,videoBitsPerSecond:S.set.quality!=='720'?12e6:6e6,audioBitsPerSecond:160000}:{});
   const parts=[];rec.ondataavailable=e=>{if(e.data?.size)parts.push(e.data)};const stopped=new Promise(r=>rec.onstop=r);
-  let zoom=1;const draw=()=>{if(!drawing)return;const sw=W/zoom,sh=H/zoom;try{c.drawImage(v,(W-sw)/2,(H-sh)/2,sw,sh,0,0,W,H)}catch{}requestAnimationFrame(draw)};
+  const caps=scr&&t.edit.opts?.caps&&t.tl?.length;let zoom=1;
+  const draw=()=>{if(!drawing)return;try{if(scr){const bub=drawScreenScene(c,W,H,v,cv2&&cv2.readyState>=2?cv2:null,{lay:t.edit.lay||'kreis'});if(caps)drawCapText(c,W,H,capAt(t,v.currentTime),bub)}else{const sw=W/zoom,sh=H/zoom;c.drawImage(v,(W-sw)/2,(H-sh)/2,sw,sh,0,0,W,H)}}catch{}requestAnimationFrame(draw)};
   step('Schnitt wird vorbereitet');rec.start(250);rec.pause();draw();let done=0;
-  for(let i=0;i<keep.length;i++){const[a,b]=keep[i];zoom=t.edit.opts?.zoom&&keep.length>1&&i%2===1?1.12:1;
-   v.currentTime=a;await new Promise(r=>v.addEventListener('seeked',r,{once:true}));await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+  for(let i=0;i<keep.length;i++){const[a,b]=keep[i];zoom=!scr&&t.edit.opts?.zoom&&keep.length>1&&i%2===1?1.12:1;
+   const sk=[new Promise(r=>v.addEventListener('seeked',r,{once:true}))];v.currentTime=a;
+   if(cv2){sk.push(new Promise(r=>{cv2.addEventListener('seeked',r,{once:true});setTimeout(r,1500)}));cv2.currentTime=Math.max(0,a-off)}
+   await Promise.all(sk);await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
    const now=ac.currentTime;g.gain.cancelScheduledValues(now);g.gain.setValueAtTime(0,now);g.gain.linearRampToValueAtTime(1,now+.015);
-   rec.resume();await v.play();
-   await new Promise(r=>{const tick=()=>{const p=clamp((done+Math.max(0,v.currentTime-a))/outDur,0,1);bar.style.width=(p*100).toFixed(1)+'%';step('Schnitt läuft: '+Math.round(p*100)+' %. Lass das Fenster offen.');if(v.currentTime>=b-.03||v.ended)r();else setTimeout(tick,10)};tick()});
-   const n2=ac.currentTime;g.gain.cancelScheduledValues(n2);g.gain.setValueAtTime(1,n2);g.gain.linearRampToValueAtTime(0,n2+.012);await sleep(14);rec.pause();v.pause();done+=b-a;
+   rec.resume();await v.play();if(cv2)cv2.play().catch(()=>{});
+   await new Promise(r=>{let fix=0;const tick=()=>{const p=clamp((done+Math.max(0,v.currentTime-a))/outDur,0,1);bar.style.width=(p*100).toFixed(1)+'%';step('Schnitt läuft: '+Math.round(p*100)+' %. Lass das Fenster offen.');
+     if(cv2&&performance.now()-fix>400){fix=performance.now();const want=v.currentTime-off;if(want>=0&&Math.abs(cv2.currentTime-want)>.12)cv2.currentTime=want}
+     if(v.currentTime>=b-.03||v.ended)r();else setTimeout(tick,10)};tick()});
+   const n2=ac.currentTime;g.gain.cancelScheduledValues(n2);g.gain.setValueAtTime(1,n2);g.gain.linearRampToValueAtTime(0,n2+.012);await sleep(14);rec.pause();v.pause();cv2?.pause();done+=b-a;
   }
   drawing=false;rec.stop();await stopped;
   const type=(rec.mimeType||mime||'video/webm').split(';')[0],ext=type.includes('mp4')?'mp4':'webm',blob=new Blob(parts,{type});
   const d=new Date(),name=`${dKey(d)} ${pad(d.getHours())}-${pad(d.getMinutes())} ${slug(t.title)} Schnitt`;
-  const nt={id:uid(),name,ext,scriptId:t.scriptId,title:t.title,created:Date.now(),dur:outDur,size:blob.size,mime:type,fav:false,file:'',url:URL.createObjectURL(blob),blob,cut:true,parent:t.id,fmt:S.set.format};
+  const nt={id:uid(),name,ext,scriptId:t.scriptId,title:t.title,created:Date.now(),dur:outDur,size:blob.size,mime:type,fav:false,file:'',url:URL.createObjectURL(blob),blob,cut:true,parent:t.id,fmt:scr?(t.edit.fmt||'16:9'):S.set.format};
   S.takes.unshift(nt);t.cutDone=nt.id;saveTakeLocal(t);bar.style.width='100%';
   await webSaveTake(nt,blob,'');renderTakes();closeModal();toast(`Fertig: ${fmtDur(outDur)} statt ${fmtDur(dur)}.`,'ok');setTimeout(()=>playTake(nt),200);
  }catch(e){toast('Schneiden ging nicht: '+(e?.message||e),'bad');step('')}
- finally{drawing=false;try{ac?.close()}catch{}CUT.rendering=false;const gb=$('#cut-go');if(gb)gb.disabled=false}
+ finally{drawing=false;try{ac?.close()}catch{}if(camUrl)setTimeout(()=>URL.revokeObjectURL(camUrl),2000);CUT.rendering=false;const gb=$('#cut-go');if(gb)gb.disabled=false}
 }
 
 /* ---------- Prompter folgt der Stimme ---------- */
@@ -1512,16 +1547,266 @@ function vfUi(){const b=$('#btn-voice');if(!b)return;b.setAttribute('aria-presse
 function vfSync(){if(VF.on)VF.target=Math.max(0,P.cur)}
 function vfStart(){
  if(!SRC){toast('Dieser Browser kann das nicht. Nimm Chrome oder Safari.','bad');return}if(!P.data?.words.length){toast('Lade zuerst ein Skript.');return}
- VF.norm=P.data.words.map(w=>normW(w.t));VF.target=Math.max(0,P.cur);VF.on=true;
- const r=new SRC();r.lang='de-DE';r.continuous=true;r.interimResults=true;r.maxAlternatives=1;
- r.onresult=e=>{let txt='';for(let i=e.resultIndex;i<e.results.length;i++)txt+=' '+e.results[i][0].transcript;VF.heard=txt;vfMatch(txt)};
- r.onerror=e=>{if(e.error==='not-allowed'||e.error==='service-not-allowed'){vfStop();toast('Die Spracherkennung wurde nicht erlaubt.','bad')}};
- r.onend=()=>{if(VF.on&&VF.rec===r)setTimeout(()=>{if(VF.on&&VF.rec===r)try{r.start()}catch{}},200)};
- VF.rec=r;try{r.start()}catch{}vfUi();if(!P.playing){P.playing=true;setPChip()}
+ VF.norm=P.data.words.map(w=>normW(w.t));VF.target=Math.max(0,P.cur);VF.on=true;SR.use('vf');
+ vfUi();if(!P.playing){P.playing=true;setPChip()}
  if(!S.vfNoted){S.vfNoted=true;toast(IOS?'Der Prompter folgt jetzt deiner Stimme. Die Erkennung läuft über Safari.':'Der Prompter folgt jetzt deiner Stimme. Chrome nutzt dafür die Spracherkennung von Google.','ok')}
 }
-function vfStop(){VF.on=false;const r=VF.rec;VF.rec=null;try{r?.stop()}catch{}vfUi()}
+function vfStop(){VF.on=false;SR.drop('vf');vfUi()}
 function vfTick(dt){if(!P.tops?.length)return;const t=clamp(VF.target,0,P.tops.length-1);const want=Math.min(P.max,P.tops[t]||0);const d=want-P.off;if(Math.abs(d)<.5)return;P.off+=d*Math.min(1,dt*5);applyOff()}
+
+/* ---------- Spracherkennung, geteilt von Stimm-Prompter und Mitschrift ---------- */
+const SR={rec:null,users:new Set(),n:0,
+ use(u){this.users.add(u);if(!this.rec)this.open()},
+ drop(u){this.users.delete(u);if(!this.users.size)this.close()},
+ open(){if(!SRC)return;this.err=0;let r;try{r=new SRC()}catch{return}r.lang='de-DE';r.continuous=true;r.interimResults=true;r.maxAlternatives=1;
+  r.onstart=()=>{r.__n=++SR.n};
+  r.onresult=e=>{SR.err=0;let txt='';for(let i=e.resultIndex;i<e.results.length;i++){const x=e.results[i];txt+=' '+(x[0]?.transcript||'');txLog(r.__n||0,i,x)}VF.heard=txt;if(VF.on)vfMatch(txt)};
+  r.onerror=e=>{if(e.error==='not-allowed'||e.error==='service-not-allowed'){const vf=SR.users.has('vf');SR.users.clear();SR.close();TX.denied=true;if(vf){VF.on=false;vfUi()}toast('Die Spracherkennung wurde nicht erlaubt. Der Vorschnitt nutzt dann nur Pausen und deine Markierungen.','bad');return}
+   if(e.error!=='no-speech'&&e.error!=='aborted'){SR.err=(SR.err||0)+1;if(SR.err===8)toast('Die Spracherkennung ist gerade nicht erreichbar. Der Vorschnitt nutzt dann nur Pausen und deine Markierungen.','bad')}};
+  r.onend=()=>{if(SR.rec===r&&SR.users.size&&(SR.err||0)<8)setTimeout(()=>{if(SR.rec===r&&SR.users.size)try{r.start()}catch{}},(SR.err||0)>2?2000:150)};
+  this.rec=r;try{r.start()}catch{}},
+ close(){const r=this.rec;this.rec=null;try{r?.stop()}catch{}}};
+
+/* ---------- Mitschrift während der Aufnahme ---------- */
+const TX={list:[],first:{},done:{},denied:false};
+const txWant=()=>!!SRC&&!TX.denied&&S.set.mitschrift!==false&&(!IOS||VF.on);
+function txStart(){TX.list=[];TX.first={};TX.done={};R.txUntil=0;R.tx=txWant();if(!R.tx)return;SR.use('tx');
+ if(!S.txNoted){S.txNoted=true;toast(IOS?'Das Studio schreibt mit, was du sagst. Damit findet der Vorschnitt doppelte Sätze.':'Das Studio schreibt mit, was du sagst. Damit findet der Vorschnitt doppelte Sätze. Chrome nutzt dafür die Spracherkennung von Google.')}}
+function txLog(n,i,x){
+ if(!R.tx||(!R.on&&performance.now()>(R.txUntil||0)))return;
+ const k=n+':'+i,now=R.on?R.elapsed():(R.dur||0);if(TX.first[k]==null)TX.first[k]=now;
+ if(!x.isFinal||TX.done[k])return;TX.done[k]=1;const text=String(x[0]?.transcript||'').replace(/\s+/g,' ').trim();if(!text)return;
+ const s=Math.max(0,TX.first[k]-.6),e=Math.max(s+.3,now-.45);TX.list.push({s:+s.toFixed(2),e:+e.toFixed(2),text,c:+(+x[0].confidence||0).toFixed(2)});
+}
+async function txFinish(){if(!R.tx){R.saving=false;return}const w=(R.txUntil||0)-performance.now();if(w>0)await sleep(w);R.tx=false;R.saving=false;SR.drop('tx')}
+
+/* ---------- Abschnitte: Sprechstücke zwischen den Pausen, mit dem, was gehört wurde ---------- */
+function speechSegs(sil,dur){
+ const out=[];let t=0,pv=null;
+ const push=(a,b,nx)=>{if(b-a<.05)return;const ca=!pv?0:pv[0]<=.05?0:pv[0]+.12,cb=!nx?dur:nx[1]>=dur-.08?dur:nx[1]-.12;out.push({a,b,ca:Math.min(ca,a),cb:Math.max(cb,b)})};
+ for(const s of sil){push(t,s[0],s);t=s[1];pv=s}push(t,dur,null);return out;
+}
+function txUnits(segs,tx){
+ const n=segs.length;if(!n)return[];const ph=[];
+ for(const p of tx||[]){let first=-1,last=-1,best=-1,bo=0;
+  for(let j=0;j<n;j++){const g=segs[j];const o=Math.min(p.e,g.b+.25)-Math.max(p.s,g.a-.25);if(o<=0)continue;if(o>bo){bo=o;best=j}if(o>=.25||o/Math.max(.2,g.b-g.a)>=.3){if(first<0)first=j;last=j}}
+  if(first<0&&best>=0)first=last=best;
+  if(first<0){const m=(p.s+p.e)/2;let bd=1e9;for(let j=0;j<n;j++){const g=segs[j];const d=m<g.a?g.a-m:m>g.b?m-g.b:0;if(d<bd){bd=d;best=j}}first=last=best}
+  ph.push({p,first,last})}
+ for(let k=1;k<ph.length;k++)if(ph[k].first<ph[k-1].first){ph[k].first=ph[k-1].first;ph[k].last=Math.max(ph[k].last,ph[k].first)}
+ const join=new Array(n).fill(false);for(const x of ph)for(let j=x.first;j<x.last;j++)join[j]=true;
+ const out=[];let s0=0;
+ for(let j=0;j<n;j++){if(join[j]&&j<n-1)continue;const g0=segs[s0],g1=segs[j];const text=ph.filter(x=>x.first>=s0&&x.first<=j).map(x=>x.p.text).join(' ').trim();
+  out.push({n:out.length+1,a:+g0.a.toFixed(2),b:+g1.b.toFixed(2),ca:+g0.ca.toFixed(3),cb:+g1.cb.toFixed(3),text,x:false});s0=j+1}
+ return out;
+}
+/* Lokaler Abgleich eines gehörten Stücks mit dem Skript: wo im Skript steht es und wie viel passt */
+function alignSpan(toks,N){
+ const n=toks.length,M=N.length;if(!n||!M)return null;let pS=new Float32Array(M+1),pA=new Int32Array(M+1),pM=new Int32Array(M+1);let best={s:0,w0:-1,w1:-1,m:0};
+ for(let i=1;i<=n;i++){const cS=new Float32Array(M+1),cA=new Int32Array(M+1),cM=new Int32Array(M+1);
+  for(let j=1;j<=M;j++){const eq=vfSim(toks[i-1],N[j-1]);let s=0,a=j-1,m=0;
+   const d=pS[j-1]+(eq?2:-1);if(d>s){s=d;a=pS[j-1]>0?pA[j-1]:j-1;m=(pS[j-1]>0?pM[j-1]:0)+(eq?1:0)}
+   const u=pS[j]-1;if(u>s){s=u;a=pA[j];m=pM[j]}
+   const l=cS[j-1]-.5;if(l>s){s=l;a=cA[j-1];m=cM[j-1]}
+   cS[j]=s;cA[j]=a;cM[j]=m;if(s>best.s)best={s,w0:a,w1:j-1,m}}
+  pS=cS;pA=cA;pM=cM}
+ return best.w0<0?null:best;
+}
+const shortTxt=s=>{s=String(s||'').trim();return s.length>64?s.slice(0,60).replace(/\s+\S*$/,'')+' …':s};
+function isMeta(T){const j=' '+T.join(' ')+' ';return T.length<=8&&(/ (nochmal|noch mal|warte|sorry|mist|scheisse|stopp|abbrechen) /.test(j)||/ von vorn/.test(j)||(T.length<=3&&/ (ok|okay|moment|ah|ahm|aehm|hm|hmm) /.test(j)))}
+function smartCuts(units,chunks){
+ const N=(chunks||[]).join(' ').split(/\s+/).map(normW).filter(Boolean),out=[];if(!units?.length)return out;
+ for(const u of units){u.toks=String(u.text||'').split(/\s+/).map(normW).filter(Boolean);u.span=N.length&&u.toks.length?alignSpan(u.toks,N):null;u.score=u.span?+(u.span.m/u.toks.length).toFixed(2):0}
+ const wt=units.filter(u=>u.toks.length>=2),follows=N.length&&wt.length&&wt.filter(u=>u.score>=.5).length/wt.length>=.6;
+ const kept=[];
+ for(const u of units){if(!u.span||u.score<.45||u.toks.length<2)continue;
+  for(let k=kept.length-1;k>=0;k--){const v=kept[k];if(v.span.w1<u.span.w0)break;const ov=v.span.w1-u.span.w0+1,vl=v.span.w1-v.span.w0+1;if(ov>=Math.max(2,.3*vl)&&v.span.w0>=u.span.w0-2){v.dup=u.n;kept.splice(k,1)}}
+  kept.push(u)}
+ for(const u of units){
+  if(u.dup)out.push({a:u.ca,b:u.cb,kind:'doppelt',on:true,unit:u.n,why:`Satz doppelt, Abschnitt ${u.dup} bleibt: „${shortTxt(u.text)}“`});
+  else if(u.toks.length&&(!u.span||u.score<.35)){
+   if(isMeta(u.toks))out.push({a:u.ca,b:u.cb,kind:'skript',on:true,unit:u.n,why:`Kein Skripttext: „${shortTxt(u.text)}“`});
+   else if(follows&&u.toks.length>=2)out.push({a:u.ca,b:u.cb,kind:'skript',on:false,unit:u.n,why:`Steht so nicht im Skript: „${shortTxt(u.text)}“. Haken setzen, wenn es raus soll`})}}
+ return out;
+}
+function cutUnit(i){const ed=CUT.t?.edit;const u=ed?.units?.[i];if(!u)return;const m=(u.a+u.b)/2;const hit=ed.cuts.filter(c=>c.on&&m>=c.a&&m<c.b);const sug=ed.cuts.find(c=>!c.on&&c.unit===u.n&&(c.kind==='skript'||c.kind==='doppelt'||c.kind==='claude'));
+ if(hit.length&&!u.x)hit.forEach(c=>c.on=false);else if(!u.x&&sug)sug.on=true;else u.x=!u.x;renderCut();cutSave()}
+
+/* ---------- An Claude geben ---------- */
+const takeBase=t=>'Social Studio - '+t.name;
+const CLAUDE_FMT='{"weg":[{"nr":2,"warum":"Versprecher, Satz kommt in 3 noch einmal"}],"einstieg":"Kurze Einschätzung des ersten Satzes mit einem Tipp","posttext":{"instagram":"…","linkedin":"…","youtube":"Titel"}}';
+const CLAUDE_TASK=['Entscheide, welche Abschnitte rausfliegen: Versprecher, abgebrochene oder doppelte Sätze, alles außerhalb des Skripts. Bei doppelten Sätzen bleibt der letzte vollständige Versuch.','Bewerte kurz den Einstieg.','Schreib Posttexte: Instagram mit Du-Anrede und 3 bis 5 Hashtags, LinkedIn sachlich und fachlich, dazu einen YouTube-Titel. Kein Komma vor „und“. Keine Fachaussagen, die nicht im Skript stehen.'];
+function claudeSide(t){const ed=t.edit;return{app:'Kamera-Studio',version:3,datei:takeBase(t)+'.'+t.ext,kamera:t.cam?takeBase(t)+' Kamera.'+(t.camExt||t.ext):undefined,titel:t.title,name:t.name,
+ aufgenommen:new Date(t.created).toISOString(),dauer_s:+(+t.dur||0).toFixed(2),art:t.mode==='bildschirm'?'Bildschirm':'Kamera',skript:t.skript||(t.chunks||[]).join(' '),
+ marke:{dokuna:S.set.brandFacts||'',zielgruppe:S.set.audience||'',stil:S.set.styleRules||''},
+ markiert:(t.marks||[]).map(m=>({von:+m.a.toFixed(2),bis:+m.b.toFixed(2)})),mitschrift:(t.tx||[]).map(p=>({von:p.s,bis:p.e,text:p.text})),
+ abschnitte:(ed?.units||[]).map(u=>({nr:u.n,von:u.a,bis:u.b,text:u.text})),vorschnitt:(ed?.cuts||[]).filter(c=>c.on).map(c=>({von:c.a,bis:c.b,art:KIND[c.kind]||c.kind,warum:c.why})),
+ antwort_datei:takeBase(t)+'.schnitt.json',
+ anleitung:'Für Claude: '+CLAUDE_TASK.join(' ')+' Leg die Antwort als Datei mit dem Namen aus „antwort_datei“ in denselben Ordner, im Format '+CLAUDE_FMT+'. „nr“ ist die Nummer aus „abschnitte“. Das Kamera-Studio holt sich die Datei dann selbst.'}}
+async function writeSide(t){if(!WEB||!t||t.cut||!DIR.h||!DIR.ok||t.folder!==DIR.h.name)return;try{await dirWrite(takeBase(t)+'.take.json',new Blob([JSON.stringify(claudeSide(t),null,1)],{type:'application/json'}))}catch{}}
+function claudeText(t){
+ const ed=t.edit,us=ed?.units||[],L=[];
+ L.push('Kamera-Studio: Bitte schneide diesen Take vor.',`Take: „${t.title}“ (${t.name}), ${fmtDur(t.dur)}${t.mode==='bildschirm'?', Bildschirm-Aufnahme':''}`);
+ if(S.set.brandFacts)L.push('','Über Dokuna: '+S.set.brandFacts);
+ const sk=t.skript||(t.chunks||[]).join(' ');if(sk)L.push('','Skript:',sk.trim());
+ L.push('','Abschnitte (Nummer · Zeit · was die Spracherkennung gehört hat):');
+ for(const u of us){const mk=(t.marks||[]).some(m=>m.b>u.a&&m.a<u.b)?' · hier hat Jonas „Satz nochmal“ gedrückt':'';const auto=[...new Set((ed.cuts||[]).filter(c=>c.on&&c.unit===u.n).map(c=>KIND[c.kind]||c.kind))].join(', ');
+  L.push(`${u.n} · ${fmtT(u.a)}–${fmtT(u.b)} · „${u.text||'(nichts erkannt)'}“${mk}${u.x?' · Jonas hat ihn selbst rausgenommen':''}${auto?' · Studio schlägt vor: raus ('+auto+')':''}`)}
+ L.push('','Aufgabe:',...CLAUDE_TASK.map((x,i)=>(i+1)+'. '+x),'','Antworte mit genau einem Codeblock in diesem Format, „nr“ ist die Nummer des Abschnitts:',CLAUDE_FMT);
+ if(t.folder&&DIR.ok)L.push('',`Falls du Zugriff auf meinen Mac-Ordner „${t.folder}“ hast: Leg die Antwort zusätzlich dort als Datei „${takeBase(t)}.schnitt.json“ ab. Das Kamera-Studio holt sie sich dann selbst.`);
+ return L.join('\n');
+}
+function parseClaude(txt){
+ const s=String(txt||''),cands=[];const re=/```(?:json)?\s*([\s\S]*?)```/g;let m;while((m=re.exec(s)))cands.push(m[1]);
+ const i=s.indexOf('{'),j=s.lastIndexOf('}');if(i>=0&&j>i)cands.push(s.slice(i,j+1));
+ for(const c of cands){try{const o=JSON.parse(c.trim());if(o&&typeof o==='object'&&(Array.isArray(o.weg)||o.posttext||o.einstieg))return o}catch{}}
+ return null;
+}
+function applyClaude(t,o,src){
+ const ed=t.edit;if(!ed?.units?.length)throw new Error('Für diesen Take gibt es keine Mitschrift');
+ const weg=(Array.isArray(o.weg)?o.weg:[]).map(x=>typeof x==='number'||typeof x==='string'?{nr:+x}:x).filter(x=>x&&isFinite(+(x.nr??x.seg)));
+ ed.cuts=ed.cuts.filter(c=>c.kind!=='claude');ed.cuts.forEach(c=>{if(c.kind==='doppelt'||c.kind==='skript')c.on=false});
+ const add=[];for(const x of weg){const u=ed.units.find(v=>v.n===+(x.nr??x.seg));if(u&&!add.some(a=>a.unit===u.n))add.push({a:u.ca,b:u.cb,kind:'claude',on:true,unit:u.n,why:'Claude: '+String(x.warum||x.why||'raus').slice(0,160)})}
+ ed.cuts=normCuts([...ed.cuts,...add],t.dur);
+ const pt=o.posttext&&typeof o.posttext==='object'?o.posttext:null;
+ t.claude={at:Date.now(),fileAt:t.claude?.fileAt||0,src,n:add.length,einstieg:String(o.einstieg||'').slice(0,600),posttext:pt?{instagram:String(pt.instagram||'').slice(0,2200),linkedin:String(pt.linkedin||'').slice(0,3000),youtube:String(pt.youtube||'').slice(0,200)}:null};
+ return add.length;
+}
+function renderClaudeBox(t){
+ const el=$('#cl-box');if(!el)return;if(!t?.edit?.web||!t.edit.units?.length){el.hidden=true;return}el.hidden=false;const c=t.claude,pt=c?.posttext;
+ const lab={instagram:'Instagram',linkedin:'LinkedIn',youtube:'YouTube-Titel'};
+ el.innerHTML=`<h4>Claude <span class="muted small">prüft den Schnitt und schreibt Posttexte</span></h4>
+ <div class="row"><button class="btn sm" data-act="clgive">An Claude geben</button><button class="btn sm ghost" data-act="clpaste">Antwort einfügen</button></div>
+ <div id="cl-steps" hidden></div>
+ <div id="cl-in" class="stack-sm" hidden><textarea id="cl-ans" rows="4" placeholder="Claudes Antwort hier einfügen"></textarea><div class="row"><button class="btn sm pri" data-act="clapply">Übernehmen</button></div></div>
+ ${c?`<div class="stack-sm">${c.stale?'<p class="note warn" style="margin:0">Nach dem neuen Analysieren ist Claudes Schnitt nicht mehr drin. Gib den Take noch einmal an Claude.</p>':`<p class="note ok" style="margin:0">Claudes Schnitt ist drin: ${c.n} Abschnitt${c.n===1?'':'e'} raus${c.src==='ordner'?', aus deinem Ordner geholt':''}.</p>`}${c.einstieg?`<p class="small" style="margin:0"><b>Einstieg:</b> ${esc(c.einstieg)}</p>`:''}${pt?Object.keys(lab).filter(k=>pt[k]).map(k=>`<div class="ptx"><div class="row" style="justify-content:space-between"><b class="small">${lab[k]}</b><button class="btn sm ghost" data-act="clcopy" data-k="${k}">Kopieren</button></div><div class="small pre">${esc(pt[k])}</div></div>`).join(''):''}</div>`:''}`;
+}
+async function claudeGive(t){
+ if(!t?.edit?.units?.length){toast('Für diesen Take gibt es keine Mitschrift. Schalte unter „Aufnahme“ das Mitschreiben ein.','bad');return}
+ const txt=claudeText(t);writeSide(t);let how='';
+ if(IOS&&navigator.share){try{await navigator.share({text:txt});how='share'}catch(e){if(e?.name==='AbortError')return}}
+ if(!how){try{await navigator.clipboard.writeText(txt);how='copy'}catch{how='manual'}}
+ const st=$('#cl-steps');if(st){st.hidden=false;st.innerHTML=how==='manual'?`<p class="note" style="margin:0">Kopier diesen Text und füg ihn in einen Chat mit Claude ein:</p><textarea rows="6" readonly>${esc(txt)}</textarea>`:
+  `<ol class="steps small"><li>${how==='share'?'Wähl Claude und schick den Text ab.':'Der Text ist kopiert. Öffne einen Chat mit Claude, füg ihn ein und schick ihn ab.'}</li><li>Kopier Claudes Antwort mit dem Kopier-Knopf am Codeblock.</li><li>Klick hier auf „Antwort einfügen“.</li></ol>${how==='copy'?'<div class="row"><a class="btn sm" href="https://claude.ai/new" target="_blank" rel="noopener">Claude öffnen</a></div>':''}${t.folder&&DIR.ok?`<p class="note" style="margin:0">Darf Claude deinen Ordner „${esc(t.folder)}“ sehen, legt er die Antwort direkt dort ab. Dann holt das Studio sie sich selbst.</p>`:''}`}
+ const ci=$('#cl-in');if(ci)ci.hidden=false;
+}
+async function claudeApplyText(){
+ const t=CUT.t;if(!t)return;const o=parseClaude($('#cl-ans')?.value);if(!o){toast('In der Antwort ist kein Schnitt von Claude. Kopier den ganzen Codeblock.','bad');return}
+ let n;try{n=applyClaude(t,o,'chat')}catch(e){toast(e.message,'bad');return}
+ await saveTakeLocal(t);writeSide(t);renderTakes();renderCut();renderClaudeBox(t);toast(`Claudes Schnitt ist drin: ${n} Abschnitt${n===1?'':'e'} raus.`,'ok');
+}
+async function claudePoll(){
+ if(!WEB||!DIR.h||!DIR.ok||claudePoll.busy)return;claudePoll.busy=true;
+ try{for(const t of S.takes.filter(x=>x.folder===DIR.h.name&&x.edit?.units?.length&&!x.cut).slice(0,12)){
+  let f;try{f=await(await DIR.h.getFileHandle(takeBase(t)+'.schnitt.json')).getFile()}catch{continue}
+  if(!f||f.lastModified<=(t.claude?.fileAt||0))continue;let o=null;try{o=parseClaude(await f.text())}catch{}if(!o)continue;
+  let n;try{n=applyClaude(t,o,'ordner')}catch{continue}t.claude.fileAt=f.lastModified;await saveTakeLocal(t);renderTakes();if(CUT.t===t){renderCut();renderClaudeBox(t)}
+  toast(`Claude hat „${t.title}“ vorgeschnitten: ${n} Abschnitt${n===1?'':'e'} raus. Prüf es unter „Takes“.`,'ok')}}
+ finally{claudePoll.busy=false}
+}
+
+/* ---------- Bildschirm aufnehmen ---------- */
+const SCR={on:false,stream:null,video:document.createElement('video')};SCR.video.muted=true;SCR.video.playsInline=true;
+const scrOK=()=>WEB&&!!navigator.mediaDevices?.getDisplayMedia&&!IOS;
+async function screenOn(){
+ if(R.on||R.counting)return;let s;
+ try{s=await navigator.mediaDevices.getDisplayMedia({video:{frameRate:{ideal:30,max:30},width:{ideal:1920},height:{ideal:1080}},audio:false,selfBrowserSurface:'exclude',surfaceSwitching:'include'})}
+ catch(e){if(e?.name!=='NotAllowedError'&&e?.name!=='AbortError')toast('Bildschirm ging nicht: '+(e?.message||e),'bad');return}
+ SCR.stream=s;SCR.video.srcObject=s;SCR.video.play().catch(()=>{});SCR.on=true;
+ s.getVideoTracks()[0]?.addEventListener('ended',()=>{if(R.on&&R.scr)stopRec();if(SCR.stream===s)screenOff()});
+ SCR.whole=s.getVideoTracks()[0]?.getSettings?.().displaySurface==='monitor';
+ scrUi();$('#stagemsg').hidden=true;showStudioTab('szene');
+ toast(SCR.whole?'Du teilst den ganzen Bildschirm. Alles darauf ist im Video, auch der Prompter. Teile besser nur das Dokuna-Fenster. Und zeig nur Musterdaten, keine echten Klienten.':'Bildschirm ist verbunden. Achte darauf, dass nur Musterdaten zu sehen sind und keine echten Klienten.',SCR.whole?'bad':'ok');
+ if(!V.cam&&!camSrc())camStart();
+}
+function screenOff(){const s=SCR.stream;SCR.stream=null;SCR.on=false;SCR.video.srcObject=null;try{s?.getTracks().forEach(x=>x.stop())}catch{}pipClose();scrUi();if(!camSrc())$('#stagemsg').hidden=false}
+function scrUi(){const b=$('#btn-screen');if(b){b.textContent=SCR.on?'Bildschirm aus':'Bildschirm';b.classList.toggle('on',SCR.on);b.setAttribute('aria-pressed',String(SCR.on))}document.body.classList.toggle('screen',SCR.on);const o=$('#scr-opts');if(o)o.hidden=!SCR.on}
+function contain(sw,sh,w,h){const k=Math.min(w/sw,h/sh);const cw=sw*k,ch=sh*k;return[(w-cw)/2,(h-ch)/2,cw,ch]}
+function drawVid(c,v,x,y,w,h,r,mirror,fit){
+ const sw=v?.videoWidth,sh=v?.videoHeight;c.save();rr(c,x,y,w,h,r);c.clip();
+ if(!sw){c.fillStyle='#15181d';c.fillRect(x,y,w,h);c.restore();return}
+ if(fit==='contain'){c.fillStyle='#0b0d10';c.fillRect(x,y,w,h);const[dx,dy,dw,dh]=contain(sw,sh,w,h);c.drawImage(v,0,0,sw,sh,x+dx,y+dy,dw,dh)}
+ else{const cr=cover(sw,sh,w,h,S.set.zoom,S.set.ox,S.set.oy);if(mirror){c.translate(x*2+w,0);c.scale(-1,1)}c.filter=lightFilter();c.drawImage(v,...cr,x,y,w,h);c.filter='none'}
+ c.restore();
+}
+function drawScreenScene(c,W,H,scr,cam,o={}){
+ const u=Math.min(W,H)/1080,port=H>W*1.15,lay=o.lay||'kreis',sw=scr?.videoWidth,sh=scr?.videoHeight;let bub=null;
+ c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.filter='none';c.fillStyle='#0b0d10';c.fillRect(0,0,W,H);
+ if(lay==='geteilt'&&cam){if(port){const th=Math.min(H*.6,sw?W*sh/sw:H*.5);drawVid(c,scr,0,0,W,th,0,false,'contain');drawVid(c,cam,0,th,W,H-th,0,S.set.camMirror)}else{const lw=Math.round(W*.68);drawVid(c,scr,0,0,lw,H,0,false,'contain');drawVid(c,cam,lw,0,W-lw,H,0,S.set.camMirror)}}
+ else{drawVid(c,scr,0,0,W,H,0,false,'contain');
+  if(cam&&lay!=='nur'){const d=Math.min(W,H)*(+S.set.pipSize||30)/100,mg=Math.min(W,H)*.04,pos=S.set.pipPos||'br';const x=pos.includes('l')?mg:W-mg-d,y=pos.includes('t')?mg:H-mg-d-(port?H*.16:0);
+   c.save();c.shadowColor='#000a';c.shadowBlur=30*u;c.fillStyle='#000';c.beginPath();c.arc(x+d/2,y+d/2,d/2,0,7);c.fill();c.restore();
+   drawVid(c,cam,x,y,d,d,d/2,S.set.camMirror);c.strokeStyle=S.set.accent;c.lineWidth=6*u;c.beginPath();c.arc(x+d/2,y+d/2,d/2-3*u,0,7);c.stroke();bub={x,y,d,mg}}}
+ if(!sw){c.fillStyle='#9aa4b0';c.font=`600 ${Math.round(36*u)}px Inter,sans-serif`;c.textAlign='center';c.textBaseline='alphabetic';c.fillText('Bildschirm wird verbunden …',W/2,H/2)}
+ return bub;
+}
+function drawCapText(c,W,H,txt,bub){
+ if(!txt)return;const port=H>W*1.15,fs=Math.round((port?W*.066:H*.058)*(+S.set.capSize||100)/100);c.font=`800 ${fs}px Archivo,Inter,sans-serif`;c.textAlign='center';c.textBaseline='alphabetic';
+ let mw=W*.84;if(bub&&bub.y+bub.d>H*.62)mw=Math.max(W*.4,Math.min(mw,W-2*(bub.d+bub.mg*2)));
+ const ls=wrap(c,txt,mw,2),cy=port?H*.70:H*.82,lh=fs*1.18;
+ ls.forEach((l,i)=>{const y=cy+i*lh,w=c.measureText(l).width;
+  if(S.set.capStyle==='box'||S.set.capStyle==='akzent'){c.fillStyle=S.set.capStyle==='box'?'rgba(0,0,0,.74)':S.set.accent;rr(c,W/2-w/2-fs*.35,y-fs*.95,w+fs*.7,fs*1.25,fs*.22);c.fill();c.fillStyle='#fff';c.fillText(l,W/2,y)}
+  else{c.lineJoin='round';c.lineWidth=fs*.17;c.strokeStyle='#000';c.strokeText(l,W/2,y);c.fillStyle='#fff';c.fillText(l,W/2,y)}});
+}
+function capAt(t,time){let c=-1;for(const e of t.tl||[]){if(e.t<=time+.05)c=e.c;else break}return c>=0?(t.chunks?.[c]||''):''}
+async function startScreenRec(){
+ const tr=SCR.stream?.getVideoTracks()[0];if(!tr||tr.readyState!=='live'){toast('Wähl zuerst den Bildschirm.','bad');return false}
+ const mime=pickMime(),hi=S.set.quality!=='720',opt=vb=>mime?{mimeType:mime,videoBitsPerSecond:vb,audioBitsPerSecond:160000}:{};
+ const s1=new MediaStream([tr]),at=V.mic?.getAudioTracks()[0];if(at)s1.addTrack(at);else toast('Kein Mikrofon: die Bildschirm-Aufnahme bleibt stumm.','bad');
+ let r1,r2=null;try{r1=new MediaRecorder(s1,opt(hi?10e6:5e6));const ct=V.cam?.getVideoTracks()[0];if(ct&&ct.readyState==='live')r2=new MediaRecorder(new MediaStream([ct]),opt(hi?6e6:3e6))}catch(e){toast('Aufnahme konnte nicht starten: '+e.message,'bad');return false}
+ const x={r1,r2,c1:[],c2:[],t1:0,t2:0,mime:r1.mimeType||mime,w:SCR.video.videoWidth,h:SCR.video.videoHeight};
+ r1.ondataavailable=e=>{if(e.data?.size)x.c1.push(e.data)};r1.onstart=()=>{x.t1=performance.now()};
+ if(r2){r2.ondataavailable=e=>{if(e.data?.size)x.c2.push(e.data)};r2.onstart=()=>{x.t2=performance.now()}}
+ x.done=Promise.all([new Promise(r=>r1.onstop=r),r2?new Promise(r=>r2.onstop=r):null]);
+ r1.start(1000);r2?.start(1000);R.scr=x;return true;
+}
+async function finishScreenRec(x){
+ if(R.scr===x)R.scr=null;await txFinish();
+ const type=(x.mime||'video/webm').split(';')[0],ext=type.includes('mp4')?'mp4':'webm',blob=new Blob(x.c1,{type});
+ if(!blob.size){toast('Die Bildschirm-Aufnahme ist leer.','bad');pipClose();return}
+ const cam=x.c2.length?new Blob(x.c2,{type}):null,d=new Date(),title=R.script?.title||'Bildschirm',n=S.takes.filter(t=>t.scriptId===(R.script?.id||'')).length+1;
+ const name=`${dKey(d)} ${pad(d.getHours())}-${pad(d.getMinutes())} ${slug(title)} Bildschirm T${n}`;
+ const take={id:uid(),name,ext,mode:'bildschirm',scriptId:R.script?.id||'',title,created:Date.now(),dur:R.dur,size:blob.size+(cam?.size||0),mime:type,fav:false,file:'',url:URL.createObjectURL(blob),blob,cam,camExt:ext,
+  camOff:x.t1&&x.t2?+((x.t2-x.t1)/1000).toFixed(3):0,scrW:x.w,scrH:x.h,marks:R.marks||[],tl:R.timeline.slice(0,5000),chunks:P.data?.chunks||[],skript:R.script?.text||'',tx:TX.list.slice()};
+ const srt=P.data&&S.set.srt&&R.timeline.length?srtFrom(R.timeline,P.data.chunks,R.dur):'';take.srt=srt;
+ S.takes.unshift(take);renderTakes();pipClose();await webSaveTake(take,blob,srt);if(S.set.autoCut)cutAnalyzeWeb(take,{auto:true});
+ if(R.script&&['idee','skript'].includes(R.script.status||'idee')){R.script.status='aufgenommen';saveScript(R.script)}
+ showStudioTab('takes');
+}
+
+/* ---------- Prompter als kleines Fenster über allem ---------- */
+const PIP={w:null,last:0,off:0,els:[],tops:[],line:-1};
+const PIP_CSS=`*{box-sizing:border-box}html,body{margin:0;height:100%;background:#0d0f13;color:#e9edf2;font-family:Inter,system-ui,sans-serif;overflow:hidden}
+.pp{display:flex;flex-direction:column;height:100%}.pp-bar{display:flex;gap:6px;align-items:center;padding:8px;background:#161a20;border-bottom:1px solid #262c35}
+.pp-bar button{font:600 13px Inter,system-ui,sans-serif;border:1px solid #2c333d;background:#1f242c;color:#e9edf2;border-radius:8px;padding:6px 10px;cursor:pointer}
+.pp-bar button.stop{background:#c8372d;border-color:#c8372d;color:#fff;margin-left:auto}.pp-rec{font:700 13px Inter,system-ui,sans-serif;color:#ff6b5f;min-width:64px}.pp-rec.idle{color:#8b95a5}
+.pp-view{position:relative;flex:1;overflow:hidden}.pp-mark{position:absolute;left:0;right:0;top:32%;height:2px;background:#5b8cff55}
+.pp-text{position:absolute;left:0;right:0;top:0;padding:0 16px;font-size:var(--ppf,28px);line-height:1.35;font-weight:600;will-change:transform}
+.pp-text p{margin:0 0 .35em}.pp-text .w{color:#8b95a5}.pp-text .w.now{color:#fff}.pp-text .w.done{color:#4f5763}
+.p-head{font-size:.6em;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#7fa3ff;margin:.6em 0 .2em}.p-regie{font-size:.7em;font-style:italic;color:#c9a96b}.p-gap{height:.5em}.p-bullet{font-size:.7em;color:#9fb5d9;margin:.2em 0}.p-cut{font-size:.6em;color:#8b95a5;margin:.4em 0}`;
+async function pipOpen(){
+ if(PIP.w||!window.documentPictureInPicture||S.set.scrPip===false||SCR.whole||!P.data?.words.length)return false;
+ let w;try{w=await documentPictureInPicture.requestWindow({width:480,height:330})}catch{return false}
+ PIP.w=w;const d=w.document;const st=d.createElement('style');st.textContent=PIP_CSS;d.head.append(st);
+ for(const l of document.querySelectorAll('link[rel=stylesheet]')){const n=d.createElement('link');n.rel='stylesheet';n.href=l.href;d.head.append(n)}
+ d.title='Prompter';
+ d.body.innerHTML=`<div class="pp"><div class="pp-bar"><span class="pp-rec idle" id="pp-time">Bereit</span><button id="pp-play">Pause</button><button id="pp-again" title="Zurück zum Satzanfang, der Versuch wird später rausgeschnitten">Satz nochmal</button><button id="pp-stop" class="stop">Stopp</button></div><div class="pp-view" id="pp-view"><div class="pp-mark"></div><div class="pp-text" id="pp-text">${P.data.html}</div></div></div>`;
+ d.getElementById('pp-play').onclick=()=>pPlay();d.getElementById('pp-again').onclick=()=>againMark();d.getElementById('pp-stop').onclick=()=>{if(R.on)stopRec();else pipClose()};
+ PIP.els=[...d.querySelectorAll('#pp-text .w')];PIP.off=0;
+ w.addEventListener('resize',pipMeasure);w.addEventListener('pagehide',()=>{if(PIP.w===w)PIP.w=null});
+ pipMeasure();PIP.last=performance.now();w.requestAnimationFrame(pipLoop);return true;
+}
+function pipMeasure(){const w=PIP.w;if(!w)return;w.document.documentElement.style.setProperty('--ppf',clamp(Math.round(w.innerWidth/16),20,40)+'px');PIP.tops=PIP.els.map(e=>e.offsetTop);PIP.line=-1}
+function pipClose(){const w=PIP.w;PIP.w=null;try{w?.close()}catch{}}
+function pipLoop(t){
+ const w=PIP.w;if(!w||w.closed){if(PIP.w===w)PIP.w=null;return}const dt=Math.min(.1,Math.max(0,(t-PIP.last)/1000));PIP.last=t;
+ pTick(dt);const d=w.document,i=clamp(P.cur,0,PIP.els.length-1);
+ if(PIP.tops.length){const want=PIP.tops[i]||0;PIP.off+=(want-PIP.off)*Math.min(1,dt*7);const vh=d.getElementById('pp-view')?.clientHeight||200,tx=d.getElementById('pp-text');if(tx)tx.style.transform=`translate3d(0,${Math.round(vh*.32-PIP.off-4)}px,0)`;
+  const top=PIP.tops[i];if(top!==PIP.line){PIP.line=top;PIP.els.forEach((e,k)=>{const on=PIP.tops[k]===top;e.classList.toggle('now',on);e.classList.toggle('done',!on&&k<i)})}}
+ const tm=d.getElementById('pp-time');if(tm){tm.textContent=R.on?'● '+fmtDur(R.elapsed()):R.counting?'Gleich …':'Bereit';tm.className='pp-rec'+(R.on?'':' idle')}
+ const pb=d.getElementById('pp-play');if(pb){const l=P.playing?'Pause':'Weiter';if(pb.textContent!==l)pb.textContent=l}
+ w.requestAnimationFrame(pipLoop);
+}
 
 /* ---------- Als App installieren ---------- */
 let BIP=null;
@@ -1881,7 +2166,7 @@ const ACT={
  setup:()=>{checkTools().then(openSetup)},setupgo:()=>setupGo(),toolscheck:async()=>{await checkTools(true);toast(T.ff?'ffmpeg ist bereit'+(T.model?', die Spracherkennung auch.':'.'):'ffmpeg fehlt noch.',T.ff?'ok':'')},
  privacy:()=>run('/usr/bin/open',['x-apple.systempreferences:com.apple.preference.security?Privacy_Camera']),
  again:()=>againMark(),
- focus:()=>setFocus(),pvoice:()=>{VF.on?vfStop():vfStart()},dirpick:()=>dirPick(),dirallow:()=>dirAllow(),pwa:()=>pwaInstall(),
+ focus:()=>setFocus(),pvoice:()=>{VF.on?vfStop():vfStart()},dirpick:()=>dirPick(),dirallow:()=>dirAllow(),pwa:()=>pwaInstall(),screen:()=>{SCR.on?screenOff():screenOn()},clgive:()=>claudeGive(CUT.t),clpaste:()=>{const c=$('#cl-in');if(c){c.hidden=false;$('#cl-ans')?.focus()}},clapply:()=>claudeApplyText(),clcopy:(b)=>{const x=CUT.t?.claude?.posttext?.[b.dataset.k];if(x)navigator.clipboard.writeText(x).then(()=>toast('Kopiert','ok'),()=>toast('Kopieren ging nicht. Markier den Text und drück ⌘C.','bad'))},
  tshare:(b)=>{const t=S.takes.find(x=>x.id===b.closest('.take').dataset.id);if(t)shareTake(t)},
  permfix:async()=>{
   const b=$('#btn-perm'),why=$('#cam-why');const ok=()=>{toast('Erlaubt. Die Kamera startet.','ok');camStart()};
@@ -1951,6 +2236,8 @@ document.addEventListener('click',e=>{
  const cr=e.target.closest('#cut-tl .cut-r[data-cutid]');if(cr){cutToggle(cr.dataset.cutid);return}
  const ctl=e.target.closest('#cut-tl');if(ctl&&CUT.vid){const r=ctl.getBoundingClientRect();CUT.listenEnd=0;CUT.vid.currentTime=clamp((e.clientX-r.left)/r.width,0,1)*(CUT.vid.duration||CUT.t?.dur||0);return}
  const cwd=e.target.closest('#cut-words [data-wi]');if(cwd){cutWord(+cwd.dataset.wi);return}
+ const cun=e.target.closest('#cut-units [data-ui]');if(cun){cutUnit(+cun.dataset.ui);return}
+ const clay=e.target.closest('[data-cutlay]');if(clay&&CUT.t){CUT.t.edit.lay=clay.dataset.cutlay;$$('[data-cutlay]').forEach(b=>b.setAttribute('aria-pressed',String(b===clay)));cutSave();return}
  const cfm=e.target.closest('[data-cutfmt]');if(cfm&&CUT.t){CUT.t.edit.fmt=cfm.dataset.cutfmt;$$('[data-cutfmt]').forEach(b=>b.setAttribute('aria-pressed',String(b===cfm)));cutSave();return}
  const nv=e.target.closest('.rail [data-view],[data-view-go]');if(nv){show(nv.dataset.view||nv.dataset.viewGo);return}
  const tb=e.target.closest('#stabs [data-tab]');if(tb){showStudioTab(tb.dataset.tab);return}
@@ -2005,21 +2292,22 @@ $('#sq').addEventListener('search',e=>{S.q=e.target.value;renderScripts()});
 
 /* ---------- Schleife ---------- */
 let last=performance.now(),bgTimer=0;
-function frame(t){const dt=Math.min(.1,(t-last)/1000);last=t;pTick(dt);if(S.view==='studio'||R.on){segPump();renderStage(t);meterTick()}if(R.on){const s=R.elapsed();$('#recbadge').textContent='REC '+fmtDur(s);updateTimer()}}
+function frame(t){const dt=Math.min(.1,(t-last)/1000);last=t;if(!PIP.w)pTick(dt);if(S.view==='studio'||R.on){segPump();renderStage(t);meterTick()}if(R.on){const s=R.elapsed();$('#recbadge').textContent='REC '+fmtDur(s);updateTimer()}}
 function loop(t){frame(t);requestAnimationFrame(loop)}
 requestAnimationFrame(loop);
-document.addEventListener('visibilitychange',()=>{clearInterval(bgTimer);if(document.hidden)bgTimer=setInterval(()=>frame(performance.now()),33);else if(S.isApp&&fsOK())loadTakes()});
-window.addEventListener('focus',()=>{if(S.isApp&&fsOK())loadTakes()});
+document.addEventListener('visibilitychange',()=>{clearInterval(bgTimer);if(document.hidden)bgTimer=setInterval(()=>frame(performance.now()),33);else{if(S.isApp&&fsOK())loadTakes();if(WEB)claudePoll()}});
+window.addEventListener('focus',()=>{if(S.isApp&&fsOK())loadTakes();if(WEB)claudePoll()});
 setInterval(checkReminders,20000);
+setInterval(()=>{if(WEB&&document.visibilityState==='visible')claudePoll()},15000);
 
-if(window.__TEST)window.__ss={M,T,CUT,S,R,P,VF,vfMatch,TDB,DIR,setFocus,effFont};
+if(window.__TEST)window.__ss={M,T,CUT,S,R,P,VF,vfMatch,TDB,DIR,setFocus,effFont,SR,TX,SCR,PIP,txUnits,speechSegs,smartCuts,alignSpan,parseClaude,applyClaude,claudeText,claudeSide,claudePoll,cutAnalyzeWeb,openCut,drawScreenScene,webSil,screenOn,screenOff,pipOpen,txWant,camSrc};
 /* ---------- Start ---------- */
 (async()=>{
  const seed=window.__STUDIO_SEED;if(seed&&typeof seed==='object'){try{const old=lsRead()||{};localStorage.setItem(LS,JSON.stringify({scripts:Array.isArray(seed.scripts)?seed.scripts:[],posts:old.posts||[],set:{...(old.set||{}),...(seed.set||{})}}));if(seed.cur)localStorage.setItem(LS+'.cur',seed.cur);localStorage.setItem(LS+'.view','studio')}catch{}}
  const l=lsRead()||(seed?{scripts:seed.scripts||[],posts:[],set:seed.set||{}}:null);if(l){S.scripts=Array.isArray(l.scripts)?l.scripts:[];S.posts=Array.isArray(l.posts)?l.posts:[];if(l.set)S.set={...structuredClone(DEF),...l.set,goals:{...DEF.goals,...(l.set.goals||{})},times:{...DEF.times,...(l.set.times||{})}}}
  try{S.jobs=JSON.parse(localStorage.getItem(LS+'.jobs')||'[]')}catch{}
  applyAllSettings();mimeNote();renderScriptSelects();renderTakes();renderKeys();
- if(WEB){document.documentElement.classList.add('web');loadTakesLocal();dirInit();const tc=$('#tools-card h3');if(tc)tc.textContent='Vorschnitt';const pe=$('#pempty p');if(pe)pe.textContent='Öffne das Kamera-Studio über den Knopf im Social Studio, dann ist dein Skript schon drin. Oder füg hier schnell einen Text ein.';if(IOS&&!navigator.standalone)$('#btn-pwa').hidden=false}
+ if(WEB){document.documentElement.classList.add('web');loadTakesLocal();dirInit().then(()=>setTimeout(claudePoll,800));if(scrOK())$('#btn-screen').hidden=false;if(!window.documentPictureInPicture){const l=$('#scr-opts [data-k=scrPip]')?.closest('label');if(l)l.hidden=true;const n=$('#scr-pip-note');if(n)n.hidden=false}if(SRC)$('#mitschrift-row').hidden=false;const tc=$('#tools-card h3');if(tc)tc.textContent='Vorschnitt';const pe=$('#pempty p');if(pe)pe.textContent='Öffne das Kamera-Studio über den Knopf im Social Studio, dann ist dein Skript schon drin. Oder füg hier schnell einen Text ein.';if(IOS&&!navigator.standalone)$('#btn-pwa').hidden=false}
  if(SRC&&(WEB||STANDALONE))$('#btn-voice').hidden=false;
  let lastCur='';try{lastCur=localStorage.getItem(LS+'.cur')||''}catch{}
  if(seed?.cur&&S.scripts.some(s=>s.id===seed.cur))lastCur=seed.cur;
