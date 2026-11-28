@@ -40,7 +40,7 @@ Autor aller Ratgeber: Jonas Jahrke, Gründer von Dokuna, aus der Praxis der ambu
 - [SIS und Pflegegrad](https://dokuna.de/sis-pflegegrad/): Wie die Themenfelder zu den Modulen der Begutachtung passen, Gewichtung nach § 15 SGB XI, Unterschiede und Pflegegradmanagement nach EinSTEP.
 
 ## Produkt
-- [Startseite mit Preisen und Erklärvideo](https://dokuna.de/): 80 € je Standort und Monat, keine Einrichtungsgebühr, Dokuna-QM-Paket mit 37 Muster-Verfahrensanleitungen
+- [Startseite mit Preisen und Erklärvideo](https://dokuna.de/): 80 € je Standort und Monat, keine Einrichtungsgebühr, keine Mindestlaufzeit (kündbar mit 14 Tagen Frist zum Monatsende), Dokuna-QM-Paket mit 37 Muster-Verfahrensanleitungen
 - [SIS-Software: Worauf es bei der Auswahl ankommt](https://dokuna.de/sis-software/): Kriterien für SIS-Software, wo Klientendaten liegen sollten, Checkliste und häufige Fragen.
 - [Förderung für Pflegesoftware](https://dokuna.de/foerderung-pflegesoftware/): Digitalisierungsförderung nach § 8 Abs. 8 SGB XI für ambulante Dienste: bis 40 Prozent, höchstens 12.000 Euro je Einrichtung, Anträge bis 31.12.2030, laufende Kosten ausgeschlossen, Antrag in sechs Schritten.
 - [Über Dokuna](https://dokuna.de/ueber/)

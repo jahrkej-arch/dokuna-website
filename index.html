@@ -375,6 +375,31 @@
 .demo-knoepfe{display:flex;flex-wrap:wrap;gap:10px}
 .demo-chat{border:1px solid var(--akzent);cursor:pointer;font:inherit}
 .demo-fuss p{font-size:15px;color:#4a4844;max-width:600px}
+
+  /* 28.11.2026: Preis im ersten Bildschirm, erster Bildschirm am Handy kompakter */
+  .knoepfe .heldpreis{order:3;flex-basis:100%;margin:-6px 0 0;font-size:.92rem;line-height:1.45;color:var(--grau)}
+  .heldpreis b{color:var(--text);font-weight:600}
+  @media (min-width:761px) and (max-height:860px){
+    .hero{padding-top:40px;padding-bottom:48px}
+    .hero2 .links{gap:16px}
+  }
+  @media (max-width:760px){
+    .knoepfe .heldpreis{order:1;margin:-2px 0 0}
+    .knoepfe .btn.leise{order:2}
+    .heldpreis .hp-trenner{display:none}
+    .heldpreis .hp-rest{display:block}
+  }
+  @media (max-width:640px){
+    .hero{padding-top:18px}
+    .hero2 .links{gap:14px}
+    .hero .badge{font-size:.76rem;padding:5px 14px}
+    .hero h1{font-size:2.15rem}
+    .hero .sub{font-size:1.02rem!important;line-height:1.5}
+    .haken{gap:6px}
+    .haken div{font-size:.9rem;gap:8px;line-height:1.35}
+    .knoepfe{gap:8px 18px}
+    .knoepfe .heldpreis{font-size:.88rem}
+  }
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Dokuna","applicationCategory":"HealthApplication","operatingSystem":"Webbrowser (Computer, iPad, Smartphone)","offers":{"@type":"Offer","priceSpecification":{"@type":"UnitPriceSpecification","price":"80.00","priceCurrency":"EUR","unitText":"pro Standort und Monat"},"description":"80 € pro Standort und Monat, keine Einrichtungsgebühr"},"description":"Software für die Strukturierte Informationssammlung (SIS) und die Maßnahmenplanung ambulanter Pflegedienste. Läuft im Browser am Computer, iPad und Handy. Die Klientendaten speichert der Pflegedienst in seinem eigenen Speicherort, nicht auf dem Dokuna-Server.","url":"https://dokuna.de/","inLanguage":"de"},{"@type":"WebSite","name":"Dokuna","url":"https://dokuna.de/","inLanguage":"de"},{"@type":"Organization","name":"Dokuna","url":"https://dokuna.de/","email":"info@dokuna.de","telephone":"+49 151 16833569","logo":{"@type":"ImageObject","url":"https://dokuna.de/favicon-512.png"},"sameAs":["https://www.linkedin.com/company/dokuna","https://www.youtube.com/@dokunapflege","https://www.instagram.com/dokuna_pflege/"],"founder":{"@type":"Person","name":"Jonas Jahrke","url":"https://dokuna.de/ueber/","image":"https://dokuna.de/jonas.jpg","sameAs":["https://www.linkedin.com/in/jonas-jahrke"]},"address":{"@type":"PostalAddress","streetAddress":"Pastoratsweg 22","postalCode":"45529","addressLocality":"Hattingen","addressCountry":"DE"}},{"@type":"VideoObject","name":"Dokuna im Überblick – von der SIS zum Maßnahmenplan","description":"Was der Assistent macht und der komplette Durchlauf mit Dokuna: von den Grunddaten über die sechs Themenfelder der Strukturierten Informationssammlung bis zum fertigen Maßnahmenplan und zum Beratungsnachweis.","thumbnailUrl":"https://dokuna.de/poster-v4.jpg","contentUrl":"https://dokuna.de/Dokuna-Erklaervideo-V4.mp4","uploadDate":"2026-11-11T17:00:00+01:00","duration":"PT3M52S","transcript":"Dokuna ist der Assistent für die SIS in der ambulanten Pflege. Sie klicken an, was Sie im Gespräch erfahren haben. Dokuna schreibt daraus den fachlichen Text, wertet die Risiken aus, erstellt den Maßnahmenplan und hilft beim Beratungsnachweis. Die Entscheidung behält die Pflegefachkraft. Der Assistent führt Sie Schritt für Schritt durch den ganzen Bogen: Grunddaten und Eingangsfrage, die sechs Themenfelder, die Risikomatrix, den Maßnahmenplan, den Beratungsnachweis und zum Schluss die Prüfung. Jeder Schritt ist ein Lückentext mit passenden Vorschlägen. Wie weit Sie sind, zeigt der Balken oben rechts. Los geht es mit den Grunddaten. Sie tippen Name, Geburtsdatum und Pflegegrad ein, das Alter rechnet Dokuna selbst aus. Ihr Kürzel und die Daten Ihres Pflegedienstes stehen schon im Formular. In Feld B steht die Sicht der Person, möglichst in ihren eigenen Worten. Häufige Aussagen liegen als Vorschlag bereit. Ein Klick übernimmt sie. Alles Weitere tippen Sie einfach dazu. In den sechs Themenfeldern haken Sie zutreffende Sätze an und klicken an, was passt, zum Beispiel die Hilfsmittel. Eigene Beobachtungen ergänzen Sie als freien Text. Dokuna formuliert daraus einen fachlichen Text, der sofort mitwächst. Bei der Selbstversorgung wählen Sie, wie viel Hilfe die Person bei der Körperpflege braucht. Dann tippen Sie an, was sie selbst wäscht. Dokuna schreibt daraus ganze Sätze. Diese Angaben nutzt der Assistent später auch für die Körperpflege im Maßnahmenplan. In der Risikomatrix hat Dokuna die Angaben bereits ausgewertet. Vorschläge erscheinen aufgehellt, mit Begründung. Die Entscheidung trifft die Pflegefachkraft: Sie kreuzt selbst Ja oder Nein an. Aus SIS und Risikomatrix entsteht der Maßnahmenplan automatisch, geordnet nach Einsätzen. Prophylaxen schlägt Dokuna nur vor, immer passend zur Leistung im Einsatz. Ein Klick übernimmt sie. Jeder Text bleibt frei änderbar. Den Plan gibt es in zwei Stilen. Der kurze Stil ist der Standard und passt zum Dokuna-QM-Paket. Die Routinehandlungen stehen dann in den Verfahrensanleitungen Ihres Pflegedienstes. Ohne passendes QM schreibt Dokuna den ausführlichen Stil. Welcher gilt, wird einmal für Ihren Pflegedienst eingestellt. Vor dem Ausdruck weist Dokuna auf Lücken hin, zum Beispiel auf ein fehlendes Evaluationsdatum. Passende Vorschläge übernehmen Sie mit einem Klick. Die Pflegegrad-Ampel vergleicht die SIS mit dem eingetragenen Pflegegrad. Sie ist nur ein Hinweis am Bildschirm. Gedruckt oder gespeichert wird sie nie. Zum Schluss drucken Sie die SIS im Aufbau des Originalbogens, zusammen mit dem Maßnahmenplan. Kürzel und Pflegedienst stehen schon drauf. Gespeichert wird die SIS als Datei im Speicherort Ihres Pflegedienstes. Auch die Beratung dokumentieren Sie direkt beim Besuch. Dokuna markiert grün, was zur SIS passt. Angekreuzt wird von Hand. Die Risikofaktoren kommen aus der SIS. Dann unterschreibt die Person am iPad oder Handy, direkt danach auch die beratende Pflegefachkraft. Zum Schluss wird der Nachweis gesperrt und ist bereit für den Ausdruck. Eingerichtet ist Dokuna schnell. Die Leitung legt für jede Pflegefachkraft einen eigenen Zugang an. Hinterlegt die Leitung ein Kürzel, steht es automatisch auf der SIS. Angemeldet wird im Browser, am Computer, am iPad und am Handy. Die Klientendaten bleiben im Speicherort Ihres Pflegedienstes, nicht auf dem Dokuna-Server. Dokuna. Die SIS in wenigen Klicks, fachlich formuliert und bereit für den Ausdruck. Möchten Sie mehr sehen? Fragen Sie auf dokuna.de eine Vorführung an.","inLanguage":"de","isFamilyFriendly":true,"publisher":{"@type":"Organization","name":"Dokuna","url":"https://dokuna.de/"}}]}
@@ -387,6 +412,7 @@
 {"@type":"Question","name":"Braucht Dokuna Internet?","acceptedAnswer":{"@type":"Answer","text":"Ja. Dokuna läuft im Browser und zum Anmelden braucht es eine Internetverbindung. Updates kommen dadurch automatisch, ohne dass Sie etwas tun müssen."}},
 {"@type":"Question","name":"Wie viele Zugänge bekomme ich?","acceptedAnswer":{"@type":"Answer","text":"Die Leitung hat einen eigenen Zugang und verwaltet alle Standorte. Dazu legt sie für jede Pflegefachkraft einen eigenen Zugang an, im Standard bis zu drei je Standort. Mehr Zugänge gibt es auf Anfrage."}},
 {"@type":"Question","name":"Was kostet Dokuna?","acceptedAnswer":{"@type":"Answer","text":"80 € je Standort und Monat. Als Standort zählt jeder Standort mit eigenem Institutionskennzeichen (IK). Eine Einrichtungsgebühr gibt es nicht. Alle Preise sind Endpreise, gemäß § 19 UStG wird keine Umsatzsteuer berechnet."}},
+{"@type":"Question","name":"Gibt es eine Mindestlaufzeit?","acceptedAnswer":{"@type":"Answer","text":"Nein. Der Vertrag beginnt mit der Freischaltung Ihres Zugangs und ist mit 14 Tagen Frist zum Monatsende kündbar."}},
 {"@type":"Question","name":"Wer trägt die fachliche Verantwortung?","acceptedAnswer":{"@type":"Answer","text":"Ihre Pflegefachkraft, wie bei jeder SIS. Dokuna führt durch die Fragen, formuliert und macht Vorschläge. Die Fachkraft prüft, ändert und gibt frei."}},
 {"@type":"Question","name":"Kann ich Dokuna vorab sehen?","acceptedAnswer":{"@type":"Answer","text":"Ja. Schreiben Sie an info@dokuna.de oder rufen Sie an. Sie bekommen eine persönliche Vorführung mit Ihren eigenen Fragen und Fällen."}}
 ]}
@@ -421,6 +447,7 @@
       <div class="knoepfe">
         <a class="btn" href="#kontakt">Vorführung anfragen</a>
         <a class="btn leise" href="#video">Video ansehen ›</a>
+        <p class="heldpreis"><b>80 € je Standort und Monat</b><span class="hp-trenner"> · </span><span class="hp-rest">keine Einrichtungsgebühr · keine Mindestlaufzeit</span></p>
       </div>
       <a class="heldgruender" href="/ueber/"><picture><source srcset="/jonas.webp" type="image/webp"><img src="/jonas.jpg" alt="" width="48" height="48"></picture><span><b>Jonas Jahrke</b>Gründer von Dokuna · aus der Praxis der ambulanten Pflege</span></a>
     </div>
@@ -668,13 +695,13 @@
   <div class="wrap">
     <div class="zentriert">
       <h2>Ein klarer Preis.<br>Je Standort.</h2>
-      <p class="lead" style="margin-left:auto;margin-right:auto">Keine Einrichtungsgebühr, keine Kosten pro Dokument.</p>
+      <p class="lead" style="margin-left:auto;margin-right:auto">Keine Einrichtungsgebühr, keine Kosten pro Dokument, keine Mindestlaufzeit.</p>
     </div>
     <div class="preise">
       <div class="preis">
         <h3>Dokuna</h3>
         <p class="p">80 €<small> je Standort und Monat</small></p>
-        <p class="einr">Endpreis · keine Einrichtungsgebühr</p>
+        <p class="einr">Endpreis · keine Einrichtungsgebühr · keine Mindestlaufzeit</p>
         <ul>
           <li>SIS, Maßnahmenplanung und Beratungsnachweise unbegrenzt</li>
           <li>Dokuna-QM-Paket mit 37 Muster-Verfahrensanleitungen</li>
@@ -682,6 +709,7 @@
           <li>Läuft am Computer, iPad und Handy</li>
           <li>Alle Updates inklusive, sie kommen automatisch</li>
           <li>Hilfe beim Einrichten und per E-Mail</li>
+          <li>Kündbar mit 14 Tagen Frist zum Monatsende</li>
         </ul>
         <a class="btn" href="#kontakt">Vorführung anfragen</a>
       </div>
@@ -728,6 +756,7 @@
         <div><dt>Daten</dt><dd>Klientendaten bleiben im Speicherort des Pflegedienstes. Auf dem Server in Deutschland liegen nur Benutzerkonten.</dd></div>
         <div><dt>Im Einsatz</dt><dd>6 ambulante Pflegedienste mit 16 Standorten. MD-Regelprüfung der Pflegeagentur 24 am 21.10.2026: bestes Ergebnis in allen 5 Bereichen zu SIS und Maßnahmenplan.</dd></div>
         <div><dt>Preis</dt><dd>80 € je Standort und Monat, keine Einrichtungsgebühr.</dd></div>
+        <div><dt>Vertrag</dt><dd>Keine Mindestlaufzeit, kündbar mit 14 Tagen Frist zum Monatsende.</dd></div>
       </dl>
     </div>
   </div>
@@ -763,6 +792,10 @@
       <details>
         <summary>Was kostet Dokuna?</summary>
         <p>80 € je Standort und Monat. Als Standort zählt jeder Standort mit eigenem Institutionskennzeichen (IK). Eine Einrichtungsgebühr gibt es nicht. Alle Preise sind Endpreise, gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>
+      </details>
+      <details>
+        <summary>Gibt es eine Mindestlaufzeit?</summary>
+        <p>Nein. Der Vertrag beginnt mit der Freischaltung Ihres Zugangs und ist mit 14 Tagen Frist zum Monatsende kündbar.</p>
       </details>
       <details>
         <summary>Wer trägt die fachliche Verantwortung?</summary>

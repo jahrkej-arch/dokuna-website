@@ -54,6 +54,16 @@
   #cc-main .cm__desc{font-size:.86em;line-height:1.45}
   #cc-main .cm__btn-group:first-child .cm__btn{min-width:0}
   #cc-main .cm__btn{padding-top:.75em;padding-bottom:.75em}
+  /* 28.11.2026: am Handy kompakter, damit der erste Bildschirm sichtbar bleibt. Annehmen und Ablehnen bleiben gleich groß */
+  #cc-main .cm__texts{padding-top:.85em}
+  #cc-main .cm__title{font-size:1em;padding-top:0;margin-bottom:.15em}
+  #cc-main .cm__desc{font-size:.84em;line-height:1.4;max-height:none}
+  #cc-main .cm__btns{padding-top:.55em;padding-bottom:.55em}
+  #cc-main .cm .cm__btns .cm__btn-group:first-child .cm__btn{min-height:42px}
+  #cc-main .cm__btn-group:not(:first-child){margin-top:2px}
+  #cc-main .cm__btn[data-role="show"]{background:none;border-color:transparent;min-height:0;padding:.35em .5em;font-size:.86em;font-weight:500;text-decoration:underline;text-underline-offset:3px}
+  #cc-main .cm__btn[data-role="show"]:hover{background:none;border-color:transparent;color:#0a6459}
+  #cc-main .cm__footer{padding-top:.45em;padding-bottom:.45em;font-size:.86em}
 }
 /* Kästen im Einstellungsfenster eckig statt Pille */
 #cc-main .pm__section,#cc-main .pm__section-title,#cc-main .pm__section--toggle,#cc-main .pm__section--expandable{border-radius:14px!important}
