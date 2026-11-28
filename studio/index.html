@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#0e1013">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Social Studio</title>
 <script type="application/json" id="claude-artifacts-manifest">{"permissions":["full-access","shortcuts","notifications","menu-bar"]}</script>
 <link rel="icon" href="icon-192.png">
@@ -246,6 +246,31 @@ details.help code{background:var(--p3);padding:1px 6px;border-radius:5px;color:v
 @media (hover:none){.cell-add{opacity:1}}
 .post .ptl{font-size:12px;color:var(--mute);font-weight:600}
 
+/* AUFNAHMEMODUS */
+#btn-focus-x{display:none}
+body.focus .titlebar,body.focus .rail,body.focus .panel{display:none!important}
+body.focus #app{display:block;height:100dvh;min-height:0}
+body.focus main{position:fixed;inset:0;overflow:hidden}
+body.focus #v-studio{position:absolute;inset:0}
+body.focus .studio{position:absolute;inset:0;display:block;height:auto;background:#000}
+body.focus .stagerow{position:absolute;inset:0;display:block}
+body.focus .stage{position:absolute;inset:0;padding:0;height:auto;background:#000}
+body.focus .cvwrap,body.focus.rec .cvwrap{border-radius:0;box-shadow:none}
+body.focus.rec .stage{box-shadow:inset 0 0 0 4px var(--tally)}
+body.focus .pwrap{position:absolute;left:0;right:0;top:0;height:min(38%,420px);z-index:5;border:0;padding-top:env(safe-area-inset-top);background:linear-gradient(#000000d8 0,#000000a8 78%,#0000)}
+body.focus .ptext{text-shadow:0 2px 10px #000}
+body.focus .pstate{display:none}
+body.focus .transport{position:absolute;left:0;right:0;bottom:0;z-index:6;justify-content:center;gap:10px;border:0;padding:26px 10px max(12px,env(safe-area-inset-bottom));background:linear-gradient(#0000,#000000d9 42%)}
+body.focus .transport>*{display:none}
+body.focus .transport>#btn-focus-x,body.focus .transport>.timer,body.focus .transport>.t-prompt{display:flex}
+body.focus .transport>.recbtn{display:inline-flex}
+body.focus .t-prompt [data-act=ptop]{display:none}
+body.focus .recbadge{top:auto;bottom:calc(92px + env(safe-area-inset-bottom));left:12px}
+body.focus .stagemsg{z-index:7}
+@media (max-width:699px){body.focus .recbtn{width:64px;height:64px;min-height:64px;padding:0;border-radius:50%;font-size:0;justify-content:center}body.focus .recbtn::before{margin:0}body.focus .tval{min-width:44px;font-size:0}body.focus .tval b{font-size:17px}}
+.ico.on,#btn-voice[aria-pressed=true]{background:var(--acc);color:#fff;border-color:var(--acc)}
+.web .rail [data-view=plan],.web .rail [data-view=stimme],.web .claude,.web #mac-card,.web #tools{display:none!important}
+
 /* VORSCHNITT */
 .modal .box.xwide{width:min(1240px,100%)}
 .cut-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}.cut-h h3{margin:0}
@@ -317,7 +342,7 @@ kbd{display:inline-block;min-width:24px;padding:1px 6px;border-radius:6px;border
  #app{grid-template-columns:minmax(0,1fr);grid-template-rows:46px auto minmax(0,1fr);height:auto;min-height:100dvh}
  .rail{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:6px}
  .rail button{min-width:72px}
- main{overflow:visible}.view{position:relative;inset:auto}
+ main{overflow:visible}.view{position:relative;inset:auto;overflow:visible}
  .studio{height:auto;grid-template-rows:auto auto auto}
  .pwrap{height:42vh}
  .stagerow{grid-template-columns:minmax(0,1fr)}
@@ -328,6 +353,7 @@ kbd{display:inline-block;min-width:24px;padding:1px 6px;border-radius:6px;border
  .plan{height:auto}.week.lanes{grid-template-columns:72px repeat(var(--lanes),minmax(150px,1fr));max-height:none}.dh{padding:8px}.dh b{font-size:15px}
  .vgrid{grid-template-columns:minmax(0,1fr)}
  .chip.hide-s{display:none}
+ .transport{position:sticky;bottom:0;z-index:20}
 }
 </style>
 </head>
@@ -340,6 +366,7 @@ kbd{display:inline-block;min-width:24px;padding:1px 6px;border-radius:6px;border
   <span class="chip hide-s" id="chip-cam" hidden><b></b><span>Kamera aus</span></span>
   <span class="chip hide-s" id="chip-mac"><b></b><span>Browser</span></span>
   <button class="btn sm pri" id="btn-install" data-act="install" hidden>Als Mac-App installieren</button>
+  <button class="btn sm pri" id="btn-pwa" data-act="pwa" hidden>Als App installieren</button>
  </header>
  <nav class="rail" aria-label="Bereiche">
   <button data-view="studio" aria-current="true" title="Studio (⌘1)"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.5 21 7.5v9l-5.5-3"/></svg>Studio</button>
@@ -481,19 +508,22 @@ kbd{display:inline-block;min-width:24px;padding:1px 6px;border-radius:6px;border
       </div>
       <div class="pane" data-pane="takes" hidden>
        <div class="row" style="justify-content:space-between"><h3>Deine Takes</h3><button class="btn sm ghost" data-act="reloadtakes">Aktualisieren</button></div>
+       <div class="stack-sm" id="store" hidden></div>
        <div class="takes" id="takes"></div>
       </div>
      </aside>
     </div>
     <div class="transport">
+     <button class="ico" data-act="focus" id="btn-focus-x" title="Aufnahmemodus beenden (F)" aria-label="Aufnahmemodus beenden"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
      <button class="recbtn" data-act="rec" id="btn-rec" title="Aufnahme (R)">Aufnehmen</button>
      <button class="btn" data-act="again" id="btn-again" title="Satz nochmal (N): zurück zum Satzanfang, der Versuch wird später rausgeschnitten">Satz nochmal</button>
      <div class="timer" id="timer">0:00 <small>/ ~0:00</small></div>
      <div class="meter" title="Mikrofon-Pegel"><i id="meter"></i></div>
-     <div class="tgroup">
+     <button class="btn" data-act="focus" id="btn-focus" title="Aufnahmemodus: Vollbild mit Prompter unter der Kamera (F)">Aufnahmemodus</button>
+     <div class="tgroup t-prompt">
       <button class="ico" data-act="ptop" title="Zum Anfang (Pos1)" aria-label="Zum Anfang"><svg viewBox="0 0 24 24"><path d="M6 5v14M19 6l-9 6 9 6z"/></svg></button>
       <button class="ico" data-act="pplay" id="btn-pplay" title="Prompter starten oder pausieren (Leertaste)" aria-label="Prompter starten"><svg viewBox="0 0 24 24" id="pplay-ico"><path d="M7 5l12 7-12 7z"/></svg></button>
-      <button class="ico" data-act="pslower" title="Langsamer (↓)" aria-label="Langsamer"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+      <button class="ico" data-act="pvoice" id="btn-voice" aria-pressed="false" title="Prompter folgt deiner Stimme (V)" aria-label="Prompter folgt deiner Stimme" hidden><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button><button class="ico" data-act="pslower" title="Langsamer (↓)" aria-label="Langsamer"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
       <div class="tval" id="tv-wpm"><b>140</b>Wörter/Min</div>
       <button class="ico" data-act="pfaster" title="Schneller (↑)" aria-label="Schneller"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></svg></button>
      </div>
@@ -712,7 +742,7 @@ function saveSettings(){if(S.mode==='db')DBX.later('settings/main',()=>plain(S.s
 function setChip(id,kind,text){const c=$('#'+id);if(!c)return;c.className='chip hide-s '+kind;c.querySelector('span').textContent=text}
 
 async function connectDb(){
- const db=await useCap('db');if(!db){S.mode='lokal';if(STANDALONE)setChip('chip-data','ok','Kamera-Studio in Chrome');else setChip('chip-data','warn','Nur in diesem Browser gespeichert');return}
+ const db=await useCap('db');if(!db){S.mode='lokal';if(STANDALONE)setChip('chip-data','ok',WEB?'Kamera-Studio':'Kamera-Studio in Chrome');else setChip('chip-data','warn','Nur in diesem Browser gespeichert');return}
  DBX.db=db;S.mode='db';setChip('chip-data','warn','Verbinde mit Claude …');
  const got={s:0,p:0};const timer=setTimeout(()=>{if(!got.s)setChip('chip-data','warn','Daten noch nicht erreichbar')},10000);
  const merge=(list,snap,col)=>{const local=new Map(list.map(x=>[x.id,x]));return snap.docs.map(d=>DBX.pending(col+'/'+d.id)&&local.has(d.id)?local.get(d.id):{...d.data(),id:d.id})};
@@ -763,7 +793,7 @@ function loadPrompter(script,keep){
  updateTimer();setPChip();
 }
 function measure(){
- const pw=$('#prompter');if(!pw.clientHeight)return;P.my=pw.clientHeight*S.set.marker/100;P.lh=S.set.font*1.32;
+ const pw=$('#prompter');if(!pw.clientHeight)return;P.my=pw.clientHeight*S.set.marker/100;P.lh=effFont()*1.32;
  const els=P.wordEls||[];P.tops=new Float32Array(els.length);P.lines=[];let last=-1e9;
  els.forEach((el,i)=>{const t=el.offsetTop;P.tops[i]=t;if(Math.abs(t-last)>2){P.lines.push({top:t,first:i,count:0});last=t}P.lines[P.lines.length-1].count++});
  P.max=Math.max(0,(P.lines.at(-1)?.top||0)+P.lh);P.off=clamp(P.off,0,P.max);
@@ -781,6 +811,7 @@ function applyOff(){
  if(ch!==P.chunk){P.chunk=ch;if(R.on&&ch>=0)R.timeline.push({t:R.elapsed(),c:ch})}
 }
 function pTick(dt){
+ if(VF.on){vfTick(dt);return}
  if(!P.playing||!P.lines.length)return;
  const wps=S.set.wpm/60;const L=lineAt(P.off+1);
  let rate;if(L<0){rate=P.lh/(3/wps)}else{const ln=P.lines[L],nx=P.lines[L+1];const step=nx?nx.top-ln.top:P.lh;rate=step/(Math.max(1,ln.count)/wps)}
@@ -792,7 +823,7 @@ function pPlay(v){if(!P.data?.words.length)return;P.playing=v??!P.playing;if(P.p
 function setPChip(){const c=$('#p-chip');c.className='chip '+(P.playing?'ok':'');c.querySelector('span').textContent=P.playing?'Läuft':'Pausiert';$('#pplay-ico').innerHTML=P.playing?'<path d="M8 5v14M16 5v14"/>':'<path d="M7 5l12 7-12 7z"/>';$('#btn-pplay').setAttribute('aria-label',P.playing?'Prompter pausieren':'Prompter starten')}
 function pJump(dir){const d=P.data;if(!d?.paras.length)return;const cur=Math.max(0,P.cur);let t;if(dir<0){const prev=d.paras.filter(i=>i<cur-1);t=prev.length?prev.at(-1):0}else{t=d.paras.find(i=>i>cur);if(t==null)return}P.off=P.tops[t]||0;applyOff()}
 function pTop(){P.off=0;P.playing=false;applyOff();setPChip()}
-function applyPrompterStyle(){const r=document.documentElement.style;r.setProperty('--pf',S.set.font+'px');r.setProperty('--pw',S.set.pwidth+'%');r.setProperty('--my',S.set.marker+'%');$('#prompter').classList.toggle('mirror',!!S.set.mirror);$('#btn-mirror').setAttribute('aria-pressed',S.set.mirror);$('#tv-wpm b').textContent=S.set.wpm;requestAnimationFrame(()=>{measure();applyOff()})}
+function applyPrompterStyle(){const r=document.documentElement.style;r.setProperty('--pf',effFont()+'px');r.setProperty('--pw',(SMALL()?84:S.set.pwidth)+'%');r.setProperty('--my',S.set.marker+'%');$('#prompter').classList.toggle('mirror',!!S.set.mirror);$('#btn-mirror').setAttribute('aria-pressed',S.set.mirror);$('#tv-wpm b').textContent=S.set.wpm;requestAnimationFrame(()=>{measure();applyOff()})}
 $('#prompter').addEventListener('wheel',e=>{e.preventDefault();P.off=clamp(P.off+e.deltaY,0,P.max);applyOff()},{passive:false});
 new ResizeObserver(()=>{measure();applyOff()}).observe($('#prompter'));
 
@@ -802,7 +833,7 @@ const V={cam:null,mic:null,video:document.createElement('video'),alt:null,pip:nu
 V.video.muted=true;V.video.playsInline=true;
 const camSrc=()=>V.cam&&V.video.videoWidth?V.video:M.has&&M.cv.videoWidth?M.cv:V.alt&&V.alt.videoWidth?V.alt:null;
 function sizeCanvas(){const[w,h]=FORMATS[S.set.format]||FORMATS['9:16'];const k=S.set.quality==='720'?2/3:1;V.W=Math.round(w*k/2)*2;V.H=Math.round(h*k/2)*2;if(V.cv.width!==V.W)V.cv.width=V.W;if(V.cv.height!==V.H)V.cv.height=V.H;fitStage();renderSafe()}
-function fitStage(){const st=$('#stage');const aw=st.clientWidth-28,ah=st.clientHeight-28;if(aw<=0||ah<=0)return;const k=Math.min(aw/V.W,ah/V.H);const w=$('#cvwrap');w.style.width=Math.floor(V.W*k)+'px';w.style.height=Math.floor(V.H*k)+'px'}
+function fitStage(){const st=$('#stage');const pad=document.body.classList.contains('focus')?0:28;const aw=st.clientWidth-pad,ah=st.clientHeight-pad;if(aw<=0||ah<=0)return;const k=Math.min(aw/V.W,ah/V.H);const w=$('#cvwrap');w.style.width=Math.floor(V.W*k)+'px';w.style.height=Math.floor(V.H*k)+'px'}
 new ResizeObserver(fitStage).observe($('#stage'));
 function renderSafe(){const s=$('#safe');if(!S.set.safe||V.H<=V.W){s.innerHTML='';return}s.innerHTML='<i style="left:0;right:0;bottom:0;height:19%"></i><i style="right:0;top:42%;bottom:19%;width:14%"></i><i style="left:0;right:0;top:0;height:8%"></i>'}
 async function listDevices(){try{const ds=await navigator.mediaDevices.enumerateDevices();const fill=(sel,kind,key)=>{const opts=ds.filter(d=>d.kind===kind);sel.innerHTML=opts.map((d,i)=>`<option value="${esc(d.deviceId)}">${esc(d.label||(kind==='videoinput'?'Kamera ':'Mikrofon ')+(i+1))}</option>`).join('')||'<option value="">Keine gefunden</option>';if(S.set[key]&&opts.some(o=>o.deviceId===S.set[key]))sel.value=S.set[key]};fill($('#sel-cam'),'videoinput','camId');fill($('#sel-mic'),'audioinput','micId')}catch{}}
@@ -816,7 +847,7 @@ async function camStart(){
   V.video.srcObject=V.cam;await V.video.play().catch(()=>{});
  }catch(e){V.cam=null;why.textContent=S.isApp?'Claude gibt Artefakt-Apps die Kamera gerade nicht frei. Öffne das Kamera-Studio in Chrome, dort klappt die Aufnahme mit deinem Skript.':'Hier im Browserfenster ist die Kamera gesperrt. Installiere die Mac-App oder lade zum Ausprobieren ein Testvideo.';$('#stagemsg').hidden=false;return}
  try{V.mic=await navigator.mediaDevices.getUserMedia({video:false,audio:{deviceId:S.set.micId?{ideal:S.set.micId}:undefined,echoCancellation:false,noiseSuppression:!!S.set.noise,autoGainControl:false,channelCount:1}});startMeter()}catch{V.mic=null;toast('Mikrofon nicht freigegeben, Aufnahmen bleiben stumm.','bad')}
- $('#stagemsg').hidden=true;listDevices();
+ $('#stagemsg').hidden=true;listDevices();wakeLock(true);if(WEB&&SMALL()&&!S.focusAuto){S.focusAuto=true;setFocus(true)}
 }
 function camStop(silent){if(!silent)macKill();V.cam?.getTracks().forEach(t=>t.stop());V.mic?.getTracks().forEach(t=>t.stop());V.cam=null;V.mic=null;V.video.srcObject=null;V.an=null;if(!silent&&!V.alt)$('#stagemsg').hidden=false}
 function startMeter(){try{V.ac=V.ac||new AudioContext();V.ac.resume?.();const src=V.ac.createMediaStreamSource(V.mic);V.an=V.ac.createAnalyser();V.an.fftSize=1024;src.connect(V.an);V.buf=new Float32Array(V.an.fftSize)}catch{V.an=null}}
@@ -933,7 +964,7 @@ function ensureSeg(){
    inst.onResults(r=>{const m=r.segmentationMask;if(!m)return;if(V.mask.width!==m.width||V.mask.height!==m.height){V.mask.width=m.width;V.mask.height=m.height}const mc=V.mask.getContext('2d');mc.globalCompositeOperation='copy';mc.drawImage(m,0,0);V.seg.has=true});
    await inst.initialize();V.seg.inst=inst;V.seg.st='ready';clearTimeout(to);segNote('KI-Freistellung aktiv. Am besten wirkt sie mit ruhigem Hintergrund und gutem Licht von vorn.')}catch(e){clearTimeout(to);fail(e?.message||'Fehler')}}).catch(e=>{clearTimeout(to);fail(e?.message||'Datei fehlt')});
 }
-function segPump(){const src=camSrc();if(V.seg.st!=='ready'||!src||V.seg.busy||!(S.set.bg==='blur'||S.set.bg==='ersetzen'))return;V.seg.busy=true;V.seg.inst.send({image:src}).catch(()=>{}).finally(()=>{V.seg.busy=false})}
+function segPump(){const src=camSrc();if(V.seg.st!=='ready'||!src||V.seg.busy||!(S.set.bg==='blur'||S.set.bg==='ersetzen'))return;const now=performance.now();if(now-(V.seg.last||0)<(V.seg.gap||45))return;V.seg.last=now;V.seg.busy=true;V.seg.inst.send({image:src}).catch(()=>{}).finally(()=>{V.seg.busy=false;V.seg.gap=clamp((performance.now()-now)*1.6,33,220)})}
 
 /* ---------- Aufnahme ---------- */
 const R={on:false,rec:null,chunks:[],t0:0,mime:'',timeline:[],script:null,elapsed(){return this.on?(performance.now()-this.t0)/1000:0},counting:false};
@@ -971,7 +1002,7 @@ async function finishRec(){
  const take={id:uid(),name,ext,scriptId:R.script?.id||'',title,created:Date.now(),dur:R.dur,size:blob.size,mime:type,fav:false,file:'',url:URL.createObjectURL(blob),blob,marks:R.marks||[],tl:R.timeline.slice(0,5000),chunks:P.data?.chunks||[]};
  const srt=P.data&&S.set.srt&&R.timeline.length?srtFrom(R.timeline,P.data.chunks,R.dur):'';take.srt=srt;
  S.takes.unshift(take);renderTakes();
- if(WEB){dlBlob(blob,'Social Studio - '+name+'.'+ext);take.dl=true;renderTakes();toast('Take ist in deinen Downloads: Social Studio - '+name+'.'+ext,'ok')}
+ if(WEB){await webSaveTake(take,blob,srt);if(S.set.autoCut)cutAnalyzeWeb(take,{auto:true})}
  else if(STANDALONE){dlBlob(blob,'Social Studio - '+name+'.'+ext);if(srt)setTimeout(()=>dlBlob(new Blob([srt],{type:'text/plain'}),'Social Studio - '+name+'.srt'),400);const meta={id:take.id,name,ext,scriptId:take.scriptId,title,created:take.created,dur:take.dur,size:take.size};setTimeout(()=>dlBlob(new Blob([JSON.stringify(meta)],{type:'application/json'}),'Social Studio - '+name+'.take.json'),800);take.dl=true;renderTakes();toast('Take ist in deinen Downloads. Die Mac-App holt ihn beim nächsten Öffnen in deinen Ordner.','ok')}
  const saved=STANDALONE?false:await saveTakeFile(take,blob,srt);
  if(!STANDALONE)toast(saved?`Take gespeichert: ${name}.${ext}`:`Take ${n} ist fertig. Er liegt nur in diesem Fenster, sichere ihn unter „Takes“.`,saved?'ok':'');
@@ -1003,9 +1034,9 @@ function renderTakes(){
  const el=$('#takes');$('#take-n').textContent=S.takes.length?'('+S.takes.length+')':'';
  if(!S.takes.length){el.innerHTML=`<div class="empty small">Noch keine Takes. Drück auf „Aufnehmen“ oder die Taste R.</div>`;return}
  const cs=t=>t.cut?`<span class="cs done">Fertiger Schnitt ${esc(t.fmt||'')}</span>`:CUT.busy.has(t.id)&&t.cutState==='läuft'?`<span class="cs">${esc(t.cutStep||'Vorschnitt läuft')} …</span>`:t.cutState==='fehler'?'<span class="cs bad">Vorschnitt fehlgeschlagen</span>':t.edit?`<span class="cs">Vorschnitt bereit: ${t.edit.cuts.filter(c=>c.on).length} Schnitte${t.cutDone?' · geschnitten':''}</span>`:'';
- el.innerHTML=S.takes.map(t=>`<div class="take" data-id="${esc(t.id)}"><button class="star" data-act="tfav" aria-pressed="${!!t.fav}" aria-label="Favorit">★</button><div><div class="tn" title="${esc(t.name)}">${esc(t.title)}</div><div class="tm">${fmtDur(t.dur)} · ${fmtSize(t.size||0)} · ${esc(new Date(t.created).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}))}${t.file?' · auf dem Mac':t.dl?' · in Downloads':' · nur hier'}</div>${cs(t)}</div><div class="acts"><button class="btn sm" data-act="tplay">Ansehen</button>${t.file&&!t.cut&&S.isApp?`<button class="btn sm ${t.edit?'pri':''}" data-act="tcut">${t.edit?'Vorschnitt prüfen':'Vorschnitt'}</button>`:''}${t.file?`<button class="btn sm ghost" data-act="tshow">Finder</button>`:`<button class="btn sm ghost" data-act="tsave">Sichern</button>`}<button class="btn sm ghost" data-act="tdel" aria-label="Löschen">✕</button></div></div>`).join('');
+ el.innerHTML=S.takes.map(t=>`<div class="take" data-id="${esc(t.id)}"><button class="star" data-act="tfav" aria-pressed="${!!t.fav}" aria-label="Favorit">★</button><div><div class="tn" title="${esc(t.name)}">${esc(t.title)}</div><div class="tm">${fmtDur(t.dur)} · ${fmtSize(t.size||0)} · ${esc(new Date(t.created).toLocaleString('de-DE',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}))}${t.file?' · auf dem Mac':t.folder?' · im Ordner „'+esc(t.folder)+'“':t.dl?' · in Downloads':WEB?' · hier gespeichert':' · nur hier'}</div>${cs(t)}</div><div class="acts"><button class="btn sm" data-act="tplay">Ansehen</button>${(t.file&&!t.cut&&S.isApp)||(WEB&&t.blob&&!t.cut)?`<button class="btn sm ${t.edit?'pri':''}" data-act="tcut">${t.edit?'Vorschnitt prüfen':'Vorschnitt'}</button>`:''}${WEB&&canShareFile(t)?'<button class="btn sm" data-act="tshare">Teilen</button>':''}${t.file?`<button class="btn sm ghost" data-act="tshow">Finder</button>`:`<button class="btn sm ghost" data-act="tsave">${WEB?'Laden':'Sichern'}</button>`}<button class="btn sm ghost" data-act="tdel" aria-label="Löschen">✕</button></div></div>`).join('');
 }
-async function takeUrl(t){if(t.url)return t.url;if(!t.file||!fsOK())return'';const bytes=await D().fs.readFile(t.file);t.url=URL.createObjectURL(new Blob([bytes],{type:t.mime||'video/mp4'}));return t.url}
+async function takeUrl(t){if(t.url)return t.url;if(t.blob){t.url=URL.createObjectURL(t.blob);return t.url}if(!t.file||!fsOK())return'';const bytes=await D().fs.readFile(t.file);t.url=URL.createObjectURL(new Blob([bytes],{type:t.mime||'video/mp4'}));return t.url}
 async function takeMeta(t){if(!t.file||!fsOK())return;const m={...t};delete m.url;delete m.blob;delete m.srt;delete m.meta;delete m.proxyUrl;delete m.cutStep;if(m.cutState==='läuft')delete m.cutState;try{await D().fs.writeFile(t.file.replace(/\.(mp4|webm)$/,'.take.json'),JSON.stringify(m,null,1),'utf8')}catch{}}
 
 /* ---------- Mac-Werkzeuge: ffmpeg und Spracherkennung ---------- */
@@ -1183,7 +1214,7 @@ function againMark(){
  const c=d.w2c[w];let t0=null;for(let i=R.timeline.length-1;i>=0;i--){if(R.timeline[i].c===c){t0=R.timeline[i].t;break}}
  if(t0==null){const e=R.timeline.find(e=>e.c>=c);t0=e?e.t:Math.max(0,now-4)}
  (R.marks=R.marks||[]).push({a:Math.max(0,t0-.25),b:now+.15});
- P.off=Math.max(0,(P.tops?.[w]||0));applyOff();
+ P.off=Math.max(0,(P.tops?.[w]||0));applyOff();vfSync();
  const b=$('#btn-again');b.classList.remove('flash');void b.offsetWidth;b.classList.add('flash');
 }
 
@@ -1195,6 +1226,7 @@ async function probeInfo(f){const r=await run(T.ff,['-hide_banner','-i',f],{time
  let w=v?+v[1]:1280,h=v?+v[2]:720;if(rot)[w,h]=[h,w];return{dur:d?(+d[1])*3600+(+d[2])*60+(+d[3]):0,w,h,audio:/Stream #[^\n]*Audio:/.test(e)}}
 function setCutStep(t,s){t.cutStep=s;renderTakes();const el=$('#cut-step');if(el&&CUT.t===t)el.textContent=s}
 async function cutAnalyze(t,o={}){
+ if(!t?.file&&t?.blob)return cutAnalyzeWeb(t,o);
  if(!t?.file){toast('Dieser Take liegt nicht auf dem Mac. Sichere ihn zuerst.','bad');return}
  await checkTools();if(!T.ff){openSetup();return}
  if(CUT.busy.has(t.id))return;CUT.busy.add(t.id);t.cutState='läuft';
@@ -1273,8 +1305,8 @@ async function openCut(t){
   <div id="cut-hook"></div></div>
   <div class="stack-sm cut-side"><h4>Schnitte <span class="muted small">Haken weg = bleibt drin</span></h4><div class="cut-list" id="cut-list"></div>
   <div id="cut-words-box" hidden><h4>Text <span class="muted small">Klick auf ein Wort schneidet es raus oder holt es zurück</span></h4><div class="cut-words" id="cut-words"></div></div></div></div>
- <div class="cut-out"><div class="seg" id="cut-fmt">${Object.keys(FORMATS).map(f=>`<button data-cutfmt="${f}" aria-pressed="${f===fmt}">${f}</button>`).join('')}</div>
-  <label class="check"><input type="checkbox" data-cutopt="caps" ${o.caps?'checked':''}> Untertitel einbrennen</label><label class="check"><input type="checkbox" data-cutopt="overlay" ${o.overlay?'checked':''}> Überschrift, Bauchbinde, Wasserzeichen</label><label class="check"><input type="checkbox" data-cutopt="zoom" ${o.zoom?'checked':''}> Zoom-Wechsel bei Schnitten</label><label class="check"><input type="checkbox" data-cutopt="polish" ${o.polish?'checked':''}> Ton verbessern</label>${S.set.bg!=='original'||S.set.layout!=='voll'?'<p class="note" style="flex-basis:100%;margin:0">Hintergrund-Effekte und Layouts außer Vollbild kommen noch nicht in den fertigen Schnitt. Dort landet dein Kamerabild im gewählten Format.</p>':''}</div>
+ ${t.edit.web?`<div class="cut-out"><label class="check"><input type="checkbox" data-cutopt="zoom" ${o.zoom?'checked':''}> Zoom-Wechsel bei Schnitten</label><p class="note" style="flex-basis:100%;margin:0">Untertitel, Einblendungen und Effekte sind schon im Take drin. Der Schnitt läuft in Echtzeit, lass das Fenster dabei offen.</p></div>`:`<div class="cut-out"><div class="seg" id="cut-fmt">${Object.keys(FORMATS).map(f=>`<button data-cutfmt="${f}" aria-pressed="${f===fmt}">${f}</button>`).join('')}</div>
+  <label class="check"><input type="checkbox" data-cutopt="caps" ${o.caps?'checked':''}> Untertitel einbrennen</label><label class="check"><input type="checkbox" data-cutopt="overlay" ${o.overlay?'checked':''}> Überschrift, Bauchbinde, Wasserzeichen</label><label class="check"><input type="checkbox" data-cutopt="zoom" ${o.zoom?'checked':''}> Zoom-Wechsel bei Schnitten</label><label class="check"><input type="checkbox" data-cutopt="polish" ${o.polish?'checked':''}> Ton verbessern</label>${S.set.bg!=='original'||S.set.layout!=='voll'?'<p class="note" style="flex-basis:100%;margin:0">Hintergrund-Effekte und Layouts außer Vollbild kommen noch nicht in den fertigen Schnitt. Dort landet dein Kamerabild im gewählten Format.</p>':''}</div>`}
  <div class="cut-prog" id="cut-prog" hidden><i></i><span id="cut-step"></span></div>
  <div class="row" style="justify-content:flex-end"><button class="btn ghost" data-act="cutredo">Neu analysieren</button><button class="btn" data-act="m-no">Schließen</button><button class="btn pri" data-act="cutrender" id="cut-go">Fertig schneiden</button></div>`,'xwide');
  CUT.vid=$('#cut-v');CUT.skip=true;CUT.listenEnd=0;renderCut();cancelAnimationFrame(CUT.raf);CUT.raf=requestAnimationFrame(cutTick);
@@ -1333,6 +1365,7 @@ async function buildOverlay(t,keep,W,H,outDur,dir){
 }
 function srtOf(items){const ts=s=>{const ms=Math.max(0,Math.round(s*1000));return pad(Math.floor(ms/36e5))+':'+pad(Math.floor(ms/6e4)%60)+':'+pad(Math.floor(ms/1e3)%60)+','+String(ms%1000).padStart(3,'0')};return items.map((x,i)=>`${i+1}\n${ts(x.s)} --> ${ts(x.e)}\n${x.text}\n`).join('\n')}
 async function cutRender(){
+ if(CUT.t?.edit?.web)return cutRenderWeb();
  const t=CUT.t;if(!t||CUT.rendering)return;await checkTools();if(!T.ff){openSetup();return}
  CUT.rendering=true;$('#cut-go').disabled=true;$('#cut-prog').hidden=false;const bar=$('#cut-prog i');const step=s=>{const e=$('#cut-step');if(e)e.textContent=s};
  try{
@@ -1362,6 +1395,141 @@ async function cutRender(){
   setTimeout(()=>ACT.tplayid(nt.id),200);
  }catch(e){toast('Schneiden fehlgeschlagen: '+(e?.message||e),'bad');step('')}
  finally{CUT.rendering=false;const g=$('#cut-go');if(g)g.disabled=false}
+}
+
+/* ---------- Aufnahmemodus (Vollbild, Prompter unter der Kamera) ---------- */
+const IOS=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const SMALL=()=>innerWidth<700;
+function effFont(){return SMALL()?Math.min(+S.set.font||46,Math.max(22,Math.round(innerWidth/12.5))):+S.set.font||46}
+function setFocus(on){
+ on=on??!document.body.classList.contains('focus');if(!on&&R.on)return;
+ document.body.classList.toggle('focus',on);S.focus=on;applyPrompterStyle();
+ requestAnimationFrame(()=>{fitStage();measure();applyOff()});wakeLock(on||!!camSrc());
+}
+let WL=null;
+async function wakeLock(on){try{if(on&&!WL&&navigator.wakeLock&&document.visibilityState==='visible'){WL=await navigator.wakeLock.request('screen');WL.addEventListener('release',()=>{WL=null})}else if(!on&&WL){const w=WL;WL=null;await w.release()}}catch{}}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&(S.focus||camSrc()))wakeLock(true)});
+let rsT=0;addEventListener('resize',()=>{clearTimeout(rsT);rsT=setTimeout(()=>{applyPrompterStyle();fitStage();measure();applyOff()},120)});
+
+/* ---------- Takes im Browser behalten, in Ordner speichern, teilen ---------- */
+const TDB={db:null,
+ open(){if(this.db)return Promise.resolve(this.db);return new Promise((res,rej)=>{const r=indexedDB.open('kamera-studio',1);r.onupgradeneeded=()=>{const d=r.result;if(!d.objectStoreNames.contains('takes'))d.createObjectStore('takes',{keyPath:'id'});if(!d.objectStoreNames.contains('kv'))d.createObjectStore('kv')};r.onsuccess=()=>{this.db=r.result;res(r.result)};r.onerror=()=>rej(r.error)})},
+ async req(store,mode,fn){const d=await this.open();return new Promise((res,rej)=>{const t=d.transaction(store,mode);const q=fn(t.objectStore(store));let out;if(q)q.onsuccess=()=>{out=q.result};t.oncomplete=()=>res(out);t.onerror=()=>rej(t.error);t.onabort=()=>rej(t.error)})},
+ put(rec){return this.req('takes','readwrite',s=>s.put(rec))},del(id){return this.req('takes','readwrite',s=>s.delete(id))},all(){return this.req('takes','readonly',s=>s.getAll())},
+ get(k){return this.req('kv','readonly',s=>s.get(k))},set(k,v){return this.req('kv','readwrite',s=>s.put(v,k))}};
+const KEEP=['id','name','ext','scriptId','title','created','dur','size','mime','fav','marks','tl','chunks','edit','cut','parent','fmt','cutDone','cutState','srt','folder','dl'];
+function takeRec(t){const m={};for(const k of KEEP)if(t[k]!==undefined)m[k]=t[k];if(m.cutState==='läuft')delete m.cutState;return{id:t.id,meta:m,blob:t.blob}}
+async function saveTakeLocal(t){if(!WEB||!t.blob)return;try{await TDB.put(takeRec(t))}catch(e){toast('Take konnte im Browser nicht gespeichert werden: '+(e?.message||e),'bad')}}
+async function loadTakesLocal(){if(!WEB)return;try{const all=await TDB.all();const have=new Set(S.takes.map(t=>t.id));for(const r of all||[]){if(have.has(r.id)||!r.blob)continue;S.takes.push({...r.meta,blob:r.blob,url:'',file:''})}S.takes.sort((a,b)=>b.created-a.created);renderTakes();renderStore()}catch{}}
+const DIR={h:null,ok:false};
+async function dirInit(){if(!WEB||!window.showDirectoryPicker)return;try{DIR.h=await TDB.get('dir')||null;if(DIR.h)DIR.ok=(await DIR.h.queryPermission({mode:'readwrite'}))==='granted'}catch{DIR.h=null}renderStore()}
+async function dirPick(){try{const h=await window.showDirectoryPicker({id:'kamera-studio',mode:'readwrite',startIn:'videos'});DIR.h=h;DIR.ok=true;try{await TDB.set('dir',h)}catch{}toast('Neue Takes landen jetzt im Ordner „'+h.name+'“.','ok')}catch(e){if(e?.name!=='AbortError')toast('Ordner ging nicht: '+(e?.message||e),'bad')}renderStore()}
+async function dirAllow(){if(!DIR.h)return dirPick();try{DIR.ok=(await DIR.h.requestPermission({mode:'readwrite'}))==='granted'}catch{DIR.ok=false}renderStore();if(DIR.ok)toast('Ordner „'+DIR.h.name+'“ ist wieder verbunden.','ok')}
+async function dirWrite(name,blob){const fh=await DIR.h.getFileHandle(name,{create:true});const w=await fh.createWritable();await w.write(blob);await w.close()}
+async function deliverTake(t,blob,srt){
+ const base='Social Studio - '+t.name;
+ if(DIR.h&&DIR.ok){try{await dirWrite(base+'.'+t.ext,blob);if(srt)await dirWrite(base+'.srt',new Blob([srt],{type:'text/plain'}));t.folder=DIR.h.name;saveTakeLocal(t);renderTakes();toast('Take gespeichert in „'+DIR.h.name+'“: '+t.name,'ok');return}catch(e){DIR.ok=false;renderStore();toast('Ordner nicht erreichbar, der Take kommt in die Downloads.','bad')}}
+ if(IOS){toast('Take ist gespeichert. Unter „Takes“ kannst du ihn teilen oder in Fotos sichern.','ok');return}
+ dlBlob(blob,base+'.'+t.ext);t.dl=true;saveTakeLocal(t);renderTakes();toast('Take ist in deinen Downloads: '+base+'.'+t.ext,'ok');
+}
+async function webSaveTake(t,blob,srt){await saveTakeLocal(t);if(!S.persistAsked){S.persistAsked=true;try{await navigator.storage?.persist?.()}catch{}}await deliverTake(t,blob,srt);renderStore()}
+function canShareFile(t){try{return!!(t.blob&&navigator.canShare&&navigator.canShare({files:[new File([t.blob],'x.'+t.ext,{type:t.mime||'video/mp4'})]}))}catch{return false}}
+async function shareTake(t){try{await navigator.share({files:[new File([t.blob],'Social Studio - '+t.name+'.'+t.ext,{type:t.mime||'video/mp4'})],title:t.title})}catch(e){if(e?.name!=='AbortError')toast('Teilen ging nicht: '+(e?.message||e),'bad')}}
+async function renderStore(){
+ const el=$('#store');if(!el)return;if(!WEB){el.hidden=true;return}el.hidden=false;
+ let use='';try{const e=await navigator.storage?.estimate?.();if(e?.usage)use=' · im Browser belegt: '+fmtSize(e.usage)}catch{}
+ const where=DIR.h?(DIR.ok?'Ordner „'+esc(DIR.h.name)+'“':'Ordner „'+esc(DIR.h.name)+'“ (neu freigeben)'):IOS?'hier im Studio, teilen per Knopf':'Downloads';
+ el.innerHTML=`<p class="note" style="margin:0">Takes bleiben hier gespeichert, auch nach dem Neuladen. Neue Takes landen in: <b>${where}</b>${use}</p>`+
+  (window.showDirectoryPicker?`<div class="row">${DIR.h&&!DIR.ok?'<button class="btn sm pri" data-act="dirallow">Ordner freigeben</button>':''}<button class="btn sm" data-act="dirpick">${DIR.h?'Anderen Ordner wählen':'Ordner wählen'}</button></div>`:'');
+}
+
+/* ---------- Vorschnitt im Browser (ohne ffmpeg) ---------- */
+function pausesToCuts(raw,dur){const out=[];for(const[a,b]of raw){const head=a<=.05,tail=dur&&b>=dur-.08;const A=head?0:a+.12,B=tail?dur:b-(head?.1:.12);if(B-A>=.25)out.push({a:A,b:B,kind:head?'start':tail?'ende':'pause',on:true,why:head?'Stille vor dem ersten Wort':tail?'Stille nach dem letzten Wort':'Pause von '+(b-a).toFixed(1).replace('.',',')+' s'})}return out}
+function webPauses(buf,dur){
+ const ch=buf.numberOfChannels,sr=buf.sampleRate,win=Math.max(1,Math.round(sr*.02)),n=Math.floor(buf.length/win);if(n<5)return[];
+ const data=[];for(let c=0;c<ch;c++)data.push(buf.getChannelData(c));const db=new Float32Array(n);
+ for(let i=0;i<n;i++){let s=0;for(let c=0;c<ch;c++){const d=data[c];for(let j=i*win,e=j+win;j<e;j++)s+=d[j]*d[j]}db[i]=10*Math.log10(s/(win*ch)+1e-12)}
+ const so=Array.from(db).sort((a,b)=>a-b);const floor=so[Math.floor(n*.1)],loud=so[Math.floor(n*.9)];
+ const thr=Math.min(loud-16,Math.max(floor+9,-52));const min=+S.set.cutPause||.6;
+ const raw=[];let st=-1;for(let i=0;i<=n;i++){const sil=i<n&&db[i]<thr;if(sil&&st<0)st=i;if(!sil&&st>=0){const a=st*.02,b=Math.min(dur,i*.02);if(b-a>=min||(st===0&&b-a>=.3)||(i===n&&b-a>=.3))raw.push([a,b]);st=-1}}
+ return pausesToCuts(raw,dur);
+}
+async function cutAnalyzeWeb(t,o={}){
+ if(!t?.blob){toast('Dieser Take ist nicht mehr da.','bad');return}if(CUT.busy.has(t.id))return;CUT.busy.add(t.id);t.cutState='läuft';
+ let ac;try{setCutStep(t,'Ton wird gelesen');const AC=window.AudioContext||window.webkitAudioContext;ac=new AC();
+  const buf=await ac.decodeAudioData(await t.blob.arrayBuffer());const dur=buf.duration||t.dur||0;t.dur=dur;
+  setCutStep(t,'Pausen werden gesucht');const cuts=webPauses(buf,dur);
+  for(const m of t.marks||[])cuts.push({a:m.a,b:m.b,kind:'nochmal',on:true,why:'Du hast „Satz nochmal“ gedrückt'});
+  t.edit={v:1,made:Date.now(),cuts:normCuts(cuts,dur),words:null,hook:null,fmt:'',opts:{zoom:true},web:true};t.cutState='bereit';t.cutStep='';
+  await saveTakeLocal(t);renderTakes();if(CUT.t===t)renderCut();
+  if(o.auto)toast(`Vorschnitt für „${t.title}“ ist fertig: ${t.edit.cuts.length} Schnitte vorgeschlagen. Prüfen unter „Takes“.`,'ok');
+ }catch(e){t.cutState='fehler';t.cutStep='';renderTakes();toast('Vorschnitt ging nicht: '+(e?.message||e),'bad')}
+ finally{CUT.busy.delete(t.id);try{ac?.close()}catch{}}
+}
+async function cutRenderWeb(){
+ const t=CUT.t;if(!t||CUT.rendering)return;CUT.rendering=true;CUT.vid?.pause();$('#cut-go').disabled=true;$('#cut-prog').hidden=false;
+ const bar=$('#cut-prog i'),step=s=>{const e=$('#cut-step');if(e)e.textContent=s};let ac=null,drawing=true;
+ try{
+  const dur=t.dur||0,keep=keepSegs(t.edit,dur);if(!keep.length)throw new Error('Alles ist weggeschnitten');const outDur=segLen(keep);
+  const v=document.createElement('video');v.playsInline=true;v.preload='auto';v.src=await takeUrl(t);
+  await new Promise((res,rej)=>{v.onloadedmetadata=res;v.onerror=()=>rej(new Error('Video nicht lesbar'))});
+  const W=v.videoWidth||1080,H=v.videoHeight||1920,cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d');
+  const AC=window.AudioContext||window.webkitAudioContext;ac=new AC();await ac.resume().catch(()=>{});const src=ac.createMediaElementSource(v),g=ac.createGain(),dst=ac.createMediaStreamDestination();g.gain.value=0;src.connect(g);g.connect(dst);
+  const stream=cv.captureStream(30);dst.stream.getAudioTracks().forEach(x=>stream.addTrack(x));
+  const mime=pickMime();const rec=new MediaRecorder(stream,mime?{mimeType:mime,videoBitsPerSecond:S.set.quality!=='720'?12e6:6e6,audioBitsPerSecond:160000}:{});
+  const parts=[];rec.ondataavailable=e=>{if(e.data?.size)parts.push(e.data)};const stopped=new Promise(r=>rec.onstop=r);
+  let zoom=1;const draw=()=>{if(!drawing)return;const sw=W/zoom,sh=H/zoom;try{c.drawImage(v,(W-sw)/2,(H-sh)/2,sw,sh,0,0,W,H)}catch{}requestAnimationFrame(draw)};
+  step('Schnitt wird vorbereitet');rec.start(250);rec.pause();draw();let done=0;
+  for(let i=0;i<keep.length;i++){const[a,b]=keep[i];zoom=t.edit.opts?.zoom&&keep.length>1&&i%2===1?1.12:1;
+   v.currentTime=a;await new Promise(r=>v.addEventListener('seeked',r,{once:true}));await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+   const now=ac.currentTime;g.gain.cancelScheduledValues(now);g.gain.setValueAtTime(0,now);g.gain.linearRampToValueAtTime(1,now+.015);
+   rec.resume();await v.play();
+   await new Promise(r=>{const tick=()=>{const p=clamp((done+Math.max(0,v.currentTime-a))/outDur,0,1);bar.style.width=(p*100).toFixed(1)+'%';step('Schnitt läuft: '+Math.round(p*100)+' %. Lass das Fenster offen.');if(v.currentTime>=b-.03||v.ended)r();else setTimeout(tick,10)};tick()});
+   const n2=ac.currentTime;g.gain.cancelScheduledValues(n2);g.gain.setValueAtTime(1,n2);g.gain.linearRampToValueAtTime(0,n2+.012);await sleep(14);rec.pause();v.pause();done+=b-a;
+  }
+  drawing=false;rec.stop();await stopped;
+  const type=(rec.mimeType||mime||'video/webm').split(';')[0],ext=type.includes('mp4')?'mp4':'webm',blob=new Blob(parts,{type});
+  const d=new Date(),name=`${dKey(d)} ${pad(d.getHours())}-${pad(d.getMinutes())} ${slug(t.title)} Schnitt`;
+  const nt={id:uid(),name,ext,scriptId:t.scriptId,title:t.title,created:Date.now(),dur:outDur,size:blob.size,mime:type,fav:false,file:'',url:URL.createObjectURL(blob),blob,cut:true,parent:t.id,fmt:S.set.format};
+  S.takes.unshift(nt);t.cutDone=nt.id;saveTakeLocal(t);bar.style.width='100%';
+  await webSaveTake(nt,blob,'');renderTakes();closeModal();toast(`Fertig: ${fmtDur(outDur)} statt ${fmtDur(dur)}.`,'ok');setTimeout(()=>playTake(nt),200);
+ }catch(e){toast('Schneiden ging nicht: '+(e?.message||e),'bad');step('')}
+ finally{drawing=false;try{ac?.close()}catch{}CUT.rendering=false;const gb=$('#cut-go');if(gb)gb.disabled=false}
+}
+
+/* ---------- Prompter folgt der Stimme ---------- */
+const SRC=window.SpeechRecognition||window.webkitSpeechRecognition;
+const VF={on:false,rec:null,target:0,norm:[],heard:''};
+const normW=w=>String(w).toLowerCase().replace(/ß/g,'ss').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]/g,'');
+function vfSim(a,b){if(!a||!b)return false;if(a===b)return true;return a.length>=4&&b.length>=4&&a.slice(0,4)===b.slice(0,4)&&Math.abs(a.length-b.length)<=3}
+function vfMatch(txt){
+ const toks=String(txt).split(/\s+/).map(normW).filter(Boolean).slice(-6);if(!toks.length||!VF.norm.length)return false;
+ const N=VF.norm,cur=clamp(VF.target,0,N.length-1);let best=-1,bs=-1e9,bn=0;
+ for(let j=Math.max(0,cur-3);j<=Math.min(N.length-1,cur+30);j++){let n=0,k=toks.length-1,i=j;while(k>=0&&i>=0&&vfSim(N[i],toks[k])){n++;i--;k--}if(!n)continue;const sc=n-(j<cur-1?.6:0)-Math.max(0,j-cur)/50;if(sc>bs){bs=sc;best=j;bn=n}}
+ if(best<0)return false;if(bn>=2||(N[best].length>=6&&best-cur<=8)){VF.target=Math.min(N.length-1,best+1);return true}return false;
+}
+function vfUi(){const b=$('#btn-voice');if(!b)return;b.setAttribute('aria-pressed',String(VF.on));b.classList.toggle('on',VF.on);document.body.classList.toggle('voice',VF.on)}
+function vfSync(){if(VF.on)VF.target=Math.max(0,P.cur)}
+function vfStart(){
+ if(!SRC){toast('Dieser Browser kann das nicht. Nimm Chrome oder Safari.','bad');return}if(!P.data?.words.length){toast('Lade zuerst ein Skript.');return}
+ VF.norm=P.data.words.map(w=>normW(w.t));VF.target=Math.max(0,P.cur);VF.on=true;
+ const r=new SRC();r.lang='de-DE';r.continuous=true;r.interimResults=true;r.maxAlternatives=1;
+ r.onresult=e=>{let txt='';for(let i=e.resultIndex;i<e.results.length;i++)txt+=' '+e.results[i][0].transcript;VF.heard=txt;vfMatch(txt)};
+ r.onerror=e=>{if(e.error==='not-allowed'||e.error==='service-not-allowed'){vfStop();toast('Die Spracherkennung wurde nicht erlaubt.','bad')}};
+ r.onend=()=>{if(VF.on&&VF.rec===r)setTimeout(()=>{if(VF.on&&VF.rec===r)try{r.start()}catch{}},200)};
+ VF.rec=r;try{r.start()}catch{}vfUi();if(!P.playing){P.playing=true;setPChip()}
+ if(!S.vfNoted){S.vfNoted=true;toast(IOS?'Der Prompter folgt jetzt deiner Stimme. Die Erkennung läuft über Safari.':'Der Prompter folgt jetzt deiner Stimme. Chrome nutzt dafür die Spracherkennung von Google.','ok')}
+}
+function vfStop(){VF.on=false;const r=VF.rec;VF.rec=null;try{r?.stop()}catch{}vfUi()}
+function vfTick(dt){if(!P.tops?.length)return;const t=clamp(VF.target,0,P.tops.length-1);const want=Math.min(P.max,P.tops[t]||0);const d=want-P.off;if(Math.abs(d)<.5)return;P.off+=d*Math.min(1,dt*5);applyOff()}
+
+/* ---------- Als App installieren ---------- */
+let BIP=null;
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();BIP=e;const b=$('#btn-pwa');if(b)b.hidden=false});
+addEventListener('appinstalled',()=>{BIP=null;const b=$('#btn-pwa');if(b)b.hidden=true;toast('Das Kamera-Studio ist jetzt als App installiert.','ok')});
+function pwaInstall(){
+ if(BIP){BIP.prompt();BIP.userChoice.finally(()=>{BIP=null;$('#btn-pwa').hidden=true});return}
+ openModal(`<h3>Als App installieren</h3>${IOS?'<ol class="steps"><li>Tipp unten in Safari auf das Teilen-Symbol.</li><li>Wähl „Zum Home-Bildschirm“.</li><li>Tipp auf „Hinzufügen“. Danach startest du das Kamera-Studio wie eine App.</li></ol>':'<ol class="steps"><li>Klick in Chrome oben rechts auf die drei Punkte.</li><li>Wähl „Streamen, speichern und teilen“ und dann „Seite als App installieren“.</li><li>Das Kamera-Studio liegt danach im Dock und startet in einem eigenen Fenster.</li></ol>'}<div class="row" style="justify-content:flex-end"><button class="btn pri" data-act="m-no" autofocus>Verstanden</button></div>`);
 }
 
 /* ---------- Ansicht ---------- */
@@ -1713,6 +1881,8 @@ const ACT={
  setup:()=>{checkTools().then(openSetup)},setupgo:()=>setupGo(),toolscheck:async()=>{await checkTools(true);toast(T.ff?'ffmpeg ist bereit'+(T.model?', die Spracherkennung auch.':'.'):'ffmpeg fehlt noch.',T.ff?'ok':'')},
  privacy:()=>run('/usr/bin/open',['x-apple.systempreferences:com.apple.preference.security?Privacy_Camera']),
  again:()=>againMark(),
+ focus:()=>setFocus(),pvoice:()=>{VF.on?vfStop():vfStart()},dirpick:()=>dirPick(),dirallow:()=>dirAllow(),pwa:()=>pwaInstall(),
+ tshare:(b)=>{const t=S.takes.find(x=>x.id===b.closest('.take').dataset.id);if(t)shareTake(t)},
  permfix:async()=>{
   const b=$('#btn-perm'),why=$('#cam-why');const ok=()=>{toast('Erlaubt. Die Kamera startet.','ok');camStart()};
   if(b.dataset.mode==='chrome'){openWebStudio();return}
@@ -1743,9 +1913,10 @@ const ACT={
  tshow:(b)=>{const t=S.takes.find(x=>x.id===b.closest('.take').dataset.id);if(t?.file)D().shell.showItemInFolder(t.file).catch(e=>toast(e.message,'bad'))},
  tsave:async(b)=>{const t=S.takes.find(x=>x.id===b.closest('.take').dataset.id);if(!t?.blob)return;if(STANDALONE){dlBlob(t.blob,'Social Studio - '+t.name+'.'+t.ext);t.dl=true;renderTakes();return}if(fsOK()){if(await saveTakeFile(t,t.blob,t.srt))toast('Auf dem Mac gesichert','ok');return}if(S.isApp&&S.perm['full-access']==='prompt'){await requestPerm(['full-access']);if(fsOK()){if(await saveTakeFile(t,t.blob,t.srt))toast('Auf dem Mac gesichert','ok');return}}
   if(!cap.downloads){toast('Sichern geht hier nicht. Nutze die Mac-App.','bad');return}try{await cap.downloads.save({filename:t.name+'.'+t.ext,data:t.blob});if(t.srt)await cap.downloads.save({filename:t.name+'.srt',data:new Blob([t.srt],{type:'text/plain'})}).catch(()=>{})}catch(e){toast('Nicht gesichert'+(e?.message?': '+e.message:''),'bad')}},
- tdel:async(b)=>{const t=S.takes.find(x=>x.id===b.closest('.take').dataset.id);if(!t)return;if(!await ask('Take löschen?',t.file?'Der Take kommt in den Papierkorb, von dort kannst du ihn zurückholen.':'Der Take ist nur in diesem Fenster und ist danach weg.',t.file?'In den Papierkorb':'Löschen',true))return;
+ tdel:async(b)=>{const t=S.takes.find(x=>x.id===b.closest('.take').dataset.id);if(!t)return;if(!await ask('Take löschen?',t.file?'Der Take kommt in den Papierkorb, von dort kannst du ihn zurückholen.':WEB?'Der Take wird hier im Studio gelöscht. Was schon in deinen Downloads oder deinem Ordner liegt, bleibt dort.':'Der Take ist nur in diesem Fenster und ist danach weg.',t.file?'In den Papierkorb':'Löschen',true))return;
+  if(WEB)await TDB.del(t.id).catch(()=>{});
   if(t.file){try{await D().shell.trashItem(t.file);if(t.srtFile)await D().shell.trashItem(t.srtFile).catch(()=>{});await D().shell.trashItem(t.file.replace(/\.(mp4|webm)$/,'.take.json')).catch(()=>{})}catch(e){toast('Nicht gelöscht: '+e.message,'bad');return}}
-  if(t.url)URL.revokeObjectURL(t.url);S.takes=S.takes.filter(x=>x!==t);renderTakes()},
+  if(t.url)URL.revokeObjectURL(t.url);S.takes=S.takes.filter(x=>x!==t);renderTakes();renderStore()},
  newscript:()=>{newScript();renderScripts();$('.ed-title')?.select()},
  demo:()=>{const s=newScript({title:'So funktioniert dein Studio',text:DEMO,status:'skript',platform:'reel'});if(S.view==='skripte')renderScripts();else toast('Anleitungs-Skript angelegt','ok');if(!S.cur)selectStudioScript(s.id)},
  tostudio:()=>{const s=curEdit();if(!s)return;selectStudioScript(s.id);show('studio')},
@@ -1825,10 +1996,10 @@ document.addEventListener('keydown',e=>{
  if(!$('#modal').hidden){if(e.key==='Escape')closeModal(false);return}
  const t=e.target;const typing=t.closest?.('input,textarea,select,[contenteditable]');
  if(e.key===' '&&t.tagName==='BUTTON'&&S.view==='studio'){e.preventDefault();t.blur()}
- if(e.key==='Escape'){if(R.counting){R.cancel=true;return}if(R.on){stopRec();return}if(typing)return;if(S.drawer){S.drawer='';$('#drawer').hidden=true}return}
+ if(e.key==='Escape'){if(R.counting){R.cancel=true;return}if(R.on){stopRec();return}if(typing)return;if(document.body.classList.contains('focus')){setFocus(false);return}if(S.drawer){S.drawer='';$('#drawer').hidden=true}return}
  if(typing||e.metaKey||e.ctrlKey||e.altKey||S.view!=='studio')return;
  const k=e.key;
- if(k===' '){e.preventDefault();pPlay()}else if(k==='r'||k==='R'){e.preventDefault();toggleRec()}else if(k==='ArrowUp'){e.preventDefault();ACT.pfaster()}else if(k==='ArrowDown'){e.preventDefault();ACT.pslower()}else if(k==='ArrowLeft'){e.preventDefault();pJump(-1)}else if(k==='ArrowRight'){e.preventDefault();pJump(1)}else if(k==='Home'){e.preventDefault();pTop()}else if(k==='m'||k==='M'){ACT.pmirror()}else if((k==='n'||k==='N')&&R.on){e.preventDefault();againMark()}
+ if(k===' '){e.preventDefault();pPlay()}else if(k==='r'||k==='R'){e.preventDefault();toggleRec()}else if(k==='ArrowUp'){e.preventDefault();ACT.pfaster()}else if(k==='ArrowDown'){e.preventDefault();ACT.pslower()}else if(k==='ArrowLeft'){e.preventDefault();pJump(-1)}else if(k==='ArrowRight'){e.preventDefault();pJump(1)}else if(k==='Home'){e.preventDefault();pTop()}else if(k==='m'||k==='M'){ACT.pmirror()}else if((k==='n'||k==='N')&&R.on){e.preventDefault();againMark()}else if(k==='f'||k==='F'){e.preventDefault();setFocus()}else if((k==='v'||k==='V')&&!$('#btn-voice').hidden){e.preventDefault();VF.on?vfStop():vfStart()}
 });
 $('#sq').addEventListener('search',e=>{S.q=e.target.value;renderScripts()});
 
@@ -1841,17 +2012,19 @@ document.addEventListener('visibilitychange',()=>{clearInterval(bgTimer);if(docu
 window.addEventListener('focus',()=>{if(S.isApp&&fsOK())loadTakes()});
 setInterval(checkReminders,20000);
 
-if(window.__TEST)window.__ss={M,T,CUT,S,R,P};
+if(window.__TEST)window.__ss={M,T,CUT,S,R,P,VF,vfMatch,TDB,DIR,setFocus,effFont};
 /* ---------- Start ---------- */
 (async()=>{
  const seed=window.__STUDIO_SEED;if(seed&&typeof seed==='object'){try{const old=lsRead()||{};localStorage.setItem(LS,JSON.stringify({scripts:Array.isArray(seed.scripts)?seed.scripts:[],posts:old.posts||[],set:{...(old.set||{}),...(seed.set||{})}}));if(seed.cur)localStorage.setItem(LS+'.cur',seed.cur);localStorage.setItem(LS+'.view','studio')}catch{}}
  const l=lsRead()||(seed?{scripts:seed.scripts||[],posts:[],set:seed.set||{}}:null);if(l){S.scripts=Array.isArray(l.scripts)?l.scripts:[];S.posts=Array.isArray(l.posts)?l.posts:[];if(l.set)S.set={...structuredClone(DEF),...l.set,goals:{...DEF.goals,...(l.set.goals||{})},times:{...DEF.times,...(l.set.times||{})}}}
  try{S.jobs=JSON.parse(localStorage.getItem(LS+'.jobs')||'[]')}catch{}
  applyAllSettings();mimeNote();renderScriptSelects();renderTakes();renderKeys();
+ if(WEB){document.documentElement.classList.add('web');loadTakesLocal();dirInit();const tc=$('#tools-card h3');if(tc)tc.textContent='Vorschnitt';const pe=$('#pempty p');if(pe)pe.textContent='Öffne das Kamera-Studio über den Knopf im Social Studio, dann ist dein Skript schon drin. Oder füg hier schnell einen Text ein.';if(IOS&&!navigator.standalone)$('#btn-pwa').hidden=false}
+ if(SRC&&(WEB||STANDALONE))$('#btn-voice').hidden=false;
  let lastCur='';try{lastCur=localStorage.getItem(LS+'.cur')||''}catch{}
  if(seed?.cur&&S.scripts.some(s=>s.id===seed.cur))lastCur=seed.cur;
  if(lastCur&&S.scripts.some(s=>s.id===lastCur))selectStudioScript(lastCur);else if(S.scripts.length)selectStudioScript((sortedScripts().find(s=>wordCount(s.text))||sortedScripts()[0]).id);else loadPrompter(null);
- if(STANDALONE){setChip('chip-data','ok','Kamera-Studio in Chrome');setChip('chip-mac','warn','Takes gehen in Downloads')}
+ if(STANDALONE){setChip('chip-data','ok',WEB?'Kamera-Studio':'Kamera-Studio in Chrome');setChip('chip-mac',WEB?'ok':'warn',WEB?'Takes bleiben gespeichert':'Takes gehen in Downloads')}
  let v='studio';try{v=localStorage.getItem(LS+'.view')||'studio'}catch{}show(v);
  document.fonts?.load('800 40px Archivo').catch(()=>{});
  const [db,sample,mcp,dl]=await Promise.all([connectDb().then(()=>DBX.db),useCap('sample'),useCap('mcp'),useCap('downloads')]);
