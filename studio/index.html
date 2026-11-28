@@ -676,6 +676,7 @@ const DEF={
  macVid:'',macAud:'',autoCut:true,cutPause:0.6,cutDb:-35,camAuto:false
 };
 if(location.hash.startsWith('#s=')){try{const b=location.hash.slice(3).replace(/-/g,'+').replace(/_/g,'/');window.__STUDIO_SEED=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(b),c=>c.charCodeAt(0))))}catch(e){console.warn('Skript im Link unlesbar',e)}try{history.replaceState(null,'',location.pathname+location.search)}catch{}}
+addEventListener('hashchange',()=>{if(location.hash.startsWith('#s='))location.reload()});
 const WEB=!!window.__STUDIO_WEB;
 const STUDIO_URL='https://dokuna.de/studio/';
 const STANDALONE=location.protocol==='file:'||!!window.__STUDIO_SEED||WEB;
