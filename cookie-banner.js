@@ -126,7 +126,7 @@
         de: {
           consentModal: {
             title: 'Cookies auf dokuna.de',
-            description: 'Ohne Ihre Zustimmung nutzen wir nur technisch notwendige Cookies. Mit Zustimmung zählen wir außerdem Besucher und messen, ob unsere Google-Anzeigen zu Anfragen führen. Ändern können Sie das jederzeit unter „Cookie-Einstellungen“ unten auf der Seite.',
+            description: 'Mit Ihrer Zustimmung zählen wir Besucher und messen Anfragen aus Google-Anzeigen. Ändern können Sie das jederzeit unten unter „Cookie-Einstellungen“.',
             acceptAllBtn: 'Alle akzeptieren',
             acceptNecessaryBtn: 'Nur notwendige',
             showPreferencesBtn: 'Einstellungen',
